@@ -1,0 +1,38 @@
+---
+// Decorative particle field with faint links. Fewer particles on phones; static if reduced motion.
+---
+<canvas id="particles" aria-hidden="true"></canvas>
+<script>
+  const cv = document.getElementById('particles') as HTMLCanvasElement | null;
+  if (cv) {
+    const ctx = cv.getContext('2d')!;
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2), mx = 0, my = 0;
+    type P = { x: number; y: number; vx: number; vy: number; r: number; c: string };
+    let ps: P[] = [];
+    const cols = ['0,229,255', '137,87,255', '244,247,255'];
+    function size() {
+      const r = cv!.getBoundingClientRect(); w = r.width; h = r.height;
+      cv!.width = w * dpr; cv!.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const n = w < 700 ? 28 : 70;
+      ps = Array.from({ length: n }, () => ({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - 0.5) * 0.18, vy: (Math.random() - 0.5) * 0.18, r: Math.random() * 1.4 + 0.4, c: cols[(Math.random() * 3) | 0] }));
+    }
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < ps.length; i++) {
+        const p = ps[i];
+        if (!still) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > w) p.vx *= -1; if (p.y < 0 || p.y > h) p.vy *= -1; }
+        const px = p.x + mx * p.r * 6, py = p.y + my * p.r * 6;
+        ctx.beginPath(); ctx.arc(px, py, p.r, 0, Math.PI * 2); ctx.fillStyle = `rgba(${p.c},0.7)`; ctx.fill();
+        for (let j = i + 1; j < ps.length; j++) {
+          const q = ps[j], dx = p.x - q.x, dy = p.y - q.y, d = dx * dx + dy * dy;
+          if (d < 12000) { ctx.strokeStyle = `rgba(140,160,255,${0.12 * (1 - d / 12000)})`; ctx.lineWidth = 0.6; ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(q.x + mx * q.r * 6, q.y + my * q.r * 6); ctx.stroke(); }
+        }
+      }
+      if (!still) requestAnimationFrame(draw);
+    }
+    size(); draw();
+    window.addEventListener('resize', () => { size(); if (still) draw(); });
+    if (!still) window.addEventListener('pointermove', (e) => { mx = e.clientX / window.innerWidth - 0.5; my = e.clientY / window.innerHeight - 0.5; }, { passive: true });
+  }
+</script>

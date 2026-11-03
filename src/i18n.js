@@ -2,8 +2,9 @@
 export const t = {
   en: {
     tagline: 'Quantum learning, from Kota',
+    tagline2: 'Your future starts beyond binary.',
     nav: [
-      ['/lessons/', 'Lessons'], ['/learn/', 'Learning log'], ['/careers/', 'Careers'], ['/why-kota/', 'Why Kota'], ['/about/', 'About'],
+      ['/lessons/', 'Lessons'], ['/lab/', 'Quantum Lab'], ['/learn/', 'Learning log'], ['/careers/', 'Careers'], ['/why-kota/', 'Why Kota'], ['/about/', 'About'],
     ],
     start: 'Start learning', startHref: '/posts/roadmap-what-to-learn-first/',
     menu: 'Menu', explainers: 'Explainers', newLabel: 'New',
@@ -20,8 +21,9 @@ export const t = {
   },
   hi: {
     tagline: 'कोटा से, क्वांटम की पढ़ाई',
+    tagline2: 'आपका भविष्य बाइनरी से आगे शुरू होता है।',
     nav: [
-      ['/hi/lessons/', 'पाठ'], ['/hi/learn/', 'लर्निंग लॉग'], ['/hi/careers/', 'करियर'], ['/hi/why-kota/', 'कोटा क्यों'], ['/hi/about/', 'हमारे बारे में'],
+      ['/hi/lessons/', 'पाठ'], ['/hi/lab/', 'क्वांटम लैब'], ['/hi/learn/', 'लर्निंग लॉग'], ['/hi/careers/', 'करियर'], ['/hi/why-kota/', 'कोटा क्यों'], ['/hi/about/', 'हमारे बारे में'],
     ],
     start: 'पढ़ाई शुरू करें', startHref: '/hi/lessons/roadmap-what-to-learn-first/',
     menu: 'मेनू', explainers: 'आसान व्याख्या', newLabel: 'नया',
@@ -52,6 +54,6 @@ export function altPath(path) {
   if (m) return `/hi/lessons/${m[1]}/`;
   const post = p.match(/^\/posts\/([^/]+)\/$/);
   if (post) return `/hi/posts/${post[1]}/`;
-  if (['/', '/lessons/', '/why-kota/', '/about/', '/learn/', '/explainers/', '/careers/'].includes(p)) return '/hi' + p;
+  if (['/', '/lessons/', '/lab/', '/why-kota/', '/about/', '/learn/', '/explainers/', '/careers/'].includes(p)) return '/hi' + p;
   return '/hi/';
 }

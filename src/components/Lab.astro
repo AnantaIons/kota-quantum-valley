@@ -1,0 +1,268 @@
+---
+// Quantum Lab: three experiments running an exact state-vector simulation in the browser.
+const { lang = 'en' } = Astro.props;
+const hi = lang === 'hi';
+const L = hi ? {
+  h1: 'क्वांटम लैब', sub: 'क्वांटम फ़िज़िक्स सिर्फ़ पढ़ें नहीं। उसके साथ प्रयोग करें।',
+  sim: 'आपके ब्राउज़र में simulation · असली quantum हार्डवेयर नहीं',
+  intro: 'हर प्रयोग एक सटीक state-vector simulator चलाता है: वही गणित जो पाठों में है। Gates दबाइए, गोला घुमाइए, और देखिए नंबर कैसे बदलते हैं।',
+  e1n: 'प्रयोग 1', e1: 'इंटरैक्टिव Bloch sphere', drag: 'गोला घुमाने के लिए खींचें',
+  gatesT: 'Gate लगाएँ', reset: 'Reset |0⟩', measure: 'Measure',
+  stateT: 'State vector', probT: 'Measurement probabilities', blochT: 'Bloch vector (x, y, z)', histT: 'Gates का इतिहास',
+  measured: (r) => `Measure किया: ${r}। State अब |${r}⟩ में collapse हो गई।`,
+  e1x: ['X: |0⟩ ↔ |1⟩ पलटता है (x-अक्ष पर 180°)। Y: y-अक्ष पर 180°। Z: phase पलटता है (z-अक्ष पर 180°)।', 'H: |0⟩ को (|0⟩+|1⟩)/√2 में बदलता है। S और T: z-अक्ष पर 90° और 45° घुमाते हैं।', 'ध्यान दें: Z, S, T, |0⟩ पर कुछ नहीं बदलते। पहले H लगाइए, फिर उनका असर दिखेगा।'],
+  e2n: 'प्रयोग 2', e2: 'Superposition simulator', e2p: 'प्रयोग 1 की मौजूदा state की कई copies बनाकर measure करें। हर measurement 0 या 1 देता है; बहुत सारे measurements से probabilities दिखती हैं।',
+  shots: (n) => `${n.toLocaleString('en-IN')} बार measure करें`, clear: 'साफ़ करें', theory: 'सिद्धांत (|amplitude|²)', counts: 'Simulation गिनती',
+  e2x: ['Amplitude ख़ुद probability नहीं है। Probability = |amplitude|²। इसीलिए amplitudes negative या complex हो सकते हैं और एक-दूसरे को cancel कर सकते हैं, जबकि probabilities कभी नहीं।', 'कम shots पर नतीजे सिद्धांत से हटते हैं। ज़्यादा shots पर वे सिद्धांत के पास आते हैं, ठीक सिक्का उछालने की तरह।'],
+  e3n: 'प्रयोग 3', e3: 'Entanglement लैब (Bell state)', e3p: 'दो qubits, q0 और q1। H को q0 पर, फिर CNOT लगाइए और Bell state बनाइए। फिर 100 बार measure करें।',
+  bell: 'Bell state बनाएँ (H + CNOT)', reset2: 'Reset |00⟩', cnotL: 'CNOT (q0 → q1)', m100: '100 बार measure करें',
+  same: (s, n) => `${n} में से ${s} बार दोनों qubits का नतीजा एक जैसा था।`,
+  e3x: ['Bell state (|00⟩ + |11⟩)/√2 में हर qubit अकेले 50/50 random है, लेकिन दोनों का नतीजा हमेशा मेल खाता है।', 'इससे तेज़-से-तेज़ संदेश नहीं भेजा जा सकता: q0 अकेले को देखकर कोई जानकारी नहीं मिलती। Correlation तभी दिखता है जब दोनों तरफ़ के नतीजे साधारण channel से मिलाए जाएँ।'],
+  soonT: 'जल्द आ रहे प्रयोग', soon: [['Gate playground', 'Drag-and-drop gates के साथ कई qubits'], ['Quantum teleportation', 'कदम-दर-कदम: Bell measurement और correction'], ['Circuit builder', 'अपने circuits बनाएँ, save और export करें']],
+} : {
+  h1: 'Quantum Lab', sub: "Don't just learn quantum physics. Experiment with it.",
+  sim: 'Simulated in your browser · not real quantum hardware',
+  intro: 'Every experiment runs an exact state-vector simulation: the same maths as in the lessons. Press gates, rotate the sphere and watch the numbers change.',
+  e1n: 'Experiment 1', e1: 'Interactive Bloch sphere', drag: 'Drag the sphere to rotate it',
+  gatesT: 'Apply a gate', reset: 'Reset |0⟩', measure: 'Measure',
+  stateT: 'State vector', probT: 'Measurement probabilities', blochT: 'Bloch vector (x, y, z)', histT: 'Gate history',
+  measured: (r) => `Measured ${r}. The state has collapsed to |${r}⟩.`,
+  e1x: ['X flips |0⟩ ↔ |1⟩ (180° about x). Y is 180° about y. Z flips the phase (180° about z).', 'H turns |0⟩ into (|0⟩+|1⟩)/√2. S and T rotate 90° and 45° about z.', 'Notice: Z, S and T do nothing visible to |0⟩. Apply H first, then watch them turn the arrow.'],
+  e2n: 'Experiment 2', e2: 'Superposition simulator', e2p: 'Prepare many copies of the state from Experiment 1 and measure each one. Every measurement gives just 0 or 1; many of them reveal the probabilities.',
+  shots: (n) => `Measure ${n.toLocaleString('en-IN')}×`, clear: 'Clear', theory: 'Theory (|amplitude|²)', counts: 'Simulated counts',
+  e2x: ['An amplitude is not a probability. Probability = |amplitude|². That is why amplitudes can be negative or complex and cancel each other, while probabilities never can.', 'With few shots, results wander away from theory. With many shots they settle close to it, just like tossing a coin.'],
+  e3n: 'Experiment 3', e3: 'Entanglement lab (Bell state)', e3p: 'Two qubits, q0 and q1. Apply H to q0, then CNOT, to make a Bell state. Then measure it 100 times.',
+  bell: 'Make a Bell state (H + CNOT)', reset2: 'Reset |00⟩', cnotL: 'CNOT (q0 → q1)', m100: 'Measure 100×',
+  same: (s, n) => `Both qubits gave the same result in ${s} of ${n} shots.`,
+  e3x: ['In the Bell state (|00⟩ + |11⟩)/√2, each qubit alone is a 50/50 coin, yet the two results always match.', "This can't send messages faster than light: looking at q0 alone tells you nothing. The correlation only shows up when both sides compare results over an ordinary channel."],
+  soonT: 'Experiments coming next', soon: [['Gate playground', 'Drag-and-drop gates on several qubits'], ['Quantum teleportation', 'Step by step: Bell measurement and corrections'], ['Circuit builder', 'Build, save and export your own circuits']],
+};
+---
+<section class="lab-hero">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow">/lab</p>
+    <h1>{L.h1}</h1>
+    <p class="lead" style="max-width: 52ch">{L.sub} {L.intro}</p>
+    <span class="sim-note">● {L.sim}</span>
+  </div>
+</section>
+
+<div class="wrap" style="padding-bottom: 96px" data-lab data-lang={lang}>
+  <!-- Experiment 1 -->
+  <section class="exp glass" aria-labelledby="e1">
+    <div class="exp-head"><h2 id="e1">{L.e1}</h2><span class="exp-num">{L.e1n}</span></div>
+    <div class="exp-grid">
+      <div>
+        <svg id="lab-bloch" class="lab-sphere" role="img" aria-label={L.e1}></svg>
+        <p class="meta" style="text-align: center; font-family: var(--font-mono)">{L.drag}</p>
+      </div>
+      <div>
+        <p class="panel-t" style="font-family: var(--font-mono); color: var(--cyan); font-size: 0.75rem">{L.gatesT}</p>
+        <div class="gates">
+          {['X', 'Y', 'Z', 'H', 'S', 'T'].map((g) => <button class="gate" type="button" data-gate={g}>{g}</button>)}
+          <button class="gate meas" type="button" data-measure>{L.measure}</button>
+          <button class="gate reset" type="button" data-reset>{L.reset}</button>
+        </div>
+        <div class="panel">
+          <span class="panel-t">{L.stateT}</span>
+          <div class="big" data-state>|ψ⟩ = 1|0⟩ + 0|1⟩</div>
+        </div>
+        <div class="panel">
+          <span class="panel-t">{L.probT}</span>
+          <div class="prob"><span>P(0)</span><span class="track"><span class="fill" data-p0 style="width:100%"></span></span><span class="v" data-p0v>1.000</span></div>
+          <div class="prob"><span>P(1)</span><span class="track"><span class="fill" data-p1 style="width:0%"></span></span><span class="v" data-p1v>0.000</span></div>
+        </div>
+        <div class="panel">
+          <span class="panel-t">{L.blochT}</span>
+          <div data-bv>(0, 0, 1)</div>
+          <div class="history"><span>{L.histT}: </span><span data-hist>|0⟩</span></div>
+          <div class="history" data-msg style="color: var(--pink)"></div>
+        </div>
+        <div class="explain" style="margin-top: 16px">{L.e1x.map((p) => <p>{p}</p>)}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experiment 2 -->
+  <section class="exp glass" aria-labelledby="e2">
+    <div class="exp-head"><h2 id="e2">{L.e2}</h2><span class="exp-num">{L.e2n}</span></div>
+    <div class="exp-grid">
+      <div>
+        <p class="explain">{L.e2p}</p>
+        <div class="gates">
+          {[1, 10, 100, 1000].map((n) => <button class="gate meas" type="button" data-shots={n}>{L.shots(n)}</button>)}
+          <button class="gate reset" type="button" data-clear>{L.clear}</button>
+        </div>
+        <div class="panel">
+          <span class="panel-t">{L.stateT}</span>
+          <div class="big" data-state2>|ψ⟩ = 1|0⟩ + 0|1⟩</div>
+          <div class="history" data-tot>0 shots</div>
+        </div>
+        <div class="explain" style="margin-top: 16px">{L.e2x.map((p) => <p>{p}</p>)}</div>
+      </div>
+      <div>
+        <div class="histo" data-histo1>
+          <div class="col"><span class="n" data-n0>0</span><div class="t" data-t0></div><div class="b" data-b0 style="height:0%"></div></div>
+          <div class="col"><span class="n" data-n1>0</span><div class="t" data-t1></div><div class="b" data-b1 style="height:0%"></div></div>
+        </div>
+        <div class="histo-x"><span>|0⟩</span><span>|1⟩</span></div>
+        <div class="legend-line"><span><i style="background: linear-gradient(90deg, var(--cyan), var(--violet))"></i>{L.counts}</span><span><i style="background: var(--pink)"></i>{L.theory}</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experiment 3 -->
+  <section class="exp glass" aria-labelledby="e3">
+    <div class="exp-head"><h2 id="e3">{L.e3}</h2><span class="exp-num">{L.e3n}</span></div>
+    <div class="exp-grid">
+      <div>
+        <p class="explain">{L.e3p}</p>
+        <div class="gates">
+          <button class="gate" type="button" data-g2="H0">H q0</button>
+          <button class="gate" type="button" data-g2="H1">H q1</button>
+          <button class="gate" type="button" data-g2="X0">X q0</button>
+          <button class="gate" type="button" data-g2="X1">X q1</button>
+          <button class="gate" type="button" data-g2="CX">{L.cnotL}</button>
+        </div>
+        <div class="gates">
+          <button class="btn btn-primary btn-sm" type="button" data-bell>{L.bell}</button>
+          <button class="gate meas" type="button" data-m100>{L.m100}</button>
+          <button class="gate reset" type="button" data-reset2>{L.reset2}</button>
+        </div>
+        <div class="panel">
+          <span class="panel-t">{L.stateT} · |q0 q1⟩</span>
+          <div class="big" data-state3>|ψ⟩ = 1|00⟩</div>
+          <div class="history"><span>{L.histT}: </span><span data-hist3>|00⟩</span></div>
+        </div>
+        <div class="explain" style="margin-top: 16px">{L.e3x.map((p) => <p>{p}</p>)}</div>
+      </div>
+      <div>
+        <div class="histo" data-histo2>
+          {['00', '01', '10', '11'].map((k, i) => <div class="col"><span class="n" data-c={i}>0</span><div class="t" data-ct={i}></div><div class="b" data-cb={i} style="height:0%"></div></div>)}
+        </div>
+        <div class="histo-x">{['00', '01', '10', '11'].map((k) => <span>|{k}⟩</span>)}</div>
+        <div class="legend-line"><span><i style="background: linear-gradient(90deg, var(--cyan), var(--violet))"></i>{L.counts}</span><span><i style="background: var(--pink)"></i>{L.theory}</span></div>
+        <p class="history" data-same style="color: var(--green); font-size: 0.9rem"></p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="soon">
+    <h2 id="soon" style="font-size: 1.4rem">{L.soonT}</h2>
+    <div class="soon">{L.soon.map(([a, b]) => <div><strong>{a}</strong>{b}</div>)}</div>
+  </section>
+</div>
+
+<script>
+  import { createBloch } from '../scripts/bloch.js';
+  import { apply1, bloch, normPhase, fmt, ROT, rotate, apply2single, cnot, sample, C } from '../scripts/qsim.js';
+
+  const root = document.querySelector('[data-lab]') as HTMLElement | null;
+  if (root) {
+    const hi = root.dataset.lang === 'hi';
+    const $ = (s: string) => root.querySelector(s) as HTMLElement;
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Experiment 1 ----------
+    let st: number[][] = [[1, 0], [0, 0]];
+    let hist: string[] = [];
+    const sphere = createBloch(document.getElementById('lab-bloch') as any);
+    let busy = false;
+    const ket = (s: number[][]) => {
+      const n = normPhase(s);
+      const a = fmt(n[0]), b = fmt(n[1]);
+      const bb = b.includes(' ') ? `(${b})` : b;
+      return `|ψ⟩ = ${a}|0⟩ + ${bb}|1⟩`.replace('+ −', '− ');
+    };
+    function render1() {
+      const p0 = C.abs2(st[0]), p1 = C.abs2(st[1]);
+      $('[data-state]').textContent = ket(st);
+      $('[data-state2]').textContent = ket(st);
+      $('[data-p0]').style.width = p0 * 100 + '%'; $('[data-p1]').style.width = p1 * 100 + '%';
+      $('[data-p0v]').textContent = p0.toFixed(3); $('[data-p1v]').textContent = p1.toFixed(3);
+      const v = bloch(st).map((x) => (Math.abs(x) < 5e-4 ? 0 : +x.toFixed(3)));
+      $('[data-bv]').textContent = `(${v.join(', ')})`;
+      $('[data-hist]').textContent = hist.length ? '|0⟩ → ' + hist.join(' → ') : '|0⟩';
+      theory1();
+    }
+    function animateTo(axis: number[], ang: number, done: () => void) {
+      const from = sphere.vec, t0 = performance.now(), dur = still ? 0 : 450;
+      busy = true;
+      const step = (now: number) => {
+        const k = dur ? Math.min(1, (now - t0) / dur) : 1, e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+        sphere.setVec(rotate(from, axis, ang * e));
+        if (k < 1) requestAnimationFrame(step); else { busy = false; done(); }
+      };
+      requestAnimationFrame(step);
+    }
+    root.querySelectorAll('[data-gate]').forEach((b) => b.addEventListener('click', () => {
+      if (busy) return;
+      const g = (b as HTMLElement).dataset.gate!;
+      $('[data-msg]').textContent = '';
+      animateTo(ROT[g as keyof typeof ROT][0] as number[], ROT[g as keyof typeof ROT][1] as number, () => {
+        st = apply1(g, st); hist.push(g); if (hist.length > 12) hist.shift();
+        sphere.setVec(bloch(st)); render1();
+      });
+    }));
+    $('[data-reset]').addEventListener('click', () => { st = [[1, 0], [0, 0]]; hist = []; $('[data-msg]').textContent = ''; sphere.setVec([0, 0, 1]); render1(); });
+    $('[data-measure]').addEventListener('click', () => {
+      const r = sample([C.abs2(st[0]), C.abs2(st[1])]);
+      st = r ? [[0, 0], [1, 0]] : [[1, 0], [0, 0]]; hist.push('M=' + r);
+      sphere.setVec(bloch(st)); render1();
+      $('[data-msg]').textContent = hi ? `Measure किया: ${r}। State अब |${r}⟩ में collapse हो गई।` : `Measured ${r}. The state has collapsed to |${r}⟩.`;
+    });
+
+    // ---------- Experiment 2 ----------
+    let n0 = 0, n1 = 0;
+    function theory1() {
+      const p0 = C.abs2(st[0]);
+      $('[data-t0]').style.bottom = p0 * 100 + '%';
+      $('[data-t1]').style.bottom = (1 - p0) * 100 + '%';
+    }
+    function render2() {
+      const tot = n0 + n1;
+      $('[data-n0]').textContent = String(n0); $('[data-n1]').textContent = String(n1);
+      $('[data-b0]').style.height = (tot ? (n0 / tot) * 100 : 0) + '%';
+      $('[data-b1]').style.height = (tot ? (n1 / tot) * 100 : 0) + '%';
+      $('[data-tot]').textContent = hi ? `कुल ${tot.toLocaleString('en-IN')} shots` : `${tot.toLocaleString('en-IN')} shots total`;
+    }
+    root.querySelectorAll('[data-shots]').forEach((b) => b.addEventListener('click', () => {
+      const n = +(b as HTMLElement).dataset.shots!, p = [C.abs2(st[0]), C.abs2(st[1])];
+      for (let i = 0; i < n; i++) sample(p) ? n1++ : n0++;
+      render2();
+    }));
+    $('[data-clear]').addEventListener('click', () => { n0 = n1 = 0; render2(); });
+
+    // ---------- Experiment 3 ----------
+    let s2: number[][] = [[1, 0], [0, 0], [0, 0], [0, 0]];
+    let h3: string[] = [];
+    let counts = [0, 0, 0, 0];
+    const labels = ['00', '01', '10', '11'];
+    function render3() {
+      const terms = s2.map((a, i) => [a, labels[i]] as const).filter(([a]) => C.abs2(a as number[]) > 1e-9)
+        .map(([a, k]) => { const f = fmt(a as number[]); return `${f.includes(' ') ? '(' + f + ')' : f}|${k}⟩`; });
+      $('[data-state3]').textContent = '|ψ⟩ = ' + terms.join(' + ').replace(/\+ −/g, '− ').replace(/^(\|ψ⟩ = )/, '$1');
+      $('[data-hist3]').textContent = h3.length ? '|00⟩ → ' + h3.join(' → ') : '|00⟩';
+      const probs = s2.map((a) => C.abs2(a)), tot = counts.reduce((x, y) => x + y, 0);
+      probs.forEach((p, i) => {
+        (root!.querySelector(`[data-ct="${i}"]`) as HTMLElement).style.bottom = p * 100 + '%';
+        (root!.querySelector(`[data-cb="${i}"]`) as HTMLElement).style.height = (tot ? (counts[i] / tot) * 100 : 0) + '%';
+        (root!.querySelector(`[data-c="${i}"]`) as HTMLElement).textContent = String(counts[i]);
+      });
+      const same = counts[0] + counts[3];
+      $('[data-same]').textContent = tot ? (hi ? `${tot} में से ${same} बार दोनों qubits का नतीजा एक जैसा था।` : `Both qubits gave the same result in ${same} of ${tot} shots.`) : '';
+    }
+    const op = (k: string) => {
+      if (k === 'CX') s2 = cnot(s2); else s2 = apply2single(k[0], +k[1], s2);
+      h3.push(k === 'CX' ? 'CNOT' : `${k[0]} q${k[1]}`); if (h3.length > 10) h3.shift();
+      counts = [0, 0, 0, 0]; render3();
+    };
+    root.querySelectorAll('[data-g2]').forEach((b) => b.addEventListener('click', () => op((b as HTMLElement).dataset.g2!)));
+    $('[data-bell]').addEventListener('click', () => { s2 = [[1, 0], [0, 0], [0, 0], [0, 0]]; h3 = []; op('H0'); op('CX'); });
+    $('[data-reset2]').addEventListener('click', () => { s2 = [[1, 0], [0, 0], [0, 0], [0, 0]]; h3 = []; counts = [0, 0, 0, 0]; render3(); });
+    $('[data-m100]').addEventListener('click', () => { const p = s2.map((a) => C.abs2(a)); for (let i = 0; i < 100; i++) counts[sample(p)]++; render3(); });
+
+    render1(); render2(); render3();
+  }
+</script>

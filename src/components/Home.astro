@@ -1,7 +1,8 @@
 ---
 import PostList from './PostList.astro';
 import LessonGrid from './LessonGrid.astro';
-import BlochSphere from './BlochSphere.astro';
+import QubitHero from './QubitHero.astro';
+import Particles from './Particles.astro';
 import SlideWall from './SlideWall.astro';
 import slides from '../data/slides.json';
 import site from '../data/site.json';
@@ -10,6 +11,7 @@ import { getPosts } from '../lib/posts.js';
 const { lang = 'en' } = Astro.props;
 const hi = lang === 'hi';
 const pre = hi ? '/hi' : '';
+const lessonUrl = (slug) => (hi ? `/hi/lessons/${slug}/` : `/posts/${slug}/`);
 const lessons = getPosts('lesson', lang);
 const latest = getPosts(undefined, lang).filter((p) => p.category !== 'lesson').slice(0, 3);
 const slideTotal = lessons.reduce((n, p) => n + (slides[p.slides]?.length ?? 0), 0);
@@ -18,101 +20,212 @@ const feed = ['lesson-6', 'lesson-5', 'lesson-4', 'lesson-3', 'lesson-2', 'lesso
 
 const c = hi ? {
   pill: 'नया: पाठ 6, क्वांटम सेंसिंग',
-  h1: 'भारत की क्वांटम वर्कफ़ोर्स कोटा से शुरू हो सकती है।',
-  lead: 'कोटा हर साल लाखों छात्रों को फ़िज़िक्स और मैथ्स में तैयार करता है। हम क्वांटम कंप्यूटिंग बिल्कुल शून्य से, मुफ़्त में पढ़ाते हैं, और कोटा में क्वांटम नौकरियाँ लाने की बात रखते हैं।',
-  cta1: 'रोडमैप से शुरू करें', cta2: 'सभी पाठ देखें',
-  stats: [[lessonCount, 'पाठ'], [slideTotal, 'स्लाइड'], ['2', 'भाषाएँ'], ['₹0', 'हमेशा मुफ़्त']],
-  wallTitle: 'हर पाठ, साफ़ स्लाइड में।', wallText: 'कोई भारी किताब नहीं। हर विचार एक स्लाइड पर, 12वीं की मैथ्स से शुरू करके।',
-  pathTitle: 'सीखने का रास्ता', pathText: 'रोडमैप से शुरू करें, फिर क्रम से आगे बढ़ें। हर पाठ में पूरी स्लाइड और हिन्दी नोट्स हैं।', pathAll: 'सभी पाठ देखें',
-  whyTitle: 'कोटा में क्वांटम क्यों?', whyLead: 'क्वांटम कंप्यूटिंग को ऐसे लोग चाहिए जो फ़िज़िक्स और मैथ्स में मज़बूत हों। कोटा ऐसे छात्र लगभग किसी भी शहर से ज़्यादा तैयार करता है, और फिर उन्हें बाहर जाते देखता है।', whyLink: 'कोटा का पूरा पक्ष पढ़ें',
+  h1a: 'भविष्य क्वांटम है।', h1b: 'आपका सफ़र यहीं से शुरू होता है।',
+  lead: 'इंटरैक्टिव प्रयोगों, साफ़ स्लाइड और आसान भाषा के साथ क्वांटम कंप्यूटिंग की दुनिया खोजिए। शून्य से, मुफ़्त में, हिन्दी और अंग्रेज़ी में।',
+  cta1: 'क्वांटम दुनिया में प्रवेश करें', cta2: 'क्वांटम लैब खोलें',
+  place: 'जिज्ञासु दिमाग़ों के लिए। शुरुआत कोटा, राजस्थान से।', scroll: 'स्क्रॉल करें',
+  stats: [[lessonCount, 'पाठ'], [slideTotal, 'स्लाइड'], ['3', 'लैब प्रयोग'], ['₹0', 'हमेशा मुफ़्त']],
+  jT: 'अपना क्वांटम सफ़र चुनें', jP: 'तीन रास्ते, आपके स्तर के हिसाब से। हर रास्ता हमारे मौजूदा पाठों से जुड़ा है, और नए पाठ जुड़ते रहेंगे।',
+  paths: [
+    { c: '#39E6A0', lvl: 'रास्ता 1', name: 'Quantum Explorer', who: 'कक्षा 8–10', topics: ['क्वांटम फ़िज़िक्स क्या है', 'Bits और binary', 'Qubit से परिचय', 'Superposition', 'Measurement', 'Entanglement की बुनियाद'], cta: 'पाठ 1 से शुरू करें', href: lessonUrl('lesson-1-quantum-from-absolute-zero') },
+    { c: '#00E5FF', lvl: 'रास्ता 2', name: 'Quantum Scientist', who: 'कक्षा 11–12 और JEE छात्र', topics: ['Complex numbers', 'Probability amplitudes', 'Bloch sphere', 'Quantum gates', 'Circuits', 'Interference'], cta: 'रोडमैप से शुरू करें', href: lessonUrl('roadmap-what-to-learn-first'), note: 'यह JEE सिलेबस का हिस्सा नहीं है, लेकिन उसी फ़िज़िक्स और मैथ्स पर बना है।' },
+    { c: '#8957FF', lvl: 'रास्ता 3', name: 'Quantum Architect', who: 'कॉलेज और एडवांस्ड छात्र', topics: ['Dirac notation', 'Tensor products', 'Bell states', 'Deutsch–Jozsa', 'Grover', 'QFT और Shor', 'Error correction', 'Hardware', 'QKD'], cta: 'पाठ 3 से शुरू करें', href: lessonUrl('lesson-3-quantum-algorithms') },
+  ],
+  labT: 'क्वांटम फ़िज़िक्स सिर्फ़ पढ़ें नहीं। उसके साथ प्रयोग करें।', labP: 'हमारी क्वांटम लैब आपके ब्राउज़र में एक असली state-vector simulator चलाती है।',
+  labList: ['Bloch sphere पर X, Y, Z, H, S, T gates लगाएँ', 'Qubit को 1,000 बार measure करें और histogram देखें', 'H + CNOT से Bell state बनाएँ और correlation देखें'],
+  labCta: 'क्वांटम लैब खोलें', labScreen: ['प्रयोग 2 · superposition', 'स्टेट', 'measure', 'सिद्धांत'],
+  wallT: 'हर पाठ, साफ़ स्लाइड में।', wallP: 'कोई भारी किताब नहीं। हर विचार एक स्लाइड पर, 12वीं की मैथ्स से शुरू करके।',
+  lessonsT: 'सभी पाठ', lessonsP: 'रोडमैप से शुरू करें, फिर क्रम से आगे बढ़ें। हर पाठ में बड़ी स्लाइड और हिन्दी नोट्स हैं।',
+  techT: 'कल को आकार देने वाली तकनीकें', techP: 'क्वांटम एक तकनीक नहीं, कई हैं। कुछ आज इस्तेमाल हो रही हैं, कुछ अभी research में हैं। हम साफ़ बताते हैं कौन-सी कहाँ है।',
+  st: { now: 'आज इस्तेमाल में', early: 'शुरुआती दौर', research: 'research में' },
+  tech: [
+    ['compute', 'early', 'क्वांटम कंप्यूटिंग', 'Superposition और interference से कुछ ख़ास समस्याएँ तेज़ हल करना। छोटी मशीनें cloud पर उपलब्ध हैं; बड़ा व्यावहारिक फ़ायदा अभी research है।', 'lesson-3-quantum-algorithms', 'पाठ 3'],
+    ['comm', 'early', 'क्वांटम कम्युनिकेशन', 'QKD: ऐसी keys जिनकी जासूसी physics पकड़ लेती है। Fibre और satellite पर शुरुआती नेटवर्क चल रहे हैं।', 'lesson-5-quantum-communication', 'पाठ 5'],
+    ['lock', 'now', 'क्वांटम-सुरक्षित क्रिप्टोग्राफ़ी', 'Post-quantum cryptography नई गणित पर टिकी है और आज के हार्डवेयर पर चलती है। NIST standards 2024 में आए। (QKD से अलग है।)', 'lesson-5-quantum-communication', 'पाठ 5'],
+    ['sensor', 'now', 'क्वांटम सेंसर', 'Atomic clocks और SQUID दशकों से इस्तेमाल में हैं। Diamond NV और atom gravimeter जैसे नए sensor आ रहे हैं।', 'lesson-6-quantum-sensing', 'पाठ 6'],
+    ['chem', 'research', 'क्वांटम केमिस्ट्री', 'Molecules और materials का simulation, जैसे नई दवाएँ और बैटरी। यह quantum computers के सबसे बड़े वादों में से एक है, अभी research में।', '', 'पाठ जल्द'],
+    ['chip', 'research', 'क्वांटम हार्डवेयर', 'Superconducting qubits, trapped ions, neutral atoms, photons। हर platform की अपनी ताक़त और चुनौती है।', 'lesson-4-how-qubits-are-built', 'पाठ 4'],
+  ],
+  kT: 'कोटा से क्वांटम की सीमा तक', kP: 'बड़ी वैज्ञानिक खोजें जिज्ञासा से शुरू होती हैं। आपका सफ़र यहीं से शुरू हो सकता है।', kSub: 'कोटा की कक्षाओं से क्वांटम की सीमा तक।', kLink: 'कोटा का पूरा पक्ष पढ़ें',
   facts: [
     ['talent', 'टैलेंट पहले से यहाँ है', 'लाखों छात्रों ने कोटा में JEE-स्तर की फ़िज़िक्स और मैथ्स सीखी है।'],
     ['teach', 'शिक्षक भी यहीं हैं', 'एक पूरा शहर जिसका काम कठिन विज्ञान को आसान बनाना है।'],
     ['cost', 'बनाने का ख़र्च कम', 'बेंगलुरु या दिल्ली NCR से सस्ता रहना, भर्ती करना और लैब लगाना।'],
     ['time', 'समय सही है', '₹6,003 करोड़ का नेशनल क्वांटम मिशन अभी हब बना रहा है। राजस्थान की अभी कोई क्वांटम योजना नहीं है।'],
   ],
-  quote: 'जो छात्र JEE की फ़िज़िक्स समझ सकता है, वह क्वांटम कंप्यूटिंग भी सीख सकता है। उसे बस सही क्रम और सही भाषा चाहिए।',
-  quoteBy: 'हमारा विश्वास',
-  igTitle: 'हर नया पाठ पहले इंस्टाग्राम पर।', igText: `हर पाठ पहले ${site.instagramHandle} पर कैरोसेल के रूप में आता है। फ़ॉलो करें ताकि अगला न छूटे।`, igBtn: 'इंस्टाग्राम पर फ़ॉलो करें',
-  logTitle: 'सबके सामने सीखना', logText: `Kota Quantum Valley की शुरुआत ${site.founderName} ने की है, जो राजस्थान के एक एम्बेडेड फ़र्मवेयर इंजीनियर हैं और क्वांटम शून्य से सीख रहे हैं।`, about: 'इस पहल के बारे में',
+  quote: 'जो छात्र JEE की फ़िज़िक्स समझ सकता है, वह क्वांटम कंप्यूटिंग भी सीख सकता है। उसे बस सही क्रम और सही भाषा चाहिए।', quoteBy: 'हमारा विश्वास',
+  igT: 'हर नया पाठ पहले इंस्टाग्राम पर।', igP: `हर पाठ पहले ${site.instagramHandle} पर कैरोसेल के रूप में आता है। फ़ॉलो करें ताकि अगला न छूटे।`, igBtn: 'इंस्टाग्राम पर फ़ॉलो करें',
+  logT: 'सबके सामने सीखना', logP: `Kota Quantum Valley की शुरुआत ${site.founderName} ने की है, जो राजस्थान के एक एम्बेडेड फ़र्मवेयर इंजीनियर हैं और क्वांटम शून्य से सीख रहे हैं।`, about: 'इस पहल के बारे में',
 } : {
   pill: 'New: Lesson 6, quantum sensing',
-  h1: "India's quantum workforce can start in Kota.",
-  lead: 'Kota already trains lakhs of students in physics and maths. We teach quantum computing from absolute zero, for free, and make the case for bringing quantum jobs to the city.',
-  cta1: 'Start with the roadmap', cta2: 'Browse all lessons',
-  stats: [[lessonCount, 'lessons'], [slideTotal, 'slides'], ['2', 'languages'], ['₹0', 'always free']],
-  wallTitle: 'Every lesson, in clear slides.', wallText: 'No heavy textbooks. One idea per slide, starting from Class 12 maths.',
-  pathTitle: 'The learning path', pathText: 'Start with the roadmap, then go in order. Every lesson has the full slides plus written notes.', pathAll: 'See all lessons',
-  whyTitle: 'Why build quantum in Kota?', whyLead: 'Quantum computing needs people who are strong in physics and maths. Kota trains more of them than almost any city in India, and then watches them leave.', whyLink: 'Read the full case for Kota',
+  h1a: 'The future is quantum.', h1b: 'Your journey starts here.',
+  lead: 'Discover the world of quantum computing through interactive experiments, clear slides and plain language. From absolute zero, for free, in English and Hindi.',
+  cta1: 'Enter the quantum universe', cta2: 'Explore the Quantum Lab',
+  place: 'Built for curious minds. Starting in Kota, Rajasthan.', scroll: 'Scroll',
+  stats: [[lessonCount, 'lessons'], [slideTotal, 'slides'], ['3', 'lab experiments'], ['₹0', 'always free']],
+  jT: 'Choose your quantum journey', jP: 'Three paths for three levels. Each one starts from our existing lessons, and new lessons will keep filling them in.',
+  paths: [
+    { c: '#39E6A0', lvl: 'Path 1', name: 'Quantum Explorer', who: 'Class 8–10', topics: ['What is quantum physics?', 'Bits and binary', 'Introduction to qubits', 'Superposition', 'Measurement', 'Entanglement basics'], cta: 'Start with Lesson 1', href: lessonUrl('lesson-1-quantum-from-absolute-zero') },
+    { c: '#00E5FF', lvl: 'Path 2', name: 'Quantum Scientist', who: 'Class 11–12 and JEE students', topics: ['Complex numbers', 'Probability amplitudes', 'Bloch sphere', 'Quantum gates', 'Circuits', 'Interference'], cta: 'Start with the roadmap', href: lessonUrl('roadmap-what-to-learn-first'), note: 'Not part of the JEE syllabus, but built on the same physics and maths.' },
+    { c: '#8957FF', lvl: 'Path 3', name: 'Quantum Architect', who: 'College and advanced students', topics: ['Dirac notation', 'Tensor products', 'Bell states', 'Deutsch–Jozsa', 'Grover', 'QFT and Shor', 'Error correction', 'Hardware', 'QKD'], cta: 'Start with Lesson 3', href: lessonUrl('lesson-3-quantum-algorithms') },
+  ],
+  labT: "Don't just learn quantum physics. Experiment with it.", labP: 'Our Quantum Lab runs a real state-vector simulator right in your browser.',
+  labList: ['Apply X, Y, Z, H, S and T gates on a 3D Bloch sphere', 'Measure a qubit 1,000 times and watch the histogram', 'Build a Bell state with H + CNOT and see the correlations'],
+  labCta: 'Open the Quantum Lab', labScreen: ['Experiment 2 · superposition', 'state', 'measure', 'theory'],
+  wallT: 'Every lesson, in clear slides.', wallP: 'No heavy textbooks. One idea per slide, starting from Class 12 maths.',
+  lessonsT: 'All lessons', lessonsP: 'Start with the roadmap, then go in order. Every lesson has large slides plus written notes.',
+  techT: 'The technologies shaping tomorrow', techP: "Quantum isn't one technology, it's several. Some are in use today, some are still research. We say clearly which is which.",
+  st: { now: 'In use today', early: 'Early stage', research: 'Research' },
+  tech: [
+    ['compute', 'early', 'Quantum computing', 'Solving specific problems faster using superposition and interference. Small machines are available on the cloud; large practical advantage is still research.', 'lesson-3-quantum-algorithms', 'Lesson 3'],
+    ['comm', 'early', 'Quantum communication', 'QKD: keys where physics reveals any eavesdropper. Early networks run over fibre and satellites.', 'lesson-5-quantum-communication', 'Lesson 5'],
+    ['lock', 'now', 'Quantum-safe cryptography', 'Post-quantum cryptography uses new maths and runs on today’s hardware. NIST published standards in 2024. (Different from QKD.)', 'lesson-5-quantum-communication', 'Lesson 5'],
+    ['sensor', 'now', 'Quantum sensors', 'Atomic clocks and SQUIDs have been in use for decades. Newer sensors like diamond NV centres and atom gravimeters are arriving.', 'lesson-6-quantum-sensing', 'Lesson 6'],
+    ['chem', 'research', 'Quantum chemistry', 'Simulating molecules and materials for new medicines and batteries. One of the biggest promises of quantum computers, still in research.', '', 'Lesson coming'],
+    ['chip', 'research', 'Quantum hardware', 'Superconducting qubits, trapped ions, neutral atoms, photons. Each platform has its own strengths and hard problems.', 'lesson-4-how-qubits-are-built', 'Lesson 4'],
+  ],
+  kT: 'From Kota to the quantum frontier', kP: 'Great scientific discoveries begin with curiosity. Your journey can begin right here.', kSub: "From Kota's classrooms to the quantum frontier.", kLink: 'Read the full case for Kota',
   facts: [
     ['talent', 'The talent is already here', 'Lakhs of students have mastered JEE-level physics and maths in Kota.'],
     ['teach', 'So are the teachers', 'A whole city of people who explain hard science for a living.'],
     ['cost', 'It costs less to build', 'Cheaper to live, hire and set up a lab than in Bengaluru or Delhi NCR.'],
     ['time', 'The timing is right', 'The ₹6,003 crore National Quantum Mission is funding hubs now. Rajasthan has no quantum plan yet.'],
   ],
-  quote: 'A student who can crack JEE physics can learn quantum computing. They just need the right order and the right language.',
-  quoteBy: 'What we believe',
-  igTitle: 'New lessons land on Instagram first.', igText: `Every lesson starts as a carousel on ${site.instagramHandle}. Follow so you don't miss the next one.`, igBtn: 'Follow on Instagram',
-  logTitle: 'Learning in public', logText: `Kota Quantum Valley is started by ${site.founderName}, an embedded firmware engineer from Rajasthan who is learning quantum from zero.`, about: 'About the initiative',
+  quote: 'A student who can crack JEE physics can learn quantum computing. They just need the right order and the right language.', quoteBy: 'What we believe',
+  igT: 'New lessons land on Instagram first.', igP: `Every lesson starts as a carousel on ${site.instagramHandle}. Follow so you don't miss the next one.`, igBtn: 'Follow on Instagram',
+  logT: 'Learning in public', logP: `Kota Quantum Valley is started by ${site.founderName}, an embedded firmware engineer from Rajasthan who is learning quantum from zero.`, about: 'About the initiative',
 };
 const icons = {
   talent: '<path d="M3 9l9-5 9 5-9 5-9-5Z"/><path d="M7 11.5V16c0 1.5 2.2 3 5 3s5-1.5 5-3v-4.5"/><path d="M21 9v5"/>',
   teach: '<rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20l4-4 4 4"/><path d="M7 9h6M7 12h4"/>',
   cost: '<path d="M7 5h10M7 9h10M10 5c3 0 4.5 1.6 4.5 4S13 13 10 13H7l7 6"/>',
   time: '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/>',
+  compute: '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/><circle cx="12" cy="12" r="2"/>',
+  comm: '<circle cx="5" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 12c2-4 8-4 10 0M7 12c2 4 8 4 10 0"/>',
+  lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/><path d="M12 15v2"/>',
+  sensor: '<circle cx="12" cy="12" r="3"/><path d="M5.6 5.6a9 9 0 0 0 0 12.8M18.4 5.6a9 9 0 0 1 0 12.8M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7"/>',
+  chem: '<circle cx="6" cy="7" r="2.2"/><circle cx="18" cy="7" r="2.2"/><circle cx="12" cy="17" r="2.2"/><path d="M8 8l3 7M16 8l-3 7M8.2 7h7.6"/>',
+  chip: '<circle cx="12" cy="12" r="8"/><ellipse cx="12" cy="12" rx="8" ry="3"/><path d="M12 4v16"/>',
 };
+const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[k]}</svg>`;
 ---
-<section class="hero hero-plus">
+<section class="hero hero-nexus">
+  <div class="grid-bg" aria-hidden="true"></div>
   <div class="hero-glow" aria-hidden="true"></div>
+  <Particles />
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <a class="pill" href={`${pre}/lessons/`}><span class="pill-dot"></span>{c.pill}</a>
-      <h1>{c.h1}</h1>
+      <h1>{c.h1a}<span class="h1b">{c.h1b}</span></h1>
       <p class="lead">{c.lead}</p>
       <div class="btn-row">
-        <a class="btn btn-primary btn-lg" href={`${pre}${hi ? '/lessons' : '/posts'}/roadmap-what-to-learn-first/`}>{c.cta1}</a>
-        <a class="btn btn-ghost btn-lg" href={`${pre}/lessons/`}>{c.cta2}</a>
+        <a class="btn btn-primary btn-lg" href={`${pre}/lessons/`}>{c.cta1}</a>
+        <a class="btn btn-ghost btn-lg" href={`${pre}/lab/`}>{c.cta2}</a>
       </div>
+      <p class="hero-place">{c.place}</p>
       <dl class="stats">
         {c.stats.map(([n, l]) => <div><dt>{l}</dt><dd>{n}</dd></div>)}
       </dl>
     </div>
-    <div class="hero-visual"><BlochSphere /></div>
+    <QubitHero lang={lang} />
   </div>
+  <a class="scroll-cue" href="#journeys"><span></span>{c.scroll}</a>
 </section>
 
-<section class="wall-section">
-  <div class="wrap wall-head">
-    <h2>{c.wallTitle}</h2>
-    <p>{c.wallText}</p>
-  </div>
-  <SlideWall label={c.wallTitle} />
-</section>
-
-<section class="block">
+<section class="block" id="journeys">
   <div class="wrap">
     <div class="section-head">
-      <h2>{c.pathTitle}</h2>
-      <p>{c.pathText}</p>
+      <h2>{c.jT}</h2>
+      <p>{c.jP}</p>
+    </div>
+    <div class="paths">
+      {c.paths.map((p) => (
+        <article class="path glass" style={`--c: ${p.c}`}>
+          <span class="path-orb" aria-hidden="true"></span>
+          <span class="path-level"><span>{p.lvl}</span><span>{p.who}</span></span>
+          <h3>{p.name}</h3>
+          {p.note ? <p class="who">{p.note}</p> : <p class="who">&nbsp;</p>}
+          <ul>{p.topics.map((t) => <li>{t}</li>)}</ul>
+          <a class="btn btn-ghost" href={p.href}>{p.cta}</a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top: 0">
+  <div class="wrap">
+    <div class="lab-teaser glass">
+      <div>
+        <p class="eyebrow">/lab</p>
+        <h2>{c.labT}</h2>
+        <p class="lead" style="margin-bottom: 20px">{c.labP}</p>
+        <ul>{c.labList.map((l) => <li>{l}</li>)}</ul>
+        <a class="btn btn-primary" href={`${pre}/lab/`}>{c.labCta}</a>
+      </div>
+      <div class="lab-screen" aria-hidden="true">
+        <div class="row"><span>{c.labScreen[0]}</span><b>sim</b></div>
+        <div class="row"><span>{c.labScreen[1]}</span><b>H|0⟩ = (|0⟩ + |1⟩)/√2</b></div>
+        <div class="row"><span>{c.labScreen[2]}</span><b>× 1000</b></div>
+        <div class="hist"><div style="height: 50%"><span>503</span></div><div style="height: 49%"><span>497</span></div></div>
+        <div class="row"><span>|0⟩ &nbsp;·&nbsp; |1⟩</span><span>{c.labScreen[3]}: 500 · 500</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block tint">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>{c.lessonsT}</h2>
+      <p>{c.lessonsP}</p>
     </div>
     <LessonGrid lessons={lessons} lang={lang} />
   </div>
 </section>
 
-<section class="block stone">
-  <div class="wrap stone-grid">
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>{c.techT}</h2>
+      <p>{c.techP}</p>
+    </div>
+    <div class="tech">
+      {c.tech.map(([ic, st, name, text, slug, more]) => {
+        const inner = (
+          <>
+            <span class="tech-top"><Fragment set:html={svg(ic)} /><span class={`status ${st}`}>{c.st[st]}</span></span>
+            <h3>{name}</h3>
+            <p>{text}</p>
+            <span class="tech-more">{more}</span>
+          </>
+        );
+        return slug ? <a class="tech-card glass" href={lessonUrl(slug)}>{inner}</a> : <div class="tech-card glass">{inner}</div>;
+      })}
+    </div>
+  </div>
+</section>
+
+<section class="wall-section">
+  <div class="wrap wall-head">
+    <h2>{c.wallT}</h2>
+    <p>{c.wallP}</p>
+  </div>
+  <SlideWall label={c.wallT} />
+</section>
+
+<section class="block kota">
+  <div class="wrap kota-grid">
     <div>
-      <h2>{c.whyTitle}</h2>
-      <p class="lead">{c.whyLead}</p>
-      <a class="btn btn-light" href={`${pre}/why-kota/`}>{c.whyLink}</a>
+      <p class="eyebrow">Kota, Rajasthan · 25.2° N, 75.8° E</p>
+      <h2>{c.kT}</h2>
+      <p class="lead">{c.kP}</p>
+      <p style="color: var(--text-2)">{c.kSub}</p>
+      <a class="btn btn-light" href={`${pre}/why-kota/`}>{c.kLink}</a>
     </div>
     <ul class="tiles">
       {c.facts.map(([k, h, p]) => (
-        <li>
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[k]} />
-          <strong>{h}</strong>
-          <span>{p}</span>
-        </li>
+        <li class="glass"><Fragment set:html={svg(k, 28)} /><strong>{h}</strong><span>{p}</span></li>
       ))}
     </ul>
   </div>
@@ -130,12 +243,12 @@ const icons = {
 <section class="block tint">
   <div class="wrap ig-grid">
     <div>
-      <h2>{c.igTitle}</h2>
-      <p class="ig-text">{c.igText}</p>
-      <a class="btn btn-dark btn-lg" href={site.instagram} rel="noopener" target="_blank">{c.igBtn}</a>
+      <h2>{c.igT}</h2>
+      <p class="ig-text">{c.igP}</p>
+      <a class="btn btn-primary btn-lg" href={site.instagram} rel="noopener" target="_blank">{c.igBtn}</a>
       <div class="log">
-        <h3>{c.logTitle}</h3>
-        <p>{c.logText}</p>
+        <h3>{c.logT}</h3>
+        <p>{c.logP}</p>
         <PostList posts={latest} lang={lang} />
         <p><a href={`${pre}/about/`}>{c.about}</a></p>
       </div>

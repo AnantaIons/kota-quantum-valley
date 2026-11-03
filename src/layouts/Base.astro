@@ -38,13 +38,13 @@ const year = new Date().getFullYear();
     <meta property="og:site_name" content="Kota Quantum Valley" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="theme-color" content="#121034" />
+    <meta name="theme-color" content="#050816" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-    {lang === 'hi' && <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@400;500;600&family=Mukta:wght@600;700;800&display=swap" rel="stylesheet" />}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    {lang === 'hi' && <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600&family=Mukta:wght@600;700;800&display=swap" rel="stylesheet" />}
     <link rel="alternate" hreflang={lang === 'hi' ? 'en' : 'hi'} href={new URL(alt, Astro.site)} />
   </head>
   <body>
@@ -54,7 +54,7 @@ const year = new Date().getFullYear();
     <header class="site-header">
       <div class="wrap">
         <a class="brand" href={homeHref} aria-label="Kota Quantum Valley, home">
-          <Logo size={34} bar="currentColor" />
+          <Logo size={34} bar="currentColor" k="#00E5FF" />
           <span class="brand-name">Kota Quantum Valley<small>{L.tagline}</small></span>
         </a>
         <nav class="nav" aria-label="Main">
@@ -86,10 +86,11 @@ const year = new Date().getFullYear();
         <div class="footer-grid">
           <div class="footer-about">
             <a class="brand" href={homeHref} style="color: #fff">
-              <Logo size={34} bar="#ffffff" />
+              <Logo size={34} bar="#F4F7FF" k="#00E5FF" />
               <span class="brand-name">Kota Quantum Valley</span>
             </a>
             <p>{L.footAbout}</p>
+            <p class="footer-tag">{L.tagline2}</p>
           </div>
           <div>
             <h4>{L.footLearn}</h4>

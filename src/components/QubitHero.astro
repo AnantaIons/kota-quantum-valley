@@ -1,0 +1,86 @@
+---
+// Interactive hero qubit: drag to rotate, click for an explainer. The readout is the real state shown.
+const { lang = 'en' } = Astro.props;
+const hi = lang === 'hi';
+const t = hi ? {
+  hint: 'घुमाने के लिए खींचें · समझने के लिए टैप करें', live: 'लाइव qubit स्टेट',
+  popT: 'Qubit क्या है?', p1: 'Bit या तो 0 होता है या 1। Qubit इन दोनों का मिश्रण हो सकता है, जिसे superposition कहते हैं।',
+  p2: 'इस गोले (Bloch sphere) पर हर बिंदु एक qubit state है। ऊपर |0⟩, नीचे |1⟩, और बीच में मिश्रण।',
+  p3: 'यह तीर अभी z-अक्ष के चारों ओर घूम रहा है, जैसे magnetic field में spin घूमता है (पाठ 6)। ऊपर दिखे नंबर इसी state से निकाले गए हैं।',
+  note: 'पीछे के चमकते कण सिर्फ़ सजावट हैं, कोई quantum प्रक्रिया नहीं।', go: 'लैब में ख़ुद आज़माएँ', close: 'बंद करें',
+} : {
+  hint: 'Drag to rotate · tap to learn', live: 'Live qubit state',
+  popT: 'What is a qubit?', p1: 'A bit is 0 or 1. A qubit can be a blend of both, called a superposition.',
+  p2: 'Every point on this sphere (the Bloch sphere) is a qubit state: |0⟩ at the top, |1⟩ at the bottom, blends in between.',
+  p3: 'The arrow is precessing around the z-axis, exactly what a spin does in a magnetic field (Lesson 6). The numbers shown are computed from this state.',
+  note: 'The drifting particles in the background are decoration, not a quantum process.', go: 'Try it yourself in the Lab', close: 'Close',
+};
+const labHref = hi ? '/hi/lab/' : '/lab/';
+---
+<div class="qviz" data-qviz>
+  <div class="qviz-sphere" data-qsphere role="button" tabindex="0" aria-label={t.popT}>
+    <svg id="hero-bloch" aria-hidden="true"></svg>
+    <span class="qviz-hint">{t.hint}</span>
+  </div>
+  <div class="readout glass" aria-live="off">
+    <span class="rt">● {t.live}</span>
+    <div>|ψ⟩ = <b data-r-a>0.878</b>|0⟩ + <b data-r-b>0.479</b>|1⟩</div>
+    <div>θ = <b data-r-th>57°</b> &nbsp; φ = <b data-r-ph>0°</b></div>
+    <div>P(0) = <b data-r-p0>0.77</b></div><span class="bar"><i data-r-b0 style="width:77%"></i></span>
+    <div>P(1) = <b data-r-p1>0.23</b></div><span class="bar"><i data-r-b1 style="width:23%"></i></span>
+  </div>
+  <div class="qpop glass" data-qpop role="dialog" aria-label={t.popT}>
+    <button class="qpop-close" type="button" data-qclose aria-label={t.close}>×</button>
+    <h3>{t.popT}</h3>
+    <p class="eq">|ψ⟩ = cos(θ/2)|0⟩ + e<sup>iφ</sup> sin(θ/2)|1⟩</p>
+    <p>{t.p1}</p>
+    <p>{t.p2}</p>
+    <p>{t.p3}</p>
+    <p class="qpop-note">{t.note}</p>
+    <a class="btn btn-primary btn-sm" href={labHref}>{t.go}</a>
+  </div>
+</div>
+
+<script>
+  import { createBloch } from '../scripts/bloch.js';
+  const root = document.querySelector('[data-qviz]');
+  if (root) {
+    const svg = root.querySelector('#hero-bloch');
+    const sphere = root.querySelector('[data-qsphere]');
+    const pop = root.querySelector('[data-qpop]');
+    const toggle = () => pop.classList.toggle('open');
+    const b = createBloch(svg, { dragTarget: sphere, onClick: toggle });
+    sphere.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+    root.querySelector('[data-qclose]').addEventListener('click', () => pop.classList.remove('open'));
+    const theta = 1.0;
+    b.setTrace(Math.cos(theta));
+    const q = (s) => root.querySelector(s);
+    const rA = q('[data-r-a]'), rB = q('[data-r-b]'), rT = q('[data-r-th]'), rP = q('[data-r-ph]'), p0 = q('[data-r-p0]'), p1 = q('[data-r-p1]'), b0 = q('[data-r-b0]'), b1 = q('[data-r-b1]');
+    const a = Math.cos(theta / 2), sb = Math.sin(theta / 2);
+    rA.textContent = a.toFixed(3); rT.textContent = Math.round((theta * 180) / Math.PI) + '°';
+    p0.textContent = (a * a).toFixed(2); p1.textContent = (sb * sb).toFixed(2);
+    b0.style.width = a * a * 100 + '%'; b1.style.width = sb * sb * 100 + '%';
+    let phi = 0.6, last = performance.now(), frame = 0;
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function setPhi() {
+      b.setVec([Math.sin(theta) * Math.cos(phi), Math.sin(theta) * Math.sin(phi), Math.cos(theta)]);
+      const deg = ((((phi * 180) / Math.PI) % 360) + 360) % 360;
+      rP.textContent = Math.round(deg) + '°';
+      const re = sb * Math.cos(phi), im = sb * Math.sin(phi);
+      rB.textContent = `(${re.toFixed(2)} ${im < 0 ? '−' : '+'} ${Math.abs(im).toFixed(2)}i)`;
+    }
+    setPhi();
+    if (!still) {
+      const tick = (now) => {
+        phi += ((now - last) / 1000) * (Math.PI * 2 / 14); last = now;
+        if ((frame++ & 1) === 0) setPhi();
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      window.addEventListener('pointermove', (e) => {
+        const nx = e.clientX / window.innerWidth - 0.5, ny = e.clientY / window.innerHeight - 0.5;
+        b.tilt(nx * 0.25, ny * 0.15);
+      }, { passive: true });
+    }
+  }
+</script>
