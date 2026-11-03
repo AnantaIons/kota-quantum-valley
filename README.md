@@ -27,6 +27,10 @@ A fast, free website for learning quantum in public. Built with [Astro](https://
 
 New lesson with slides: upload the slide images to `public/slides/lesson-7/` named `01.webp`, `02.webp`, …, add their titles to `src/data/slides.json`, then create a post with Section = `lesson`, Lesson number = 7, Slide folder = `lesson-7`.
 
+## Hindi version
+
+Hindi pages live in `src/pages/hi/`. Hindi lessons are in `src/pages/hi/lessons/` and must use the **same file name** as the English lesson in `src/pages/posts/`, so the EN | हिन्दी switch links them. Pages without a Hindi version switch to the Hindi home page.
+
 ## Add a new post by hand (alternative)
 
 1. Copy `POST_TEMPLATE.md` into `src/pages/posts/` with a new name, e.g. `day-2-complex-numbers.md`.

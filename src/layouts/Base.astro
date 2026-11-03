@@ -2,24 +2,25 @@
 import '../styles/global.css';
 import Logo from '../components/Logo.astro';
 import site from '../data/site.json';
+import { t, langOf, altPath } from '../i18n.js';
 
 const { title, image = '/og.png', description = 'Kota trains India\'s sharpest physics minds. Kota Quantum Valley teaches quantum computing from absolute zero, for free, and makes the case for quantum jobs in Kota.' } = Astro.props;
 const pageTitle = title ? `${title} | Kota Quantum Valley` : 'Kota Quantum Valley | Learn quantum computing from absolute zero';
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 
-const nav = [
-  { href: '/lessons/', label: 'Lessons' },
-  { href: '/learn/', label: 'Learning log' },
-  { href: '/careers/', label: 'Careers' },
-  { href: '/why-kota/', label: 'Why Kota' },
-  { href: '/about/', label: 'About' },
-];
-const isCurrent = (href) => path === href.replace(/\/$/, '') || (href === '/lessons/' && path.startsWith('/posts/lesson')) ;
+const lang = Astro.props.lang ?? langOf(Astro.url.pathname);
+const L = t[lang];
+const nav = L.nav.map(([href, label]) => ({ href, label }));
+const lessonsHref = lang === 'hi' ? '/hi/lessons/' : '/lessons/';
+const isCurrent = (href) => path === href.replace(/\/$/, '') || (href === lessonsHref && (path.startsWith('/posts/lesson') || path.startsWith('/hi/lessons/')));
+const alt = altPath(Astro.url.pathname);
+const announcement = lang === 'hi' ? site.announcementHindi : site.announcement;
+const homeHref = lang === 'hi' ? '/hi/' : '/';
 const ogImage = new URL(image, Astro.site).href;
 const year = new Date().getFullYear();
 ---
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,29 +41,33 @@ const year = new Date().getFullYear();
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    {lang === 'hi' && <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@400;500;600&family=Mukta:wght@600;700;800&display=swap" rel="stylesheet" />}
+    <link rel="alternate" hreflang={lang === 'hi' ? 'en' : 'hi'} href={new URL(alt, Astro.site)} />
   </head>
   <body>
-    {site.announcement && (
-      <div class="announce"><a href="/lessons/"><span>New</span>{site.announcement.replace(/^New:\s*/, '')}</a></div>
+    {announcement && (
+      <div class="announce"><a href={lessonsHref}><span>{L.newLabel}</span>{announcement.replace(/^(New|नया):\s*/, '')}</a></div>
     )}
     <header class="site-header">
       <div class="wrap">
-        <a class="brand" href="/" aria-label="Kota Quantum Valley, home">
+        <a class="brand" href={homeHref} aria-label="Kota Quantum Valley, home">
           <Logo size={34} bar="currentColor" />
-          <span class="brand-name">Kota Quantum Valley<small>Quantum learning, from Kota</small></span>
+          <span class="brand-name">Kota Quantum Valley<small>{L.tagline}</small></span>
         </a>
         <nav class="nav" aria-label="Main">
           {nav.map((n) => (
             <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>
           ))}
-          <a class="btn btn-dark btn-sm" href="/posts/roadmap-what-to-learn-first/">Start learning</a>
+          <a class="lang-switch" href={alt} hreflang={lang === 'hi' ? 'en' : 'hi'} aria-label={L.switchAria}>{L.switchLabel}</a>
+          <a class="btn btn-dark btn-sm" href={L.startHref}>{L.start}</a>
         </nav>
+        <a class="lang-switch lang-mobile" href={alt} hreflang={lang === 'hi' ? 'en' : 'hi'} aria-label={L.switchAria}>{L.switchLabel}</a>
         <details class="menu">
-          <summary aria-label="Open menu">Menu</summary>
+          <summary aria-label={L.menu}>{L.menu}</summary>
           <div class="menu-panel">
             {nav.map((n) => <a href={n.href}>{n.label}</a>)}
-            <a href="/explainers/">Explainers</a>
-            <a class="btn btn-dark" href="/posts/roadmap-what-to-learn-first/" style="margin-top: 6px; color: #fff">Start learning</a>
+            <a href="/explainers/">{L.explainers}</a>
+            <a class="btn btn-dark" href={L.startHref} style="margin-top: 6px; color: #fff">{L.start}</a>
           </div>
         </details>
       </div>
@@ -76,31 +81,31 @@ const year = new Date().getFullYear();
       <div class="wrap">
         <div class="footer-grid">
           <div class="footer-about">
-            <a class="brand" href="/" style="color: #fff">
+            <a class="brand" href={homeHref} style="color: #fff">
               <Logo size={34} bar="#ffffff" />
               <span class="brand-name">Kota Quantum Valley</span>
             </a>
-            <p>Free quantum computing lessons from absolute zero, and the case for building India's quantum workforce in Kota.</p>
+            <p>{L.footAbout}</p>
           </div>
           <div>
-            <h4>Learn</h4>
+            <h4>{L.footLearn}</h4>
             <ul>
-              <li><a href="/posts/roadmap-what-to-learn-first/">Roadmap</a></li>
-              <li><a href="/lessons/">All lessons</a></li>
-              <li><a href="/explainers/">Explainers</a></li>
-              <li><a href="/learn/">Learning log</a></li>
+              <li><a href={L.startHref}>{L.roadmap}</a></li>
+              <li><a href={lessonsHref}>{L.allLessons}</a></li>
+              <li><a href="/explainers/">{L.explainers}</a></li>
+              <li><a href="/learn/">{L.learningLog}</a></li>
             </ul>
           </div>
           <div>
-            <h4>Initiative</h4>
+            <h4>{L.footInit}</h4>
             <ul>
-              <li><a href="/why-kota/">Why Kota</a></li>
-              <li><a href="/careers/">Careers in quantum</a></li>
-              <li><a href="/about/">About</a></li>
+              <li><a href={lang === 'hi' ? '/hi/why-kota/' : '/why-kota/'}>{L.whyKota}</a></li>
+              <li><a href="/careers/">{L.careers}</a></li>
+              <li><a href={lang === 'hi' ? '/hi/about/' : '/about/'}>{L.about}</a></li>
             </ul>
           </div>
           <div>
-            <h4>Follow</h4>
+            <h4>{L.footFollow}</h4>
             <ul>
               <li><a href={site.instagram} rel="me noopener" target="_blank">Instagram</a></li>
               {site.linkedin && <li><a href={site.linkedin} rel="me noopener" target="_blank">LinkedIn</a></li>}
@@ -111,7 +116,7 @@ const year = new Date().getFullYear();
         </div>
         <div class="footer-base">
           <span>© {year} Kota Quantum Valley</span>
-          <span>Lessons and slides are licensed <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="license noopener" target="_blank">CC BY-NC-ND 4.0</a>. Share them with credit; don't sell them.</span>
+          <span>{L.license.split('{cc}')[0]}<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="license noopener" target="_blank">CC BY-NC-ND 4.0</a>{L.license.split('{cc}')[1]}</span>
         </div>
       </div>
     </footer>

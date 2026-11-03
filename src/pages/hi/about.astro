@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+---
+<Base lang="hi" title="हमारे बारे में" description="Kota Quantum Valley के पीछे कौन है, और क्यों।">
+  <section class="article">
+    <div class="narrow">
+      <p class="eyebrow">हमारे बारे में</p>
+      <h1>इसके पीछे कौन है?</h1>
+      <p class="desc">Kota Quantum Valley की शुरुआत {site.founderName} ने की है, जो राजस्थान के एक एम्बेडेड फ़र्मवेयर इंजीनियर हैं।</p>
+      <p>दिन में मैं असली इलेक्ट्रॉनिक्स के लिए फ़र्मवेयर लिखता हूँ। क्वांटम कंप्यूटरों को ठीक इसी तरह की इंजीनियरिंग चाहिए: ऐसे इलेक्ट्रॉनिक्स और फ़र्मवेयर जो क्यूबिट को कंट्रोल करें। इसलिए मैं क्वांटम शून्य से सीख रहा हूँ और हर कदम यहाँ साझा कर रहा हूँ।</p>
+      <p>इस साइट के दो काम हैं:</p>
+      <ol>
+        <li><strong>सबके सामने सीखना।</strong> अगर मैं सीख सकता हूँ, तो कोटा का कोई भी छात्र सीख सकता है। और नोट्स मुफ़्त हैं।</li>
+        <li><strong>कोटा का पक्ष रखना।</strong> कोटा को भारत के क्वांटम नक्शे पर होना चाहिए, सिर्फ़ ऐसी जगह नहीं जहाँ से लोग चले जाते हैं।</li>
+      </ol>
+      <h2>संपर्क करें</h2>
+      <p><a href={site.instagram} rel="noopener" target="_blank">इंस्टाग्राम {site.instagramHandle}</a> पर जुड़ें{site.email ? <>, या ईमेल करें <a href={`mailto:${site.email}`}>{site.email}</a></> : null}।</p>
+    </div>
+  </section>
+</Base>

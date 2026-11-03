@@ -1,0 +1,67 @@
+---
+import Base from '../../layouts/Base.astro';
+import LessonGrid from '../../components/LessonGrid.astro';
+import BlochSphere from '../../components/BlochSphere.astro';
+import slides from '../../data/slides.json';
+import site from '../../data/site.json';
+import { getPosts } from '../../lib/posts.js';
+
+const lessons = getPosts('lesson', 'hi');
+const slideTotal = lessons.reduce((n, p) => n + (slides[p.slides]?.length ?? 0), 0);
+const lessonCount = lessons.filter((p) => p.lesson).length;
+---
+<Base lang="hi" title="शून्य से क्वांटम कंप्यूटिंग सीखें" description="कोटा से क्वांटम कंप्यूटिंग के मुफ़्त पाठ, बिल्कुल शुरुआत से। साथ में, कोटा में क्वांटम नौकरियाँ लाने का प्रस्ताव।">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>भारत की क्वांटम वर्कफ़ोर्स कोटा से शुरू हो सकती है।</h1>
+        <p class="lead">कोटा हर साल लाखों छात्रों को फ़िज़िक्स और मैथ्स में तैयार करता है। हम क्वांटम कंप्यूटिंग बिल्कुल शून्य से, मुफ़्त में पढ़ाते हैं, और कोटा में क्वांटम नौकरियाँ लाने की बात रखते हैं।</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="/hi/lessons/roadmap-what-to-learn-first/">रोडमैप से शुरू करें</a>
+          <a class="btn btn-ghost" href="/hi/lessons/">सभी पाठ देखें</a>
+        </div>
+        <p class="hero-note"><strong>अब तक {lessonCount} पाठ और {slideTotal} स्लाइड</strong>, 12वीं तक की मैथ्स जानने वाले हर किसी के लिए।</p>
+      </div>
+      <BlochSphere />
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>क्वांटम कंप्यूटिंग, क्रम से सीखें।</h2>
+        <p>हर पाठ पहले इंस्टाग्राम कैरोसेल के रूप में आया। यहाँ आपको सारी स्लाइड और हिन्दी में लिखे नोट्स मिलते हैं। पहले रोडमैप पढ़ें, फिर एक-एक करके पाठ आगे बढ़ाएँ।</p>
+      </div>
+      <LessonGrid lessons={lessons} lang="hi" />
+    </div>
+  </section>
+
+  <section class="block stone">
+    <div class="wrap stone-grid">
+      <div>
+        <h2>कोटा में क्वांटम क्यों?</h2>
+        <p class="lead">क्वांटम कंप्यूटिंग को ऐसे लोग चाहिए जो फ़िज़िक्स और मैथ्स में मज़बूत हों। कोटा ऐसे छात्र लगभग किसी भी शहर से ज़्यादा तैयार करता है, और फिर उन्हें बाहर जाते देखता है।</p>
+        <p><a class="textlink" href="/hi/why-kota/">कोटा का पूरा पक्ष पढ़ें</a></p>
+      </div>
+      <ul class="facts">
+        <li><strong>टैलेंट पहले से यहाँ है</strong><span>लाखों छात्रों ने कोटा में JEE-स्तर की फ़िज़िक्स और मैथ्स सीखी है।</span></li>
+        <li><strong>शिक्षक भी यहीं हैं</strong><span>एक पूरा शहर, जिसका काम ही कठिन विज्ञान को आसान बनाकर समझाना है।</span></li>
+        <li><strong>बनाने का ख़र्च कम है</strong><span>बेंगलुरु या दिल्ली NCR से सस्ता रहना, भर्ती करना और लैब लगाना।</span></li>
+        <li><strong>समय सही है</strong><span>₹6,003 करोड़ का नेशनल क्वांटम मिशन अभी हब बना रहा है। राजस्थान की अभी कोई क्वांटम योजना नहीं है।</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block tint">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>सबके सामने सीखना।</h2>
+        <p>Kota Quantum Valley की शुरुआत {site.founderName} ने की है, जो राजस्थान के एक एम्बेडेड फ़र्मवेयर इंजीनियर हैं। वे क्वांटम शून्य से सीख रहे हैं और हर कदम यहाँ साझा कर रहे हैं।</p>
+      </div>
+      <div class="btn-row" style="margin-top: 0">
+        <a class="btn btn-dark" href={site.instagram} rel="noopener" target="_blank">{site.instagramHandle} को फ़ॉलो करें</a>
+        <a class="btn btn-line" href="/hi/about/">इस पहल के बारे में</a>
+      </div>
+    </div>
+  </section>
+</Base>

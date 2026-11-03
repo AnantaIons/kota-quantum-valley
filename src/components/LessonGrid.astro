@@ -2,7 +2,9 @@
 // The syllabus: lessons in order, with the first slide as a cover.
 import slides from '../data/slides.json';
 import { lessonLabel } from '../lib/posts.js';
-const { lessons = [] } = Astro.props;
+import { t } from '../i18n.js';
+const { lessons = [], lang = 'en' } = Astro.props;
+const L = t[lang];
 const count = (p) => (p.slides && slides[p.slides] ? slides[p.slides].length : 0);
 ---
 <ol class="syllabus">
@@ -10,13 +12,13 @@ const count = (p) => (p.slides && slides[p.slides] ? slides[p.slides].length : 0
     <li>
       <a href={p.url}>
         {p.slides ? <img src={`/slides/${p.slides}/01.webp`} alt="" width="88" height="110" loading="lazy" decoding="async" /> : <span />}
-        <span class={p.lesson ? 'syl-num' : 'syl-num is-map'}>{p.lesson ? String(p.lesson).padStart(2, '0') : 'Start here'}</span>
+        <span class={p.lesson ? 'syl-num' : 'syl-num is-map'}>{p.lesson ? String(p.lesson).padStart(2, '0') : L.startHere}</span>
         <span class="syl-body">
-          <span class="syl-kicker">{lessonLabel(p)}</span>
+          <span class="syl-kicker">{lessonLabel(p, lang)}</span>
           <h3>{p.title}</h3>
           <p>{p.description}</p>
         </span>
-        <span class="syl-meta">{count(p) ? `${count(p)} slides` : ''}</span>
+        <span class="syl-meta">{count(p) ? L.slides(count(p)) : ''}</span>
       </a>
     </li>
   ))}

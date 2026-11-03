@@ -3,41 +3,45 @@ import Base from './Base.astro';
 import SlideGallery from '../components/SlideGallery.astro';
 import slides from '../data/slides.json';
 import { formatDate, getPosts, lessonLabel } from '../lib/posts.js';
+import { t } from '../i18n.js';
 
 const { frontmatter } = Astro.props;
+const lang = frontmatter.lang === 'hi' ? 'hi' : 'en';
+const L = t[lang];
 const isLesson = frontmatter.category === 'lesson';
 const labels = { journey: 'Learning log', explainer: 'Explainer' };
-const back = isLesson ? ['/lessons/', 'All lessons'] : frontmatter.category === 'explainer' ? ['/explainers/', 'All explainers'] : ['/learn/', 'Full learning log'];
-const eyebrow = isLesson ? lessonLabel(frontmatter) : `${labels[frontmatter.category] ?? frontmatter.category}${frontmatter.day ? ` · Day ${frontmatter.day}` : ''}`;
+const lessonsHref = lang === 'hi' ? '/hi/lessons/' : '/lessons/';
+const back = isLesson ? [lessonsHref, L.allLessons] : frontmatter.category === 'explainer' ? ['/explainers/', 'all explainers'] : ['/learn/', 'the learning log'];
+const eyebrow = isLesson ? lessonLabel(frontmatter, lang) : `${labels[frontmatter.category] ?? frontmatter.category}${frontmatter.day ? `, day ${frontmatter.day}` : ''}`;
 let prev, next;
 if (isLesson) {
-  const all = getPosts('lesson');
+  const all = getPosts('lesson', lang);
   const i = all.findIndex((p) => p.lesson === frontmatter.lesson);
   prev = all[i - 1]; next = all[i + 1];
 }
 const slideCount = frontmatter.slides ? (slides[frontmatter.slides]?.length ?? 0) : 0;
 const image = frontmatter.slides ? `/slides/${frontmatter.slides}/01.webp` : undefined;
 ---
-<Base title={frontmatter.title} description={frontmatter.description} image={image}>
+<Base title={frontmatter.title} description={frontmatter.description} image={image} lang={lang}>
   <article class="article">
     <div class="narrow">
       <header>
         <p class="eyebrow">{eyebrow}</p>
         <h1>{frontmatter.title}</h1>
         {frontmatter.description && <p class="desc">{frontmatter.description}</p>}
-        <p class="meta" style="margin: 0">Published {formatDate(frontmatter.date)}{frontmatter.slides ? `, with ${slideCount} slides` : ''}</p>
+        <p class="meta" style="margin: 0">{L.published(formatDate(frontmatter.date, lang), slideCount)}</p>
       </header>
       <slot />
     </div>
-    {frontmatter.slides && <div class="wide"><h2>The slides</h2><SlideGallery set={frontmatter.slides} /></div>}
+    {frontmatter.slides && <div class="wide"><h2>{L.theSlides}</h2><SlideGallery set={frontmatter.slides} lang={lang} /></div>}
     <div class="narrow">
       <hr style="border: 0; border-top: 1px solid var(--line); margin: 48px 0 24px" />
       {isLesson ? (
         <div class="lesson-nav">
-          {prev ? <a href={prev.url}><small>Previous: {lessonLabel(prev)}</small><strong>{prev.title}</strong></a> : <a href={back[0]}><small>Back to</small><strong>{back[1]}</strong></a>}
-          {next && <a class="next" href={next.url}><small>Next: {lessonLabel(next)}</small><strong>{next.title}</strong></a>}
+          {prev ? <a href={prev.url}><small>{L.prev}: {lessonLabel(prev, lang)}</small><strong>{prev.title}</strong></a> : <a href={back[0]}><small>{L.backTo}</small><strong>{back[1]}</strong></a>}
+          {next && <a class="next" href={next.url}><small>{L.next}: {lessonLabel(next, lang)}</small><strong>{next.title}</strong></a>}
         </div>
-      ) : <p><a href={back[0]}>Back to {back[1].toLowerCase()}</a></p>}
+      ) : <p><a href={back[0]}>Back to {back[1]}</a></p>}
     </div>
   </article>
 </Base>

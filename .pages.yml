@@ -16,7 +16,8 @@ content:
       - { name: founderName, label: Your name (About page), type: string }
       - { name: founderRole, label: One-line description of you, type: string }
       - { name: email, label: Public email (leave blank to hide), type: string }
-      - { name: announcement, label: Top banner text (leave blank to hide), type: string }
+      - { name: announcement, label: Top banner text, English (leave blank to hide), type: string }
+      - { name: announcementHindi, label: Top banner text, Hindi (leave blank to hide), type: string }
       - { name: instagram, label: Instagram URL, type: string }
       - { name: instagramHandle, label: Instagram handle, type: string }
       - { name: linkedin, label: LinkedIn URL (optional), type: string }
@@ -54,5 +55,41 @@ content:
       - { name: day, label: "Day number (Learning log only)", type: number }
       - { name: lesson, label: "Lesson number (Lessons only; 0 = Roadmap)", type: number }
       - { name: slides, label: "Slide folder in public/slides, e.g. lesson-7 (Lessons only)", type: string }
+      - { name: draft, label: Hide from site (draft), type: boolean }
+      - { name: body, label: Content, type: rich-text }
+
+  - name: hindi-lessons
+    label: Hindi lessons (हिन्दी पाठ)
+    type: collection
+    path: src/pages/hi/lessons
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    view:
+      fields: [title, lesson]
+      primary: title
+    fields:
+      - name: layout
+        label: Page layout (always pick this one)
+        type: select
+        required: true
+        options:
+          values: [../../../layouts/Post.astro]
+      - name: lang
+        label: Language (always hi)
+        type: select
+        required: true
+        options:
+          values: [hi]
+      - { name: title, label: Title, type: string, required: true }
+      - { name: description, label: One-line summary, type: text }
+      - { name: date, label: Date, type: date, required: true }
+      - name: category
+        label: Section (always lesson)
+        type: select
+        required: true
+        options:
+          values: [lesson]
+      - { name: lesson, label: "Lesson number (0 = Roadmap)", type: number }
+      - { name: slides, label: "Slide folder, same as the English lesson (e.g. lesson-7)", type: string }
       - { name: draft, label: Hide from site (draft), type: boolean }
       - { name: body, label: Content, type: rich-text }

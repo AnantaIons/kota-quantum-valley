@@ -1,0 +1,16 @@
+---
+import Base from '../../../layouts/Base.astro';
+import LessonGrid from '../../../components/LessonGrid.astro';
+import { getPosts } from '../../../lib/posts.js';
+const lessons = getPosts('lesson', 'hi');
+---
+<Base lang="hi" title="पाठ" description="क्वांटम कंप्यूटिंग के मुफ़्त पाठ, शून्य से: क्यूबिट, गेट, एल्गोरिद्म, हार्डवेयर, कम्युनिकेशन और सेंसिंग।">
+  <section class="article">
+    <div class="wrap">
+      <p class="eyebrow">पाठ</p>
+      <h1>क्वांटम, बिल्कुल शून्य से।</h1>
+      <p class="desc" style="margin-bottom: 40px">हमारे इंस्टाग्राम कैरोसेल के सभी पाठ, पूरी स्लाइड और हिन्दी नोट्स के साथ। पहले रोडमैप पढ़ें, फिर क्रम से आगे बढ़ें। शुरुआत के लिए 12वीं की मैथ्स काफ़ी है।</p>
+      <LessonGrid lessons={lessons} lang="hi" />
+    </div>
+  </section>
+</Base>
