@@ -2,8 +2,8 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// Your live domain. Change it here (and in public/CNAME + public/robots.txt) if you buy a different one.
+// Live address. When the domain is connected, change it here and in public/robots.txt.
 export default defineConfig({
-  site: 'https://kotaquantumvalley.in',
+  site: 'https://kota-quantum-valley.chitransh-baregama.workers.dev',
   integrations: [sitemap()],
 });
