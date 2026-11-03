@@ -1,6 +1,6 @@
 # Kota Quantum Valley — website
 
-A fast, free website for learning quantum in public. Built with [Astro](https://astro.build), hosted free on GitHub Pages.
+A fast, free website for learning quantum in public. Built with [Astro](https://astro.build), hosted free on Cloudflare Pages.
 
 ## Pages
 
@@ -36,7 +36,12 @@ New lesson with slides: upload the slide images to `public/slides/lesson-7/` nam
 
 You can even do this from your phone on github.com: open `src/pages/posts/`, tap **Add file → Create new file**.
 
-## Put it online (one time)
+## Hosting: Cloudflare Pages
+
+Cloudflare builds and publishes the site on every push to `main`.
+Settings: Framework preset **Astro** · Build command `npm run build` · Output directory `dist`.
+
+## Alternative: GitHub Pages (one time)
 
 1. Create a new **public** repo on GitHub named exactly `<your-username>.github.io`.
    (This name puts the site at the root address, which the site's links expect.)

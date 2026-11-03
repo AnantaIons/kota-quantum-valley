@@ -1,8 +1,8 @@
 name: Deploy to GitHub Pages
 
+# Hosting is on Cloudflare Pages, so this GitHub Pages workflow only runs if started by hand.
+# To switch back to GitHub Pages: restore the "push: branches: [main]" trigger below.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
