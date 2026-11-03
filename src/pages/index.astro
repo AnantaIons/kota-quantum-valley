@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import LessonGrid from '../components/LessonGrid.astro';
+import { getPosts } from '../lib/posts.js';
+
+const latest = getPosts().filter((p) => p.category !== 'lesson').slice(0, 3);
+const lessons = getPosts('lesson');
+---
+<Base>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Kota Quantum Valley</p>
+      <h1>Kota makes India's sharpest physics minds. <span class="accent">Let's keep them here.</span></h1>
+      <p class="lead">A movement to make Kota India's next quantum city — and a public notebook where I learn quantum computing from zero, one concept at a time.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="/lessons/">Start the free lessons</a>
+        <a class="btn btn-ghost" href="/learn/">Learning log</a>
+        <a class="btn btn-ghost" href="/why-kota/">Why Kota?</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <p class="eyebrow">What you'll find here</p>
+      <div class="grid">
+        <a class="card" href="/learn/" style="text-decoration: none; color: inherit">
+          <span class="num">01</span>
+          <h3>Learning log</h3>
+          <p>Day-by-day notes as I learn quantum computing in public — the wins, the confusion, the code.</p>
+        </a>
+        <a class="card" href="/explainers/" style="text-decoration: none; color: inherit">
+          <span class="num">02</span>
+          <h3>Explainers</h3>
+          <p>Clean, simple write-ups of each concept. JEE-level physics and maths is all you need.</p>
+        </a>
+        <a class="card" href="/careers/" style="text-decoration: none; color: inherit">
+          <span class="num">03</span>
+          <h3>Careers</h3>
+          <p>The jobs quantum is creating, the skills they need, and free ways to start.</p>
+        </a>
+        <a class="card" href="/why-kota/" style="text-decoration: none; color: inherit">
+          <span class="num">04</span>
+          <h3>Why Kota</h3>
+          <p>The talent is already here. The case for building India's quantum future on the Chambal.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top: 0">
+    <div class="wrap">
+      <p class="eyebrow">Free lessons · from absolute zero</p>
+      <LessonGrid lessons={lessons} />
+    </div>
+  </section>
+
+  <section class="block" style="padding-top: 0">
+    <div class="wrap">
+      <p class="eyebrow">Latest posts</p>
+      <PostList posts={latest} />
+    </div>
+  </section>
+</Base>

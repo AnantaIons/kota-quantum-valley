@@ -1,0 +1,19 @@
+---
+import slides from '../data/slides.json';
+const { set } = Astro.props;
+const titles = slides[set] ?? [];
+const src = (i) => `/slides/${set}/${String(i + 1).padStart(2, '0')}.webp`;
+---
+{titles.length > 0 && (
+  <section class="gallery" aria-label="Slides">
+    <p class="meta">{titles.length} slides · tap any slide to open it full size</p>
+    <div class="gallery-grid">
+      {titles.map((t, i) => (
+        <a href={src(i)} target="_blank" rel="noopener" class="slide">
+          <img src={src(i)} alt={`Slide ${i + 1}: ${t}`} width="1080" height="1350" loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />
+          <span>{String(i + 1).padStart(2, '0')} · {t}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+)}

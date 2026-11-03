@@ -1,0 +1,76 @@
+---
+import '../styles/global.css';
+import Logo from '../components/Logo.astro';
+import site from '../data/site.json';
+
+const { title, image = '/og.png', description = 'Kota trains India\'s sharpest physics minds. Kota Quantum Valley is a movement to build India\'s quantum future here — learning, careers and the case for Kota.' } = Astro.props;
+const pageTitle = title ? `${title} · Kota Quantum Valley` : 'Kota Quantum Valley';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const nav = [
+  { href: '/lessons/', label: 'Lessons' },
+  { href: '/learn/', label: 'Log' },
+  { href: '/explainers/', label: 'Explainers' },
+  { href: '/careers/', label: 'Careers' },
+  { href: '/why-kota/', label: 'Why Kota' },
+  { href: '/about/', label: 'About' },
+];
+const isCurrent = (href) => path === href.replace(/\/$/, '');
+const instagram = site.instagram;
+const ogImage = new URL(image, Astro.site).href;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+    <meta property="og:site_name" content="Kota Quantum Valley" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="theme-color" content="#1e1b4b" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    {site.announcement && <div class="announce"><a href="/lessons/">{site.announcement} →</a></div>}
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="Kota Quantum Valley home">
+          <Logo size={30} />
+          <span>KOTA QUANTUM VALLEY</span>
+        </a>
+        <nav class="nav" aria-label="Main">
+          {nav.map((n) => (
+            <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© {new Date().getFullYear()} Kota Quantum Valley · Learning quantum in public, from Kota.</span>
+        <span style="display: flex; gap: 16px; flex-wrap: wrap">
+          <a href={instagram} rel="me noopener" target="_blank">Instagram {site.instagramHandle}</a>
+          {site.linkedin && <a href={site.linkedin} rel="me noopener" target="_blank">LinkedIn</a>}
+          {site.youtube && <a href={site.youtube} rel="me noopener" target="_blank">YouTube</a>}
+          {site.email && <a href={`mailto:${site.email}`}>Email</a>}
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>

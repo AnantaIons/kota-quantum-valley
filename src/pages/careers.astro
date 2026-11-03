@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+
+const roles = [
+  { role: 'Quantum software developer', does: 'Writes and optimises quantum programs, often in Python with Qiskit.', skills: 'Python, linear algebra, Qiskit' },
+  { role: 'Quantum control / hardware engineer', does: 'Builds the electronics and firmware that drive and read qubits.', skills: 'Embedded C, FPGAs, RF, cryogenic electronics' },
+  { role: 'Quantum algorithm researcher', does: 'Designs new algorithms for chemistry, finance, optimisation.', skills: 'Physics or maths, usually MSc/PhD' },
+  { role: 'Post-quantum security engineer', does: 'Moves systems to encryption that quantum computers cannot break.', skills: 'Cryptography, networking, secure firmware' },
+  { role: 'Quantum sensing / photonics engineer', does: 'Builds ultra-precise sensors and light-based quantum devices.', skills: 'Optics, lasers, electronics' },
+];
+---
+<Base title="Careers" description="The jobs quantum technology is creating, the skills they need, and free ways to start.">
+  <section class="article">
+    <div class="wrap">
+      <p class="eyebrow">Careers</p>
+      <h1>The jobs quantum is creating.</h1>
+      <p class="desc" style="max-width: 60ch">Quantum isn't only for PhDs. It needs programmers, electronics engineers and security people too. Here's where you might fit.</p>
+
+      <div style="overflow-x: auto">
+        <table>
+          <thead><tr><th>Role</th><th>What they do</th><th>Skills to build</th></tr></thead>
+          <tbody>
+            {roles.map((r) => (
+              <tr><td><strong>{r.role}</strong></td><td>{r.does}</td><td>{r.skills}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Start for free</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>IBM Quantum Learning</h3>
+          <p>Free courses with Qiskit, and real quantum computers you can run code on.</p>
+          <a href="https://quantum.cloud.ibm.com/learning" rel="noopener" target="_blank">Open IBM Quantum Learning</a>
+        </div>
+        <div class="card">
+          <h3>3Blue1Brown</h3>
+          <p>The clearest visual introduction to linear algebra — the maths behind qubits.</p>
+          <a href="https://www.3blue1brown.com/topics/linear-algebra" rel="noopener" target="_blank">Watch the series</a>
+        </div>
+        <div class="card">
+          <h3>NPTEL</h3>
+          <p>Free IIT courses on quantum computing and quantum mechanics, with certificates.</p>
+          <a href="https://nptel.ac.in/" rel="noopener" target="_blank">Search NPTEL</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

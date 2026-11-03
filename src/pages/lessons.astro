@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import LessonGrid from '../components/LessonGrid.astro';
+import { getPosts } from '../lib/posts.js';
+const lessons = getPosts('lesson');
+---
+<Base title="Lessons" description="Free quantum computing lessons from absolute zero: qubits, gates, algorithms, hardware, communication and sensing.">
+  <section class="article">
+    <div class="wrap">
+      <p class="eyebrow">Lessons</p>
+      <h1>Quantum, from absolute zero.</h1>
+      <p class="desc">Every lesson from our Instagram carousels, with notes. Start with the roadmap, then go in order. Class 10–12 maths is enough to begin.</p>
+      <LessonGrid lessons={lessons} />
+    </div>
+  </section>
+</Base>

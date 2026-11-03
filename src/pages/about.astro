@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+---
+<Base title="About" description="Who is behind Kota Quantum Valley, and why.">
+  <section class="article">
+    <div class="narrow">
+      <p class="eyebrow">About</p>
+      <h1>Who's behind this?</h1>
+      <p class="desc">Kota Quantum Valley is started by {site.founderName}, {site.founderRole.charAt(0).toLowerCase() + site.founderRole.slice(1)}.</p>
+      <p>By day I write firmware for real-world electronics. Quantum computers need exactly that kind of engineering — electronics and firmware that control qubits — so I'm learning quantum from zero and sharing every step here.</p>
+      <p>This site has two jobs:</p>
+      <ol>
+        <li><strong>Learn in public.</strong> If I can learn it, so can any Kota student — and the notes are free.</li>
+        <li><strong>Make the case.</strong> Kota should be on India's quantum map, not just a place people leave.</li>
+      </ol>
+      <h2>Get in touch</h2>
+      <p>Follow along on <a href={site.instagram} rel="noopener" target="_blank">Instagram {site.instagramHandle}</a>{site.email ? <>, or email <a href={`mailto:${site.email}`}>{site.email}</a></> : null}.</p>
+    </div>
+  </section>
+</Base>

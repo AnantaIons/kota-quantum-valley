@@ -1,0 +1,40 @@
+---
+import Base from './Base.astro';
+import SlideGallery from '../components/SlideGallery.astro';
+import { formatDate, getPosts, lessonLabel } from '../lib/posts.js';
+
+const { frontmatter } = Astro.props;
+const isLesson = frontmatter.category === 'lesson';
+const labels = { journey: 'Learning log', explainer: 'Explainer' };
+const back = isLesson ? ['/lessons/', 'All lessons'] : frontmatter.category === 'explainer' ? ['/explainers/', 'All explainers'] : ['/learn/', 'Full learning log'];
+const eyebrow = isLesson ? lessonLabel(frontmatter) : `${labels[frontmatter.category] ?? frontmatter.category}${frontmatter.day ? ` · Day ${frontmatter.day}` : ''}`;
+let prev, next;
+if (isLesson) {
+  const all = getPosts('lesson');
+  const i = all.findIndex((p) => p.lesson === frontmatter.lesson);
+  prev = all[i - 1]; next = all[i + 1];
+}
+const image = frontmatter.slides ? `/slides/${frontmatter.slides}/01.webp` : undefined;
+---
+<Base title={frontmatter.title} description={frontmatter.description} image={image}>
+  <article class="article">
+    <div class="narrow">
+      <header>
+        <p class="eyebrow">{eyebrow} · {formatDate(frontmatter.date)}</p>
+        <h1>{frontmatter.title}</h1>
+        {frontmatter.description && <p class="desc">{frontmatter.description}</p>}
+      </header>
+      <slot />
+    </div>
+    {frontmatter.slides && <div class="narrow"><h2>The slides</h2><SlideGallery set={frontmatter.slides} /></div>}
+    <div class="narrow">
+      <hr style="border: 0; border-top: 1px solid var(--line); margin: 48px 0 24px" />
+      {isLesson ? (
+        <div class="lesson-nav">
+          {prev ? <a href={prev.url}>← {lessonLabel(prev)}: {prev.title}</a> : <a href={back[0]}>← {back[1]}</a>}
+          {next && <a href={next.url}>{lessonLabel(next)}: {next.title} →</a>}
+        </div>
+      ) : <p><a href={back[0]}>← {back[1]}</a></p>}
+    </div>
+  </article>
+</Base>

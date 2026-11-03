@@ -1,0 +1,10 @@
+---
+// The |K⟩ mark — Kota written as a qubit state.
+const { size = 32, bar = '#F8FAFC', k = '#F59E0B' } = Astro.props;
+const h = size;
+---
+<svg width={h * 0.9} height={h} viewBox="0 0 90 100" aria-hidden="true">
+  <rect x="2" y="4" width="9" height="92" rx="3" fill={bar} />
+  <text x="19" y="80" font-family="Space Grotesk, system-ui, sans-serif" font-weight="700" font-size="86" fill={k}>K</text>
+  <polyline points="70,6 86,50 70,94" fill="none" stroke={bar} stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

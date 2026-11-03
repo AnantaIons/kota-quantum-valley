@@ -1,0 +1,21 @@
+---
+import { formatDate } from '../lib/posts.js';
+const { posts = [], empty = 'First post coming soon.' } = Astro.props;
+const labels = { journey: 'Learning log', explainer: 'Explainer' };
+---
+{posts.length === 0 ? (
+  <p class="meta">{empty}</p>
+) : (
+  <ul class="post-list">
+    {posts.map((p) => (
+      <li class="post-item">
+        <a href={p.url}>
+          <span class="tag">{labels[p.category] ?? p.category}</span>
+          <h3>{p.title}</h3>
+          <p>{p.description}</p>
+          <span class="meta">{formatDate(p.date)}{p.day ? ` · Day ${p.day}` : ''}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+)}

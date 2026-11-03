@@ -1,0 +1,16 @@
+---
+import { lessonLabel } from '../lib/posts.js';
+const { lessons = [] } = Astro.props;
+---
+<ul class="lesson-grid">
+  {lessons.map((p) => (
+    <li>
+      <a class="lesson-card" href={p.url}>
+        {p.slides && <img src={`/slides/${p.slides}/01.webp`} alt="" width="1080" height="1350" loading="lazy" decoding="async" />}
+        <span class="tag">{lessonLabel(p)}</span>
+        <h3>{p.title}</h3>
+        <p>{p.description}</p>
+      </a>
+    </li>
+  ))}
+</ul>

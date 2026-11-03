@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import { getPosts } from '../lib/posts.js';
+
+const posts = getPosts('explainer');
+---
+<Base title="Explainers" description="Quantum computing concepts explained simply, with JEE-level physics and maths.">
+  <section class="article">
+    <div class="narrow">
+      <p class="eyebrow">Explainers</p>
+      <h1>Quantum, explained simply.</h1>
+      <p class="desc">One concept per page. If you've studied physics and maths for JEE, you already have what you need.</p>
+      <PostList posts={posts} />
+    </div>
+  </section>
+</Base>

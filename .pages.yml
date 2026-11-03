@@ -1,0 +1,58 @@
+# Admin panel config for Pages CMS (https://app.pagescms.org).
+# Log in there with GitHub, pick this repo, and edit everything below in the browser.
+# Every save is a commit; the site rebuilds itself in about a minute.
+
+media:
+  input: public/media
+  output: /media
+
+content:
+  - name: settings
+    label: Site settings
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - { name: founderName, label: Your name (About page), type: string }
+      - { name: founderRole, label: One-line description of you, type: string }
+      - { name: email, label: Public email (leave blank to hide), type: string }
+      - { name: announcement, label: Top banner text (leave blank to hide), type: string }
+      - { name: instagram, label: Instagram URL, type: string }
+      - { name: instagramHandle, label: Instagram handle, type: string }
+      - { name: linkedin, label: LinkedIn URL (optional), type: string }
+      - { name: youtube, label: YouTube URL (optional), type: string }
+
+  - name: posts
+    label: Posts & lessons
+    type: collection
+    path: src/pages/posts
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, category, date]
+      primary: title
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: layout
+        label: Page layout (always pick this one)
+        type: select
+        required: true
+        options:
+          values: [../../layouts/Post.astro]
+      - { name: title, label: Title, type: string, required: true }
+      - { name: description, label: One-line summary (shows on Google and in lists), type: text }
+      - { name: date, label: Date, type: date, required: true }
+      - name: category
+        label: Section
+        type: select
+        required: true
+        options:
+          values: [journey, explainer, lesson]
+      - { name: day, label: "Day number (Learning log only)", type: number }
+      - { name: lesson, label: "Lesson number (Lessons only; 0 = Roadmap)", type: number }
+      - { name: slides, label: "Slide folder in public/slides, e.g. lesson-7 (Lessons only)", type: string }
+      - { name: draft, label: Hide from site (draft), type: boolean }
+      - { name: body, label: Content, type: rich-text }

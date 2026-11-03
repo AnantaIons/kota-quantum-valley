@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import { getPosts } from '../lib/posts.js';
+
+const posts = getPosts('journey');
+---
+<Base title="Learning log" description="Learning quantum computing in public, day by day, from Kota.">
+  <section class="article">
+    <div class="narrow">
+      <p class="eyebrow">Learning log</p>
+      <h1>Learning quantum, in public.</h1>
+      <p class="desc">I'm an embedded firmware engineer learning quantum computing from zero. Every step goes here — what I studied, what confused me, and what finally clicked.</p>
+      <div class="callout">
+        <strong>The path I'm following</strong>
+        <ol style="margin: 10px 0 0; padding-left: 20px">
+          <li>Math base — complex numbers, vectors, matrices</li>
+          <li>Core ideas — qubits, superposition, gates, measurement, entanglement</li>
+          <li>First circuits on real IBM quantum computers (Qiskit)</li>
+          <li>Algorithms — Deutsch–Jozsa, Grover, Shor; quantum cryptography</li>
+          <li>Quantum control hardware — FPGAs, RF, cryogenic electronics</li>
+        </ol>
+      </div>
+      <PostList posts={posts} />
+    </div>
+  </section>
+</Base>
