@@ -1,16 +1,23 @@
 ---
+// The syllabus: lessons in order, with the first slide as a cover.
+import slides from '../data/slides.json';
 import { lessonLabel } from '../lib/posts.js';
 const { lessons = [] } = Astro.props;
+const count = (p) => (p.slides && slides[p.slides] ? slides[p.slides].length : 0);
 ---
-<ul class="lesson-grid">
+<ol class="syllabus">
   {lessons.map((p) => (
     <li>
-      <a class="lesson-card" href={p.url}>
-        {p.slides && <img src={`/slides/${p.slides}/01.webp`} alt="" width="1080" height="1350" loading="lazy" decoding="async" />}
-        <span class="tag">{lessonLabel(p)}</span>
-        <h3>{p.title}</h3>
-        <p>{p.description}</p>
+      <a href={p.url}>
+        {p.slides ? <img src={`/slides/${p.slides}/01.webp`} alt="" width="88" height="110" loading="lazy" decoding="async" /> : <span />}
+        <span class={p.lesson ? 'syl-num' : 'syl-num is-map'}>{p.lesson ? String(p.lesson).padStart(2, '0') : 'Start here'}</span>
+        <span class="syl-body">
+          <span class="syl-kicker">{lessonLabel(p)}</span>
+          <h3>{p.title}</h3>
+          <p>{p.description}</p>
+        </span>
+        <span class="syl-meta">{count(p) ? `${count(p)} slides` : ''}</span>
       </a>
     </li>
   ))}
-</ul>
+</ol>

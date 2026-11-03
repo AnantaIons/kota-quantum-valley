@@ -3,21 +3,20 @@ import '../styles/global.css';
 import Logo from '../components/Logo.astro';
 import site from '../data/site.json';
 
-const { title, image = '/og.png', description = 'Kota trains India\'s sharpest physics minds. Kota Quantum Valley is a movement to build India\'s quantum future here — learning, careers and the case for Kota.' } = Astro.props;
-const pageTitle = title ? `${title} · Kota Quantum Valley` : 'Kota Quantum Valley';
+const { title, image = '/og.png', description = 'Kota trains India\'s sharpest physics minds. Kota Quantum Valley teaches quantum computing from absolute zero, for free, and makes the case for quantum jobs in Kota.' } = Astro.props;
+const pageTitle = title ? `${title} | Kota Quantum Valley` : 'Kota Quantum Valley | Learn quantum computing from absolute zero';
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 const nav = [
   { href: '/lessons/', label: 'Lessons' },
-  { href: '/learn/', label: 'Log' },
-  { href: '/explainers/', label: 'Explainers' },
+  { href: '/learn/', label: 'Learning log' },
   { href: '/careers/', label: 'Careers' },
   { href: '/why-kota/', label: 'Why Kota' },
   { href: '/about/', label: 'About' },
 ];
-const isCurrent = (href) => path === href.replace(/\/$/, '');
-const instagram = site.instagram;
+const isCurrent = (href) => path === href.replace(/\/$/, '') || (href === '/lessons/' && path.startsWith('/posts/lesson')) ;
 const ogImage = new URL(image, Astro.site).href;
+const year = new Date().getFullYear();
 ---
 <!doctype html>
 <html lang="en">
@@ -35,25 +34,37 @@ const ogImage = new URL(image, Astro.site).href;
     <meta property="og:site_name" content="Kota Quantum Valley" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="theme-color" content="#1e1b4b" />
+    <meta name="theme-color" content="#121034" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
-    {site.announcement && <div class="announce"><a href="/lessons/">{site.announcement} →</a></div>}
+    {site.announcement && (
+      <div class="announce"><a href="/lessons/"><span>New</span>{site.announcement.replace(/^New:\s*/, '')}</a></div>
+    )}
     <header class="site-header">
       <div class="wrap">
-        <a class="brand" href="/" aria-label="Kota Quantum Valley home">
-          <Logo size={30} />
-          <span>KOTA QUANTUM VALLEY</span>
+        <a class="brand" href="/" aria-label="Kota Quantum Valley, home">
+          <Logo size={34} bar="currentColor" />
+          <span class="brand-name">Kota Quantum Valley<small>Quantum learning, from Kota</small></span>
         </a>
         <nav class="nav" aria-label="Main">
           {nav.map((n) => (
             <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>
           ))}
+          <a class="btn btn-dark btn-sm" href="/posts/roadmap-what-to-learn-first/">Start learning</a>
         </nav>
+        <details class="menu">
+          <summary aria-label="Open menu">Menu</summary>
+          <div class="menu-panel">
+            {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+            <a href="/explainers/">Explainers</a>
+            <a class="btn btn-dark" href="/posts/roadmap-what-to-learn-first/" style="margin-top: 6px; color: #fff">Start learning</a>
+          </div>
+        </details>
       </div>
     </header>
 
@@ -63,13 +74,45 @@ const ogImage = new URL(image, Astro.site).href;
 
     <footer class="site-footer">
       <div class="wrap">
-        <span>© {new Date().getFullYear()} Kota Quantum Valley · Lessons and slides licensed <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="license noopener" target="_blank">CC BY-NC-ND 4.0</a>: share with credit, not for commercial use.</span>
-        <span style="display: flex; gap: 16px; flex-wrap: wrap">
-          <a href={instagram} rel="me noopener" target="_blank">Instagram {site.instagramHandle}</a>
-          {site.linkedin && <a href={site.linkedin} rel="me noopener" target="_blank">LinkedIn</a>}
-          {site.youtube && <a href={site.youtube} rel="me noopener" target="_blank">YouTube</a>}
-          {site.email && <a href={`mailto:${site.email}`}>Email</a>}
-        </span>
+        <div class="footer-grid">
+          <div class="footer-about">
+            <a class="brand" href="/" style="color: #fff">
+              <Logo size={34} bar="#ffffff" />
+              <span class="brand-name">Kota Quantum Valley</span>
+            </a>
+            <p>Free quantum computing lessons from absolute zero, and the case for building India's quantum workforce in Kota.</p>
+          </div>
+          <div>
+            <h4>Learn</h4>
+            <ul>
+              <li><a href="/posts/roadmap-what-to-learn-first/">Roadmap</a></li>
+              <li><a href="/lessons/">All lessons</a></li>
+              <li><a href="/explainers/">Explainers</a></li>
+              <li><a href="/learn/">Learning log</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Initiative</h4>
+            <ul>
+              <li><a href="/why-kota/">Why Kota</a></li>
+              <li><a href="/careers/">Careers in quantum</a></li>
+              <li><a href="/about/">About</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Follow</h4>
+            <ul>
+              <li><a href={site.instagram} rel="me noopener" target="_blank">Instagram</a></li>
+              {site.linkedin && <li><a href={site.linkedin} rel="me noopener" target="_blank">LinkedIn</a></li>}
+              {site.youtube && <li><a href={site.youtube} rel="me noopener" target="_blank">YouTube</a></li>}
+              {site.email && <li><a href={`mailto:${site.email}`}>Email</a></li>}
+            </ul>
+          </div>
+        </div>
+        <div class="footer-base">
+          <span>© {year} Kota Quantum Valley</span>
+          <span>Lessons and slides are licensed <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="license noopener" target="_blank">CC BY-NC-ND 4.0</a>. Share them with credit; don't sell them.</span>
+        </div>
       </div>
     </footer>
   </body>

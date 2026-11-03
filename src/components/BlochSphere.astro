@@ -1,0 +1,66 @@
+---
+// A qubit on the Bloch sphere. The amber state vector slowly precesses around the z-axis,
+// which is exactly what a qubit does in a magnetic field (Lesson 6). Static if reduced motion is on.
+const cx = 220, cy = 214, r = 160, e = 0.3; // e = sin(camera elevation)
+const ce = Math.sqrt(1 - e * e);
+const P = (u, v, z) => [cx + r * u, cy - r * (z * ce - v * e)];
+const theta = 0.95; // polar angle of the state, radians
+const st = Math.sin(theta), ctz = Math.cos(theta);
+const xAxis = P(-0.5, 0.866, 0), yAxis = P(0.94, 0.34, 0);
+const fmt = (p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`;
+const latY = cy - r * ctz * ce;
+const start = P(st * Math.cos(-0.6), st * Math.sin(-0.6), ctz);
+---
+<svg class="bloch" viewBox="0 0 440 440" role="img" aria-label="A qubit drawn on the Bloch sphere, with its state vector between |0⟩ and |1⟩">
+  <defs>
+    <radialGradient id="bs-fill" cx="38%" cy="32%" r="75%">
+      <stop offset="0" stop-color="#3b3690" stop-opacity="0.55" />
+      <stop offset="1" stop-color="#121034" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <circle cx={cx} cy={cy} r={r} fill="url(#bs-fill)" stroke="#5a56b8" stroke-width="1.5" />
+  <!-- equator: back half dashed, front half solid -->
+  <path d={`M ${cx - r} ${cy} A ${r} ${r * e} 0 0 1 ${cx + r} ${cy}`} fill="none" stroke="#4a4699" stroke-width="1.2" stroke-dasharray="4 6" />
+  <path d={`M ${cx - r} ${cy} A ${r} ${r * e} 0 0 0 ${cx + r} ${cy}`} fill="none" stroke="#6d69c9" stroke-width="1.4" />
+  <!-- latitude the state traces -->
+  <ellipse cx={cx} cy={latY} rx={r * st} ry={r * st * e} fill="none" stroke="#f5a524" stroke-opacity="0.28" stroke-width="1.2" stroke-dasharray="3 5" />
+  <!-- axes -->
+  <line x1={cx} y1={cy - r - 14} x2={cx} y2={cy + r + 14} stroke="#6d69c9" stroke-width="1.2" />
+  <line x1={cx} y1={cy} x2={xAxis[0]} y2={xAxis[1]} stroke="#6d69c9" stroke-width="1.2" />
+  <line x1={cx} y1={cy} x2={yAxis[0]} y2={yAxis[1]} stroke="#6d69c9" stroke-width="1.2" />
+  <text class="ket" x={cx + 12} y={cy - r - 4}>|0⟩</text>
+  <text class="ket" x={cx + 12} y={cy + r + 18}>|1⟩</text>
+  <text class="ket" x={xAxis[0] - 30} y={xAxis[1] + 20}>|+⟩</text>
+  <text class="ket" x={yAxis[0] + 8} y={yAxis[1] + 5}>|+i⟩</text>
+  <!-- state -->
+  <line id="bs-drop" x1={start[0]} y1={start[1]} x2={start[0]} y2={start[1] + r * ctz * ce} stroke="#f5a524" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 4" />
+  <line id="bs-vec" x1={cx} y1={cy} x2={start[0]} y2={start[1]} stroke="#f5a524" stroke-width="3" stroke-linecap="round" />
+  <circle cx={cx} cy={cy} r="4" fill="#c9cbef" />
+  <circle id="bs-tip" cx={start[0]} cy={start[1]} r="7" fill="#f5a524" />
+  <text id="bs-psi" class="ket ket-live" x={start[0] + 12} y={start[1] - 10}>|ψ⟩</text>
+</svg>
+<script is:inline define:vars={{ cx, cy, r, e, ce, st, ctz }}>
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const vec = document.getElementById('bs-vec');
+    const tip = document.getElementById('bs-tip');
+    const psi = document.getElementById('bs-psi');
+    const drop = document.getElementById('bs-drop');
+    if (!vec) return;
+    let phi = -0.6, last = performance.now();
+    function frame(now) {
+      phi += ((now - last) / 1000) * (Math.PI * 2 / 16);
+      last = now;
+      const u = st * Math.cos(phi), v = st * Math.sin(phi);
+      const x = cx + r * u, y = cy - r * (ctz * ce - v * e);
+      vec.setAttribute('x2', x); vec.setAttribute('y2', y);
+      tip.setAttribute('cx', x); tip.setAttribute('cy', y);
+      psi.setAttribute('x', x + 12); psi.setAttribute('y', y - 10);
+      drop.setAttribute('x1', x); drop.setAttribute('y1', y);
+      drop.setAttribute('x2', x); drop.setAttribute('y2', y + r * ctz * ce);
+      tip.setAttribute('opacity', v < 0 ? 0.65 : 1);
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+</script>

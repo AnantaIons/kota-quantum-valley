@@ -2,64 +2,69 @@
 import Base from '../layouts/Base.astro';
 import PostList from '../components/PostList.astro';
 import LessonGrid from '../components/LessonGrid.astro';
+import BlochSphere from '../components/BlochSphere.astro';
+import slides from '../data/slides.json';
+import site from '../data/site.json';
 import { getPosts } from '../lib/posts.js';
 
-const latest = getPosts().filter((p) => p.category !== 'lesson').slice(0, 3);
 const lessons = getPosts('lesson');
+const latest = getPosts().filter((p) => p.category !== 'lesson').slice(0, 3);
+const slideTotal = lessons.reduce((n, p) => n + (slides[p.slides]?.length ?? 0), 0);
+const lessonCount = lessons.filter((p) => p.lesson).length;
 ---
 <Base>
   <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Kota Quantum Valley</p>
-      <h1>Kota makes India's sharpest physics minds. <span class="accent">Let's keep them here.</span></h1>
-      <p class="lead">A movement to make Kota India's next quantum city — and a public notebook where I learn quantum computing from zero, one concept at a time.</p>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="/lessons/">Start the free lessons</a>
-        <a class="btn btn-ghost" href="/learn/">Learning log</a>
-        <a class="btn btn-ghost" href="/why-kota/">Why Kota?</a>
+    <div class="wrap hero-grid">
+      <div>
+        <h1>India's quantum workforce can start in Kota.</h1>
+        <p class="lead">Kota already trains lakhs of students in physics and maths. We teach quantum computing from absolute zero, for free, and make the case for bringing quantum jobs to the city.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="/posts/roadmap-what-to-learn-first/">Start with the roadmap</a>
+          <a class="btn btn-ghost" href="/lessons/">Browse all lessons</a>
+        </div>
+        <p class="hero-note"><strong>{lessonCount} lessons and {slideTotal} slides so far</strong>, written for anyone with Class 12 maths.</p>
       </div>
+      <BlochSphere />
     </div>
   </section>
 
   <section class="block">
     <div class="wrap">
-      <p class="eyebrow">What you'll find here</p>
-      <div class="grid">
-        <a class="card" href="/learn/" style="text-decoration: none; color: inherit">
-          <span class="num">01</span>
-          <h3>Learning log</h3>
-          <p>Day-by-day notes as I learn quantum computing in public — the wins, the confusion, the code.</p>
-        </a>
-        <a class="card" href="/explainers/" style="text-decoration: none; color: inherit">
-          <span class="num">02</span>
-          <h3>Explainers</h3>
-          <p>Clean, simple write-ups of each concept. JEE-level physics and maths is all you need.</p>
-        </a>
-        <a class="card" href="/careers/" style="text-decoration: none; color: inherit">
-          <span class="num">03</span>
-          <h3>Careers</h3>
-          <p>The jobs quantum is creating, the skills they need, and free ways to start.</p>
-        </a>
-        <a class="card" href="/why-kota/" style="text-decoration: none; color: inherit">
-          <span class="num">04</span>
-          <h3>Why Kota</h3>
-          <p>The talent is already here. The case for building India's quantum future on the Chambal.</p>
-        </a>
+      <div class="section-head">
+        <h2>Learn quantum computing in order.</h2>
+        <p>Each lesson began as an Instagram carousel. Here you get every slide plus written notes. Begin with the roadmap, then work through the lessons one by one.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="block" style="padding-top: 0">
-    <div class="wrap">
-      <p class="eyebrow">Free lessons · from absolute zero</p>
       <LessonGrid lessons={lessons} />
     </div>
   </section>
 
-  <section class="block" style="padding-top: 0">
+  <section class="block stone">
+    <div class="wrap stone-grid">
+      <div>
+        <h2>Why build quantum in Kota?</h2>
+        <p class="lead">Quantum computing needs people who are strong in physics and maths. Kota trains more of them than almost any city in India, and then watches them leave.</p>
+        <p><a class="textlink" href="/why-kota/">Read the full case for Kota</a></p>
+      </div>
+      <ul class="facts">
+        <li><strong>The talent is already here</strong><span>Lakhs of students have mastered JEE-level physics and maths in Kota.</span></li>
+        <li><strong>So are the teachers</strong><span>A whole city of people who explain hard science for a living.</span></li>
+        <li><strong>It costs less to build</strong><span>Cheaper to live, hire and set up a lab than in Bengaluru or Delhi NCR.</span></li>
+        <li><strong>The timing is right</strong><span>The ₹6,003 crore National Quantum Mission is funding hubs now. Rajasthan has no quantum plan yet.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
     <div class="wrap">
-      <p class="eyebrow">Latest posts</p>
+      <div class="section-head">
+        <h2>Learning in public.</h2>
+        <p>Kota Quantum Valley is started by {site.founderName}, {site.founderRole.charAt(0).toLowerCase() + site.founderRole.slice(1)}, who is learning quantum from zero and sharing every step.</p>
+      </div>
       <PostList posts={latest} />
+      <div class="btn-row">
+        <a class="btn btn-dark" href={site.instagram} rel="noopener" target="_blank">Follow {site.instagramHandle}</a>
+        <a class="btn btn-line" href="/about/">About the initiative</a>
+      </div>
     </div>
   </section>
 </Base>

@@ -13,7 +13,7 @@ const labels = { journey: 'Learning log', explainer: 'Explainer' };
           <span class="tag">{labels[p.category] ?? p.category}</span>
           <h3>{p.title}</h3>
           <p>{p.description}</p>
-          <span class="meta">{formatDate(p.date)}{p.day ? ` · Day ${p.day}` : ''}</span>
+          <span class="meta">{p.day ? `Day ${p.day}, ` : ''}{formatDate(p.date)}</span>
         </a>
       </li>
     ))}
