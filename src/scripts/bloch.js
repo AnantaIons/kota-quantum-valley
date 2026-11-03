@@ -19,7 +19,7 @@ export function createBloch(svg, opts = {}) {
   const g1 = el('radialGradient', { id: svg.id + '-g', cx: '38%', cy: '30%', r: '78%' }, defs);
   el('stop', { offset: '0', 'stop-color': '#8957FF', 'stop-opacity': '0.35' }, g1);
   el('stop', { offset: '0.7', 'stop-color': '#0B1026', 'stop-opacity': '0.15' }, g1);
-  el('stop', { offset: '1', 'stop-color': '#00E5FF', 'stop-opacity': '0.08' }, g1);
+  el('stop', { offset: '1', 'stop-color': '#E6C36A', 'stop-opacity': '0.08' }, g1);
   el('circle', { cx, cy, r: R, fill: `url(#${svg.id}-g)`, stroke: 'rgba(140,160,255,0.55)', 'stroke-width': 1.4 });
   const layer = el('g', {});
 
@@ -40,7 +40,7 @@ export function createBloch(svg, opts = {}) {
     drawCurve(circlePts((t) => [Math.cos(t), Math.sin(t), 0]), '#8C9CFF', 1.2);
     drawCurve(circlePts((t) => [Math.cos(t), 0, Math.sin(t)]), '#8C9CFF', 0.9);
     drawCurve(circlePts((t) => [0, Math.cos(t), Math.sin(t)]), '#8C9CFF', 0.9);
-    if (trace != null) { const z = trace, r = Math.sqrt(Math.max(0, 1 - z * z)); drawCurve(circlePts((t) => [r * Math.cos(t), r * Math.sin(t), z]), '#00E5FF', 1, true); }
+    if (trace != null) { const z = trace, r = Math.sqrt(Math.max(0, 1 - z * z)); drawCurve(circlePts((t) => [r * Math.cos(t), r * Math.sin(t), z]), '#E6C36A', 1, true); }
     axis([1, 0, 0], 'x', '#A9B4D0'); axis([0, 1, 0], 'y', '#A9B4D0'); axis([0, 0, 1], '', '#A9B4D0');
     const top = proj([0, 0, 1.12]), bot = proj([0, 0, -1.12]);
     el('text', { x: top.sx + 10, y: top.sy - 4, class: 'ket' }, layer).textContent = '|0⟩';
@@ -48,10 +48,10 @@ export function createBloch(svg, opts = {}) {
     const plus = proj([1.22, 0, 0]); el('text', { x: plus.sx - 10, y: plus.sy + 18, class: 'ket' }, layer).textContent = '|+⟩';
     // state vector
     const o = proj([0, 0, 0]), t = proj(vec), foot = proj([vec[0], vec[1], 0]);
-    el('line', { x1: t.sx, y1: t.sy, x2: foot.sx, y2: foot.sy, stroke: '#00E5FF', 'stroke-opacity': 0.35, 'stroke-dasharray': '2 4' }, layer);
-    el('line', { x1: o.sx, y1: o.sy, x2: t.sx, y2: t.sy, stroke: '#00E5FF', 'stroke-width': 3.2, 'stroke-linecap': 'round', style: 'filter: drop-shadow(0 0 6px #00E5FF)' }, layer);
+    el('line', { x1: t.sx, y1: t.sy, x2: foot.sx, y2: foot.sy, stroke: '#E6C36A', 'stroke-opacity': 0.35, 'stroke-dasharray': '2 4' }, layer);
+    el('line', { x1: o.sx, y1: o.sy, x2: t.sx, y2: t.sy, stroke: '#E6C36A', 'stroke-width': 3.2, 'stroke-linecap': 'round', style: 'filter: drop-shadow(0 0 6px #E6C36A)' }, layer);
     el('circle', { cx: o.sx, cy: o.sy, r: 3.5, fill: '#F4F7FF' }, layer);
-    el('circle', { cx: t.sx, cy: t.sy, r: 8, fill: '#00E5FF', 'fill-opacity': t.d < 0 ? 0.55 : 1, style: 'filter: drop-shadow(0 0 10px #00E5FF)' }, layer);
+    el('circle', { cx: t.sx, cy: t.sy, r: 8, fill: '#E6C36A', 'fill-opacity': t.d < 0 ? 0.55 : 1, style: 'filter: drop-shadow(0 0 10px #E6C36A)' }, layer);
     el('text', { x: t.sx + 12, y: t.sy - 10, class: 'ket ket-live' }, layer).textContent = '|ψ⟩';
   }
 
