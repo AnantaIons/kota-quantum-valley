@@ -76,3 +76,41 @@ export function sample(probs) {
   for (let i = 0; i < probs.length; i++) { acc += probs[i]; if (r < acc) return i; }
   return probs.length - 1;
 }
+
+// ---- n qubits (display order |q0 q1 ... q(n-1)>, q0 is the leftmost bit) ----
+export function zeroState(n) { const s = Array.from({ length: 1 << n }, () => [0, 0]); s[0] = [1, 0]; return s; }
+const bitOf = (n, q) => 1 << (n - 1 - q);
+export function applyN(g, q, st, n) {
+  const m = GATES[g], b = bitOf(n, q), out = st.map((a) => [a[0], a[1]]);
+  for (let i = 0; i < st.length; i++) {
+    if (i & b) continue;
+    const j = i | b, a0 = st[i], a1 = st[j];
+    out[i] = C.add(C.mul(m[0][0], a0), C.mul(m[0][1], a1));
+    out[j] = C.add(C.mul(m[1][0], a0), C.mul(m[1][1], a1));
+  }
+  return out;
+}
+export function cxN(c, t, st, n) {
+  const bc = bitOf(n, c), bt = bitOf(n, t), out = st.slice();
+  for (let i = 0; i < st.length; i++) if (i & bc && !(i & bt)) { out[i] = st[i | bt]; out[i | bt] = st[i]; }
+  return out;
+}
+export function czN(c, t, st, n) {
+  const bc = bitOf(n, c), bt = bitOf(n, t);
+  return st.map((a, i) => (i & bc && i & bt ? [-a[0], -a[1]] : a));
+}
+export function swapN(a, b, st, n) {
+  const ba = bitOf(n, a), bb = bitOf(n, b), out = st.slice();
+  for (let i = 0; i < st.length; i++) if (i & ba && !(i & bb)) { const j = (i & ~ba) | bb; out[i] = st[j]; out[j] = st[i]; }
+  return out;
+}
+export function runCircuit(cols, n) {
+  let st = zeroState(n);
+  for (const col of cols) for (const op of col) {
+    if (op.g === 'CX') st = cxN(op.q, op.t, st, n);
+    else if (op.g === 'CZ') st = czN(op.q, op.t, st, n);
+    else if (op.g === 'SWAP') st = swapN(op.q, op.t, st, n);
+    else st = applyN(op.g, op.q, st, n);
+  }
+  return st;
+}

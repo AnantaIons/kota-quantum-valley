@@ -1,0 +1,288 @@
+---
+// Experiment 4: visual circuit builder. Drag (desktop) or tap (phone) to place gates.
+const { lang = 'en' } = Astro.props;
+const hi = lang === 'hi';
+const T = hi ? {
+  num: 'प्रयोग 4', title: 'क्वांटम circuit builder',
+  intro: 'Gate चुनें और किसी wire पर रखें: कंप्यूटर पर खींचकर छोड़ें, फ़ोन पर पहले gate पर टैप करें, फिर खाने पर। रखे gate पर टैप करके उसे हटाएँ या target बदलें। Circuit बदलते ही state अपने-आप दोबारा गणना होती है।',
+  qubits: 'Qubits', examples: 'उदाहरण', ex: { sup: 'Superposition', bell: 'Bell state', ghz: 'GHZ (3 qubits)', interf: 'Interference (H H)' },
+  clear: 'Circuit साफ़ करें', addCol: '+ कॉलम', save: 'Save', load: 'Load', exportQ: 'Qiskit code',
+  selected: 'चुना हुआ gate', del: 'हटाएँ', target: 'Target qubit', partner: 'दूसरा qubit',
+  probs: 'Measurement probabilities', state: 'State vector', shots: '100 बार measure करें', counts: 'Measurement नतीजे (100 shots)',
+  saved: 'Circuit इस ब्राउज़र में save हो गया।', loaded: 'Save किया circuit load हो गया।', noSave: 'कोई save किया circuit नहीं मिला।', storeFail: 'यह ब्राउज़र save की अनुमति नहीं दे रहा।',
+  err2q: 'यह gate दो qubits पर लगता है। पहले कम से कम 2 qubits चुनें।', errBusy: 'इस कॉलम में वह जगह पहले से भरी है। अगला कॉलम चुनें।', errPick: 'पहले ऊपर से कोई gate चुनें।',
+  copied: 'Code कॉपी हो गया।', copy: 'कॉपी करें', note: 'Qiskit नतीजों में bits उल्टे क्रम में छापता है (q0 सबसे दाएँ)।', tap: 'टैप करें या खींचें',
+} : {
+  num: 'Experiment 4', title: 'Quantum circuit builder',
+  intro: 'Pick a gate and put it on a wire: drag and drop on a computer, or on a phone tap a gate, then tap a slot. Tap a placed gate to delete it or change its target. The state is recalculated every time the circuit changes.',
+  qubits: 'Qubits', examples: 'Examples', ex: { sup: 'Superposition', bell: 'Bell state', ghz: 'GHZ (3 qubits)', interf: 'Interference (H H)' },
+  clear: 'Clear circuit', addCol: '+ Column', save: 'Save', load: 'Load', exportQ: 'Qiskit code',
+  selected: 'Selected gate', del: 'Delete', target: 'Target qubit', partner: 'Other qubit',
+  probs: 'Measurement probabilities', state: 'State vector', shots: 'Measure 100×', counts: 'Measurement results (100 shots)',
+  saved: 'Circuit saved in this browser.', loaded: 'Saved circuit loaded.', noSave: 'No saved circuit found.', storeFail: "This browser isn't allowing saves.",
+  err2q: 'This gate acts on two qubits. Choose at least 2 qubits first.', errBusy: 'That slot in this column is already taken. Use another column.', errPick: 'Pick a gate from the palette first.',
+  copied: 'Code copied.', copy: 'Copy', note: 'Qiskit prints result bits in reverse order (q0 on the right).', tap: 'Tap or drag',
+};
+const palette = ['H', 'X', 'Y', 'Z', 'S', 'T', 'CX', 'CZ', 'SWAP'];
+const label = { CX: 'CNOT', CZ: 'CZ', SWAP: 'SWAP' };
+---
+<section class="exp glass cb" aria-labelledby="e4" data-cbuilder data-lang={lang}>
+  <div class="exp-head"><h2 id="e4">{T.title}</h2><span class="exp-num">{T.num}</span></div>
+  <p class="explain" style="max-width: 80ch">{T.intro}</p>
+
+  <div class="cb-bar">
+    <div class="cb-palette" role="toolbar" aria-label="Gates">
+      {palette.map((g) => <button type="button" class={`gate cb-pal${g.length > 1 ? ' two' : ''}`} draggable="true" data-pal={g}>{label[g] ?? g}</button>)}
+    </div>
+  </div>
+
+  <div class="cb-tools">
+    <label class="cb-field">{T.qubits}
+      <select data-nq>{[1, 2, 3, 4].map((n) => <option value={n} selected={n === 2}>{n}</option>)}</select>
+    </label>
+    <label class="cb-field">{T.examples}
+      <select data-ex>
+        <option value="">—</option>
+        <option value="sup">{T.ex.sup}</option>
+        <option value="bell">{T.ex.bell}</option>
+        <option value="ghz">{T.ex.ghz}</option>
+        <option value="interf">{T.ex.interf}</option>
+      </select>
+    </label>
+    <button type="button" class="gate reset" data-addcol>{T.addCol}</button>
+    <button type="button" class="gate reset" data-clearc>{T.clear}</button>
+    <button type="button" class="gate reset" data-save>{T.save}</button>
+    <button type="button" class="gate reset" data-load>{T.load}</button>
+    <button type="button" class="gate reset" data-export>{T.exportQ}</button>
+  </div>
+
+  <div class="cb-scroll"><div class="cb-grid" data-grid></div></div>
+
+  <div class="cb-sel" data-sel hidden>
+    <span>{T.selected}: <b data-sel-name></b></span>
+    <label class="cb-field" data-tgt-wrap>{T.target} <select data-tgt></select></label>
+    <button type="button" class="gate reset" data-del>{T.del}</button>
+  </div>
+  <p class="cb-msg" data-msg role="status"></p>
+
+  <div class="exp-grid" style="margin-top: 8px">
+    <div>
+      <div class="panel">
+        <span class="panel-t">{T.state}</span>
+        <div class="big" data-cstate></div>
+      </div>
+      <div class="panel" data-export-panel hidden>
+        <span class="panel-t">Qiskit · Python</span>
+        <pre class="cb-code" data-code></pre>
+        <button type="button" class="gate reset" data-copy>{T.copy}</button>
+        <p class="history">{T.note}</p>
+      </div>
+    </div>
+    <div>
+      <div class="panel">
+        <span class="panel-t">{T.probs}</span>
+        <div data-cprobs></div>
+      </div>
+      <div class="gates" style="margin-top: 12px"><button type="button" class="gate meas" data-cshots>{T.shots}</button></div>
+      <div class="panel" data-ccounts-wrap hidden>
+        <span class="panel-t">{T.counts}</span>
+        <div data-ccounts></div>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" data-cbt set:html={JSON.stringify(T)} />
+</section>
+
+<script>
+  import { runCircuit, fmt, C, sample } from '../scripts/qsim.js';
+  const root = document.querySelector("[data-cbuilder]") as HTMLElement | null;
+  if (root) {
+    const T = JSON.parse(root.querySelector('[data-cbt]')!.textContent!);
+    const $ = (s: string) => root.querySelector(s) as HTMLElement;
+    const TWO = ['CX', 'CZ', 'SWAP'];
+    const NAME: Record<string, string> = { CX: 'CNOT', CZ: 'CZ', SWAP: 'SWAP' };
+    type Op = { g: string; q: number; t?: number };
+    let n = 2, ncols = 8;
+    let cols: Op[][] = Array.from({ length: ncols }, () => []);
+    let pick: string | null = null;
+    let sel: { c: number; i: number } | null = null;
+    let lastCounts: number[] | null = null;
+
+    const msg = (t: string, bad = false) => { const m = $('[data-msg]'); m.textContent = t; m.style.color = bad ? 'var(--pink)' : 'var(--green)'; };
+    const span = (op: Op) => (op.t == null ? [op.q, op.q] : [Math.min(op.q, op.t), Math.max(op.q, op.t)]);
+    const occupied = (c: number, lo: number, hi: number, skip?: number) => cols[c].some((op, i) => { if (i === skip) return false; const [a, b] = span(op); return !(b < lo || a > hi); });
+
+    function place(g: string, c: number, q: number) {
+      if (TWO.includes(g)) {
+        if (n < 2) { msg(T.err2q, true); return; }
+        const t = q + 1 < n ? q + 1 : q - 1;
+        const [lo, hi] = [Math.min(q, t), Math.max(q, t)];
+        if (occupied(c, lo, hi)) { msg(T.errBusy, true); return; }
+        cols[c].push({ g, q, t });
+      } else {
+        if (occupied(c, q, q)) { msg(T.errBusy, true); return; }
+        cols[c].push({ g, q });
+      }
+      if (c === ncols - 1) { ncols++; cols.push([]); }
+      msg(''); sel = null; lastCounts = null; render();
+    }
+
+    function render() {
+      const grid = $('[data-grid]');
+      grid.style.setProperty('--cols', String(ncols));
+      grid.innerHTML = '';
+      for (let q = 0; q < n; q++) {
+        const row = document.createElement('div'); row.className = 'cb-row';
+        const lab = document.createElement('span'); lab.className = 'cb-q'; lab.textContent = `q${q} |0⟩`; row.appendChild(lab);
+        for (let c = 0; c < ncols; c++) {
+          const cell = document.createElement('button'); cell.type = 'button'; cell.className = 'cb-cell';
+          cell.dataset.c = String(c); cell.dataset.q = String(q);
+          cell.setAttribute('aria-label', `q${q}, column ${c + 1}`);
+          const idx = cols[c].findIndex((op) => op.q === q || op.t === q);
+          if (idx >= 0) {
+            const op = cols[c][idx];
+            let txt = op.g, cls = 'g1';
+            if (op.g === 'CX') { txt = op.q === q ? '●' : '⊕'; cls = op.q === q ? 'ctl' : 'tgt'; }
+            else if (op.g === 'CZ') { txt = '●'; cls = 'ctl'; }
+            else if (op.g === 'SWAP') { txt = '×'; cls = 'swp'; }
+            const chip = document.createElement('span'); chip.className = `cb-gate ${cls}`; chip.textContent = txt; cell.appendChild(chip);
+            if (op.t != null) {
+              const [lo, hi] = span(op);
+              if (q === lo) { const ln = document.createElement('span'); ln.className = 'cb-link'; ln.style.height = `calc(${hi - lo} * var(--row))`; cell.appendChild(ln); }
+            }
+            cell.classList.add('has');
+            if (sel && sel.c === c && sel.i === idx) cell.classList.add('sel');
+          } else {
+            // in-between rows of a 2-qubit gate are blocked
+            if (cols[c].some((op) => { const [a, b] = span(op); return q > a && q < b; })) cell.classList.add('blocked');
+          }
+          row.appendChild(cell);
+        }
+        grid.appendChild(row);
+      }
+      renderSel(); simulate();
+    }
+
+    function renderSel() {
+      const box = $('[data-sel]');
+      if (!sel) { box.hidden = true; return; }
+      const op = cols[sel.c][sel.i]; box.hidden = false;
+      $('[data-sel-name]').textContent = `${NAME[op.g] ?? op.g} · q${op.q}${op.t != null ? ' → q' + op.t : ''}`;
+      const wrap = $('[data-tgt-wrap]'), tsel = $('[data-tgt]') as HTMLSelectElement;
+      if (op.t == null) { wrap.hidden = true; return; }
+      wrap.hidden = false; tsel.innerHTML = '';
+      for (let k = 0; k < n; k++) if (k !== op.q) { const o = document.createElement('option'); o.value = String(k); o.textContent = 'q' + k; if (k === op.t) o.selected = true; tsel.appendChild(o); }
+    }
+
+    function simulate() {
+      const st = runCircuit(cols, n);
+      const lab = (i: number) => i.toString(2).padStart(n, '0');
+      const terms = st.map((a, i) => [a, i] as const).filter(([a]) => C.abs2(a as number[]) > 1e-9)
+        .map(([a, i]) => { const f = fmt(a as number[]); return `${f.includes(' ') ? '(' + f + ')' : f}|${lab(i as number)}⟩`; });
+      $('[data-cstate]').textContent = '|ψ⟩ = ' + terms.join(' + ').replace(/\+ −/g, '− ');
+      const pr = $('[data-cprobs]'); pr.innerHTML = '';
+      st.forEach((a, i) => {
+        const p = C.abs2(a);
+        const row = document.createElement('div'); row.className = 'prob';
+        row.innerHTML = `<span>|${lab(i)}⟩</span><span class="track"><span class="fill" style="width:${p * 100}%"></span></span><span class="v">${p.toFixed(3)}</span>`;
+        pr.appendChild(row);
+      });
+      const cw = $('[data-ccounts-wrap]');
+      if (!lastCounts) { cw.hidden = true; } else {
+        cw.hidden = false; const cc = $('[data-ccounts]'); cc.innerHTML = '';
+        lastCounts.forEach((k, i) => { if (!k) return; const row = document.createElement('div'); row.className = 'prob'; row.innerHTML = `<span>|${lab(i)}⟩</span><span class="track"><span class="fill" style="width:${k}%"></span></span><span class="v">${k}</span>`; cc.appendChild(row); });
+      }
+      if (!$('[data-export-panel]').hidden) exportCode();
+    }
+
+    function exportCode() {
+      const lines = ['from qiskit import QuantumCircuit', '', `qc = QuantumCircuit(${n})`];
+      for (const col of cols) for (const op of col) {
+        if (op.g === 'CX') lines.push(`qc.cx(${op.q}, ${op.t})`);
+        else if (op.g === 'CZ') lines.push(`qc.cz(${op.q}, ${op.t})`);
+        else if (op.g === 'SWAP') lines.push(`qc.swap(${op.q}, ${op.t})`);
+        else lines.push(`qc.${op.g.toLowerCase()}(${op.q})`);
+      }
+      lines.push('qc.measure_all()', 'print(qc.draw())');
+      $('[data-code]').textContent = lines.join('\n');
+    }
+
+    // palette: tap to pick, or drag
+    root.querySelectorAll('[data-pal]').forEach((b) => {
+      const el = b as HTMLElement;
+      el.addEventListener('click', () => { pick = pick === el.dataset.pal ? null : el.dataset.pal!; root.querySelectorAll('[data-pal]').forEach((x) => x.classList.toggle('on', (x as HTMLElement).dataset.pal === pick)); });
+      el.addEventListener('dragstart', (e) => { e.dataTransfer!.setData('text/plain', el.dataset.pal!); e.dataTransfer!.effectAllowed = 'copy'; });
+    });
+    const grid = $('[data-grid]');
+    grid.addEventListener('click', (e) => {
+      const cell = (e.target as HTMLElement).closest('.cb-cell') as HTMLElement | null; if (!cell) return;
+      const c = +cell.dataset.c!, q = +cell.dataset.q!;
+      const idx = cols[c].findIndex((op) => op.q === q || op.t === q);
+      if (idx >= 0) { sel = sel && sel.c === c && sel.i === idx ? null : { c, i: idx }; render(); return; }
+      if (cell.classList.contains('blocked')) { msg(T.errBusy, true); return; }
+      if (!pick) { msg(T.errPick, true); return; }
+      place(pick, c, q);
+    });
+    grid.addEventListener('dragover', (e) => { const cell = (e.target as HTMLElement).closest('.cb-cell'); if (cell) { e.preventDefault(); cell.classList.add('over'); } });
+    grid.addEventListener('dragleave', (e) => { (e.target as HTMLElement).closest('.cb-cell')?.classList.remove('over'); });
+    grid.addEventListener('drop', (e) => {
+      const cell = (e.target as HTMLElement).closest('.cb-cell') as HTMLElement | null; if (!cell) return;
+      e.preventDefault(); cell.classList.remove('over');
+      const g = e.dataTransfer!.getData('text/plain'); if (!g) return;
+      const c = +cell.dataset.c!, q = +cell.dataset.q!;
+      if (cols[c].some((op) => op.q === q || op.t === q) || cell.classList.contains('blocked')) { msg(T.errBusy, true); return; }
+      place(g, c, q);
+    });
+
+    $('[data-del]').addEventListener('click', () => { if (!sel) return; cols[sel.c].splice(sel.i, 1); sel = null; lastCounts = null; render(); });
+    $('[data-tgt]').addEventListener('change', (e) => {
+      if (!sel) return; const op = cols[sel.c][sel.i], t = +(e.target as HTMLSelectElement).value;
+      const [lo, hi] = [Math.min(op.q, t), Math.max(op.q, t)];
+      if (occupied(sel.c, lo, hi, sel.i)) { msg(T.errBusy, true); renderSel(); return; }
+      op.t = t; lastCounts = null; msg(''); render();
+    });
+    $('[data-nq]').addEventListener('change', (e) => {
+      n = +(e.target as HTMLSelectElement).value;
+      cols = cols.map((col) => col.filter((op) => op.q < n && (op.t == null || op.t < n)));
+      sel = null; lastCounts = null; render();
+    });
+    $('[data-addcol]').addEventListener('click', () => { ncols++; cols.push([]); render(); });
+    $('[data-clearc]').addEventListener('click', () => { cols = Array.from({ length: 8 }, () => []); ncols = 8; sel = null; lastCounts = null; msg(''); render(); });
+
+    const EX: Record<string, [number, Op[][]]> = {
+      sup: [1, [[{ g: 'H', q: 0 }]]],
+      bell: [2, [[{ g: 'H', q: 0 }], [{ g: 'CX', q: 0, t: 1 }]]],
+      ghz: [3, [[{ g: 'H', q: 0 }], [{ g: 'CX', q: 0, t: 1 }], [{ g: 'CX', q: 1, t: 2 }]]],
+      interf: [1, [[{ g: 'H', q: 0 }], [{ g: 'H', q: 0 }]]],
+    };
+    $('[data-ex]').addEventListener('change', (e) => {
+      const k = (e.target as HTMLSelectElement).value; if (!EX[k]) return;
+      n = EX[k][0]; ($('[data-nq]') as HTMLSelectElement).value = String(n);
+      cols = EX[k][1].map((c) => c.map((o) => ({ ...o })));
+      ncols = Math.max(8, cols.length + 1); while (cols.length < ncols) cols.push([]);
+      sel = null; lastCounts = null; msg(''); render();
+    });
+
+    $('[data-cshots]').addEventListener('click', () => {
+      const p = runCircuit(cols, n).map((a) => C.abs2(a)); lastCounts = p.map(() => 0);
+      for (let i = 0; i < 100; i++) lastCounts[sample(p)]++;
+      simulate();
+    });
+
+    $('[data-save]').addEventListener('click', () => {
+      try { localStorage.setItem('kqv-circuit', JSON.stringify({ n, cols })); msg(T.saved); } catch { msg(T.storeFail, true); }
+    });
+    $('[data-load]').addEventListener('click', () => {
+      try {
+        const raw = localStorage.getItem('kqv-circuit'); if (!raw) { msg(T.noSave, true); return; }
+        const d = JSON.parse(raw); n = d.n; cols = d.cols; ncols = Math.max(8, cols.length);
+        while (cols.length < ncols) cols.push([]);
+        ($('[data-nq]') as HTMLSelectElement).value = String(n); sel = null; lastCounts = null; msg(T.loaded); render();
+      } catch { msg(T.storeFail, true); }
+    });
+    $('[data-export]').addEventListener('click', () => { const p = $('[data-export-panel]'); p.hidden = !p.hidden; if (!p.hidden) exportCode(); });
+    $('[data-copy]').addEventListener('click', async () => { try { await navigator.clipboard.writeText($('[data-code]').textContent!); msg(T.copied); } catch { msg(T.storeFail, true); } });
+
+    render();
+  }
+</script>

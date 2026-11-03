@@ -1,4 +1,5 @@
 ---
+import CircuitBuilder from './CircuitBuilder.astro';
 // Quantum Lab: three experiments running an exact state-vector simulation in the browser.
 const { lang = 'en' } = Astro.props;
 const hi = lang === 'hi';
@@ -18,7 +19,7 @@ const L = hi ? {
   bell: 'Bell state बनाएँ (H + CNOT)', reset2: 'Reset |00⟩', cnotL: 'CNOT (q0 → q1)', m100: '100 बार measure करें',
   same: (s, n) => `${n} में से ${s} बार दोनों qubits का नतीजा एक जैसा था।`,
   e3x: ['Bell state (|00⟩ + |11⟩)/√2 में हर qubit अकेले 50/50 random है, लेकिन दोनों का नतीजा हमेशा मेल खाता है।', 'इससे तेज़-से-तेज़ संदेश नहीं भेजा जा सकता: q0 अकेले को देखकर कोई जानकारी नहीं मिलती। Correlation तभी दिखता है जब दोनों तरफ़ के नतीजे साधारण channel से मिलाए जाएँ।'],
-  soonT: 'जल्द आ रहे प्रयोग', soon: [['Gate playground', 'Drag-and-drop gates के साथ कई qubits'], ['Quantum teleportation', 'कदम-दर-कदम: Bell measurement और correction'], ['Circuit builder', 'अपने circuits बनाएँ, save और export करें']],
+  soonT: 'जल्द आ रहे प्रयोग', soon: [['Quantum teleportation', 'कदम-दर-कदम: Bell measurement और correction'], ['Grover search', '2 qubits पर छिपा जवाब ढूँढिए'], ['Noise और decoherence', 'देखिए असली qubits क्यों ग़लतियाँ करते हैं']],
 } : {
   h1: 'Quantum Lab', sub: "Don't just learn quantum physics. Experiment with it.",
   sim: 'Simulated in your browser · not real quantum hardware',
@@ -35,7 +36,7 @@ const L = hi ? {
   bell: 'Make a Bell state (H + CNOT)', reset2: 'Reset |00⟩', cnotL: 'CNOT (q0 → q1)', m100: 'Measure 100×',
   same: (s, n) => `Both qubits gave the same result in ${s} of ${n} shots.`,
   e3x: ['In the Bell state (|00⟩ + |11⟩)/√2, each qubit alone is a 50/50 coin, yet the two results always match.', "This can't send messages faster than light: looking at q0 alone tells you nothing. The correlation only shows up when both sides compare results over an ordinary channel."],
-  soonT: 'Experiments coming next', soon: [['Gate playground', 'Drag-and-drop gates on several qubits'], ['Quantum teleportation', 'Step by step: Bell measurement and corrections'], ['Circuit builder', 'Build, save and export your own circuits']],
+  soonT: 'Experiments coming next', soon: [['Quantum teleportation', 'Step by step: Bell measurement and corrections'], ['Grover search', 'Find a hidden answer on 2 qubits'], ['Noise and decoherence', 'See why real qubits make mistakes']],
 };
 ---
 <section class="lab-hero">
@@ -147,6 +148,8 @@ const L = hi ? {
       </div>
     </div>
   </section>
+
+  <CircuitBuilder lang={lang} />
 
   <section aria-labelledby="soon">
     <h2 id="soon" style="font-size: 1.4rem">{L.soonT}</h2>
