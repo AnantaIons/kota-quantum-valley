@@ -1,13 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 ---
-<Base title="Page not found">
+<Base title="Page not found / पेज नहीं मिला">
   <section class="article">
     <div class="narrow">
       <p class="eyebrow">404</p>
       <h1>This page is in superposition.</h1>
       <p class="desc">We measured it and it collapsed to "not found".</p>
-      <div class="btn-row"><a class="btn btn-primary" href="/">Go home</a><a class="btn btn-ghost" href="/lessons/">See the lessons</a></div>
+      <p class="desc" lang="hi" style="font-family: 'IBM Plex Sans Devanagari', var(--font-body)">यह पेज superposition में है। हमने measure किया और यह "नहीं मिला" पर collapse हो गया।</p>
+      <div class="btn-row"><a class="btn btn-dark" href="/">Go home</a><a class="btn btn-line" href="/hi/">हिन्दी होम</a><a class="btn btn-line" href="/lessons/">Lessons</a></div>
     </div>
   </section>
 </Base>

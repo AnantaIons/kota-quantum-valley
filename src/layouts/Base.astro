@@ -16,6 +16,7 @@ const isCurrent = (href) => path === href.replace(/\/$/, '') || (href === lesson
 const alt = altPath(Astro.url.pathname);
 const announcement = lang === 'hi' ? site.announcementHindi : site.announcement;
 const homeHref = lang === 'hi' ? '/hi/' : '/';
+const pre = lang === 'hi' ? '/hi' : '';
 const ogImage = new URL(image, Astro.site).href;
 const year = new Date().getFullYear();
 ---
@@ -66,7 +67,7 @@ const year = new Date().getFullYear();
           <summary aria-label={L.menu}>{L.menu}</summary>
           <div class="menu-panel">
             {nav.map((n) => <a href={n.href}>{n.label}</a>)}
-            <a href="/explainers/">{L.explainers}</a>
+            <a href={`${pre}/explainers/`}>{L.explainers}</a>
             <a class="btn btn-dark" href={L.startHref} style="margin-top: 6px; color: #fff">{L.start}</a>
           </div>
         </details>
@@ -92,15 +93,15 @@ const year = new Date().getFullYear();
             <ul>
               <li><a href={L.startHref}>{L.roadmap}</a></li>
               <li><a href={lessonsHref}>{L.allLessons}</a></li>
-              <li><a href="/explainers/">{L.explainers}</a></li>
-              <li><a href="/learn/">{L.learningLog}</a></li>
+              <li><a href={`${pre}/explainers/`}>{L.explainers}</a></li>
+              <li><a href={`${pre}/learn/`}>{L.learningLog}</a></li>
             </ul>
           </div>
           <div>
             <h4>{L.footInit}</h4>
             <ul>
               <li><a href={lang === 'hi' ? '/hi/why-kota/' : '/why-kota/'}>{L.whyKota}</a></li>
-              <li><a href="/careers/">{L.careers}</a></li>
+              <li><a href={`${pre}/careers/`}>{L.careers}</a></li>
               <li><a href={lang === 'hi' ? '/hi/about/' : '/about/'}>{L.about}</a></li>
             </ul>
           </div>

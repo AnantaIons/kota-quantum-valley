@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const roles = [
+  { role: 'Quantum software developer', does: 'क्वांटम प्रोग्राम लिखता और बेहतर बनाता है, अक्सर Python और Qiskit में।', skills: 'Python, linear algebra, Qiskit' },
+  { role: 'Quantum control / hardware engineer', does: 'वे इलेक्ट्रॉनिक्स और फ़र्मवेयर बनाता है जो qubits को चलाते और पढ़ते हैं।', skills: 'Embedded C, FPGA, RF, cryogenic electronics' },
+  { role: 'Quantum algorithm researcher', does: 'केमिस्ट्री, फ़ाइनेंस और optimisation के लिए नए algorithms बनाता है।', skills: 'फ़िज़िक्स या मैथ्स, आमतौर पर MSc/PhD' },
+  { role: 'Post-quantum security engineer', does: 'सिस्टम को ऐसे encryption पर ले जाता है जिसे quantum computer तोड़ न सकें।', skills: 'Cryptography, networking, secure firmware' },
+  { role: 'Quantum sensing / photonics engineer', does: 'बेहद सटीक sensors और रोशनी पर आधारित quantum उपकरण बनाता है।', skills: 'Optics, lasers, electronics' },
+];
+---
+<Base lang="hi" title="करियर" description="क्वांटम टेक्नोलॉजी कौन-सी नौकरियाँ बना रही है, उनके लिए कौन-से स्किल चाहिए, और मुफ़्त में कैसे शुरू करें।">
+  <section class="article">
+    <div class="wrap">
+      <p class="eyebrow">करियर</p>
+      <h1>क्वांटम जो नौकरियाँ बना रहा है।</h1>
+      <p class="desc" style="max-width: 60ch">क्वांटम सिर्फ़ PhD वालों के लिए नहीं है। इसे प्रोग्रामर, इलेक्ट्रॉनिक्स इंजीनियर और सिक्योरिटी विशेषज्ञ भी चाहिए। देखिए आप कहाँ फ़िट होते हैं।</p>
+
+      <div style="overflow-x: auto">
+        <table>
+          <thead><tr><th>भूमिका</th><th>क्या करते हैं</th><th>कौन-से स्किल सीखें</th></tr></thead>
+          <tbody>
+            {roles.map((r) => (
+              <tr><td><strong>{r.role}</strong></td><td>{r.does}</td><td>{r.skills}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>मुफ़्त में शुरू करें</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>IBM Quantum Learning</h3>
+          <p>Qiskit के साथ मुफ़्त कोर्स, और असली quantum computers जिन पर आप कोड चला सकते हैं।</p>
+          <a href="https://quantum.cloud.ibm.com/learning" rel="noopener" target="_blank">IBM Quantum Learning खोलें</a>
+        </div>
+        <div class="card">
+          <h3>3Blue1Brown</h3>
+          <p>Linear algebra का सबसे साफ़ visual परिचय, यानी qubits के पीछे की मैथ्स।</p>
+          <a href="https://www.3blue1brown.com/topics/linear-algebra" rel="noopener" target="_blank">सीरीज़ देखें</a>
+        </div>
+        <div class="card">
+          <h3>NPTEL</h3>
+          <p>क्वांटम कंप्यूटिंग और quantum mechanics पर IIT के मुफ़्त कोर्स, सर्टिफ़िकेट के साथ।</p>
+          <a href="https://nptel.ac.in/" rel="noopener" target="_blank">NPTEL पर खोजें</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -9,10 +9,11 @@ const { frontmatter } = Astro.props;
 const lang = frontmatter.lang === 'hi' ? 'hi' : 'en';
 const L = t[lang];
 const isLesson = frontmatter.category === 'lesson';
-const labels = { journey: 'Learning log', explainer: 'Explainer' };
+const labels = { journey: L.journeyTag, explainer: L.explainerTag };
+const pre = lang === 'hi' ? '/hi' : '';
 const lessonsHref = lang === 'hi' ? '/hi/lessons/' : '/lessons/';
-const back = isLesson ? [lessonsHref, L.allLessons] : frontmatter.category === 'explainer' ? ['/explainers/', 'all explainers'] : ['/learn/', 'the learning log'];
-const eyebrow = isLesson ? lessonLabel(frontmatter, lang) : `${labels[frontmatter.category] ?? frontmatter.category}${frontmatter.day ? `, day ${frontmatter.day}` : ''}`;
+const back = isLesson ? [lessonsHref, L.allLessons] : frontmatter.category === 'explainer' ? [`${pre}/explainers/`, L.allExplainers] : [`${pre}/learn/`, L.theLog];
+const eyebrow = isLesson ? lessonLabel(frontmatter, lang) : `${labels[frontmatter.category] ?? frontmatter.category}${frontmatter.day ? `, ${L.day(frontmatter.day)}` : ''}`;
 let prev, next;
 if (isLesson) {
   const all = getPosts('lesson', lang);
@@ -41,7 +42,7 @@ const image = frontmatter.slides ? `/slides/${frontmatter.slides}/01.webp` : und
           {prev ? <a href={prev.url}><small>{L.prev}: {lessonLabel(prev, lang)}</small><strong>{prev.title}</strong></a> : <a href={back[0]}><small>{L.backTo}</small><strong>{back[1]}</strong></a>}
           {next && <a class="next" href={next.url}><small>{L.next}: {lessonLabel(next, lang)}</small><strong>{next.title}</strong></a>}
         </div>
-      ) : <p><a href={back[0]}>Back to {back[1]}</a></p>}
+      ) : <p><a href={back[0]}>{L.backTo}: {back[1]}</a></p>}
     </div>
   </article>
 </Base>

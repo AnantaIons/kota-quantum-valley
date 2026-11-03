@@ -1,12 +1,14 @@
 ---
 import Base from '../../layouts/Base.astro';
 import LessonGrid from '../../components/LessonGrid.astro';
+import PostList from '../../components/PostList.astro';
 import BlochSphere from '../../components/BlochSphere.astro';
 import slides from '../../data/slides.json';
 import site from '../../data/site.json';
 import { getPosts } from '../../lib/posts.js';
 
 const lessons = getPosts('lesson', 'hi');
+const latest = getPosts(undefined, 'hi').filter((p) => p.category !== 'lesson').slice(0, 3);
 const slideTotal = lessons.reduce((n, p) => n + (slides[p.slides]?.length ?? 0), 0);
 const lessonCount = lessons.filter((p) => p.lesson).length;
 ---
@@ -58,7 +60,8 @@ const lessonCount = lessons.filter((p) => p.lesson).length;
         <h2>सबके सामने सीखना।</h2>
         <p>Kota Quantum Valley की शुरुआत {site.founderName} ने की है, जो राजस्थान के एक एम्बेडेड फ़र्मवेयर इंजीनियर हैं। वे क्वांटम शून्य से सीख रहे हैं और हर कदम यहाँ साझा कर रहे हैं।</p>
       </div>
-      <div class="btn-row" style="margin-top: 0">
+      <PostList posts={latest} lang="hi" />
+      <div class="btn-row">
         <a class="btn btn-dark" href={site.instagram} rel="noopener" target="_blank">{site.instagramHandle} को फ़ॉलो करें</a>
         <a class="btn btn-line" href="/hi/about/">इस पहल के बारे में</a>
       </div>

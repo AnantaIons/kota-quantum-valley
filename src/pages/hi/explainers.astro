@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts } from '../../lib/posts.js';
+const posts = getPosts('explainer', 'hi');
+---
+<Base lang="hi" title="आसान व्याख्या" description="क्वांटम कंप्यूटिंग के विचार आसान भाषा में, JEE-स्तर की फ़िज़िक्स और मैथ्स के साथ।">
+  <section class="article">
+    <div class="narrow">
+      <p class="eyebrow">आसान व्याख्या</p>
+      <h1>क्वांटम, आसान भाषा में।</h1>
+      <p class="desc">हर पेज पर एक विचार। अगर आपने JEE के लिए फ़िज़िक्स और मैथ्स पढ़ी है, तो आपके पास ज़रूरी सब कुछ है।</p>
+      <PostList posts={posts} lang="hi" />
+    </div>
+  </section>
+</Base>

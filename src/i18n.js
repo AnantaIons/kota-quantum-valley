@@ -9,7 +9,7 @@ export const t = {
     menu: 'Menu', explainers: 'Explainers', newLabel: 'New',
     footAbout: "Free quantum computing lessons from absolute zero, and the case for building India's quantum workforce in Kota.",
     footLearn: 'Learn', footInit: 'Initiative', footFollow: 'Follow',
-    roadmap: 'Roadmap', allLessons: 'All lessons', learningLog: 'Learning log', whyKota: 'Why Kota', careers: 'Careers in quantum', about: 'About',
+    roadmap: 'Roadmap', allLessons: 'All lessons', learningLog: 'Learning log', journeyTag: 'Learning log', explainerTag: 'Explainer', allExplainers: 'all explainers', theLog: 'the learning log', soon: 'First post coming soon.', day: (n) => `Day ${n}`, whyKota: 'Why Kota', careers: 'Careers in quantum', about: 'About',
     license: "Lessons and slides are licensed {cc}. Share them with credit; don't sell them.",
     switchLabel: 'हिन्दी', switchAria: 'हिन्दी में पढ़ें',
     lesson: (n) => `Lesson ${n}`, roadmapLabel: 'Roadmap', startHere: 'Start here', slides: (n) => `${n} slides`,
@@ -20,13 +20,13 @@ export const t = {
   hi: {
     tagline: 'कोटा से, क्वांटम की पढ़ाई',
     nav: [
-      ['/hi/lessons/', 'पाठ'], ['/hi/why-kota/', 'कोटा क्यों'], ['/hi/about/', 'हमारे बारे में'], ['/learn/', 'लर्निंग लॉग (EN)'],
+      ['/hi/lessons/', 'पाठ'], ['/hi/learn/', 'लर्निंग लॉग'], ['/hi/careers/', 'करियर'], ['/hi/why-kota/', 'कोटा क्यों'], ['/hi/about/', 'हमारे बारे में'],
     ],
     start: 'पढ़ाई शुरू करें', startHref: '/hi/lessons/roadmap-what-to-learn-first/',
-    menu: 'मेनू', explainers: 'Explainers (EN)', newLabel: 'नया',
+    menu: 'मेनू', explainers: 'आसान व्याख्या', newLabel: 'नया',
     footAbout: 'शून्य से क्वांटम कंप्यूटिंग के मुफ़्त पाठ, और भारत की क्वांटम वर्कफ़ोर्स कोटा में तैयार करने का प्रस्ताव।',
     footLearn: 'पढ़ें', footInit: 'पहल', footFollow: 'जुड़ें',
-    roadmap: 'रोडमैप', allLessons: 'सभी पाठ', learningLog: 'लर्निंग लॉग (EN)', whyKota: 'कोटा क्यों', careers: 'क्वांटम करियर (EN)', about: 'हमारे बारे में',
+    roadmap: 'रोडमैप', journeyTag: 'लर्निंग लॉग', explainerTag: 'आसान व्याख्या', allExplainers: 'सभी व्याख्याएँ', theLog: 'लर्निंग लॉग', soon: 'पहली पोस्ट जल्द आ रही है।', day: (n) => `दिन ${n}`, allLessons: 'सभी पाठ', learningLog: 'लर्निंग लॉग', whyKota: 'कोटा क्यों', careers: 'क्वांटम में करियर', about: 'हमारे बारे में',
     license: 'पाठ और स्लाइड {cc} लाइसेंस के तहत हैं। क्रेडिट देकर शेयर करें, बेचें नहीं।',
     switchLabel: 'EN', switchAria: 'Read in English',
     lesson: (n) => `पाठ ${n}`, roadmapLabel: 'रोडमैप', startHere: 'यहाँ से शुरू करें', slides: (n) => `${n} स्लाइड`,
@@ -42,12 +42,14 @@ export const langOf = (path) => (path === '/hi' || path.startsWith('/hi/') ? 'hi
 export function altPath(path) {
   const p = path.endsWith('/') ? path : path + '/';
   if (langOf(p) === 'hi') {
-    const m = p.match(/^\/hi\/lessons\/([^/]+)\/$/);
+    const m = p.match(/^\/hi\/(?:lessons|posts)\/([^/]+)\/$/);
     if (m) return `/posts/${m[1]}/`;
     return p.replace(/^\/hi/, '') || '/';
   }
   const m = p.match(/^\/posts\/((?:lesson-\d[^/]*)|roadmap-what-to-learn-first)\/$/);
   if (m) return `/hi/lessons/${m[1]}/`;
-  if (['/', '/lessons/', '/why-kota/', '/about/'].includes(p)) return '/hi' + p;
+  const post = p.match(/^\/posts\/([^/]+)\/$/);
+  if (post) return `/hi/posts/${post[1]}/`;
+  if (['/', '/lessons/', '/why-kota/', '/about/', '/learn/', '/explainers/', '/careers/'].includes(p)) return '/hi' + p;
   return '/hi/';
 }

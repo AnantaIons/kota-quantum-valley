@@ -1,10 +1,12 @@
 ---
 import { formatDate } from '../lib/posts.js';
-const { posts = [], empty = 'First post coming soon.' } = Astro.props;
-const labels = { journey: 'Learning log', explainer: 'Explainer' };
+import { t } from '../i18n.js';
+const { posts = [], lang = 'en', empty } = Astro.props;
+const L = t[lang];
+const labels = { journey: L.journeyTag, explainer: L.explainerTag };
 ---
 {posts.length === 0 ? (
-  <p class="meta">{empty}</p>
+  <p class="meta">{empty ?? L.soon}</p>
 ) : (
   <ul class="post-list">
     {posts.map((p) => (
@@ -13,7 +15,7 @@ const labels = { journey: 'Learning log', explainer: 'Explainer' };
           <span class="tag">{labels[p.category] ?? p.category}</span>
           <h3>{p.title}</h3>
           <p>{p.description}</p>
-          <span class="meta">{p.day ? `Day ${p.day}, ` : ''}{formatDate(p.date)}</span>
+          <span class="meta">{p.day ? `${L.day(p.day)}, ` : ''}{formatDate(p.date, lang)}</span>
         </a>
       </li>
     ))}

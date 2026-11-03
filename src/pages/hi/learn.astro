@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts } from '../../lib/posts.js';
+const posts = getPosts('journey', 'hi');
+---
+<Base lang="hi" title="लर्निंग लॉग" description="कोटा से, सबके सामने, दिन-ब-दिन क्वांटम कंप्यूटिंग सीखना।">
+  <section class="article">
+    <div class="narrow">
+      <p class="eyebrow">लर्निंग लॉग</p>
+      <h1>सबके सामने क्वांटम सीखना।</h1>
+      <p class="desc">मैं एक एम्बेडेड फ़र्मवेयर इंजीनियर हूँ जो क्वांटम कंप्यूटिंग शून्य से सीख रहा है। हर कदम यहाँ है: मैंने क्या पढ़ा, क्या उलझा, और आख़िर में क्या समझ आया।</p>
+      <div class="callout">
+        <strong>मेरा रास्ता</strong>
+        <ol style="margin: 10px 0 0; padding-left: 20px">
+          <li>मैथ्स की नींव: complex numbers, vectors, matrices</li>
+          <li>मूल विचार: qubits, superposition, gates, measurement, entanglement</li>
+          <li>असली IBM quantum computers पर पहले circuits (Qiskit)</li>
+          <li>Algorithms: Deutsch–Jozsa, Grover, Shor; quantum cryptography</li>
+          <li>Quantum control हार्डवेयर: FPGA, RF, cryogenic electronics</li>
+        </ol>
+      </div>
+      <PostList posts={posts} lang="hi" />
+    </div>
+  </section>
+</Base>

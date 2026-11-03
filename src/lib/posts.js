@@ -4,7 +4,7 @@ import { t } from '../i18n.js';
 
 export function getPosts(category, lang = 'en') {
   const modules = lang === 'hi'
-    ? import.meta.glob('../pages/hi/lessons/*.md', { eager: true })
+    ? { ...import.meta.glob('../pages/hi/lessons/*.md', { eager: true }), ...import.meta.glob('../pages/hi/posts/*.md', { eager: true }) }
     : import.meta.glob('../pages/posts/*.md', { eager: true });
   const posts = Object.values(modules)
     .map((m) => ({ url: m.url, ...m.frontmatter }))
