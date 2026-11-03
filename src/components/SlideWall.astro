@@ -1,0 +1,20 @@
+---
+// Two rows of real lesson slides drifting in opposite directions. Pauses on hover; static with reduced motion.
+import slides from '../data/slides.json';
+const sets = ['lesson-1', 'lesson-2', 'lesson-3', 'lesson-4', 'lesson-5', 'lesson-6', 'roadmap'];
+const pick = (set, idx) => idx.filter((i) => i <= (slides[set]?.length ?? 0)).map((i) => ({ src: `/thumbs/${set}/${String(i).padStart(2, '0')}.webp`, alt: slides[set][i - 1] }));
+const rowA = sets.flatMap((s) => pick(s, [1, 6, 13]));
+const rowB = sets.slice().reverse().flatMap((s) => pick(s, [9, 17, 3]));
+const { label = 'Slides from the lessons' } = Astro.props;
+---
+<div class="wall" aria-label={label}>
+  {[rowA, rowB].map((row, r) => (
+    <div class={r ? 'wall-row wall-rev' : 'wall-row'}>
+      <div class="wall-track">
+        {[...row, ...row].map((s, i) => (
+          <img src={s.src} alt={i < row.length ? s.alt : ''} aria-hidden={i >= row.length ? 'true' : undefined} width="432" height="540" loading="lazy" decoding="async" />
+        ))}
+      </div>
+    </div>
+  ))}
+</div>

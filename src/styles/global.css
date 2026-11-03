@@ -436,3 +436,110 @@ html[lang='hi'] .brand-name { font-family: 'Space Grotesk', system-ui, sans-seri
   .site-header .brand-name { white-space: nowrap; font-size: 0.98rem; }
   .site-header .brand-name small { display: none; }
 }
+
+/* =========================================================
+   v3 — livelier home, inspired by scientific-lab sites:
+   glowing hero, real slides in motion, visual lesson cards.
+   ========================================================= */
+
+.btn-lg { min-height: 54px; padding: 0 28px; font-size: 1.02rem; border-radius: 10px; }
+.btn-primary { box-shadow: 0 10px 30px -12px rgba(245, 165, 36, 0.7); }
+.btn-primary:hover { transform: translateY(-1px); }
+.btn { transition: background 0.15s, transform 0.15s, border-color 0.15s; }
+.btn-light { background: #fff; color: var(--stone); margin-top: 8px; }
+.btn-light:hover { background: #eaf2f2; color: var(--stone); }
+
+/* Hero */
+.hero-plus { padding: clamp(64px, 9vw, 120px) 0 clamp(72px, 9vw, 120px); isolation: isolate; }
+.hero-glow { position: absolute; inset: 0; pointer-events: none; z-index: -1;
+  background:
+    radial-gradient(600px 420px at 78% 42%, rgba(124, 116, 255, 0.32), transparent 70%),
+    radial-gradient(380px 300px at 84% 30%, rgba(245, 165, 36, 0.16), transparent 70%),
+    radial-gradient(700px 500px at 0% 100%, rgba(63, 94, 98, 0.35), transparent 70%);
+}
+.hero-plus::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent); }
+.hero-plus h1 { font-size: clamp(2.7rem, 6.4vw, 5rem); max-width: 14ch; }
+.hero-visual { position: relative; justify-self: end; width: 100%; max-width: 480px; }
+.hero-visual .bloch { max-width: 480px; filter: drop-shadow(0 0 40px rgba(124, 116, 255, 0.25)); }
+.pill { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 10px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); color: #e6e7ff; text-decoration: none; font-size: 0.9rem; margin-bottom: 28px; }
+.pill:hover { background: rgba(255,255,255,0.14); color: #fff; }
+.pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 4px rgba(245,165,36,0.25); }
+.stats { display: grid; grid-template-columns: repeat(4, auto); justify-content: start; gap: 0; margin: 44px 0 0; }
+.stats div { padding: 0 28px; border-left: 1px solid rgba(255,255,255,0.16); display: flex; flex-direction: column-reverse; }
+.stats div:first-child { padding-left: 0; border-left: 0; }
+.stats dd { margin: 0; font-family: var(--font-head); font-weight: 700; font-size: 1.9rem; color: #fff; line-height: 1.1; letter-spacing: -0.02em; }
+.stats dt { color: #a9acd8; font-size: 0.88rem; }
+@media (max-width: 860px) {
+  .hero-visual { justify-self: start; max-width: 300px; order: -1; margin: -12px 0 0 -16px; }
+  .stats { grid-template-columns: repeat(2, auto); row-gap: 20px; }
+  .stats div:nth-child(3) { padding-left: 0; border-left: 0; }
+}
+
+/* Slide wall */
+.wall-section { background: var(--night); color: #fff; padding: 72px 0 88px; overflow: hidden; }
+.wall-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: end; margin-bottom: 40px; }
+.wall-head h2 { color: #fff; margin: 0; max-width: 16ch; }
+.wall-head p { color: #b8bbe6; margin: 0; max-width: 44ch; font-size: 1.08rem; }
+@media (max-width: 760px) { .wall-head { grid-template-columns: 1fr; gap: 12px; } }
+.wall { display: grid; gap: 18px; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.wall-row { overflow: hidden; }
+.wall-track { display: flex; gap: 18px; width: max-content; animation: wall 90s linear infinite; }
+.wall-rev .wall-track { animation-direction: reverse; animation-duration: 110s; }
+.wall:hover .wall-track { animation-play-state: paused; }
+.wall img { width: 208px; height: 260px; object-fit: cover; border-radius: 12px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 18px 36px -18px rgba(0,0,0,0.7); }
+@keyframes wall { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 560px) { .wall img { width: 150px; height: 188px; } }
+
+/* Lesson cards */
+.lesson-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; }
+.lc a { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
+.lc a:hover { transform: translateY(-4px); border-color: #c9cbe6; box-shadow: 0 24px 48px -28px rgba(18, 16, 52, 0.45); }
+.lc-cover { position: relative; display: block; background: var(--indigo); padding: 18px 18px 0; overflow: hidden; height: 200px; }
+.lc-cover img { width: 100%; height: auto; display: block; border-radius: 10px 10px 0 0; box-shadow: 0 -8px 30px -12px rgba(0,0,0,0.5); transition: transform 0.35s; }
+.lc a:hover .lc-cover img { transform: translateY(-6px); }
+.lc-start .lc-cover { background: var(--stone); }
+.lc-flag { position: absolute; top: 12px; right: 12px; background: var(--amber); color: var(--night); font-family: var(--font-head); font-weight: 700; font-size: 0.8rem; padding: 4px 10px; border-radius: 999px; }
+.lc-body { display: block; padding: 20px 22px 24px; }
+.lc-kicker { display: flex; justify-content: space-between; gap: 12px; font-family: var(--font-head); font-weight: 600; font-size: 0.86rem; color: var(--stone); margin-bottom: 8px; }
+.lc-count { color: var(--muted); font-weight: 500; }
+.lc h3 { margin: 0 0 8px; font-size: 1.18rem; line-height: 1.25; }
+.lc p { margin: 0; color: var(--ink-soft); font-size: 0.93rem; line-height: 1.55; }
+.lc a:hover h3 { color: var(--link); }
+
+/* Why Kota tiles */
+.stone { position: relative; overflow: hidden; }
+.stone::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 22px); pointer-events: none; }
+.stone .wrap { position: relative; }
+.tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.tiles li { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 6px; }
+.tiles svg { color: var(--amber); margin-bottom: 6px; }
+.tiles strong { font-family: var(--font-head); font-size: 1.08rem; color: #fff; }
+.tiles span { color: #d3e1e1; font-size: 0.93rem; line-height: 1.55; }
+@media (max-width: 560px) { .tiles { grid-template-columns: 1fr; } }
+
+/* Quote */
+.quote-section { padding: clamp(72px, 10vw, 128px) 0; background: var(--paper); }
+.quote { margin: 0 auto; max-width: 900px; }
+.quote blockquote { margin: 0; padding: 0; border: 0; color: var(--ink); font-family: var(--font-head); font-weight: 600; font-size: clamp(1.6rem, 3.4vw, 2.6rem); line-height: 1.25; letter-spacing: -0.02em; text-wrap: balance; }
+.quote blockquote::before { content: '“'; display: block; font-size: 4.5rem; line-height: 0.6; color: var(--amber); margin-bottom: 18px; }
+.quote figcaption { margin-top: 24px; color: var(--muted); font-size: 1rem; }
+
+/* Instagram + log */
+.ig-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+.ig-grid h2 { margin-top: 0; max-width: 16ch; }
+.ig-text { color: var(--ink-soft); font-size: 1.08rem; max-width: 44ch; margin-bottom: 24px; }
+.feed { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; border-radius: 18px; overflow: hidden; box-shadow: 0 30px 60px -32px rgba(18, 16, 52, 0.5); }
+.feed img { width: 100%; height: auto; display: block; transition: opacity 0.2s; }
+.feed:hover img { opacity: 0.85; }
+.log { margin-top: 48px; }
+.log h3 { margin: 0 0 6px; }
+.log > p { color: var(--ink-soft); }
+@media (max-width: 860px) { .ig-grid { grid-template-columns: 1fr; } .feed { order: -1; } }
+
+/* Inner pages: soft header band so they don't feel bare */
+.article { background:
+  radial-gradient(600px 260px at 85% 0%, rgba(124, 116, 255, 0.10), transparent 70%),
+  linear-gradient(var(--tint), var(--paper) 340px); }
+.article h1 { font-size: clamp(2.3rem, 5vw, 3.6rem); }
+
+@media (prefers-reduced-motion: reduce) { .wall-track { animation: none; } .lc a:hover, .btn-primary:hover { transform: none; } }

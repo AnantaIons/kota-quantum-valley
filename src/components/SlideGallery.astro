@@ -12,7 +12,7 @@ const src = (i) => `/slides/${set}/${String(i + 1).padStart(2, '0')}.webp`;
     <div class="gallery-grid">
       {titles.map((title, i) => (
         <a href={src(i)} target="_blank" rel="noopener" class="slide">
-          <img src={src(i)} alt={L.slideAlt(i + 1, title)} width="1080" height="1350" loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />
+          <img src={src(i).replace("/slides/", "/thumbs/")} alt={L.slideAlt(i + 1, title)} width="432" height="540" loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />
           <span>{i + 1}. {title}</span>
         </a>
       ))}

@@ -1,0 +1,147 @@
+---
+import PostList from './PostList.astro';
+import LessonGrid from './LessonGrid.astro';
+import BlochSphere from './BlochSphere.astro';
+import SlideWall from './SlideWall.astro';
+import slides from '../data/slides.json';
+import site from '../data/site.json';
+import { getPosts } from '../lib/posts.js';
+
+const { lang = 'en' } = Astro.props;
+const hi = lang === 'hi';
+const pre = hi ? '/hi' : '';
+const lessons = getPosts('lesson', lang);
+const latest = getPosts(undefined, lang).filter((p) => p.category !== 'lesson').slice(0, 3);
+const slideTotal = lessons.reduce((n, p) => n + (slides[p.slides]?.length ?? 0), 0);
+const lessonCount = lessons.filter((p) => p.lesson).length;
+const feed = ['lesson-6', 'lesson-5', 'lesson-4', 'lesson-3', 'lesson-2', 'lesson-1'];
+
+const c = hi ? {
+  pill: 'नया: पाठ 6, क्वांटम सेंसिंग',
+  h1: 'भारत की क्वांटम वर्कफ़ोर्स कोटा से शुरू हो सकती है।',
+  lead: 'कोटा हर साल लाखों छात्रों को फ़िज़िक्स और मैथ्स में तैयार करता है। हम क्वांटम कंप्यूटिंग बिल्कुल शून्य से, मुफ़्त में पढ़ाते हैं, और कोटा में क्वांटम नौकरियाँ लाने की बात रखते हैं।',
+  cta1: 'रोडमैप से शुरू करें', cta2: 'सभी पाठ देखें',
+  stats: [[lessonCount, 'पाठ'], [slideTotal, 'स्लाइड'], ['2', 'भाषाएँ'], ['₹0', 'हमेशा मुफ़्त']],
+  wallTitle: 'हर पाठ, साफ़ स्लाइड में।', wallText: 'कोई भारी किताब नहीं। हर विचार एक स्लाइड पर, 12वीं की मैथ्स से शुरू करके।',
+  pathTitle: 'सीखने का रास्ता', pathText: 'रोडमैप से शुरू करें, फिर क्रम से आगे बढ़ें। हर पाठ में पूरी स्लाइड और हिन्दी नोट्स हैं।', pathAll: 'सभी पाठ देखें',
+  whyTitle: 'कोटा में क्वांटम क्यों?', whyLead: 'क्वांटम कंप्यूटिंग को ऐसे लोग चाहिए जो फ़िज़िक्स और मैथ्स में मज़बूत हों। कोटा ऐसे छात्र लगभग किसी भी शहर से ज़्यादा तैयार करता है, और फिर उन्हें बाहर जाते देखता है।', whyLink: 'कोटा का पूरा पक्ष पढ़ें',
+  facts: [
+    ['talent', 'टैलेंट पहले से यहाँ है', 'लाखों छात्रों ने कोटा में JEE-स्तर की फ़िज़िक्स और मैथ्स सीखी है।'],
+    ['teach', 'शिक्षक भी यहीं हैं', 'एक पूरा शहर जिसका काम कठिन विज्ञान को आसान बनाना है।'],
+    ['cost', 'बनाने का ख़र्च कम', 'बेंगलुरु या दिल्ली NCR से सस्ता रहना, भर्ती करना और लैब लगाना।'],
+    ['time', 'समय सही है', '₹6,003 करोड़ का नेशनल क्वांटम मिशन अभी हब बना रहा है। राजस्थान की अभी कोई क्वांटम योजना नहीं है।'],
+  ],
+  quote: 'जो छात्र JEE की फ़िज़िक्स समझ सकता है, वह क्वांटम कंप्यूटिंग भी सीख सकता है। उसे बस सही क्रम और सही भाषा चाहिए।',
+  quoteBy: 'हमारा विश्वास',
+  igTitle: 'हर नया पाठ पहले इंस्टाग्राम पर।', igText: `हर पाठ पहले ${site.instagramHandle} पर कैरोसेल के रूप में आता है। फ़ॉलो करें ताकि अगला न छूटे।`, igBtn: 'इंस्टाग्राम पर फ़ॉलो करें',
+  logTitle: 'सबके सामने सीखना', logText: `Kota Quantum Valley की शुरुआत ${site.founderName} ने की है, जो राजस्थान के एक एम्बेडेड फ़र्मवेयर इंजीनियर हैं और क्वांटम शून्य से सीख रहे हैं।`, about: 'इस पहल के बारे में',
+} : {
+  pill: 'New: Lesson 6, quantum sensing',
+  h1: "India's quantum workforce can start in Kota.",
+  lead: 'Kota already trains lakhs of students in physics and maths. We teach quantum computing from absolute zero, for free, and make the case for bringing quantum jobs to the city.',
+  cta1: 'Start with the roadmap', cta2: 'Browse all lessons',
+  stats: [[lessonCount, 'lessons'], [slideTotal, 'slides'], ['2', 'languages'], ['₹0', 'always free']],
+  wallTitle: 'Every lesson, in clear slides.', wallText: 'No heavy textbooks. One idea per slide, starting from Class 12 maths.',
+  pathTitle: 'The learning path', pathText: 'Start with the roadmap, then go in order. Every lesson has the full slides plus written notes.', pathAll: 'See all lessons',
+  whyTitle: 'Why build quantum in Kota?', whyLead: 'Quantum computing needs people who are strong in physics and maths. Kota trains more of them than almost any city in India, and then watches them leave.', whyLink: 'Read the full case for Kota',
+  facts: [
+    ['talent', 'The talent is already here', 'Lakhs of students have mastered JEE-level physics and maths in Kota.'],
+    ['teach', 'So are the teachers', 'A whole city of people who explain hard science for a living.'],
+    ['cost', 'It costs less to build', 'Cheaper to live, hire and set up a lab than in Bengaluru or Delhi NCR.'],
+    ['time', 'The timing is right', 'The ₹6,003 crore National Quantum Mission is funding hubs now. Rajasthan has no quantum plan yet.'],
+  ],
+  quote: 'A student who can crack JEE physics can learn quantum computing. They just need the right order and the right language.',
+  quoteBy: 'What we believe',
+  igTitle: 'New lessons land on Instagram first.', igText: `Every lesson starts as a carousel on ${site.instagramHandle}. Follow so you don't miss the next one.`, igBtn: 'Follow on Instagram',
+  logTitle: 'Learning in public', logText: `Kota Quantum Valley is started by ${site.founderName}, an embedded firmware engineer from Rajasthan who is learning quantum from zero.`, about: 'About the initiative',
+};
+const icons = {
+  talent: '<path d="M3 9l9-5 9 5-9 5-9-5Z"/><path d="M7 11.5V16c0 1.5 2.2 3 5 3s5-1.5 5-3v-4.5"/><path d="M21 9v5"/>',
+  teach: '<rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20l4-4 4 4"/><path d="M7 9h6M7 12h4"/>',
+  cost: '<path d="M7 5h10M7 9h10M10 5c3 0 4.5 1.6 4.5 4S13 13 10 13H7l7 6"/>',
+  time: '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/>',
+};
+---
+<section class="hero hero-plus">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <a class="pill" href={`${pre}/lessons/`}><span class="pill-dot"></span>{c.pill}</a>
+      <h1>{c.h1}</h1>
+      <p class="lead">{c.lead}</p>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-lg" href={`${pre}${hi ? '/lessons' : '/posts'}/roadmap-what-to-learn-first/`}>{c.cta1}</a>
+        <a class="btn btn-ghost btn-lg" href={`${pre}/lessons/`}>{c.cta2}</a>
+      </div>
+      <dl class="stats">
+        {c.stats.map(([n, l]) => <div><dt>{l}</dt><dd>{n}</dd></div>)}
+      </dl>
+    </div>
+    <div class="hero-visual"><BlochSphere /></div>
+  </div>
+</section>
+
+<section class="wall-section">
+  <div class="wrap wall-head">
+    <h2>{c.wallTitle}</h2>
+    <p>{c.wallText}</p>
+  </div>
+  <SlideWall label={c.wallTitle} />
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>{c.pathTitle}</h2>
+      <p>{c.pathText}</p>
+    </div>
+    <LessonGrid lessons={lessons} lang={lang} />
+  </div>
+</section>
+
+<section class="block stone">
+  <div class="wrap stone-grid">
+    <div>
+      <h2>{c.whyTitle}</h2>
+      <p class="lead">{c.whyLead}</p>
+      <a class="btn btn-light" href={`${pre}/why-kota/`}>{c.whyLink}</a>
+    </div>
+    <ul class="tiles">
+      {c.facts.map(([k, h, p]) => (
+        <li>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[k]} />
+          <strong>{h}</strong>
+          <span>{p}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<section class="quote-section">
+  <div class="wrap">
+    <figure class="quote">
+      <blockquote>{c.quote}</blockquote>
+      <figcaption>{c.quoteBy}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="block tint">
+  <div class="wrap ig-grid">
+    <div>
+      <h2>{c.igTitle}</h2>
+      <p class="ig-text">{c.igText}</p>
+      <a class="btn btn-dark btn-lg" href={site.instagram} rel="noopener" target="_blank">{c.igBtn}</a>
+      <div class="log">
+        <h3>{c.logTitle}</h3>
+        <p>{c.logText}</p>
+        <PostList posts={latest} lang={lang} />
+        <p><a href={`${pre}/about/`}>{c.about}</a></p>
+      </div>
+    </div>
+    <a class="feed" href={site.instagram} rel="noopener" target="_blank" aria-label={c.igBtn}>
+      {feed.map((s) => <img src={`/thumbs/${s}/01.webp`} alt="" width="432" height="540" loading="lazy" decoding="async" />)}
+    </a>
+  </div>
+</section>
