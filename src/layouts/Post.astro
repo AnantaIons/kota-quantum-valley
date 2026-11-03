@@ -32,10 +32,11 @@ const image = frontmatter.slides ? `/slides/${frontmatter.slides}/01.webp` : und
         {frontmatter.description && <p class="desc">{frontmatter.description}</p>}
         <p class="meta" style="margin: 0">{L.published(formatDate(frontmatter.date, lang), slideCount)}</p>
       </header>
-      <slot />
     </div>
-    {frontmatter.slides && <div class="wide"><h2>{L.theSlides}</h2><SlideGallery set={frontmatter.slides} lang={lang} /></div>}
+    {frontmatter.slides && <div class="wide"><SlideGallery set={frontmatter.slides} lang={lang} /></div>}
     <div class="narrow">
+      {frontmatter.slides && <h2 class="notes-head">{lang === 'hi' ? 'पाठ के नोट्स' : 'Lesson notes'}</h2>}
+      <slot />
       <hr style="border: 0; border-top: 1px solid var(--line); margin: 48px 0 24px" />
       {isLesson ? (
         <div class="lesson-nav">

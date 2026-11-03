@@ -1,21 +1,91 @@
 ---
+// Large slide viewer: one slide at a time, swipe / arrows / keyboard, with a thumbnail strip to jump.
 import slides from '../data/slides.json';
 import { t } from '../i18n.js';
 const { set, lang = 'en' } = Astro.props;
 const L = t[lang];
 const titles = slides[set] ?? [];
-const src = (i) => `/slides/${set}/${String(i + 1).padStart(2, '0')}.webp`;
+const n = (i) => String(i + 1).padStart(2, '0');
+const hi = lang === 'hi';
+const txt = {
+  prev: hi ? 'पिछली स्लाइड' : 'Previous slide',
+  next: hi ? 'अगली स्लाइड' : 'Next slide',
+  open: hi ? 'पूरे आकार में खोलें' : 'Open full size',
+  hint: hi ? 'स्वाइप करें या ← → दबाएँ' : 'Swipe, or use ← → keys',
+};
 ---
 {titles.length > 0 && (
-  <section class="gallery" aria-label={L.theSlides}>
-    <p class="meta">{L.tapSlide}</p>
-    <div class="gallery-grid">
+  <section class="viewer" aria-label={L.theSlides} data-viewer>
+    <div class="viewer-stage">
+      <button class="viewer-btn viewer-prev" type="button" aria-label={txt.prev} data-prev>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+      </button>
+      <div class="viewer-track" tabindex="0" data-track>
+        {titles.map((title, i) => (
+          <figure class="viewer-slide" id={`${set}-${n(i)}`}>
+            <img src={`/slides/${set}/${n(i)}.webp`} alt={L.slideAlt(i + 1, title)} width="1080" height="1350" loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />
+          </figure>
+        ))}
+      </div>
+      <button class="viewer-btn viewer-next" type="button" aria-label={txt.next} data-next>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+      </button>
+    </div>
+    <div class="viewer-bar">
+      <span class="viewer-count" aria-live="polite"><strong data-count>1</strong> / {titles.length}<span class="viewer-title" data-title>{titles[0]}</span></span>
+      <a class="viewer-open" href={`/slides/${set}/01.webp`} target="_blank" rel="noopener" data-open>{txt.open}</a>
+    </div>
+    <div class="viewer-thumbs" data-thumbs>
       {titles.map((title, i) => (
-        <a href={src(i)} target="_blank" rel="noopener" class="slide">
-          <img src={src(i).replace("/slides/", "/thumbs/")} alt={L.slideAlt(i + 1, title)} width="432" height="540" loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />
-          <span>{i + 1}. {title}</span>
-        </a>
+        <button type="button" class="viewer-thumb" aria-label={L.slideAlt(i + 1, title)} data-go={i} aria-current={i === 0 ? 'true' : undefined}>
+          <img src={`/thumbs/${set}/${n(i)}.webp`} alt="" width="432" height="540" loading="lazy" decoding="async" />
+        </button>
       ))}
     </div>
+    <p class="viewer-hint">{txt.hint}</p>
+    <script type="application/json" data-titles set:html={JSON.stringify(titles)} />
   </section>
 )}
+
+<script is:inline>
+  (function () {
+    document.querySelectorAll('[data-viewer]').forEach(function (root) {
+      if (root.dataset.ready) return; root.dataset.ready = '1';
+      var track = root.querySelector('[data-track]');
+      var slides = track.children;
+      var titles = JSON.parse(root.querySelector('[data-titles]').textContent);
+      var count = root.querySelector('[data-count]');
+      var title = root.querySelector('[data-title]');
+      var open = root.querySelector('[data-open]');
+      var thumbs = root.querySelectorAll('[data-go]');
+      var cur = 0;
+      function go(i) {
+        i = Math.max(0, Math.min(slides.length - 1, i));
+        track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+      }
+      function update(i) {
+        if (i === cur && count.textContent == i + 1) return;
+        cur = i;
+        count.textContent = i + 1;
+        title.textContent = titles[i];
+        open.href = slides[i].querySelector('img').getAttribute('src');
+        thumbs.forEach(function (t, k) {
+          if (k === i) { t.setAttribute('aria-current', 'true'); t.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' }); }
+          else t.removeAttribute('aria-current');
+        });
+      }
+      var tick;
+      track.addEventListener('scroll', function () {
+        clearTimeout(tick);
+        tick = setTimeout(function () { update(Math.round(track.scrollLeft / slides[0].offsetWidth)); }, 60);
+      });
+      root.querySelector('[data-prev]').addEventListener('click', function () { go(cur - 1); });
+      root.querySelector('[data-next]').addEventListener('click', function () { go(cur + 1); });
+      thumbs.forEach(function (t) { t.addEventListener('click', function () { go(+t.dataset.go); }); });
+      track.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1); }
+      });
+    });
+  })();
+</script>
