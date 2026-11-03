@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Logo from '../components/Logo.astro';
+import ChatButton from '../components/ChatButton.astro';
 import site from '../data/site.json';
 import { t, langOf, altPath } from '../i18n.js';
 
@@ -77,6 +78,7 @@ const year = new Date().getFullYear();
     <main>
       <slot />
     </main>
+    <ChatButton lang={lang} />
 
     <footer class="site-footer">
       <div class="wrap">
@@ -109,6 +111,7 @@ const year = new Date().getFullYear();
             <h4>{L.footFollow}</h4>
             <ul>
               <li><a href={site.instagram} rel="me noopener" target="_blank">Instagram</a></li>
+              {site.instagramDM && <li><a href={site.instagramDM} rel="noopener" target="_blank">{L.chatButton}</a></li>}
               {site.linkedin && <li><a href={site.linkedin} rel="me noopener" target="_blank">LinkedIn</a></li>}
               {site.youtube && <li><a href={site.youtube} rel="me noopener" target="_blank">YouTube</a></li>}
               {site.email && <li><a href={`mailto:${site.email}`}>Email</a></li>}

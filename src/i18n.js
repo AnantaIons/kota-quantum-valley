@@ -16,6 +16,7 @@ export const t = {
     published: (d, n) => `Published ${d}${n ? `, with ${n} slides` : ''}`,
     theSlides: 'The slides', tapSlide: 'Tap a slide to open it full size.', slideAlt: (i, title) => `Slide ${i}: ${title}`,
     prev: 'Previous', next: 'Next', backTo: 'Back to',
+    chat: 'Chat with us', chatTitle: 'Questions about quantum, Kota or the lessons?', chatBody: 'Send us a message on Instagram. It opens a direct chat with @kota_quantum_valley, and we usually reply within a day.', chatButton: 'Message on Instagram', chatClose: 'Close chat',
   },
   hi: {
     tagline: 'कोटा से, क्वांटम की पढ़ाई',
@@ -33,6 +34,7 @@ export const t = {
     published: (d, n) => `प्रकाशित ${d}${n ? `, ${n} स्लाइड के साथ` : ''}`,
     theSlides: 'स्लाइड', tapSlide: 'किसी भी स्लाइड को बड़ा देखने के लिए उस पर टैप करें। स्लाइड अंग्रेज़ी में हैं।', slideAlt: (i, title) => `स्लाइड ${i}: ${title}`,
     prev: 'पिछला', next: 'अगला', backTo: 'वापस',
+    chat: 'हमसे बात करें', chatTitle: 'क्वांटम, कोटा या पाठों के बारे में कोई सवाल?', chatBody: 'हमें इंस्टाग्राम पर मैसेज करें। इससे @kota_quantum_valley के साथ सीधी चैट खुलती है, और हम आमतौर पर एक दिन में जवाब देते हैं।', chatButton: 'इंस्टाग्राम पर मैसेज करें', chatClose: 'चैट बंद करें',
   },
 };
 

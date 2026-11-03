@@ -1,0 +1,24 @@
+---
+// Floating "chat" button. Opens an Instagram direct message to the page's account.
+import site from '../data/site.json';
+import { t } from '../i18n.js';
+const { lang = 'en' } = Astro.props;
+const L = t[lang];
+const dm = site.instagramDM || site.instagram;
+---
+{dm && (
+  <details class="chat">
+    <summary aria-label={L.chat}>
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.5 3 2 6.9 2 11.7c0 2.6 1.3 4.9 3.4 6.5L5 22l4-2.2c.9.2 1.9.4 3 .4 5.5 0 10-3.9 10-8.7S17.5 3 12 3Z" fill="currentColor"/></svg>
+      <span>{L.chat}</span>
+    </summary>
+    <div class="chat-panel" role="dialog" aria-label={L.chat}>
+      <p class="chat-title">{L.chatTitle}</p>
+      <p>{L.chatBody}</p>
+      <a class="btn btn-primary chat-go" href={dm} target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
+        {L.chatButton}
+      </a>
+    </div>
+  </details>
+)}
