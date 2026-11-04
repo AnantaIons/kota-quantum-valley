@@ -39,6 +39,10 @@ export const quizzes = {
       ['|0⟩ पर H फिर H, 1,000 बार measure करने पर…', ['500/500', 'हर बार 0', 'हर बार 1', 'Random'], 1, '|1⟩ तक के दोनों रास्ते cancel हो जाते हैं: interference।']),
     Q(['You apply X to qubit 1 of 2. Qiskit prints…', ["'01'", "'10'", "'11'", "'00'"], 1, 'Qiskit writes qubit 0 on the right, so the string is q1 q0 = 10.'],
       ['2 में से qubit 1 पर X लगाया। Qiskit छापता है…', ["'01'", "'10'", "'11'", "'00'"], 1, 'Qiskit qubit 0 को दाएँ लिखता है, तो string q1 q0 = 10 है।']),
+    Q(['In the circuit H, then P(φ), then H on |0⟩, what is P(1)?', ['Always ½', 'sin²(φ/2)', 'cos φ', 'φ/π'], 1, 'The two paths to |1⟩ have amplitudes ½ and −½·e^(iφ), so P(1) = (1 − cos φ)/2 = sin²(φ/2): 0 at φ = 0, 1 at φ = π.'],
+      ['|0⟩ पर H, फिर P(φ), फिर H वाले circuit में P(1) क्या है?', ['हमेशा ½', 'sin²(φ/2)', 'cos φ', 'φ/π'], 1, '|1⟩ तक के दो रास्तों के amplitudes ½ और −½·e^(iφ) हैं, तो P(1) = (1 − cos φ)/2 = sin²(φ/2): φ = 0 पर 0, φ = π पर 1।']),
+    Q(['1,000 shots estimate P(1) = 0.497. What is the standard error, roughly?', ['0.5', '0.016', '0.0005', '0.1'], 1, '√(p(1 − p)/N) = √(0.25/1000) ≈ 0.016, so 0.497 is consistent with 0.5.'],
+      ['1,000 shots से P(1) = 0.497 का अनुमान मिला। Standard error मोटे तौर पर कितनी है?', ['0.5', '0.016', '0.0005', '0.1'], 1, '√(p(1 − p)/N) = √(0.25/1000) ≈ 0.016, तो 0.497, 0.5 से मेल खाता है।']),
   ],
   'teleportation-and-superdense-coding': [
     Q(['Teleportation moves…', ['Matter', 'A quantum state', 'Energy', 'Photons faster than light'], 1, 'Only the state moves; Bob\'s qubit was already with Bob.'],
@@ -49,6 +53,10 @@ export const quizzes = {
       ['Teleportation रोशनी से तेज़ क्यों नहीं?', ['है', 'Bob को पहले Alice के classical bits चाहिए', 'Photons धीमे हैं', 'Entanglement टूटता है'], 1, 'Bits पहुँचने तक Bob का qubit पूरी तरह random दिखता है।']),
     Q(['Superdense coding sends 2 classical bits using…', ['2 qubits sent', '1 qubit sent, plus a shared Bell pair', 'No qubits', '4 qubits'], 1, 'Alice encodes on her half of a Bell pair and sends just that one qubit.'],
       ['Superdense coding 2 classical bits भेजता है…', ['2 qubits भेजकर', '1 qubit भेजकर, साझा Bell pair के साथ', 'बिना qubits', '4 qubits'], 1, 'Alice Bell pair के अपने आधे हिस्से पर encode करके सिर्फ़ वही एक qubit भेजती है।']),
+    Q(['Alice\'s Bell measurement gives m0 = 0, m1 = 1 (the state Ψ+). What does Bob hold, and what does he apply?', ['|ψ⟩; nothing', 'β|0⟩ + α|1⟩; X', 'α|0⟩ − β|1⟩; Z', 'A random state; nothing can help'], 1, 'For Ψ+ the amplitudes are swapped, and X swaps them back. The parity bit m1 always decides the X correction.'],
+      ['Alice का Bell measurement m0 = 0, m1 = 1 (state Ψ+) देता है। Bob के पास क्या है, और वह क्या लगाता है?', ['|ψ⟩; कुछ नहीं', 'β|0⟩ + α|1⟩; X', 'α|0⟩ − β|1⟩; Z', 'Random state; कुछ मदद नहीं कर सकता'], 1, 'Ψ+ पर amplitudes अदला-बदल जाते हैं, और X उन्हें वापस पलट देता है। Parity bit m1 हमेशा X सुधार तय करता है।']),
+    Q(['With an imperfect shared pair of Bell fidelity F, teleportation beats the best classical method (fidelity 2/3) when…', ['Always', 'F > ½', 'F = 1 only', 'Never'], 1, 'The average teleportation fidelity is (2F + 1)/3, which exceeds 2/3 exactly when F > ½.'],
+      ['Bell fidelity F वाले अपूर्ण साझा pair के साथ teleportation सबसे अच्छे classical तरीके (fidelity 2/3) को कब हराता है?', ['हमेशा', 'F > ½', 'सिर्फ़ F = 1 पर', 'कभी नहीं'], 1, 'औसत teleportation fidelity (2F + 1)/3 है, जो ठीक F > ½ पर 2/3 से ज़्यादा होती है।']),
   ],
   'grovers-search': [
     Q(['What does Grover\'s oracle do?', ['Measures the answer', 'Flips the sign of the marked state', 'Copies the answer', 'Sorts the list'], 1, 'It multiplies the marked amplitude by −1; probabilities don\'t change yet.'],
