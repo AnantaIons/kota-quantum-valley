@@ -2,35 +2,98 @@
 layout: ../../../layouts/Post.astro
 lang: hi
 title: "असली qubits कैसे बनते हैं"
-description: "Decoherence, fidelity, transmon और dilution fridge, control stack, ions, atoms, photons, spins, और error correction।"
+description: "अच्छा qubit क्या होता है, decoherence और fidelity नंबरों में, transmon और dilution fridge, control stack, पाँच मुख्य platforms, और error correction क्यों ज़रूरी है।"
 date: 2026-10-29
 category: lesson
 lesson: 4
 slides: lesson-4
 ---
 
-## Qubits भौतिक चीज़ें हैं
+अब तक qubit गणित था। यह पाठ असली भौतिक चीज़ के बारे में है, और यह कि अच्छे qubits बनाना आज की सबसे कठिन इंजीनियरिंग समस्याओं में से एक क्यों है।
 
-Qubit कोई भी ऐसा भौतिक सिस्टम है जिसके दो स्तर हों और जिन्हें आप कंट्रोल कर सकें: superconducting circuit, ion, atom, photon, electron spin। **DiVincenzo checklist** कहती है कि अच्छे platform को चाहिए: scalable qubits, उन्हें reset करने का तरीका, लंबी coherence, universal gate set, और readout।
+## Qubit भौतिक रूप से क्या है
 
-**Decoherence** दुश्मन है: गर्मी, बाहरी fields और कंपन quantum state को environment में बहा देते हैं। असली पैमाना है gate की रफ़्तार और memory समय का अनुपात, और **fidelity**, यानी कितने प्रतिशत operations सही निकलते हैं।
+कोई भी quantum system जिसके दो नियंत्रित स्तर हों: छोटा superconducting circuit, एक trapped ion, एक neutral atom, एक photon, या electron का spin।
 
-## Transmon
+## DiVincenzo checklist
 
-आज का सबसे आम qubit (IBM, Google)। **Josephson junction** वाला एक superconducting circuit, जो energy levels को असमान दूरी पर रखता है ताकि |0⟩ और |1⟩ को अलग से छुआ जा सके। यह **dilution refrigerator** के अंदर लगभग 10–20 millikelvin पर चलता है, अंतरिक्ष से भी ठंडा।
+2000 में David DiVincenzo ने ज़रूरतें गिनाईं:
 
-## Control stack (जहाँ embedded इंजीनियर काम आते हैं)
+1. **Scalable**, साफ़ परिभाषित qubits।
+2. Qubits को |0⟩ पर **reset** करने का तरीका।
+3. Gate के समय की तुलना में **लंबी coherence**।
+4. **Universal gate set** (पाठ 2)।
+5. भरोसेमंद **measurement**।
 
-कमरे के तापमान वाले इलेक्ट्रॉनिक्स microwave pulses बनाते हैं (FPGA, DAC, RF mixing)। Pulses fridge के अंदर जाकर qubits को **drive** करते हैं। लौटते signals amplify होकर **readout** के लिए digital बनते हैं। Timing, firmware और low-latency feedback, ये सब इंजीनियरिंग की समस्याएँ हैं।
+## Decoherence: दुश्मन
 
-## दूसरे platforms
+हर qubit धीरे-धीरे अपनी quantum state परिवेश में खो देता है: गर्मी, बाहरी fields, कंपन। दो समय इसे बताते हैं:
 
-- **Trapped ions:** बहुत ऊँची fidelity, धीमे gates।
-- **Neutral atoms:** laser tweezers में पकड़े गए; सैकड़ों और हज़ारों तक बढ़ रहे हैं।
-- **Photons:** कमरे के तापमान पर, networking के लिए स्वाभाविक।
-- **Silicon spins:** chip फ़ैक्ट्रियों की तकनीक दोबारा इस्तेमाल कर सकते हैं।
-- **Topological:** design से ही errors दबें। अभी शुरुआती research।
+- **T1:** |1⟩ कितनी देर में |0⟩ में गिरता है (energy loss)।
+- **T2:** **phase** कितनी देर टिकता है। Superposition को इसी की ज़रूरत है।
 
-## Error correction
+Coherence लगभग e^(−t/T2) की तरह घटती है:
 
-Physical qubits बहुत ग़लतियाँ करते हैं। **Error correction** एक *logical* qubit को कई physical qubits में फैलाता है और data को measure किए बिना ग़लतियाँ जाँचता रहता है। **Surface code** सबसे आगे का तरीका है। 2024 में Google की Willow chip ने दिखाया कि code बड़ा करने पर logical errors घटते हैं, एक बड़ा पड़ाव।
+| समय (T2 = 100 µs) | बची coherence |
+|---|---|
+| 0 | 100% |
+| 50 µs | 61% |
+| 100 µs | 37% |
+| 300 µs | 5% |
+
+**अनुपात मायने रखता है।** Gate 50 ns का और T2 100 µs हो, तो state फीकी पड़ने से पहले लगभग 2,000 gates का समय है।
+
+## Fidelity: gate कितनी बार सही
+
+99.9% बढ़िया लगता है, लेकिन 1,000 gates में *सब* सही होने की संभावना 0.999¹⁰⁰⁰ ≈ 37% है। इसीलिए error correction (पाठ 12) ज़रूरी है।
+
+## Transmon: आज का मुख्य qubit
+
+IBM, Google और कई दूसरे इस्तेमाल करते हैं:
+
+- Capacitor और **Josephson junction** वाला superconducting circuit।
+- Junction energy levels को **असमान दूरी** पर रखता है, ताकि |0⟩ ↔ |1⟩ चलाते समय ग़लती से |2⟩ न पहुँचे।
+- **Dilution refrigerator** में लगभग **10–20 millikelvin** पर चलता है, अंतरिक्ष से भी ठंडा।
+- Gates दसियों nanoseconds के microwave pulses हैं।
+
+## Control stack (जहाँ इंजीनियर काम आते हैं)
+
+```
+Software (Qiskit)  →  compiler  →  pulse sequencer (FPGA)
+   →  DACs + RF mixers  →  fridge में coax lines  →  qubits
+   ←  amplifiers  ←  ADCs  ←  readout signal  ←
+```
+
+हर तीर एक इंजीनियरिंग काम है: low-noise इलेक्ट्रॉनिक्स, सटीक timing, तेज़ feedback, firmware।
+
+## पाँच मुख्य platforms
+
+| Platform | ताक़त | चुनौती | उदाहरण |
+|---|---|---|---|
+| **Superconducting** | तेज़ gates, chip fabrication | mK cooling, छोटी coherence | IBM, Google |
+| **Trapped ions** | बहुत ऊँची fidelity | धीमे gates | Quantinuum, IonQ |
+| **Neutral atoms** | सैकड़ों-हज़ारों atoms | धीमे gates, atom loss | QuEra, Pasqal |
+| **Photonic** | कमरे का तापमान, networks के लिए स्वाभाविक | Photons मुश्किल से interact करते हैं | Xanadu, PsiQuantum |
+| **Silicon spins** | Chip-factory तकनीक | कई को एक साथ control करना कठिन | Intel, Diraq |
+
+**Topological** qubits design से errors रोकना चाहते हैं, लेकिन अभी शुरुआती research में हैं।
+
+## Errors से scaling कठिन क्यों
+
+ज़्यादा qubits मतलब ज़्यादा noise, wiring, गर्मी और crosstalk। उपयोगी algorithm को अरबों operations चाहिए; physical qubits हज़ारों तक पहुँचते हैं। पुल है **error correction**: कई physical qubits से एक भरोसेमंद **logical** qubit। 2024 में Google की Willow chip ने दिखाया कि code बड़ा करने पर logical errors *घटते* हैं। पाठ 12 में आप ख़ुद एक code बनाएँगे।
+
+## ख़ुद आज़माएँ
+
+1. Gate 30 ns का और T2 = 150 µs। Coherence 37% तक गिरने से पहले लगभग कितने gates?
+2. 99.5% fidelity पर 200 gates सब सही होने की संभावना? (0.995²⁰⁰)
+3. शहरों के बीच quantum network के लिए कौन-सा platform चुनेंगे, और क्यों?
+
+## सार
+
+| शब्द | मतलब |
+|---|---|
+| T1 / T2 | Energy-loss समय / phase-loss समय |
+| Fidelity | सही operations का हिस्सा |
+| Transmon | Josephson junction वाला superconducting qubit |
+| Dilution fridge | Qubits को ~10 mK तक ठंडा करता है |
+| Logical qubit | कई physical qubits से बना भरोसेमंद qubit |

@@ -2,33 +2,129 @@
 layout: ../../../layouts/Post.astro
 lang: hi
 title: "क्वांटम कम्युनिकेशन और QKD"
-description: "One-time pad, BB84 कदम-दर-कदम, जासूस को पकड़ना, E91, satellites, teleportation, और QKD बनाम post-quantum cryptography।"
+description: "One-time pad, चलने वाले simulation के साथ BB84 कदम-दर-कदम, जासूस को पकड़ना, E91, दूरी की सीमाएँ और satellites, और QKD बनाम post-quantum cryptography।"
 date: 2026-10-30
 category: lesson
 lesson: 5
 slides: lesson-5
 ---
 
-## समस्या
+Shor algorithm (पाठ 11) आज के encryption को ख़तरे में डालता है। Quantum physics एक हल भी देती है: secret keys बाँटने का ऐसा तरीका जिसमें **कोई भी जासूसी निशान छोड़ती है**। यही quantum key distribution, QKD है।
 
-**One-time pad** अटूट है अगर key सच में random हो, message जितनी लंबी हो, और सिर्फ़ एक बार इस्तेमाल हो। मुश्किल है key को साझा करना। **Quantum key distribution (QKD)** इसका हल है: physics गारंटी देती है कि जो भी जासूसी करेगा, उसके निशान छूटेंगे।
+## QKD कौन-सी समस्या हल करता है
 
-तीन quantum नियम इसे संभव बनाते हैं: measure करने से state बदलती है, अनजान states की copy नहीं बनती (no-cloning), और ग़लत basis में measure करने पर random जवाब मिलता है।
+**One-time pad** गणितीय रूप से अटूट है अगर key सच में random हो, message जितनी लंबी हो, और दोबारा इस्तेमाल न हो। कमज़ोरी है **key बाँटना**: रास्ते में कोई key copy कर ले तो सब ख़त्म।
+
+RSA जैसे public-key तरीके बाँटने की समस्या हल करते हैं, लेकिन ऐसे गणित पर टिके हैं जिसे Shor तोड़ सकता है। QKD key **physics** से बाँटता है।
+
+## Key बचाने वाले तीन नियम
+
+1. **Measure करने से बदलाव:** qubit को देखना आमतौर पर उसे बदल देता है।
+2. **No-cloning:** अनजान qubit copy नहीं हो सकता।
+3. **ग़लत basis, random जवाब:** ग़लत basis में measure करें तो नतीजा सिक्का उछालने जैसा।
+
+## दो bases
+
+| Basis | Bit 0 | Bit 1 |
+|---|---|---|
+| **+** | horizontal → | vertical ↑ |
+| **×** | diagonal ↗ | anti-diagonal ↖ |
+
+उसी basis में measure करें जिसमें photon भेजा गया: सही bit। **दूसरे** basis में: 50/50 random।
 
 ## BB84, कदम-दर-कदम
 
-1. **Alice भेजती है।** हर photon के लिए वह एक random bit और एक random basis चुनती है: + (horizontal/vertical) या × (diagonal)।
-2. **Bob measure करता है।** वह हर photon के लिए basis का अंदाज़ा लगाता है। आधी बार अंदाज़ा सही होता है और उसे Alice का bit मिलता है; बाक़ी बार नतीजा random होता है।
-3. **वे basis मिलाते हैं** (bits नहीं) एक सामान्य public channel पर, और सिर्फ़ मेल खाने वाले रखते हैं। यह है *sifted key*।
-4. **Error जाँच.** वे कुछ bits खोलकर मिलाते हैं। अगर Eve ने हर photon measure किया हो, तो sifted bits में लगभग **25%** नहीं मिलते। लगभग 11% से ज़्यादा errors पर BB84 रुक जाता है।
-5. **Key साफ़ करें.** Error correction और privacy amplification से एक छोटी, पूरी तरह गुप्त key बचती है।
+Charles Bennett और Gilles Brassard, 1984।
 
-**E91** यही काम entangled pairs से करता है और Bell test से साबित करता है कि किसी ने छेड़छाड़ नहीं की।
+1. **Alice भेजती है:** हर photon के लिए random bit और random basis।
+2. **Bob measure करता है:** अपने random basis में। आधी बार Alice से मेल।
+3. **Sifting:** public channel पर सिर्फ़ **bases** मिलाते हैं, bits कभी नहीं, और मेल वाली जगहें रखते हैं। लगभग आधे photons बचते हैं।
+4. **Error जाँच:** बचे bits का random नमूना खोलकर मिलाते हैं।
+5. **फ़ैसला:** कम error तो आगे बढ़ें। लगभग **11%** से ज़्यादा तो रोक दें: कोई सुन रहा था।
+6. **सफ़ाई:** error correction और **privacy amplification** से key छोटी लेकिन पूरी तरह गुप्त।
 
-## असली दुनिया
+## Eve को पकड़ना: 25% कहाँ से
 
-Fibre में लगभग 0.2 dB प्रति km नुकसान होता है और photons को amplify नहीं किया जा सकता, इसलिए trusted relay nodes के बिना fibre QKD कुछ सौ km तक सीमित है। **Satellites** इससे आगे जाते हैं: चीन के Micius ने 2017 में 7,600 km की intercontinental call सुरक्षित की। भारत में DRDO और IIT दिल्ली ने fibre और free space पर QKD दिखाया है।
+Eve हर photon पकड़ती है, measure करती है और नया भेजती है।
 
-## QKD बनाम PQC
+- **आधी** बार वह ग़लत basis चुनती है।
+- तब Bob (Alice के basis में) random bit पाता है: उनमें से **आधी** बार ग़लत।
+- ½ × ½ = sifted key में **25% errors**।
 
-**Post-quantum cryptography (PQC)** नई गणितीय समस्याओं पर टिकी है जिन्हें quantum computer आसानी से हल नहीं कर सकते। NIST ने 2024 में पहले standards जारी किए। यह आज के हार्डवेयर पर चलती है। QKD को ख़ास हार्डवेयर चाहिए, लेकिन उसकी सुरक्षा physics पर टिकी है। दोनों साथ-साथ चलेंगे।
+## ख़ुद simulate करें
+
+```python
+import random
+random.seed(7)
+
+def bb84(n=2000, eve=False):
+    a_bits  = [random.randint(0, 1) for _ in range(n)]
+    a_bases = [random.choice("+x") for _ in range(n)]
+    b_bases = [random.choice("+x") for _ in range(n)]
+    received = []
+    for bit, ab, bb in zip(a_bits, a_bases, b_bases):
+        sent_bit, sent_basis = bit, ab
+        if eve:                                   # पकड़ो और दोबारा भेजो
+            eb = random.choice("+x")
+            sent_bit = bit if eb == ab else random.randint(0, 1)
+            sent_basis = eb
+        received.append(sent_bit if bb == sent_basis else random.randint(0, 1))
+    keep = [i for i in range(n) if a_bases[i] == b_bases[i]]
+    errors = sum(a_bits[i] != received[i] for i in keep) / len(keep)
+    return len(keep), round(errors, 3)
+
+print("no Eve  :", bb84())
+print("with Eve:", bb84(eve=True))
+```
+
+```text
+no Eve  : (1027, 0.0)
+with Eve: (985, 0.26)
+```
+
+लगभग आधे bits sifting में बचते हैं, और Eve की जासूसी ~25% errors के रूप में दिखती है, ठीक अनुमान के मुताबिक़।
+
+## E91: entangled version
+
+Artur Ekert, 1991। एक source **entangled pair** का एक-एक photon दोनों तरफ़ भेजता है। कुछ नतीजों पर **Bell test** से पता चलता है कि किसी ने छेड़छाड़ नहीं की।
+
+## दूरी की समस्या
+
+- Optical fibre लगभग **0.2 dB प्रति km** खोता है: 100 km के बाद ~1% photons पहुँचते हैं।
+- Photons को measure किए बिना amplify नहीं किया जा सकता (no-cloning)।
+- इसलिए fibre QKD **कुछ सौ km** तक जाता है। लंबी दूरी के लिए **trusted nodes** या भविष्य के **quantum repeaters**।
+
+**Satellites:** चीन के **Micius** satellite से 2017 में **7,600 km** की QKD-सुरक्षित intercontinental video call हुई। भारत में **DRDO और IIT दिल्ली** ने fibre और free space पर QKD दिखाया है।
+
+## QKD बनाम post-quantum cryptography
+
+| | QKD | PQC |
+|---|---|---|
+| सुरक्षा का आधार | Physics के नियम | कठिन गणितीय समस्याएँ |
+| हार्डवेयर | ख़ास photon sources और detectors | साधारण कंप्यूटर |
+| दूरी | Trusted nodes के बिना सीमित | असीमित |
+| स्थिति | शुरुआती networks | NIST standards 2024 में; लागू हो रहे हैं |
+
+ज़्यादातर विशेषज्ञ **दोनों** की उम्मीद करते हैं: हर जगह PQC, सबसे ऊँची सुरक्षा वाले links पर QKD।
+
+## असली दुनिया की सावधानी
+
+QKD का *सिद्धांत* सुरक्षित है; असली *devices* लीक कर सकते हैं। Detectors और light sources पर हमले हुए हैं। Certified हार्डवेयर उतना ही ज़रूरी है जितनी physics।
+
+## ख़ुद आज़माएँ
+
+1. Simulation में Eve सिर्फ़ **आधे** photons पकड़े। कितनी error rate होनी चाहिए? जाँचें।
+2. n को 20,000 करें। क्या error rate 0.25 के और पास आती है?
+3. Fibre 0.2 dB/km खोता है। 50 km के बाद कितने photons बचते हैं? (10^(−0.2·50/10))
+
+## सार
+
+| शब्द | मतलब |
+|---|---|
+| One-time pad | Random, लंबी, एक बार की key हो तो अटूट |
+| BB84 | Random bits + random bases, मेल वाले bases रखो |
+| Sifted key | जहाँ Alice और Bob के bases मिले |
+| Eve का निशान | हर photon measure करे तो ~25% errors |
+| रोकने की सीमा | ~11% error (BB84) |
+| E91 | Entangled pairs + Bell test |
+| PQC | गणित-आधारित, quantum-प्रतिरोधी encryption |
