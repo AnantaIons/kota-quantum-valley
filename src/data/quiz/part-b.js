@@ -1,4 +1,55 @@
 import { Q } from './q.js';
 
+// Part B: One qubit (Lessons 7–11)
 export const quiz = {
+  'superposition-and-the-bloch-sphere': [
+    Q(['A qubit\'s Bloch vector has z = 0.4. What is P(0)?', ['0.4', '0.7', '0.6', '0.16'], 1, 'P(0) = (1 + z)/2 = 1.4/2 = 0.7.'],
+      ['Qubit के Bloch vector में z = 0.4 है। P(0) क्या है?', ['0.4', '0.7', '0.6', '0.16'], 1, 'P(0) = (1 + z)/2 = 1.4/2 = 0.7।']),
+    Q(['Which pair of states is opposite on the Bloch sphere?', ['|0⟩ and |+⟩', '|+⟩ and |+i⟩', '|+i⟩ and |−i⟩', '|0⟩ and |−⟩'], 2, 'Opposite points are orthogonal states. |+i⟩ and |−i⟩ sit at +y and −y.'],
+      ['Bloch sphere पर कौन-सी जोड़ी उल्टी है?', ['|0⟩ और |+⟩', '|+⟩ और |+i⟩', '|+i⟩ और |−i⟩', '|0⟩ और |−⟩'], 2, 'उल्टे बिंदु orthogonal states हैं। |+i⟩ और |−i⟩ +y और −y पर हैं।']),
+    Q(['How can you tell the superposition |+⟩ from a 50/50 coin toss between |0⟩ and |1⟩?', ['Measure in the 0/1 basis', 'Apply H, then measure', 'Measure twice', 'You can\'t'], 1, 'H|+⟩ = |0⟩ gives 0 every time. The coin toss still gives 50/50 after H, because it never interferes.'],
+      ['Superposition |+⟩ को |0⟩ और |1⟩ के 50/50 सिक्का उछाल से कैसे अलग पहचानें?', ['0/1 basis में measure करें', 'H लगाकर measure करें', 'दो बार measure करें', 'नहीं पहचान सकते'], 1, 'H|+⟩ = |0⟩ हर बार 0 देता है। सिक्का उछाल H के बाद भी 50/50 देता है, क्योंकि वह कभी interfere नहीं करता।']),
+    Q(['Why does θ/2, not θ, appear in cos(θ/2)|0⟩ + e^(iφ)sin(θ/2)|1⟩?', ['To make the maths shorter', 'Because orthogonal states are 90° apart as vectors but opposite (180°) on the sphere', 'Because of the global phase', 'It is a convention with no meaning'], 1, 'The sphere doubles every angle, so |0⟩ and |1⟩ (orthogonal) can sit at the two poles.'],
+      ['cos(θ/2)|0⟩ + e^(iφ)sin(θ/2)|1⟩ में θ की जगह θ/2 क्यों है?', ['गणित छोटा करने के लिए', 'क्योंकि orthogonal states vectors की तरह 90° पर हैं पर गोले पर उल्टी (180°)', 'Global phase की वजह से', 'बिना मतलब की परंपरा है'], 1, 'गोला हर कोण दोगुना करता है, ताकि |0⟩ और |1⟩ (orthogonal) दोनों ध्रुवों पर रह सकें।']),
+  ],
+  'measurement-and-the-born-rule': [
+    Q(['A qubit is measured and gives 1. It is measured again straight away in the same basis. What happens?', ['50/50', 'It gives 1 again', 'It gives 0', 'It gives the average'], 1, 'After the first measurement the state collapsed to |1⟩, so the second gives 1 with certainty.'],
+      ['Qubit measure किया और 1 मिला। तुरंत उसी basis में फिर measure किया। क्या होगा?', ['50/50', 'फिर 1', '0', 'औसत'], 1, 'पहले measurement के बाद state |1⟩ में collapse हो गई, तो दूसरा पक्का 1 देगा।']),
+    Q(['Hardware measures only in the 0/1 basis. To measure along y, what do you apply first?', ['H', 'S, then H', 'S†, then H', 'Nothing'], 2, 'S† turns |+i⟩ into |+⟩, and H turns |+⟩ into |0⟩. So outcome 0 means +i.'],
+      ['हार्डवेयर सिर्फ़ 0/1 basis में measure करता है। y के साथ measure करने के लिए पहले क्या लगाएँ?', ['H', 'S, फिर H', 'S†, फिर H', 'कुछ नहीं'], 2, 'S†, |+i⟩ को |+⟩ बनाता है, और H, |+⟩ को |0⟩। तो नतीजा 0 का मतलब +i।']),
+    Q(['What does ⟨Z⟩ equal for a single qubit?', ['P(0) + P(1)', 'P(0) − P(1)', 'P(0) × P(1)', '|α| − |β|'], 1, 'Outcome 0 counts +1 and outcome 1 counts −1, so ⟨Z⟩ = P(0) − P(1). It is the z of the Bloch vector.'],
+      ['एक qubit के लिए ⟨Z⟩ किसके बराबर है?', ['P(0) + P(1)', 'P(0) − P(1)', 'P(0) × P(1)', '|α| − |β|'], 1, 'नतीजा 0, +1 और नतीजा 1, −1 गिना जाता है, तो ⟨Z⟩ = P(0) − P(1)। यही Bloch vector का z है।']),
+    Q(['In the quantum Zeno effect, what does measuring very often do to a slowly rotating qubit?', ['Speeds it up', 'Freezes it in its starting state', 'Makes it random', 'Nothing'], 1, 'Each check collapses it back to |0⟩ with high probability: [cos²(90°/N)]ᴺ → 1 as N grows.'],
+      ['Quantum Zeno effect में बहुत बार measure करना धीरे घूमते qubit के साथ क्या करता है?', ['तेज़ करता है', 'उसे शुरुआती state में जमा देता है', 'Random बनाता है', 'कुछ नहीं'], 1, 'हर जाँच उसे ज़्यादा संभावना से वापस |0⟩ में collapse करती है: N बढ़ने पर [cos²(90°/N)]ᴺ → 1।']),
+  ],
+  'single-qubit-gates': [
+    Q(['Which gate swaps the 0/1 basis with the +/− basis?', ['X', 'Z', 'H', 'S'], 2, 'H|0⟩ = |+⟩, H|1⟩ = |−⟩ and back again. That is why HXH = Z and HZH = X.'],
+      ['कौन-सा gate 0/1 basis और +/− basis की अदला-बदली करता है?', ['X', 'Z', 'H', 'S'], 2, 'H|0⟩ = |+⟩, H|1⟩ = |−⟩ और वापस भी। इसीलिए HXH = Z और HZH = X।']),
+    Q(['What does S do to |+⟩?', ['Leaves it as |+⟩', 'Turns it into |−⟩', 'Turns it into |+i⟩', 'Turns it into |0⟩'], 2, 'S is a 90° turn about z, which moves the equator point +x to +y.'],
+      ['S, |+⟩ के साथ क्या करता है?', ['|+⟩ ही रहता है', '|−⟩ बनाता है', '|+i⟩ बनाता है', '|0⟩ बनाता है'], 2, 'S, z के चारों ओर 90° घुमाव है, जो भूमध्य के बिंदु +x को +y पर ले जाता है।']),
+    Q(['Which statement about T is true?', ['T = X²', 'TT = S, and adding T to H, S, CNOT makes a universal set', 'T is its own inverse', 'T changes P(0) for |0⟩'], 1, 'T is a 45° z-rotation. Clifford gates alone are classically simulable; T makes the set universal.'],
+      ['T के बारे में कौन-सा कथन सही है?', ['T = X²', 'TT = S, और H, S, CNOT में T जोड़ने से universal set बनता है', 'T अपना ही inverse है', 'T, |0⟩ का P(0) बदलता है'], 1, 'T, 45° का z-घुमाव है। सिर्फ़ Clifford gates classically simulate हो जाते हैं; T set को universal बनाता है।']),
+    Q(['What is XZ compared with ZX?', ['They are equal', 'XZ = −ZX', 'XZ = ZX = I', 'XZ = iZX'], 1, 'Different Pauli matrices anticommute. This property is what lets error-correcting codes detect errors.'],
+      ['XZ की ZX से तुलना?', ['बराबर हैं', 'XZ = −ZX', 'XZ = ZX = I', 'XZ = iZX'], 1, 'अलग Pauli matrices anticommute करती हैं। यही गुण error-correcting codes को errors पकड़ने देता है।']),
+  ],
+  'phase-global-and-relative': [
+    Q(['Which of these is a different physical state from (|0⟩ + |1⟩)/√2?', ['−(|0⟩ + |1⟩)/√2', 'i(|0⟩ + |1⟩)/√2', '(|0⟩ − |1⟩)/√2', 'e^(i·0.3)(|0⟩ + |1⟩)/√2'], 2, 'The others differ by a global phase only. (|0⟩ − |1⟩)/√2 = |−⟩ differs by a relative phase.'],
+      ['इनमें से कौन (|0⟩ + |1⟩)/√2 से अलग भौतिक state है?', ['−(|0⟩ + |1⟩)/√2', 'i(|0⟩ + |1⟩)/√2', '(|0⟩ − |1⟩)/√2', 'e^(i·0.3)(|0⟩ + |1⟩)/√2'], 2, 'बाक़ी सिर्फ़ global phase में अलग हैं। (|0⟩ − |1⟩)/√2 = |−⟩ relative phase में अलग है।']),
+    Q(['In the circuit H, P(φ), H starting from |0⟩, what is P(0)?', ['½ always', 'cos²(φ/2)', 'sin φ', 'cos φ'], 1, 'The two paths to |0⟩ have amplitudes ½ and ½·e^(iφ); |1 + e^(iφ)|²/4 = cos²(φ/2).'],
+      ['|0⟩ से शुरू circuit H, P(φ), H में P(0) क्या है?', ['हमेशा ½', 'cos²(φ/2)', 'sin φ', 'cos φ'], 1, '|0⟩ तक के दो रास्तों के amplitudes ½ और ½·e^(iφ) हैं; |1 + e^(iφ)|²/4 = cos²(φ/2)।']),
+    Q(['P(θ) and RZ(θ) differ only by a global phase. What about controlled-P and controlled-RZ?', ['Also equivalent', 'Different: the global phase becomes a relative phase on the control', 'Both are the identity', 'Only differ for θ = 0'], 1, 'Controlled, the phase e^(−iθ/2) appears only when the control is 1, so it is a measurable relative phase.'],
+      ['P(θ) और RZ(θ) सिर्फ़ global phase में अलग हैं। Controlled-P और controlled-RZ?', ['ये भी equivalent', 'अलग: global phase control पर relative phase बन जाता है', 'दोनों identity हैं', 'सिर्फ़ θ = 0 पर अलग'], 1, 'Control करने पर phase e^(−iθ/2) सिर्फ़ control 1 होने पर आता है, तो यह नापा जा सकने वाला relative phase है।']),
+    Q(['Random phase kicks (dephasing) push the interferometer\'s P(0) towards...', ['1', '0', '0.5', 'cos²(φ/2)'], 2, 'Averaging cos²(φ/2) over random φ gives ½: the superposition behaves like a coin toss.'],
+      ['Random phase धक्के (dephasing) interferometer के P(0) को किसकी ओर धकेलते हैं?', ['1', '0', '0.5', 'cos²(φ/2)'], 2, 'Random φ पर cos²(φ/2) का औसत ½ है: superposition सिक्का उछाल जैसा बर्ताव करता है।']),
+  ],
+  'rotations-and-any-single-qubit-gate': [
+    Q(['What does RY(θ)|0⟩ equal?', ['cos θ|0⟩ + sin θ|1⟩', 'cos(θ/2)|0⟩ + sin(θ/2)|1⟩', 'e^(iθ)|0⟩', '|0⟩'], 1, 'RY is real: [[cos(θ/2), −sin(θ/2)], [sin(θ/2), cos(θ/2)]]. Its first column is the answer.'],
+      ['RY(θ)|0⟩ किसके बराबर है?', ['cos θ|0⟩ + sin θ|1⟩', 'cos(θ/2)|0⟩ + sin(θ/2)|1⟩', 'e^(iθ)|0⟩', '|0⟩'], 1, 'RY real है: [[cos(θ/2), −sin(θ/2)], [sin(θ/2), cos(θ/2)]]। उसका पहला column ही जवाब है।']),
+    Q(['What is RX(2π)?', ['I', '−I', 'X', '0'], 1, 'cos(π)·I − i·sin(π)·X = −I. You need 4π to return exactly to I.'],
+      ['RX(2π) क्या है?', ['I', '−I', 'X', '0'], 1, 'cos(π)·I − i·sin(π)·X = −I। ठीक I पर लौटने के लिए 4π चाहिए।']),
+    Q(['How many rotations are enough to build any single-qubit gate (ignoring global phase)?', ['1', '2', '3', 'It depends on the gate, sometimes infinitely many'], 2, 'Euler decomposition: U = e^(iα)·RZ(β)·RY(γ)·RZ(δ).'],
+      ['कोई भी single-qubit gate बनाने के लिए कितने घुमाव काफ़ी हैं (global phase छोड़कर)?', ['1', '2', '3', 'Gate पर निर्भर, कभी अनगिनत'], 2, 'Euler decomposition: U = e^(iα)·RZ(β)·RY(γ)·RZ(δ)।']),
+    Q(['On IBM superconducting chips, why is an RZ gate free?', ['It is never used', 'It is done virtually by shifting the phase of later pulses in software', 'It takes one microsecond', 'It is the same as measurement'], 1, 'A virtual Z takes no time and adds no error. Any gate needs at most two physical √X pulses.'],
+      ['IBM superconducting chips पर RZ gate मुफ़्त क्यों है?', ['कभी इस्तेमाल नहीं होता', 'Software में आगे के pulses का phase खिसकाकर virtually होता है', 'एक microsecond लेता है', 'Measurement जैसा ही है'], 1, 'Virtual Z में समय नहीं लगता और ग़लती नहीं जुड़ती। हर gate के लिए ज़्यादा से ज़्यादा दो भौतिक √X pulses चाहिए।']),
+  ],
 };
