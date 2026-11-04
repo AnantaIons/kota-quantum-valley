@@ -8,7 +8,7 @@ category: lesson
 lesson: 18
 ---
 
-आपने qubits, gates, algorithms, हार्डवेयर, communication और sensing सीख लिए। अब कोड लिखने की बारी है। इस पाठ के अंत तक आप अपने कंप्यूटर पर तीन असली quantum programs चला चुके होंगे।
+आपने qubits, gates, measurement और entanglement सीख लिए, और रास्ते में छोटे snippets भी चला चुके हैं। अब Qiskit ठीक से set up करके पूरे quantum programs लिखने की बारी है। इस पाठ के अंत तक आप अपने कंप्यूटर पर ऐसे तीन चला चुके होंगे, और फिर पाठ 19 Qiskit को गहराई से सिखाता है।
 
 **क्या चाहिए:** Python 3.10 या नया, और लगभग 15 मिनट। पाठ 6–14 से आगे की फ़िज़िक्स नहीं।
 

@@ -30,16 +30,6 @@ export const quizzes = {
     Q(['Why do amplitudes, not probabilities, make quantum computing powerful?', ['Amplitudes are bigger', 'Amplitudes can cancel each other', 'Amplitudes are always positive', 'Amplitudes are easy to read'], 1, 'Amplitudes can be negative or complex, so they can interfere and cancel. Probabilities never can.'],
       ['Probabilities नहीं, amplitudes क्वांटम कंप्यूटिंग को ताक़तवर क्यों बनाते हैं?', ['Amplitudes बड़े होते हैं', 'Amplitudes एक-दूसरे को cancel कर सकते हैं', 'Amplitudes हमेशा positive हैं', 'Amplitudes पढ़ना आसान है'], 1, 'Amplitudes negative या complex हो सकते हैं, इसलिए interfere करके cancel हो सकते हैं। Probabilities कभी नहीं।']),
   ],
-  'two-qubit-gates-and-circuits': [
-    Q(['What does H do to |0⟩?', ['Makes |1⟩', 'Makes (|0⟩ + |1⟩)/√2', 'Makes −|0⟩', 'Nothing'], 1, 'H turns |0⟩ into the equal superposition |+⟩.'],
-      ['H, |0⟩ के साथ क्या करता है?', ['|1⟩ बनाता है', '(|0⟩ + |1⟩)/√2 बनाता है', '−|0⟩ बनाता है', 'कुछ नहीं'], 1, 'H, |0⟩ को बराबर superposition |+⟩ में बदलता है।']),
-    Q(['|+⟩ and |−⟩ both give 50/50. How can you tell them apart?', ['You can\'t', 'Apply H, then measure', 'Measure twice', 'Apply X, then measure'], 1, 'H maps |+⟩ → |0⟩ and |−⟩ → |1⟩, so the hidden sign becomes visible.'],
-      ['|+⟩ और |−⟩ दोनों 50/50 देते हैं। इन्हें अलग कैसे पहचानें?', ['पहचान नहीं सकते', 'H लगाकर measure करें', 'दो बार measure करें', 'X लगाकर measure करें'], 1, 'H, |+⟩ को |0⟩ और |−⟩ को |1⟩ बनाता है, तो छिपा चिह्न दिखने लगता है।']),
-    Q(['CNOT is applied to |10⟩ (control = first qubit). The result is…', ['|10⟩', '|11⟩', '|00⟩', '|01⟩'], 1, 'The control is 1, so the target flips: |10⟩ → |11⟩.'],
-      ['|10⟩ पर CNOT लगाया (control = पहला qubit)। नतीजा…', ['|10⟩', '|11⟩', '|00⟩', '|01⟩'], 1, 'Control 1 है, तो target पलटता है: |10⟩ → |11⟩।']),
-    Q(['Which gates make a Bell pair from |00⟩?', ['X then Z', 'H then CNOT', 'T then S', 'SWAP'], 1, 'H on the first qubit, then CNOT, gives (|00⟩ + |11⟩)/√2.'],
-      ['|00⟩ से Bell pair कौन-से gates बनाते हैं?', ['X फिर Z', 'H फिर CNOT', 'T फिर S', 'SWAP'], 1, 'पहले qubit पर H, फिर CNOT से (|00⟩ + |11⟩)/√2 मिलता है।']),
-  ],
   'oracles-deutsch-jozsa-bernstein-vazirani': [
     Q(['What is phase kickback?', ['A gate error', 'A target in |−⟩ moves the oracle\'s sign onto the input', 'Measuring twice', 'A kind of noise'], 1, 'With the target in |−⟩, flipping it just adds a −1 that attaches to the input state.'],
       ['Phase kickback क्या है?', ['Gate की ग़लती', '|−⟩ वाला target oracle का चिह्न input पर डाल देता है', 'दो बार measure करना', 'एक तरह का noise'], 1, 'Target |−⟩ में हो तो उसे पलटने से बस −1 जुड़ता है, जो input state पर चला जाता है।']),

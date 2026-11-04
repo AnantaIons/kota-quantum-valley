@@ -7,7 +7,7 @@ category: lesson
 lesson: 18
 ---
 
-You've learned qubits, gates, algorithms, hardware, communication and sensing. Now you write code. By the end of this lesson you'll have run three real quantum programs on your own computer.
+You've learned qubits, gates, measurement and entanglement, and you've already run small snippets along the way. Now you set Qiskit up properly and write complete quantum programs. By the end of this lesson you'll have run three of them on your own computer, and Lesson 19 then covers Qiskit in depth.
 
 **What you need:** Python 3.10 or newer and about 15 minutes. No physics beyond Lessons 6–14.
 
