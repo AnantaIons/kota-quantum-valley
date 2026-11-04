@@ -85,10 +85,6 @@ export const art = {
       <path d='M40 205 Q 109 232, 178 205' fill='none' stroke='${G}' stroke-width='2'/><text x='109' y='238' text-anchor='middle' ${mono} font-size='12' fill='${GL}'>r = 4</text>
       <text x='360' y='42' text-anchor='end' ${head} font-size='22' font-weight='700' fill='${T}'>15 = 3 × 5</text>`,
 
-  // your-first-error-correcting-code: a surface-code lattice with one flagged error
-  'your-first-error-correcting-code': `${[0, 1, 2, 3, 4].map((r) => [0, 1, 2, 3, 4, 5, 6].map((c) => { const x = 60 + c * 47, y = 30 + r * 46, err = r === 2 && c === 3, anc = (r + c) % 2 === 1; return `<circle cx='${x}' cy='${y}' r='${anc ? 6 : 10}' fill='${err ? P : anc ? '#0B1026' : V}' fill-opacity='${err ? 1 : anc ? 1 : 0.7}' stroke='${anc ? G : 'none'}' stroke-width='2'/>`; }).join('')).join('')}
-      <circle cx='201' cy='122' r='22' fill='none' stroke='${P}' stroke-width='2' stroke-dasharray='4 4'/>`,
-
   // variational-algorithms-vqe-qaoa: an energy landscape with the optimiser's ball at the minimum
   'variational-algorithms-vqe-qaoa': (() => {
     const f = (x) => { const t = (x - 20) / 360; return 150 - 60 * Math.sin(t * 9) * (1 - t * 0.3) + 40 * t; };

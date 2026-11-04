@@ -1,6 +1,6 @@
 import { G, GL, V, P, GR, T, M, BG, mono, head, plot, tx, gate } from './kit.js';
 
-// Part E covers: quantum algorithms
+// Part E covers (quantum algorithms) and Part F covers (errors and correction)
 export const art = {
   // Inputs pair up as {x, x ⊕ s} and land on the same output (s = 101)
   'simons-algorithm': (() => {
@@ -54,4 +54,61 @@ export const art = {
       ${tx(256, 64, 'NP', { size: 16, fill: T, font: head, weight: 700 })}
       ${tx(318, 128, 'NP-', { size: 11, fill: P, anchor: 'middle' })}${tx(318, 143, 'complete', { size: 11, fill: P, anchor: 'middle' })}
       <circle cx='214' cy='112' r='5' fill='${GL}'/>${tx(214, 134, 'factoring', { size: 10, fill: GL, anchor: 'middle' })}`,
+  // A Bloch vector spiralling inwards, and a decaying Ramsey fringe
+  'noise-and-decoherence-in-circuits': (() => {
+    const cx = 100, cy = 122, R = 78;
+    let d = '';
+    for (let k = 0; k <= 120; k++) { const t = k / 120, r = R * Math.exp(-2.1 * t), a = -0.9 + 7 * t; d += `${k ? 'L' : 'M'}${(cx + r * Math.cos(a)).toFixed(1)} ${(cy + r * Math.sin(a) * 0.55).toFixed(1)} `; }
+    const fringe = plot((x) => 128 - 70 * Math.exp(-(x - 214) / 70) * Math.cos((x - 214) / 9), 214, 380, 2);
+    const env = plot((x) => 128 - 70 * Math.exp(-(x - 214) / 70), 214, 380, 4);
+    return `<circle cx='${cx}' cy='${cy}' r='${R}' fill='${V}' fill-opacity='.08' stroke='${M}' stroke-width='1.5'/><ellipse cx='${cx}' cy='${cy}' rx='${R}' ry='${R * 0.3}' fill='none' stroke='${M}' stroke-opacity='.5' stroke-dasharray='3 4'/>
+      <path d='${d}' fill='none' stroke='${P}' stroke-width='2.2'/><circle cx='${(cx + R * Math.cos(-0.9)).toFixed(1)}' cy='${(cy + R * Math.sin(-0.9) * 0.55).toFixed(1)}' r='5' fill='${GL}'/><circle cx='${cx}' cy='${cy}' r='3' fill='${T}'/>
+      <path d='${env}' fill='none' stroke='${G}' stroke-width='1.5' stroke-dasharray='4 4'/><path d='${fringe}' fill='none' stroke='${G}' stroke-width='2.4'/>
+      <line x1='214' y1='128' x2='384' y2='128' stroke='${M}' stroke-opacity='.4'/>${tx(300, 46, 'e^(−t/T2)', { size: 14, fill: GL, anchor: 'middle' })}`;
+  })(),
+
+  // Three data qubits, two parity checks, one flipped qubit and its syndrome
+  'your-first-error-correcting-code': (() => {
+    const xs = [80, 200, 320], err = 1;
+    const links = [[0, 140], [1, 140], [1, 260], [2, 260]].map(([i, a]) => `<line x1='${xs[i]}' y1='92' x2='${a}' y2='160' stroke='${GL}' stroke-width='2' stroke-opacity='.7'/>`).join('');
+    const data = xs.map((x, i) => `<circle cx='${x}' cy='92' r='24' fill='${i === err ? P : V}' fill-opacity='${i === err ? 0.9 : 0.35}' stroke='${i === err ? P : G}' stroke-width='2.5'/>${tx(x, 99, i === err ? 'X' : `d${i}`, { size: 17, fill: T, anchor: 'middle', font: head, weight: 700 })}`).join('');
+    const anc = [140, 260].map((x) => `<rect x='${x - 18}' y='160' width='36' height='36' rx='7' transform='rotate(45 ${x} 178)' fill='${BG}' stroke='${G}' stroke-width='2'/>${tx(x, 184, '1', { size: 15, fill: G, anchor: 'middle', font: head, weight: 700 })}`).join('');
+    return `${links}${data}${anc}${tx(200, 44, 'α|000⟩ + β|111⟩', { size: 16, fill: GL, anchor: 'middle' })}${tx(200, 230, 'syndrome 11 → fix d1', { size: 12, fill: M, anchor: 'middle' })}`;
+  })(),
+
+  // The Steane code drawn as a triangle of three 4-qubit faces
+  'stabilizer-codes': (() => {
+    const A = [200, 34], B = [78, 206], C = [322, 206];
+    const mid = (p, q) => [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2];
+    const AB = mid(A, B), BC = mid(B, C), CA = mid(C, A), O = [(A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3];
+    const face = (pts, col) => `<path d='M${pts.map((p) => p.map((v) => v.toFixed(1)).join(' ')).join(' L')} Z' fill='${col}' fill-opacity='.28' stroke='${col}' stroke-width='2'/>`;
+    const dots = [A, B, C, AB, BC, CA, O].map((p) => `<circle cx='${p[0].toFixed(1)}' cy='${p[1].toFixed(1)}' r='8' fill='${T}' stroke='${BG}' stroke-width='2'/>`).join('');
+    return `${face([A, CA, O, AB], V)}${face([B, AB, O, BC], G)}${face([C, BC, O, CA], P)}${dots}
+      ${tx(30, 46, 'S|ψ⟩ = |ψ⟩', { size: 15, fill: GL })}${tx(370, 46, '[[7,1,3]]', { size: 14, fill: M, anchor: 'end' })}`;
+  })(),
+
+  // A surface-code patch: chessboard checks, data qubits, an error chain and its two defects
+  'the-surface-code-and-fault-tolerance': (() => {
+    const n = 5, s = 38, x0 = 166, y0 = 30;
+    let out = '';
+    for (let r = 0; r < n - 1; r++) for (let c = 0; c < n - 1; c++) out += `<rect x='${x0 + c * s}' y='${y0 + r * s}' width='${s}' height='${s}' fill='${(r + c) % 2 ? G : V}' fill-opacity='${(r + c) % 2 ? 0.28 : 0.4}' stroke='${BG}' stroke-width='1.5'/>`;
+    const defects = [[0, 1], [3, 2]];
+    out += defects.map(([r, c]) => `<rect x='${x0 + c * s + 4}' y='${y0 + r * s + 4}' width='${s - 8}' height='${s - 8}' rx='6' fill='none' stroke='${P}' stroke-width='3'/>`).join('');
+    const chain = [[1, 2], [2, 2], [3, 2]];
+    out += `<path d='M${chain.map(([r, c]) => `${x0 + c * s} ${y0 + r * s}`).join(' L')}' stroke='${P}' stroke-width='4' stroke-linecap='round' fill='none'/>`;
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) { const e = chain.some(([a, b]) => a === r && b === c); out += `<circle cx='${x0 + c * s}' cy='${y0 + r * s}' r='${e ? 7 : 5.5}' fill='${e ? P : T}'/>`; }
+    return `${out}${tx(30, 60, 'd = 5', { size: 16, fill: GL, font: head, weight: 700 })}${tx(30, 84, 'p < p_th', { size: 13, fill: M })}`;
+  })(),
+
+  // Zero-noise extrapolation: three noisy points and a curve back to zero noise
+  'error-mitigation': (() => {
+    const X = (f) => 70 + f * 52, Y = (v) => 200 - v * 680;
+    const pts = [[1, 0.1492], [3, 0.0874], [5, 0.0497]];
+    const curve = plot((x) => Y(0.1967 * Math.exp(-0.2748 * ((x - 70) / 52))), 70, X(5.2), 3);
+    return `<line x1='60' y1='200' x2='360' y2='200' stroke='${M}' stroke-width='1.5'/><line x1='70' y1='206' x2='70' y2='40' stroke='${M}' stroke-width='1.5'/>
+      <path d='${curve}' fill='none' stroke='${GL}' stroke-width='2' stroke-dasharray='5 5'/>
+      ${pts.map(([f, v]) => `<circle cx='${X(f)}' cy='${Y(v).toFixed(1)}' r='7' fill='${V}' stroke='${T}' stroke-width='1.5'/>`).join('')}
+      <circle cx='70' cy='${Y(0.1958).toFixed(1)}' r='8' fill='${G}'/>
+      ${[0, 1, 3, 5].map((f) => tx(X(f), 222, String(f), { size: 12, fill: M, anchor: 'middle' })).join('')}${tx(250, 70, 'noise → 0', { size: 15, fill: GL, anchor: 'middle' })}`;
+  })(),
 };

@@ -100,16 +100,6 @@ export const quizzes = {
     Q(['Roughly how many noisy physical qubits to break RSA-2048 (2025 estimate)?', ['50', 'About a million', '1,000', 'A billion'], 1, 'A 2025 estimate put it at under a million noisy qubits running for about a week.'],
       ['RSA-2048 तोड़ने के लिए लगभग कितने noisy physical qubits (2025 का अनुमान)?', ['50', 'लगभग 10 लाख', '1,000', 'एक अरब'], 1, '2025 के अनुमान के अनुसार 10 लाख से कम noisy qubits, लगभग एक हफ़्ते चलाकर।']),
   ],
-  'your-first-error-correcting-code': [
-    Q(['Why can\'t you error-correct qubits by copying them 3 times?', ['Too expensive', 'No-cloning forbids copying unknown states', 'Copies are slower', 'You can'], 1, 'You can\'t copy an unknown qubit, so codes spread it out with entanglement instead.'],
-      ['Qubits को 3 बार copy करके error ठीक क्यों नहीं कर सकते?', ['बहुत महँगा', 'No-cloning अनजान state copy नहीं करने देता', 'Copies धीमी', 'कर सकते हैं'], 1, 'अनजान qubit copy नहीं हो सकता, इसलिए codes उसे entanglement से फैलाते हैं।']),
-    Q(['What does the syndrome reveal?', ['The data α and β', 'Which qubit has an error', 'The qubit temperature', 'Nothing'], 1, 'Parity checks locate the error without revealing the encoded information.'],
-      ['Syndrome क्या बताता है?', ['Data α और β', 'किस qubit पर error है', 'Qubit का तापमान', 'कुछ नहीं'], 1, 'Parity checks encoded जानकारी बताए बिना error की जगह बताते हैं।']),
-    Q(['In the bit-flip code, both parity checks fire. The error is on…', ['Qubit 0', 'Qubit 1', 'Qubit 2', 'No qubit'], 1, 'Qubit 1 is shared by both checks.'],
-      ['Bit-flip code में दोनों parity checks fire हुए। Error कहाँ है?', ['Qubit 0', 'Qubit 1', 'Qubit 2', 'कहीं नहीं'], 1, 'Qubit 1 दोनों जाँचों में शामिल है।']),
-    Q(['What does being "below threshold" mean?', ['The chip is cold', 'Adding qubits makes the logical qubit better', 'No errors at all', 'Fewer qubits needed'], 1, 'Below threshold, bigger codes give lower logical error rates, as Google\'s Willow showed in 2024.'],
-      ['"Threshold से नीचे" का मतलब?', ['Chip ठंडी है', 'ज़्यादा qubits से logical qubit बेहतर होता है', 'कोई error नहीं', 'कम qubits चाहिए'], 1, 'Threshold से नीचे बड़े codes कम logical errors देते हैं, जैसा Google की Willow ने 2024 में दिखाया।']),
-  ],
   'variational-algorithms-vqe-qaoa': [
     Q(['In VQE, who adjusts the circuit\'s angles?', ['The quantum computer', 'A classical optimiser', 'The user by hand', 'Nobody'], 1, 'It\'s a loop: the quantum computer measures, a classical optimiser updates θ.'],
       ['VQE में circuit के कोण कौन बदलता है?', ['Quantum computer', 'Classical optimiser', 'User हाथ से', 'कोई नहीं'], 1, 'यह loop है: quantum computer measure करता है, classical optimiser θ बदलता है।']),
