@@ -40,4 +40,25 @@ export const art = {
       <line x1='40' y1='196' x2='352' y2='196' stroke='${M}' stroke-width='2'/>${nodes}
       ${tx(222, 52, 'layout, route, optimise', { size: 11, fill: M })}`;
   })(),
+  // Part H: a chain of network nodes with entanglement links, swapped into one long link
+  'the-quantum-internet': (() => {
+    const xs = [40, 120, 200, 280, 360];
+    const nodes = xs.map((x, i) => `<rect x='${x - 16}' y='${i % 4 === 0 ? 150 : 158}' width='32' height='${i % 4 === 0 ? 40 : 24}' rx='7' fill='${i % 4 === 0 ? G : V}' fill-opacity='${i % 4 === 0 ? 1 : 0.6}' stroke='${GL}' stroke-width='1.5'/>`).join('');
+    const short = xs.slice(0, -1).map((x, i) => `<path d='${plot((t) => 170 - 6 * Math.sin((t - x) / 6), x + 18, x + 62, 2)}' fill='none' stroke='${P}' stroke-width='2' stroke-opacity='.8'/>`).join('');
+    const arc = `<path d='M40 140 C 120 30, 280 30, 360 140' fill='none' stroke='${GL}' stroke-width='2.6' stroke-dasharray='6 5'/>`;
+    return `${arc}${short}${nodes}${tx(200, 118, 'Bell pair, end to end', { size: 13, fill: GL, anchor: 'middle' })}${tx(40, 214, 'A', { size: 14, fill: T, anchor: 'middle', font: head, weight: 700 })}${tx(360, 214, 'B', { size: 14, fill: T, anchor: 'middle', font: head, weight: 700 })}`;
+  })(),
+
+  // A lattice of points with a hidden secret near one of them: learning with errors
+  'post-quantum-cryptography': (() => {
+    const b1 = [46, -14], b2 = [18, 40], o = [70, 200];
+    const pts = [];
+    for (let i = -2; i < 9; i++) for (let j = -2; j < 6; j++) { const x = o[0] + i * b1[0] + j * b2[0], y = o[1] + i * b1[1] - j * b2[1]; if (x > 20 && x < 380 && y > 20 && y < 215) pts.push([x, y]); }
+    const lattice = pts.map(([x, y]) => `<circle cx='${x.toFixed(1)}' cy='${y.toFixed(1)}' r='3.2' fill='${T}' fill-opacity='.55'/>`).join('');
+    const target = pts.reduce((best, p) => (Math.hypot(p[0] - 230, p[1] - 110) < Math.hypot(best[0] - 230, best[1] - 110) ? p : best), pts[0]);
+    const noisy = [target[0] + 18, target[1] - 13];
+    return `${lattice}<circle cx='${target[0].toFixed(1)}' cy='${target[1].toFixed(1)}' r='22' fill='${G}' fill-opacity='.12' stroke='${G}' stroke-opacity='.5' stroke-dasharray='3 3'/><circle cx='${target[0].toFixed(1)}' cy='${target[1].toFixed(1)}' r='8' fill='${G}'/>
+      <circle cx='${noisy[0].toFixed(1)}' cy='${noisy[1].toFixed(1)}' r='7' fill='${P}'/><line x1='${target[0].toFixed(1)}' y1='${target[1].toFixed(1)}' x2='${noisy[0].toFixed(1)}' y2='${noisy[1].toFixed(1)}' stroke='${P}' stroke-width='2' stroke-dasharray='3 3'/>
+      <rect x='26' y='26' width='170' height='34' rx='8' fill='${BG}' fill-opacity='.85' stroke='${G}' stroke-width='1.5'/>${tx(111, 49, 'b = A·s + e', { size: 15, fill: GL, anchor: 'middle' })}`;
+  })(),
 };
