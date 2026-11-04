@@ -16,8 +16,8 @@ content:
       - { name: founderName, label: Your name (About page), type: string }
       - { name: founderRole, label: One-line description of you, type: string }
       - { name: email, label: Public email (leave blank to hide), type: string }
-      - { name: announcement, label: Top banner text, English (leave blank to hide), type: string }
-      - { name: announcementHindi, label: Top banner text, Hindi (leave blank to hide), type: string }
+      - { name: announcement, label: "Top banner text (English, leave blank to hide)", type: string }
+      - { name: announcementHindi, label: "Top banner text (Hindi, leave blank to hide)", type: string }
       - { name: instagram, label: Instagram URL, type: string }
       - { name: instagramHandle, label: Instagram handle, type: string }
       - { name: linkedin, label: LinkedIn URL (optional), type: string }
@@ -53,7 +53,7 @@ content:
         options:
           values: [journey, explainer, lesson]
       - { name: day, label: "Day number (Learning log only)", type: number }
-      - { name: lesson, label: "Lesson number (Lessons only; 0 = Roadmap)", type: number }
+      - { name: lesson, label: "Lesson number (Lessons only, 0 = Roadmap)", type: number }
       - { name: slides, label: "Slide folder in public/slides, e.g. lesson-7 (Lessons only)", type: string }
       - { name: draft, label: Hide from site (draft), type: boolean }
       - { name: body, label: Content, type: rich-text }
