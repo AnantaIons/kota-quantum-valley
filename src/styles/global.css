@@ -542,3 +542,19 @@ html[lang='hi'] .brand-name { font-family: 'Space Grotesk', system-ui, sans-seri
 .cb-sel[hidden], .cb-sel [hidden] { display: none; }
 .cb-msg { min-height: 1.3em; margin: 10px 0 0; font-size: 0.9rem; }
 .cb-code { margin: 0 0 10px; font-size: 0.8rem; max-height: 260px; }
+
+/* ---------- Glossary ---------- */
+.glossary-index { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 28px; }
+.glossary-index a { font-family: var(--font-mono); font-size: 0.85rem; padding: 4px 9px; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; }
+.glossary-index a:hover { border-color: var(--cyan); }
+.glossary { margin: 0; border-top: 1px solid var(--border); }
+.glossary > div { padding: 16px 0; border-bottom: 1px solid var(--border); scroll-margin-top: 90px; }
+.glossary dt { font-family: var(--font-head); font-weight: 700; font-size: 1.08rem; color: var(--text); margin-bottom: 4px; }
+.glossary dd { margin: 0; color: var(--ink-soft); line-height: 1.6; }
+
+.lc-art { position: absolute; inset: 18px 18px 0; border-radius: 10px 10px 0 0; display: flex; flex-direction: column; justify-content: space-between; padding: 18px 20px; overflow: hidden;
+  background: radial-gradient(circle at 80% 20%, rgba(230, 195, 106, 0.28), transparent 55%), radial-gradient(circle at 10% 100%, rgba(137, 87, 255, 0.45), transparent 60%), linear-gradient(160deg, #141b44, #0a0f2a);
+  border: 1px solid var(--border); }
+.lc-art::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(140,160,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(140,160,255,0.07) 1px, transparent 1px); background-size: 22px 22px; }
+.lc-art-n { position: relative; z-index: 1; font-family: var(--font-head); font-weight: 700; font-size: 4.2rem; line-height: 1; letter-spacing: -0.04em; background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lc-art-k { position: relative; z-index: 1; align-self: flex-end; font-family: var(--font-mono); color: var(--text-2); font-size: 0.95rem; }

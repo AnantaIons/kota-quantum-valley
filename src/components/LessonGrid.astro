@@ -12,7 +12,9 @@ const count = (p) => (p.slides && slides[p.slides] ? slides[p.slides].length : 0
     <li class={p.lesson ? 'lc' : 'lc lc-start'}>
       <a href={p.url}>
         <span class="lc-cover">
-          {p.slides && <img src={`/thumbs/${p.slides}/01.webp`} alt="" width="432" height="540" loading="lazy" decoding="async" />}
+          {p.slides ? <img src={`/thumbs/${p.slides}/01.webp`} alt="" width="432" height="540" loading="lazy" decoding="async" /> : (
+            <span class="lc-art" aria-hidden="true"><span class="lc-art-n">{String(p.lesson).padStart(2, '0')}</span><span class="lc-art-k">|ψ⟩</span></span>
+          )}
           {!p.lesson && <span class="lc-flag">{L.startHere}</span>}
         </span>
         <span class="lc-body">

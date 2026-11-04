@@ -1,0 +1,24 @@
+---
+import terms from '../data/glossary.json';
+const { lang = 'en' } = Astro.props;
+const hi = lang === 'hi';
+const sorted = [...terms].sort((a, b) => a[0].localeCompare(b[0]));
+const letters = [...new Set(sorted.map((t) => t[0][0].toUpperCase()))];
+const id = (t) => 'g-' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+---
+<section class="article">
+  <div class="narrow">
+    <p class="eyebrow">{hi ? 'शब्दकोश' : 'Glossary'}</p>
+    <h1>{hi ? 'क्वांटम शब्दकोश' : 'Quantum glossary'}</h1>
+    <p class="desc">{hi ? `${terms.length} ज़रूरी शब्द, आसान भाषा में। तकनीकी शब्द अंग्रेज़ी में रखे गए हैं, जैसे आप उन्हें किताबों और कोड में देखेंगे।` : `${terms.length} key terms in plain language. Bookmark this page and come back whenever a lesson uses a word you don't know.`}</p>
+    <p class="glossary-index">{letters.map((l) => <a href={`#${id(sorted.find((t) => t[0][0].toUpperCase() === l)[0])}`}>{l}</a>)}</p>
+    <dl class="glossary">
+      {sorted.map(([term, en, hiText]) => (
+        <div id={id(term)}>
+          <dt>{term}</dt>
+          <dd>{hi ? hiText : en}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
