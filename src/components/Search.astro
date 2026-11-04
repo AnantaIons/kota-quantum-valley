@@ -1,0 +1,67 @@
+---
+// Site search: a dialog that loads the Pagefind index on first open.
+// Pagefind picks the English or Hindi index from <html lang>.
+const { lang = 'en' } = Astro.props;
+const hi = lang === 'hi';
+const L = hi
+  ? { title: 'पाठों में खोजें', close: 'बंद करें', placeholder: 'कोई शब्द लिखें, जैसे Bell state, Grover, surface code', offline: 'खोज live site पर काम करती है (site build होने के बाद)।', keys: 'खोलने के लिए / दबाएँ, बंद करने के लिए Esc' }
+  : { title: 'Search the lessons', close: 'Close', placeholder: 'Type a word, e.g. Bell state, Grover, surface code', offline: 'Search works on the live site (after the site is built).', keys: 'Press / to open, Esc to close' };
+---
+<dialog class="search-dialog" data-search-dialog aria-label={L.title}>
+  <div class="sd-head">
+    <strong>{L.title}</strong>
+    <button type="button" class="sd-close" data-search-close aria-label={L.close}>✕</button>
+  </div>
+  <div id="kqv-search" data-placeholder={L.placeholder} data-offline={L.offline}></div>
+  <p class="sd-foot">{L.keys}</p>
+</dialog>
+
+<script>
+  declare global { interface Window { PagefindUI: any } }
+  const dialog = document.querySelector('[data-search-dialog]') as HTMLDialogElement | null;
+  const box = document.getElementById('kqv-search') as HTMLElement | null;
+  let loading: Promise<void> | null = null;
+
+  const load = () => loading ??= new Promise<void>((resolve, reject) => {
+    const css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = '/pagefind/pagefind-ui.css';
+    document.head.append(css);
+    const js = document.createElement('script');
+    js.src = '/pagefind/pagefind-ui.js';
+    js.onload = () => {
+      new window.PagefindUI({
+        element: '#kqv-search',
+        showSubResults: true,
+        showImages: false,
+        excerptLength: 22,
+        translations: { placeholder: box!.dataset.placeholder },
+      });
+      resolve();
+    };
+    js.onerror = () => reject(new Error('no index'));
+    document.head.append(js);
+  });
+
+  const open = () => {
+    if (!dialog || dialog.open) return;
+    dialog.showModal();
+    load()
+      .then(() => setTimeout(() => (dialog.querySelector('input') as HTMLInputElement | null)?.focus(), 30))
+      .catch(() => { if (box) box.textContent = box.dataset.offline ?? ''; });
+  };
+
+  document.querySelectorAll('[data-search-open]').forEach((b) => b.addEventListener('click', open));
+  dialog?.querySelector('[data-search-close]')?.addEventListener('click', () => dialog.close());
+  dialog?.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });   // click on the backdrop
+  // Close the dialog when a result inside the same page is chosen
+  dialog?.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) dialog.close(); });
+  document.addEventListener('keydown', (e) => {
+    const el = e.target as HTMLElement;
+    const typing = el.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName);
+    if ((e.key === '/' && !typing) || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k')) {
+      e.preventDefault();
+      open();
+    }
+  });
+</script>

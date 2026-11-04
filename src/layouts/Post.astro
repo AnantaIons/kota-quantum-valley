@@ -29,10 +29,21 @@ const raw = typeof rawContent === 'function' ? rawContent() : '';
 const words = raw.replace(/```[\s\S]*?```/g, ' ').split(/\s+/).filter(Boolean).length;
 const mins = words ? Math.max(1, Math.round(words / 200)) : 0;
 const toc = isLesson ? headings.filter((h) => h.depth === 2) : [];
+const sectioned = (isLesson || frontmatter.category === 'explainer') && headings.some((h) => h.depth === 2);
+// Turn each h2 section into a collapsible <details>; the intro stays visible and the first section starts open.
+const content = await Astro.slots.render('default');
+const wrapSections = (html) => {
+  const [intro, ...parts] = html.split(/(?=<h2[\s>])/);
+  return intro + parts.map((chunk, i) => {
+    const end = chunk.indexOf('</h2>') + 5;
+    return `<details class="lsec"${i === 0 ? ' open' : ''}><summary class="lsec-sum">${chunk.slice(0, end)}</summary><div class="lsec-body">${chunk.slice(end)}</div></details>`;
+  }).join('');
+};
+const body = sectioned ? wrapSections(content) : content;
 const image = isLesson ? `/covers/${slug}.jpg` : undefined;
 ---
 <Base title={frontmatter.title} description={frontmatter.description} image={image} lang={lang}>
-  <article class="article">
+  <article class="article" data-pagefind-body>
     <div class="narrow">
       <header>
         <p class="eyebrow">{eyebrow}{part && <span class="part-tag">, {course1[lang].short}, {lang === 'hi' ? 'भाग' : 'Part'} {part.id}: {part[lang][0]}</span>}</p>
@@ -49,7 +60,13 @@ const image = isLesson ? `/covers/${slug}.jpg` : undefined;
           <ol>{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
         </nav>
       )}
-      <slot />
+      {sectioned && (
+        <div class="lsec-tools" data-lsec-tools>
+          <span>{lang === 'hi' ? `${toc.length} हिस्से, हर एक खोलने के लिए उसके शीर्षक पर टैप करें` : `${toc.length} sections. Tap a heading to open it.`}</span>
+          <button type="button" class="btn btn-ghost btn-sm" data-lsec-toggle data-open={lang === 'hi' ? 'सब खोलें' : 'Expand all'} data-close={lang === 'hi' ? 'सब बंद करें' : 'Collapse all'}>{lang === 'hi' ? 'सब खोलें' : 'Expand all'}</button>
+        </div>
+      )}
+      <Fragment set:html={body} />
       {isLesson && <Quiz slug={slug} n={n} lang={lang} />}
       {isLesson && <MarkDone slug={slug} lang={lang} />}
       <hr style="border: 0; border-top: 1px solid var(--line); margin: 48px 0 24px" />
@@ -62,3 +79,35 @@ const image = isLesson ? `/covers/${slug}.jpg` : undefined;
     </div>
   </article>
 </Base>
+<script>
+  // Collapsible lesson sections: open the one a link points to, toggle all, and open everything for printing.
+  const sections = [...document.querySelectorAll('details.lsec')] as HTMLDetailsElement[];
+  const toggle = document.querySelector('[data-lsec-toggle]') as HTMLButtonElement | null;
+  const refresh = () => {
+    if (!toggle) return;
+    const allOpen = sections.every((d) => d.open);
+    toggle.textContent = allOpen ? toggle.dataset.close! : toggle.dataset.open!;
+    toggle.setAttribute('aria-pressed', String(allOpen));
+  };
+  const openFor = (hash: string, scroll = false) => {
+    if (!hash || hash.length < 2) return;
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    const box = target?.closest('details.lsec') as HTMLDetailsElement | null;
+    if (box && !box.open) box.open = true;
+    if (target && scroll) target.scrollIntoView();
+  };
+  sections.forEach((d) => d.addEventListener('toggle', refresh));
+  toggle?.addEventListener('click', () => {
+    const open = !sections.every((d) => d.open);
+    sections.forEach((d) => { d.open = open; });
+    refresh();
+  });
+  openFor(location.hash, true);
+  addEventListener('hashchange', () => openFor(location.hash, true));
+  document.addEventListener('click', (e) => {
+    const a = (e.target as HTMLElement).closest('a[href^="#"]') as HTMLAnchorElement | null;
+    if (a) openFor(a.getAttribute('href')!);
+  });
+  addEventListener('beforeprint', () => sections.forEach((d) => { d.open = true; }));
+  refresh();
+</script>

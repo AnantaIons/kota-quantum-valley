@@ -665,3 +665,55 @@ html[lang='hi'] .brand-name { font-family: 'Space Grotesk', system-ui, sans-seri
 .ig-top span { color: var(--text-2); font-size: 0.9rem; }
 .ig-card p { color: var(--text-2); margin: 0 0 20px; }
 @media (max-width: 860px) { .ig-card { order: -1; } }
+
+/* ---------- Site search ---------- */
+.search-btn { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid var(--border-strong); color: var(--text-2); border-radius: var(--r-sm); padding: 6px 10px; margin-left: 6px; font: 500 0.92rem/1.4 var(--font-head); cursor: pointer; }
+.search-btn:hover { color: var(--text); border-color: var(--cyan); }
+.search-btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.search-btn kbd { font-family: var(--font-mono); font-size: 0.72rem; border: 1px solid var(--border); border-radius: 5px; padding: 0 5px; color: var(--text-3); }
+.search-mobile { display: none; }
+@media (max-width: 1100px) { .search-mobile { display: inline-flex; margin-left: auto; padding: 7px 9px; } .search-mobile + .lang-mobile { margin-left: 0; } }
+.search-dialog { width: min(760px, calc(100% - 24px)); max-height: min(82vh, 820px); margin: 8vh auto auto; padding: 0; background: var(--panel-solid); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--r-md); box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.9); overflow: hidden; }
+.search-dialog[open] { display: flex; flex-direction: column; }
+.search-dialog::backdrop { background: rgba(3, 6, 20, 0.72); backdrop-filter: blur(4px); }
+.sd-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--border); font-family: var(--font-head); }
+.sd-close { background: transparent; border: 1px solid var(--border); color: var(--text-2); border-radius: 8px; width: 34px; height: 34px; cursor: pointer; font-size: 0.95rem; }
+.sd-close:hover { color: var(--text); border-color: var(--cyan); }
+#kqv-search { padding: 16px 18px; overflow-y: auto; color: var(--text-2);
+  --pagefind-ui-scale: 0.86; --pagefind-ui-primary: #E6C36A; --pagefind-ui-text: #f4f7ff; --pagefind-ui-background: #0b1026;
+  --pagefind-ui-border: rgba(140, 160, 255, 0.3); --pagefind-ui-tag: #18214a; --pagefind-ui-border-width: 1px; --pagefind-ui-border-radius: 10px;
+  --pagefind-ui-font: 'Inter', system-ui, sans-serif; }
+html[lang='hi'] #kqv-search { --pagefind-ui-font: 'Noto Sans Devanagari', 'Inter', system-ui, sans-serif; }
+#kqv-search .pagefind-ui__result-link { color: var(--gold-hi); }
+#kqv-search .pagefind-ui__result-excerpt, #kqv-search .pagefind-ui__message { color: #c8d0e8; }
+#kqv-search mark { background: rgba(230, 195, 106, 0.28); color: var(--text); border-radius: 3px; padding: 0 2px; }
+.sd-foot { margin: 0; padding: 10px 18px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-3); }
+@media (max-width: 600px) { .search-dialog { margin-top: 12px; max-height: calc(100vh - 24px); } .sd-foot { display: none; } }
+
+/* ---------- Collapsible lesson sections ---------- */
+.lsec-tools { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 28px 0 8px; font-size: 0.9rem; color: var(--text-3); }
+.lsec { border-top: 1px solid var(--line); }
+.lsec:last-of-type { border-bottom: 1px solid var(--line); }
+.lsec > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 4px; border-radius: 8px; }
+.lsec > summary::-webkit-details-marker { display: none; }
+.lsec > summary h2 { margin: 0; transition: color 0.15s; }
+.lsec > summary::after { content: ''; flex: none; width: 11px; height: 11px; margin: 0 6px 6px 0; border-right: 2px solid var(--cyan); border-bottom: 2px solid var(--cyan); transform: rotate(45deg); transition: transform 0.2s; }
+.lsec[open] > summary::after { transform: rotate(-135deg); margin-bottom: -6px; }
+.lsec > summary:hover h2 { color: var(--gold-hi); }
+.lsec > summary:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.lsec-body { padding: 0 0 20px; }
+.lsec-body > :first-child { margin-top: 0; }
+@media (prefers-reduced-motion: reduce) { .lsec > summary::after { transition: none; } }
+
+/* ---------- Collapsible course parts ---------- */
+details.course-part > summary { list-style: none; cursor: pointer; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; border-radius: var(--r-md); }
+details.course-part > summary::-webkit-details-marker { display: none; }
+details.course-part > summary .cpart-head { margin-bottom: 0; }
+details.course-part[open] > summary .cpart-head { margin-bottom: 18px; }
+details.course-part > summary::after { content: ''; flex: none; width: 12px; height: 12px; margin-top: 40px; border-right: 2px solid var(--cyan); border-bottom: 2px solid var(--cyan); transform: rotate(45deg); transition: transform 0.2s; }
+details.course-part[open] > summary::after { transform: rotate(-135deg); margin-top: 48px; }
+details.course-part > summary:hover h2 { color: var(--gold-hi); }
+details.course-part > summary:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+.cpart-count { font-size: 0.85rem; color: var(--text-3); margin: 4px 0 0; }
+details.course-part { margin-top: 0; padding: 20px 0; border-top: 1px solid var(--line); }
+details.course-part:first-of-type { margin-top: 36px; }

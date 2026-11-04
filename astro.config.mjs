@@ -1,9 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import pagefind from './src/plugins/pagefind.mjs';
 
 // Live address. When the domain is connected, change it here and in public/robots.txt.
 export default defineConfig({
   site: 'https://kotaquantumvalley.in',
-  integrations: [sitemap()],
+  integrations: [sitemap(), pagefind()],
 });

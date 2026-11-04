@@ -6,7 +6,7 @@ const sorted = [...terms].sort((a, b) => a[0].localeCompare(b[0]));
 const letters = [...new Set(sorted.map((t) => t[0][0].toUpperCase()))];
 const id = (t) => 'g-' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 ---
-<section class="article">
+<section class="article" data-pagefind-body>
   <div class="narrow">
     <p class="eyebrow">{hi ? 'शब्दकोश' : 'Glossary'}</p>
     <h1>{hi ? 'क्वांटम शब्दकोश' : 'Quantum glossary'}</h1>

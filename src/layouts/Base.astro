@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Logo from '../components/Logo.astro';
 import ChatButton from '../components/ChatButton.astro';
+import Search from '../components/Search.astro';
 import site from '../data/site.json';
 import { t, langOf, altPath } from '../i18n.js';
 
@@ -61,9 +62,11 @@ const year = new Date().getFullYear();
           {nav.map((n) => (
             <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>
           ))}
+          <button type="button" class="search-btn" data-search-open aria-label={lang === 'hi' ? 'खोजें' : 'Search'}><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>{lang === 'hi' ? 'खोजें' : 'Search'}</span><kbd>/</kbd></button>
           <a class="lang-switch" href={alt} hreflang={lang === 'hi' ? 'en' : 'hi'} aria-label={L.switchAria}>{L.switchLabel}</a>
           <a class="btn btn-dark btn-sm" href={L.startHref}>{L.start}</a>
         </nav>
+        <button type="button" class="search-btn search-mobile" data-search-open aria-label={lang === 'hi' ? 'खोजें' : 'Search'}><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
         <a class="lang-switch lang-mobile" href={alt} hreflang={lang === 'hi' ? 'en' : 'hi'} aria-label={L.switchAria}>{L.switchLabel}</a>
         <details class="menu">
           <summary aria-label={L.menu}>{L.menu}</summary>
@@ -80,6 +83,7 @@ const year = new Date().getFullYear();
       <slot />
     </main>
     <ChatButton lang={lang} />
+    <Search lang={lang} />
 
     <footer class="site-footer">
       <div class="wrap">

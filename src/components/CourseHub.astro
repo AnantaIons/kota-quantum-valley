@@ -51,15 +51,20 @@ const startHref = hi ? '/hi/lessons/roadmap-what-to-learn-first/' : '/posts/road
       {course1.parts.map((p) => <a href={`#part-${p.id}`}><span>{p.id}</span>{p[lang][0]}</a>)}
     </nav>
 
-    {course1.parts.map((p) => {
+    {course1.parts.map((p, i) => {
       const ex = p.explainers.map(bySlug).filter(Boolean);
+      const count = p.to - p.from + 1;
+      const live = lessons.filter((l) => l.lesson >= p.from && l.lesson <= p.to).length;
       return (
-        <section class="course-part" id={`part-${p.id}`}>
-          <div class="cpart-head">
-            <span class="cpart-id">{T.part} {p.id}, {hi ? `पाठ ${p.from}–${p.to}` : `Lessons ${p.from}–${p.to}`}</span>
-            <h2>{p[lang][0]}</h2>
-            <p>{p[lang][1]}</p>
-          </div>
+        <details class="course-part" id={`part-${p.id}`} data-part={p.id} open={i === 0}>
+          <summary>
+            <div class="cpart-head">
+              <span class="cpart-id">{T.part} {p.id}, {hi ? `पाठ ${p.from}–${p.to}` : `Lessons ${p.from}–${p.to}`}</span>
+              <h2>{p[lang][0]}</h2>
+              <p>{p[lang][1]}</p>
+              <p class="cpart-count" data-part-count data-total={count}>{hi ? `${count} पाठ` : `${count} lessons`}{live < count ? (hi ? `, ${live} प्रकाशित` : `, ${live} published`) : ''}</p>
+            </div>
+          </summary>
           <LessonGrid lessons={lessons} from={p.from} to={p.to} lang={lang} />
           {ex.length > 0 && (
             <div class="cpart-ex">
@@ -67,7 +72,7 @@ const startHref = hi ? '/hi/lessons/roadmap-what-to-learn-first/' : '/posts/road
               <ul>{ex.map((e) => <li><a href={e.url}>{e.title}</a></li>)}</ul>
             </div>
           )}
-        </section>
+        </details>
       );
     })}
 
@@ -100,5 +105,24 @@ const startHref = hi ? '/hi/lessons/roadmap-what-to-learn-first/' : '/posts/road
     (el.querySelector('[data-cp-text]') as HTMLElement).textContent = hi ? `${total} में से ${d} पूरे` : `${d} of ${total} complete`;
     (el.querySelector('[data-cp-fill]') as HTMLElement).style.width = (d / total) * 100 + '%';
     document.querySelectorAll('.lc[data-lesson]').forEach((li) => { if (done.includes((li as HTMLElement).dataset.lesson!)) li.classList.add('is-done'); });
+    // Show how many lessons of each part are done, and open the part with the learner's next lesson
+    const parts = [...document.querySelectorAll('details.course-part')] as HTMLDetailsElement[];
+    parts.forEach((part) => {
+      const ids = [...part.querySelectorAll('.lc[data-lesson]')].map((li) => (li as HTMLElement).dataset.lesson!);
+      const n = ids.filter((s) => done.includes(s)).length;
+      const label = part.querySelector('[data-part-count]') as HTMLElement | null;
+      if (label && n) label.textContent += hi ? `, ${n} पूरे` : `, ${n} done`;
+    });
+    const next = [...document.querySelectorAll('.lc[data-lesson]')].find((li) => !done.includes((li as HTMLElement).dataset.lesson!));
+    const nextPart = next?.closest('details.course-part') as HTMLDetailsElement | null;
+    if (done.length && nextPart && !location.hash) { parts.forEach((d) => { d.open = d === nextPart; }); }
   }
+  // Links like /lessons/#part-E open that part
+  const openPart = (hash: string) => {
+    const d = hash.length > 1 ? document.getElementById(hash.slice(1)) : null;
+    if (d instanceof HTMLDetailsElement) { d.open = true; d.scrollIntoView(); }
+  };
+  openPart(location.hash);
+  addEventListener('hashchange', () => openPart(location.hash));
+  document.querySelectorAll('.course-toc a').forEach((a) => a.addEventListener('click', () => openPart(a.getAttribute('href')!)));
 </script>
