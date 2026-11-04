@@ -1,0 +1,551 @@
+---
+// Resume maker: a form on the left, a live A4 preview on the right, and "Download PDF" via the
+// browser's own print-to-PDF. Everything runs in the browser; nothing is sent anywhere.
+const { lang = 'en' } = Astro.props;
+const hi = lang === 'hi';
+
+const ui = hi ? {
+  eyebrow: 'रिज़्यूमे मेकर',
+  h1: 'दस मिनट में अपना रिज़्यूमे बनाइए।',
+  sub: 'ख़ाने भरिए और रिज़्यूमे साथ-साथ बनता देखिए। फिर PDF डाउनलोड कीजिए। मुफ़्त, कोई sign-up नहीं, और सब कुछ आपके फ़ोन या कंप्यूटर पर ही रहता है।',
+  privacy: 'आप जो लिखते हैं वह कहीं upload नहीं होता। वह सिर्फ़ इसी browser में सेव रहता है, ताकि आप बाद में लौटकर बदल सकें।',
+  contentNote: 'ज़्यादातर नौकरियों के लिए रिज़्यूमे अंग्रेज़ी में लिखा जाता है, इसलिए उदाहरण अंग्रेज़ी में है। आप चाहें तो हिन्दी में भी लिख सकते हैं।',
+} : {
+  eyebrow: 'Resume maker',
+  h1: 'Make your resume in ten minutes.',
+  sub: 'Fill in the boxes and watch your resume take shape. Then download it as a PDF. Free, no sign-up, and everything stays on your phone or computer.',
+  privacy: "Nothing you type is uploaded anywhere. It's saved only in this browser, so you can come back and edit it later.",
+  contentNote: '',
+};
+
+// Text the script needs (must be plain JSON).
+const S = hi ? {
+  edit: 'भरें', preview: 'देखें', download: 'PDF डाउनलोड करें', example: 'उदाहरण से भरें', save: 'फ़ाइल में सेव करें', open: 'सेव की फ़ाइल खोलें',
+  clear: 'नए सिरे से शुरू करें', clearConfirm: 'सब मिटाने के लिए फिर दबाएँ', size: 'अक्षरों का आकार', normal: 'सामान्य', compact: 'छोटा',
+  headLang: 'शीर्षक', credit: 'नीचे छोटी-सी पंक्ति जोड़ें: "Made with kotaquantumvalley.in"',
+  fit1: 'एक पेज में आ रहा है',
+  printHint: 'Print वाली खिड़की में printer की जगह "Save as PDF" चुनें।',
+  openError: 'यह फ़ाइल पढ़ी नहीं जा सकी। इसी पेज से सेव की गई .json फ़ाइल चुनें।',
+  add: 'जोड़ें', remove: 'हटाएँ', up: 'ऊपर', down: 'नीचे', tapToAdd: 'जोड़ने के लिए दबाएँ:',
+  sections: {
+    basics: ['आपकी जानकारी', ''],
+    summary: ['सारांश', 'दो-तीन पंक्तियाँ: आप कौन हैं, किसमें अच्छे हैं, और आगे क्या करना चाहते हैं।'],
+    education: ['शिक्षा', 'सबसे नई पढ़ाई सबसे ऊपर।'],
+    experience: ['इंटर्नशिप और अनुभव', 'हर पंक्ति किसी काम वाले शब्द से शुरू करें (built, tested, reduced) और जहाँ हो सके, कोई संख्या लिखें।'],
+    projects: ['प्रोजेक्ट', 'फ़्रेशर्स के लिए यही सबसे ज़रूरी हिस्सा है: क्या बनाया, कैसे बनाया, और नतीजा क्या रहा।'],
+    skills: ['कौशल', 'सिर्फ़ वही लिखें जिनके बारे में इंटरव्यू में बात कर सकें।'],
+    achievements: ['उपलब्धियाँ और प्रमाणपत्र', 'हर पंक्ति में एक: पुरस्कार, प्रमाणपत्र, प्रतियोगिताएँ, ज़िम्मेदारियाँ।'],
+  },
+  addLabels: { education: 'शिक्षा जोड़ें', experience: 'अनुभव जोड़ें', projects: 'प्रोजेक्ट जोड़ें', skills: 'कौशल समूह जोड़ें' },
+  fields: {
+    name: 'पूरा नाम', headline: 'एक पंक्ति में परिचय', email: 'ईमेल', phone: 'फ़ोन', location: 'शहर', linkedin: 'LinkedIn', github: 'GitHub', website: 'वेबसाइट या portfolio',
+    degree: 'डिग्री या कक्षा', school: 'कॉलेज या स्कूल', start: 'कब से', end: 'कब तक', score: 'CGPA या प्रतिशत', points: 'विवरण (हर पंक्ति में एक बात)',
+    role: 'पद', org: 'कंपनी या लैब', pname: 'प्रोजेक्ट का नाम', tools: 'इस्तेमाल किए tools', link: 'लिंक (GitHub, demo)',
+    group: 'समूह (जैसे Programming)', items: 'कौशल, comma से अलग',
+  },
+} : {
+  edit: 'Edit', preview: 'Preview', download: 'Download PDF', example: 'Fill with an example', save: 'Save to a file', open: 'Open a saved file',
+  clear: 'Start over', clearConfirm: 'Tap again to clear everything', size: 'Text size', normal: 'Normal', compact: 'Compact',
+  headLang: 'Headings', credit: 'Add a small line at the bottom: "Made with kotaquantumvalley.in"',
+  fit1: 'Fits on one page',
+  printHint: 'In the print window, choose "Save as PDF" as the printer.',
+  openError: "That file couldn't be read. Choose a .json file saved from this page.",
+  add: 'Add', remove: 'Remove', up: 'Move up', down: 'Move down', tapToAdd: 'Tap to add:',
+  sections: {
+    basics: ['Your details', ''],
+    summary: ['Summary', "Two or three lines: who you are, what you're good at, and what you want next."],
+    education: ['Education', 'Most recent first.'],
+    experience: ['Internships and experience', 'Start each line with an action word (built, tested, reduced) and add a number wherever you can.'],
+    projects: ['Projects', 'For freshers, this is the most important section: what you built, how, and what happened.'],
+    skills: ['Skills', 'List only what you could talk about in an interview.'],
+    achievements: ['Achievements and certifications', 'One per line: awards, certificates, competitions, positions of responsibility.'],
+  },
+  addLabels: { education: 'Add education', experience: 'Add experience', projects: 'Add a project', skills: 'Add a skill group' },
+  fields: {
+    name: 'Full name', headline: 'One-line introduction', email: 'Email', phone: 'Phone', location: 'City', linkedin: 'LinkedIn', github: 'GitHub', website: 'Website or portfolio',
+    degree: 'Degree or class', school: 'College or school', start: 'From', end: 'To', score: 'CGPA or percentage', points: 'Details (one point per line)',
+    role: 'Role', org: 'Company or lab', pname: 'Project name', tools: 'Tools used', link: 'Link (GitHub, demo)',
+    group: 'Group (e.g. Programming)', items: 'Skills, separated by commas',
+  },
+};
+const fitWord = hi ? 'hi' : 'en';
+---
+<section class="article rm-page">
+  <div class="wrap">
+    <div class="rm-intro" data-pagefind-body>
+      <p class="eyebrow">{ui.eyebrow}</p>
+      <h1>{ui.h1}</h1>
+      <p class="desc">{ui.sub}</p>
+      <p class="rm-privacy"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 10 0v3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/></svg>{ui.privacy}</p>
+      {ui.contentNote && <p class="rm-note">{ui.contentNote}</p>}
+    </div>
+
+    <div class="rm" id="rm" data-view="edit" data-lang={fitWord}>
+      <div class="rm-toolbar">
+        <button type="button" class="btn btn-primary btn-sm" data-act="print">{S.download}</button>
+        <button type="button" class="btn btn-ghost btn-sm" data-act="example">{S.example}</button>
+        <button type="button" class="btn btn-ghost btn-sm" data-act="save">{S.save}</button>
+        <button type="button" class="btn btn-ghost btn-sm" data-act="open">{S.open}</button>
+        <button type="button" class="btn btn-ghost btn-sm rm-danger" data-act="clear">{S.clear}</button>
+        <input type="file" accept=".json,application/json" hidden data-file />
+      </div>
+
+      <div class="rm-tabs" role="tablist">
+        <button type="button" role="tab" aria-selected="true" data-tab="edit">{S.edit}</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="preview">{S.preview}</button>
+      </div>
+
+      <div class="rm-cols">
+        <form class="rm-form" data-form autocomplete="on" onsubmit="return false"></form>
+
+        <div class="rm-preview">
+          <div class="rm-status">
+            <span class="rm-fit" data-fit></span>
+            <label class="rm-inline">{S.size}
+              <select data-setting="size"><option value="normal">{S.normal}</option><option value="compact">{S.compact}</option></select>
+            </label>
+            <label class="rm-inline">{S.headLang}
+              <select data-setting="headLang"><option value="en">English</option><option value="hi">हिन्दी</option></select>
+            </label>
+          </div>
+          <div class="rm-stage" data-stage>
+            <div class="rm-paper" id="rm-paper" data-paper></div>
+          </div>
+          <label class="rm-check"><input type="checkbox" data-setting="credit" /> {S.credit}</label>
+          <p class="rm-hint">{S.printHint}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ S, LANG: fitWord }}>
+(() => {
+  const KEY = 'kqv-resume-v1';
+  const root = document.getElementById('rm');
+  const form = root.querySelector('[data-form]');
+  const paper = root.querySelector('[data-paper]');
+  const stage = root.querySelector('[data-stage]');
+  const fitEl = root.querySelector('[data-fit]');
+  const fileIn = root.querySelector('[data-file]');
+  const F = S.fields;
+  const fitN = (n) => LANG === 'hi'
+    ? `${n} पेज। फ़्रेशर्स के लिए एक पेज सबसे अच्छा है: "छोटा" आकार चुनें या कुछ पंक्तियाँ घटाएँ।`
+    : `${n} pages. For freshers, one page is best: choose "Compact" or cut a few lines.`;
+
+  const HEAD = {
+    en: { summary: 'Summary', education: 'Education', experience: 'Experience', projects: 'Projects', skills: 'Skills', achievements: 'Achievements and certifications' },
+    hi: { summary: 'सारांश', education: 'शिक्षा', experience: 'अनुभव', projects: 'प्रोजेक्ट', skills: 'कौशल', achievements: 'उपलब्धियाँ और प्रमाणपत्र' },
+  };
+  const LISTS = {
+    education: ['degree', 'school', 'start', 'end', 'score', 'points'],
+    experience: ['role', 'org', 'location', 'start', 'end', 'points'],
+    projects: ['name', 'tools', 'link', 'points'],
+    skills: ['group', 'items'],
+  };
+  const CHIPS = {
+    Programming: ['C', 'C++', 'Python', 'Embedded C', 'Java', 'JavaScript', 'MATLAB', 'SQL'],
+    Quantum: ['Qiskit', 'Quantum circuits', 'Linear algebra', 'NumPy'],
+    Electronics: ['Arduino', 'ESP32', 'STM32', 'UART/SPI/I2C', 'FreeRTOS', 'PCB design', 'Oscilloscope'],
+    Tools: ['Git', 'Linux', 'VS Code', 'Jupyter', 'LaTeX', 'Excel'],
+  };
+
+  const blank = () => ({
+    basics: { name: '', headline: '', email: '', phone: '', location: '', linkedin: '', github: '', website: '' },
+    summary: '',
+    education: [{ degree: '', school: '', start: '', end: '', score: '', points: '' }],
+    experience: [], projects: [], skills: [], achievements: '',
+    settings: { size: 'normal', headLang: 'en', credit: true },
+  });
+
+  const example = () => ({
+    basics: {
+      name: 'Riya Sharma', headline: 'B.Tech ECE student | Embedded systems and quantum computing',
+      email: 'riya.sharma@example.com', phone: '+91 98765 43210', location: 'Kota, Rajasthan',
+      linkedin: 'linkedin.com/in/riya-sharma-example', github: 'github.com/riya-example', website: '',
+    },
+    summary: 'Final-year electronics student who enjoys building things that talk to hardware. I write embedded C for microcontrollers and Python for quantum circuits, and I completed all 50 lessons of the Kota Quantum Valley course. Looking for an internship in embedded or quantum control engineering.',
+    education: [
+      { degree: 'B.Tech, Electronics and Communication Engineering', school: 'Example Institute of Technology, Kota', start: '2022', end: '2026', score: 'CGPA 8.4/10', points: '' },
+      { degree: 'Class XII (PCM), RBSE', school: 'Example Senior Secondary School, Kota', start: '', end: '2022', score: '91%', points: '' },
+    ],
+    experience: [
+      { role: 'Firmware intern', org: 'Example Electronics Pvt Ltd', location: 'Jaipur', start: 'May 2025', end: 'Jul 2025',
+        points: 'Wrote a UART driver and command parser in embedded C for an STM32 sensor board\nCut boot time from 1.8 s to 0.6 s by moving start-up checks to a background task\nWrote test scripts in Python that the team now runs before every release' },
+    ],
+    projects: [
+      { name: 'Quantum teleportation in Qiskit', tools: 'Python, Qiskit, Qiskit Aer', link: 'github.com/riya-example/teleport',
+        points: 'Teleported random qubit states with mid-circuit measurement and feed-forward, reaching fidelity 1.000 in simulation\nMeasured how fidelity falls with noisy entangled pairs and matched the (2F + 1)/3 formula' },
+      { name: 'Smart energy meter on ESP32', tools: 'ESP32, C, FreeRTOS, MQTT', link: '',
+        points: 'Built a meter that measures voltage and current and sends readings every 10 s over Wi-Fi\nAdded a watchdog and offline buffering so no readings are lost when Wi-Fi drops' },
+    ],
+    skills: [
+      { group: 'Programming', items: 'C, Embedded C, Python, MATLAB' },
+      { group: 'Quantum', items: 'Qiskit, Quantum circuits, Linear algebra, NumPy' },
+      { group: 'Electronics', items: 'STM32, ESP32, UART/SPI/I2C, FreeRTOS, Oscilloscope' },
+      { group: 'Tools', items: 'Git, Linux, VS Code, Jupyter' },
+    ],
+    achievements: 'Completed Kota Quantum Valley Course 1: 50 lessons, from bits to real quantum hardware\nRunner-up, college hardware hackathon (2024), out of 40 teams\nTechnical lead, college electronics club (2024–25)',
+    settings: { size: 'normal', headLang: 'en', credit: true },
+  });
+
+  // ---------- state and storage ----------
+  const merge = (d) => {
+    const b = blank();
+    if (!d || typeof d !== 'object') return b;
+    const out = { ...b, ...d, basics: { ...b.basics, ...(d.basics || {}) }, settings: { ...b.settings, ...(d.settings || {}) } };
+    for (const k of Object.keys(LISTS)) out[k] = Array.isArray(d[k]) ? d[k].map((it) => Object.fromEntries(LISTS[k].map((f) => [f, String((it && it[f]) ?? '')]))) : b[k];
+    out.summary = String(out.summary || ''); out.achievements = String(out.achievements || '');
+    return out;
+  };
+  let state = blank();
+  try { const saved = localStorage.getItem(KEY); if (saved) state = merge(JSON.parse(saved)); } catch (e) { /* storage unavailable: start blank */ }
+  let saveTimer;
+  const saveNow = () => { clearTimeout(saveTimer); try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+  const persist = () => { clearTimeout(saveTimer); saveTimer = setTimeout(saveNow, 300); };
+  window.addEventListener('pagehide', saveNow);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveNow(); });
+
+  // ---------- helpers ----------
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const lines = (t) => String(t || '').split('\n').map((s) => s.replace(/^\s*[-•*·]\s*/, '').trim()).filter(Boolean);
+  const bare = (u) => String(u).trim().replace(/^https?:\/\//i, '').replace(/^www\./i, '').replace(/\/$/, '');
+  const href = (u) => (/^https?:\/\//i.test(u.trim()) ? u.trim() : 'https://' + u.trim());
+  const getPath = (p) => p.split('.').reduce((o, k) => (o == null ? o : o[k]), state);
+  const setPath = (p, v) => { const ks = p.split('.'); const last = ks.pop(); ks.reduce((o, k) => o[k], state)[last] = v; };
+
+  // ---------- the form ----------
+  const field = (path, label, opts = {}) => {
+    const id = 'rm-' + path.replace(/\./g, '-');
+    const v = esc(getPath(path) ?? '');
+    const ph = opts.ph ? ` placeholder="${esc(opts.ph)}"` : '';
+    const ac = opts.ac ? ` autocomplete="${opts.ac}"` : '';
+    const type = opts.type || 'text';
+    const input = opts.area
+      ? `<textarea id="${id}" data-path="${path}" rows="${opts.rows || 3}"${ph}>${v}</textarea>`
+      : `<input id="${id}" type="${type}" data-path="${path}" value="${v}"${ph}${ac} />`;
+    return `<label class="rm-field${opts.wide ? ' rm-wide' : ''}" for="${id}"><span>${esc(label)}</span>${input}</label>`;
+  };
+  const sectionHead = (key) => {
+    const [title, hint] = S.sections[key];
+    return `<summary><span class="rm-sec-title">${esc(title)}</span></summary>${hint ? `<p class="rm-sec-hint">${esc(hint)}</p>` : ''}`;
+  };
+  const itemTools = (key, i, n) => `<div class="rm-item-tools">
+      <button type="button" data-move="${key}.${i}.-1" ${i === 0 ? 'disabled' : ''} aria-label="${esc(S.up)}">↑</button>
+      <button type="button" data-move="${key}.${i}.1" ${i === n - 1 ? 'disabled' : ''} aria-label="${esc(S.down)}">↓</button>
+      <button type="button" data-remove="${key}.${i}">${esc(S.remove)}</button></div>`;
+
+  const openState = {};
+  const renderForm = () => {
+    const b = 'basics.';
+    const isOpen = (k, dflt) => (openState[k] ?? dflt) ? ' open' : '';
+    let h = `<details class="rm-sec" data-sec="basics"${isOpen('basics', true)}>${sectionHead('basics')}<div class="rm-grid">
+      ${field(b + 'name', F.name, { ac: 'name', wide: true })}
+      ${field(b + 'headline', F.headline, { wide: true, ph: 'B.Tech ECE student | Embedded systems and quantum computing' })}
+      ${field(b + 'email', F.email, { type: 'email', ac: 'email' })}
+      ${field(b + 'phone', F.phone, { type: 'tel', ac: 'tel' })}
+      ${field(b + 'location', F.location, { ph: 'Kota, Rajasthan' })}
+      ${field(b + 'linkedin', F.linkedin, { ph: 'linkedin.com/in/your-name' })}
+      ${field(b + 'github', F.github, { ph: 'github.com/your-name' })}
+      ${field(b + 'website', F.website)}
+    </div></details>`;
+    h += `<details class="rm-sec" data-sec="summary"${isOpen('summary', true)}>${sectionHead('summary')}${field('summary', S.sections.summary[0], { area: true, rows: 4, wide: true })}</details>`;
+
+    const listSection = (key, fieldsHtml) => {
+      const arr = state[key];
+      let s = `<details class="rm-sec" data-sec="${key}"${isOpen(key, key === 'education' || arr.length > 0)}>${sectionHead(key)}`;
+      arr.forEach((_, i) => { s += `<div class="rm-item">${itemTools(key, i, arr.length)}<div class="rm-grid">${fieldsHtml(i)}</div></div>`; });
+      if (key === 'skills') {
+        s += `<div class="rm-chips"><span>${esc(S.tapToAdd)}</span>${Object.entries(CHIPS).map(([g, xs]) =>
+          `<div class="rm-chip-row"><b>${esc(g)}</b>${xs.map((x) => `<button type="button" class="rm-chip" data-chip="${esc(g)}|${esc(x)}">${esc(x)}</button>`).join('')}</div>`).join('')}</div>`;
+      }
+      return s + `<button type="button" class="btn btn-ghost btn-sm rm-add" data-add="${key}">+ ${esc(S.addLabels[key])}</button></details>`;
+    };
+    h += listSection('education', (i) => `${field(`education.${i}.degree`, F.degree, { wide: true })}${field(`education.${i}.school`, F.school, { wide: true })}
+      ${field(`education.${i}.start`, F.start, { ph: '2022' })}${field(`education.${i}.end`, F.end, { ph: '2026' })}
+      ${field(`education.${i}.score`, F.score, { ph: 'CGPA 8.4/10' })}${field(`education.${i}.points`, F.points, { area: true, rows: 2, wide: true })}`);
+    h += listSection('experience', (i) => `${field(`experience.${i}.role`, F.role)}${field(`experience.${i}.org`, F.org)}
+      ${field(`experience.${i}.location`, F.location)}${field(`experience.${i}.start`, F.start, { ph: 'May 2025' })}${field(`experience.${i}.end`, F.end, { ph: 'Jul 2025' })}
+      ${field(`experience.${i}.points`, F.points, { area: true, rows: 4, wide: true })}`);
+    h += listSection('projects', (i) => `${field(`projects.${i}.name`, F.pname, { wide: true })}${field(`projects.${i}.tools`, F.tools)}${field(`projects.${i}.link`, F.link)}
+      ${field(`projects.${i}.points`, F.points, { area: true, rows: 4, wide: true })}`);
+    h += listSection('skills', (i) => `${field(`skills.${i}.group`, F.group)}${field(`skills.${i}.items`, F.items, { wide: true })}`);
+    h += `<details class="rm-sec" data-sec="achievements"${isOpen('achievements', state.achievements !== '')}>${sectionHead('achievements')}${field('achievements', S.sections.achievements[0], { area: true, rows: 4, wide: true })}</details>`;
+    form.innerHTML = h;
+    root.querySelectorAll('[data-setting]').forEach((el) => {
+      const k = el.dataset.setting;
+      if (el.type === 'checkbox') el.checked = !!state.settings[k]; else el.value = state.settings[k];
+    });
+  };
+
+  // ---------- the resume ----------
+  const renderPaper = () => {
+    const H = HEAD[state.settings.headLang] || HEAD.en;
+    const b = state.basics;
+    const contact = [];
+    if (b.email.trim()) contact.push(`<a href="mailto:${esc(b.email.trim())}">${esc(b.email.trim())}</a>`);
+    if (b.phone.trim()) contact.push(`<a href="tel:${esc(b.phone.replace(/[^+\d]/g, ''))}">${esc(b.phone.trim())}</a>`);
+    if (b.location.trim()) contact.push(esc(b.location.trim()));
+    for (const k of ['linkedin', 'github', 'website']) if (b[k].trim()) contact.push(`<a href="${esc(href(b[k]))}">${esc(bare(b[k]))}</a>`);
+
+    const ul = (t) => { const xs = lines(t); return xs.length ? `<ul>${xs.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''; };
+    const dates = (s, e) => [s, e].map((x) => String(x || '').trim()).filter(Boolean).join(' – ');
+    const sec = (title, body) => (body.trim() ? `<section class="r-sec"><h2>${esc(title)}</h2>${body}</section>` : '');
+    const filled = (o) => Object.values(o).some((v) => String(v).trim());
+
+    let h = '';
+    if (b.name.trim() || b.headline.trim() || contact.length) {
+      h += `<div class="r-head">${b.name.trim() ? `<h1>${esc(b.name.trim())}</h1>` : ''}${b.headline.trim() ? `<p class="r-headline">${esc(b.headline.trim())}</p>` : ''}${contact.length ? `<p class="r-contact">${contact.join('<span class="r-sep"> | </span>')}</p>` : ''}</div>`;
+    }
+    h += sec(H.summary, state.summary.trim() ? `<p>${esc(state.summary.trim())}</p>` : '');
+    h += sec(H.education, state.education.filter(filled).map((e) => {
+      const d = dates(e.start, e.end);
+      return `<div class="r-entry"><div class="r-row"><strong>${esc(e.degree)}</strong>${d ? `<span class="r-date">${esc(d)}</span>` : ''}</div>
+        ${e.school.trim() || e.score.trim() ? `<div class="r-row r-sub"><span>${esc(e.school)}</span>${e.score.trim() ? `<span>${esc(e.score)}</span>` : ''}</div>` : ''}${ul(e.points)}</div>`;
+    }).join(''));
+    h += sec(H.experience, state.experience.filter(filled).map((e) => {
+      const d = dates(e.start, e.end);
+      const who = [e.role, e.org].map((x) => x.trim()).filter(Boolean);
+      return `<div class="r-entry"><div class="r-row"><span><strong>${esc(who[0] || '')}</strong>${who[1] ? `, ${esc(who[1])}` : ''}${e.location.trim() ? `<span class="r-muted">, ${esc(e.location)}</span>` : ''}</span>${d ? `<span class="r-date">${esc(d)}</span>` : ''}</div>${ul(e.points)}</div>`;
+    }).join(''));
+    h += sec(H.projects, state.projects.filter(filled).map((p) => {
+      const link = p.link.trim() ? `<a class="r-date" href="${esc(href(p.link))}">${esc(bare(p.link))}</a>` : '';
+      return `<div class="r-entry"><div class="r-row"><span><strong>${esc(p.name)}</strong>${p.tools.trim() ? `<span class="r-muted"> | ${esc(p.tools)}</span>` : ''}</span>${link}</div>${ul(p.points)}</div>`;
+    }).join(''));
+    h += sec(H.skills, state.skills.filter((s) => s.items.trim()).map((s) =>
+      `<p class="r-skill">${s.group.trim() ? `<strong>${esc(s.group.trim())}:</strong> ` : ''}${esc(s.items.split(',').map((x) => x.trim()).filter(Boolean).join(', '))}</p>`).join(''));
+    h += sec(H.achievements, ul(state.achievements));
+    if (!h) h = `<p class="r-empty">${LANG === 'hi' ? 'बाईं ओर के ख़ाने भरिए। आपका रिज़्यूमे यहाँ दिखेगा।' : 'Start filling in the boxes. Your resume appears here.'}</p>`;
+    if (state.settings.credit) h += `<p class="r-credit">Made with kotaquantumvalley.in</p>`;
+
+    paper.className = 'rm-paper' + (state.settings.size === 'compact' ? ' r-compact' : '');
+    paper.innerHTML = `<div class="r-body">${h}</div>`;
+    fit();
+  };
+
+  // ---------- scaling and page count ----------
+  const MM = 96 / 25.4;
+  const fit = () => {
+    const body = paper.querySelector('.r-body');
+    const pageH = 269 * MM;                                   // A4 height minus top and bottom margins
+    const pages = Math.max(1, Math.ceil((body.scrollHeight - 2) / pageH));
+    paper.style.minHeight = `${297 * pages}mm`;
+    paper.querySelectorAll('.r-break').forEach((x) => x.remove());
+    for (let k = 1; k < pages; k++) {
+      const line = document.createElement('div');
+      line.className = 'r-break'; line.style.top = `${14 + 269 * k}mm`;
+      paper.appendChild(line);
+    }
+    fitEl.textContent = pages === 1 ? S.fit1 : fitN(pages);
+    fitEl.classList.toggle('rm-warn', pages > 1);
+    const s = Math.min(1, stage.clientWidth / paper.offsetWidth);
+    paper.style.transform = `scale(${s})`;
+    stage.style.height = `${paper.offsetHeight * s}px`;
+  };
+  new ResizeObserver(() => fit()).observe(stage);
+
+  // ---------- events ----------
+  form.addEventListener('input', (e) => {
+    const p = e.target.dataset.path;
+    if (!p) return;
+    setPath(p, e.target.value);
+    renderPaper(); persist();
+  });
+  form.addEventListener('toggle', (e) => { if (e.target.dataset.sec) openState[e.target.dataset.sec] = e.target.open; }, true);
+  form.addEventListener('click', (e) => {
+    const t = e.target.closest('button');
+    if (!t) return;
+    if (t.dataset.add) {
+      const key = t.dataset.add;
+      state[key].push(Object.fromEntries(LISTS[key].map((f) => [f, ''])));
+      openState[key] = true; renderForm(); renderPaper(); persist();
+      const items = form.querySelectorAll(`[data-sec="${key}"] .rm-item`);
+      items[items.length - 1]?.querySelector('input, textarea')?.focus();
+    } else if (t.dataset.remove) {
+      const [key, i] = t.dataset.remove.split('.');
+      state[key].splice(+i, 1); renderForm(); renderPaper(); persist();
+    } else if (t.dataset.move) {
+      const [key, i, d] = t.dataset.move.split('.');
+      const a = state[key], j = +i + +d;
+      if (j < 0 || j >= a.length) return;
+      [a[+i], a[j]] = [a[j], a[+i]]; renderForm(); renderPaper(); persist();
+    } else if (t.dataset.chip) {
+      const [g, x] = t.dataset.chip.split('|');
+      let row = state.skills.find((s) => s.group.trim().toLowerCase() === g.toLowerCase());
+      if (!row) { row = { group: g, items: '' }; state.skills.push(row); }
+      const have = row.items.split(',').map((s) => s.trim()).filter(Boolean);
+      if (!have.some((s) => s.toLowerCase() === x.toLowerCase())) row.items = [...have, x].join(', ');
+      openState.skills = true; renderForm(); renderPaper(); persist();
+    }
+  });
+  root.querySelectorAll('[data-setting]').forEach((el) => el.addEventListener('change', () => {
+    const k = el.dataset.setting;
+    state.settings[k] = el.type === 'checkbox' ? el.checked : el.value;
+    renderPaper(); persist();
+  }));
+  root.querySelectorAll('[data-tab]').forEach((tab) => tab.addEventListener('click', () => {
+    root.dataset.view = tab.dataset.tab;
+    root.querySelectorAll('[data-tab]').forEach((x) => x.setAttribute('aria-selected', String(x === tab)));
+    fit();
+  }));
+
+  let clearTimer;
+  root.querySelector('.rm-toolbar').addEventListener('click', (e) => {
+    const t = e.target.closest('[data-act]');
+    if (!t) return;
+    const act = t.dataset.act;
+    if (act === 'print') {
+      const old = document.title;
+      document.title = (state.basics.name.trim() || 'My') + ' resume';
+      window.addEventListener('afterprint', () => { document.title = old; }, { once: true });
+      window.print();
+    } else if (act === 'example') {
+      state = example(); renderForm(); renderPaper(); persist();
+    } else if (act === 'save') {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = (state.basics.name.trim() || 'my').toLowerCase().replace(/[^a-z0-9ऀ-ॿ]+/g, '-').replace(/^-|-$/g, '') + '-resume.json';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    } else if (act === 'open') {
+      fileIn.click();
+    } else if (act === 'clear') {
+      if (t.dataset.armed) {
+        clearTimeout(clearTimer); delete t.dataset.armed; t.textContent = S.clear;
+        state = blank(); renderForm(); renderPaper(); persist();
+      } else {
+        t.dataset.armed = '1'; t.textContent = S.clearConfirm;
+        clearTimer = setTimeout(() => { delete t.dataset.armed; t.textContent = S.clear; }, 4000);
+      }
+    }
+  });
+  fileIn.addEventListener('change', async () => {
+    const f = fileIn.files && fileIn.files[0];
+    if (!f) return;
+    try { state = merge(JSON.parse(await f.text())); renderForm(); renderPaper(); persist(); }
+    catch (err) { alert(S.openError); }
+    fileIn.value = '';
+  });
+
+  renderForm();
+  renderPaper();
+})();
+</script>
+
+<style is:global>
+  .rm-page { padding-top: clamp(36px, 5vw, 64px); }
+  .rm-page h1 { font-size: clamp(2rem, 4.4vw, 3.1rem); }
+  .rm-intro { max-width: 760px; }
+  .rm-privacy { display: flex; gap: 10px; align-items: flex-start; color: var(--text-2); font-size: 0.95rem; margin-top: 18px; }
+  .rm-privacy svg { flex: none; margin-top: 4px; color: var(--green); }
+  .rm-note { color: var(--text-2); font-size: 0.95rem; }
+
+  .rm { margin-top: 36px; }
+  .rm-toolbar { display: flex; flex-wrap: wrap; gap: 10px; padding: 14px; border: 1px solid var(--border); border-radius: var(--r-md); background: rgba(14, 21, 51, 0.92); position: sticky; top: 76px; z-index: 5; backdrop-filter: blur(10px); }
+  .rm-toolbar .rm-danger[data-armed] { border-color: #ff6b6b; color: #ffb3b3; }
+  .rm-tabs { display: none; }
+  .rm-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; margin-top: 20px; align-items: start; }
+
+  .rm-form { display: grid; gap: 14px; }
+  .rm-sec { border: 1px solid var(--border); border-radius: var(--r-md); background: linear-gradient(180deg, rgba(30, 40, 90, 0.35), rgba(14, 21, 51, 0.55)); padding: 4px 18px; }
+  .rm-sec[open] { padding-bottom: 18px; }
+  .rm-sec > summary { list-style: none; cursor: pointer; padding: 14px 0; display: flex; align-items: center; justify-content: space-between; }
+  .rm-sec > summary::-webkit-details-marker { display: none; }
+  .rm-sec > summary::after { content: '+'; font: 600 1.3rem/1 var(--font-head); color: var(--text-2); }
+  .rm-sec[open] > summary::after { content: '−'; }
+  .rm-sec-title { font: 600 1.05rem/1.3 var(--font-head); color: var(--text); }
+  .rm-sec-hint { margin: -4px 0 12px; color: var(--text-2); font-size: 0.9rem; line-height: 1.5; }
+  .rm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .rm-field { display: grid; gap: 6px; }
+  .rm-field.rm-wide { grid-column: 1 / -1; }
+  .rm-field > span { font-size: 0.85rem; color: var(--text-2); }
+  .rm-field input, .rm-field textarea, .rm-inline select {
+    width: 100%; border: 1px solid var(--border-strong); background: #030510; color: var(--text); border-radius: 10px;
+    font: 400 0.95rem/1.45 var(--font-body); padding: 10px 12px; }
+  .rm-field input { height: 44px; }
+  .rm-field textarea { resize: vertical; min-height: 70px; }
+  .rm-field input:focus, .rm-field textarea:focus, .rm-inline select:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(230, 195, 106, 0.2); }
+  .rm-field ::placeholder { color: #5d6788; }
+  .rm-item { border-top: 1px dashed var(--border-strong); padding-top: 12px; margin-top: 12px; }
+  .rm-item:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+  .rm-item-tools { display: flex; justify-content: flex-end; gap: 6px; margin-bottom: 8px; }
+  .rm-item-tools button { background: transparent; border: 1px solid var(--border); color: var(--text-2); border-radius: 8px; padding: 4px 10px; font: 500 0.82rem/1.4 var(--font-body); cursor: pointer; }
+  .rm-item-tools button:hover:not(:disabled) { border-color: var(--cyan); color: var(--text); }
+  .rm-item-tools button:disabled { opacity: 0.35; cursor: default; }
+  .rm-add { margin-top: 14px; }
+  .rm-chips { margin-top: 14px; display: grid; gap: 8px; font-size: 0.85rem; color: var(--text-2); }
+  .rm-chip-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .rm-chip-row b { font-weight: 500; color: var(--text-3); min-width: 84px; font-size: 0.8rem; }
+  .rm-chip { border: 1px solid var(--border-strong); background: rgba(140, 160, 255, 0.06); color: var(--text); border-radius: 999px; padding: 3px 11px; font: 400 0.82rem/1.5 var(--font-body); cursor: pointer; }
+  .rm-chip:hover { border-color: var(--cyan); }
+
+  .rm-preview { position: sticky; top: 158px; max-height: calc(100vh - 170px); overflow-y: auto; padding-right: 4px; }
+  .rm-status { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-bottom: 12px; font-size: 0.88rem; color: var(--text-2); }
+  .rm-fit { flex: 1 1 100%; color: var(--green); font-weight: 500; }
+  .rm-fit.rm-warn { color: #ffcf70; }
+  .rm-inline { display: inline-flex; align-items: center; gap: 8px; }
+  .rm-inline select { width: auto; height: 36px; padding: 0 8px; }
+  .rm-stage { position: relative; overflow: hidden; border-radius: 6px; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px var(--border); }
+  .rm-check { display: flex; gap: 10px; align-items: flex-start; margin-top: 14px; font-size: 0.88rem; color: var(--text-2); cursor: pointer; }
+  .rm-check input { margin-top: 4px; accent-color: var(--cyan); }
+  .rm-hint { font-size: 0.85rem; color: var(--text-3); margin: 8px 0 0; }
+
+  /* The A4 sheet: real size, scaled down on screen */
+  .rm-paper { position: absolute; top: 0; left: 0; width: 210mm; min-height: 297mm; padding: 14mm 15mm; background: #fff; color: #1d2433; transform-origin: top left;
+    font-family: 'Inter', Arial, 'Noto Sans Devanagari', sans-serif; font-size: 10.5pt; line-height: 1.42; -webkit-font-smoothing: antialiased; color-scheme: light; }
+  .rm-paper.r-compact { font-size: 9.5pt; line-height: 1.36; }
+  .rm-paper * { color: inherit; letter-spacing: 0; }
+  .rm-paper .r-head { margin: 0 0 0.9em; padding: 0; border: 0; }
+  .rm-paper a { color: #1d2433; text-decoration: none; }
+  .rm-paper p { margin: 0; color: #1d2433; }
+  .rm-paper strong { color: #0b1026; font-weight: 600; }
+  .r-head { margin-bottom: 0.9em; }
+  .rm-paper .r-head h1 { font: 700 2.1em/1.1 'Inter', Arial, 'Noto Sans Devanagari', sans-serif; color: #0b1026; margin: 0 0 0.15em; letter-spacing: -0.01em; text-wrap: auto; }
+  .r-headline { font-size: 1.05em; color: #3b4560 !important; margin-bottom: 0.25em !important; }
+  .r-contact { font-size: 0.95em; color: #3b4560 !important; }
+  .r-sep { color: #9aa3b8; }
+  .r-sec { margin-top: 0.85em; }
+  .rm-paper .r-sec h2 { font: 700 0.92em/1.2 'Inter', Arial, 'Noto Sans Devanagari', sans-serif; color: #0b1026; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 0.45em; padding-bottom: 0.25em; border-bottom: 1.2px solid #0b1026; }
+  .r-entry { margin-bottom: 0.55em; break-inside: avoid; }
+  .r-row { display: flex; justify-content: space-between; gap: 1em; align-items: baseline; }
+  .r-sub { color: #3b4560; }
+  .r-sub span { color: #3b4560; }
+  .r-date { flex: none; color: #3b4560; font-size: 0.95em; white-space: nowrap; }
+  .r-muted { color: #3b4560; font-weight: 400; }
+  .rm-paper .r-body ul { margin: 0.2em 0 0; padding-left: 1.15em; }
+  .rm-paper .r-body li { margin: 0.1em 0; color: #1d2433; }
+  .r-skill { margin-bottom: 0.2em !important; }
+  .r-empty { color: #8a93a8 !important; font-size: 1.1em; padding-top: 40mm; text-align: center; }
+  .r-credit { margin-top: 1.4em !important; font-size: 0.78em; color: #9aa3b8 !important; text-align: right; }
+  .r-break { position: absolute; left: 0; right: 0; border-top: 2px dashed #e0a43a; pointer-events: none; }
+
+  @media (max-width: 900px) {
+    .rm-toolbar { position: static; padding: 10px; gap: 8px; }
+    .rm-tabs { display: grid; grid-template-columns: 1fr 1fr; margin-top: 14px; border: 1px solid var(--border-strong); border-radius: var(--r-sm); overflow: hidden; position: sticky; top: 74px; z-index: 5; background: rgba(14, 21, 51, 0.96); }
+    .rm-tabs button { background: transparent; color: var(--text-2); border: 0; padding: 11px; font: 600 0.95rem/1 var(--font-head); cursor: pointer; }
+    .rm-tabs button[aria-selected='true'] { background: rgba(230, 195, 106, 0.16); color: var(--text); }
+    .rm-cols { grid-template-columns: 1fr; }
+    .rm[data-view='edit'] .rm-preview { display: none; }
+    .rm[data-view='preview'] .rm-form { display: none; }
+    .rm-preview { position: static; max-height: none; overflow: visible; padding-right: 0; }
+  }
+  @media (max-width: 520px) {
+    .rm-grid { grid-template-columns: 1fr; }
+    .rm-toolbar .btn { flex: 1 1 calc(50% - 8px); white-space: normal; min-height: 40px; }
+    .rm-toolbar .btn-primary { flex-basis: 100%; }
+    .rm-sec { padding: 2px 14px; }
+  }
+
+  /* Printing: only the sheet, at real size, on A4 */
+  @media print {
+    @page { size: A4; margin: 14mm 15mm; }
+    html, body { background: #fff !important; }
+    body > :not(main), main > :not(.rm-page), .rm-page .rm-intro, .rm-toolbar, .rm-tabs, .rm-form, .rm-status, .rm-check, .rm-hint, .r-break { display: none !important; }
+    .rm-page { padding: 0 !important; background: #fff !important; }
+    .rm-page .wrap { padding: 0; max-width: none; }
+    .rm, .rm-cols, .rm-preview { display: block !important; margin: 0; position: static; max-height: none !important; overflow: visible !important; padding: 0 !important; }
+    .rm-stage { height: auto !important; overflow: visible; box-shadow: none; border-radius: 0; }
+    .rm-paper { position: static; transform: none !important; width: auto; min-height: 0 !important; padding: 0; }
+  }
+</style>
