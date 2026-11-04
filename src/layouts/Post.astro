@@ -1,50 +1,57 @@
 ---
 import Base from './Base.astro';
-import SlideGallery from '../components/SlideGallery.astro';
-import slides from '../data/slides.json';
-import { formatDate, getPosts, lessonLabel } from '../lib/posts.js';
+import { formatDate, getPosts, lessonLabel, slugOf } from '../lib/posts.js';
 import { t } from '../i18n.js';
 import { coverSvg } from '../data/covers.js';
 import Quiz from '../components/Quiz.astro';
 import MarkDone from '../components/MarkDone.astro';
-import { course1, partOf } from '../data/course.js';
+import { course1, partOf, lessonNumber } from '../data/course.js';
 
-const { frontmatter } = Astro.props;
+const { frontmatter, headings = [], rawContent } = Astro.props;
 const lang = frontmatter.lang === 'hi' ? 'hi' : 'en';
 const L = t[lang];
+const slug = slugOf(Astro.url.pathname);
 const isLesson = frontmatter.category === 'lesson';
+const n = isLesson ? (lessonNumber(slug) ?? frontmatter.lesson ?? 0) : null;
 const labels = { journey: L.journeyTag, explainer: L.explainerTag };
 const pre = lang === 'hi' ? '/hi' : '';
 const lessonsHref = lang === 'hi' ? '/hi/lessons/' : '/lessons/';
 const back = isLesson ? [lessonsHref, L.allLessons] : frontmatter.category === 'explainer' ? [`${pre}/explainers/`, L.allExplainers] : [`${pre}/learn/`, L.theLog];
-const eyebrow = isLesson ? lessonLabel(frontmatter, lang) : `${labels[frontmatter.category] ?? frontmatter.category}${frontmatter.day ? `, ${L.day(frontmatter.day)}` : ''}`;
+const eyebrow = isLesson ? lessonLabel({ lesson: n }, lang) : `${labels[frontmatter.category] ?? frontmatter.category}${frontmatter.day ? `, ${L.day(frontmatter.day)}` : ''}`;
 let prev, next;
 if (isLesson) {
   const all = getPosts('lesson', lang);
-  const i = all.findIndex((p) => p.lesson === frontmatter.lesson);
+  const i = all.findIndex((p) => p.slug === slug);
   prev = all[i - 1]; next = all[i + 1];
 }
-const part = isLesson ? partOf(frontmatter.lesson ?? 0) : null;
-const slideCount = frontmatter.slides ? (slides[frontmatter.slides]?.length ?? 0) : 0;
-const image = isLesson ? `/covers/lesson-${frontmatter.lesson ?? 0}.jpg` : undefined;
+const part = isLesson ? partOf(n) : null;
+const raw = typeof rawContent === 'function' ? rawContent() : '';
+const words = raw.replace(/```[\s\S]*?```/g, ' ').split(/\s+/).filter(Boolean).length;
+const mins = words ? Math.max(1, Math.round(words / 200)) : 0;
+const toc = isLesson ? headings.filter((h) => h.depth === 2) : [];
+const image = isLesson ? `/covers/${slug}.jpg` : undefined;
 ---
 <Base title={frontmatter.title} description={frontmatter.description} image={image} lang={lang}>
   <article class="article">
     <div class="narrow">
       <header>
-        <p class="eyebrow">{eyebrow}{part && <span class="part-tag"> · {course1[lang].short}, {lang === 'hi' ? 'भाग' : 'Part'} {part.id}: {part[lang][0]}</span>}</p>
+        <p class="eyebrow">{eyebrow}{part && <span class="part-tag">, {course1[lang].short}, {lang === 'hi' ? 'भाग' : 'Part'} {part.id}: {part[lang][0]}</span>}</p>
         <h1>{frontmatter.title}</h1>
         {frontmatter.description && <p class="desc">{frontmatter.description}</p>}
-        <p class="meta" style="margin: 0">{L.published(formatDate(frontmatter.date, lang), slideCount)}</p>
+        <p class="meta" style="margin: 0">{L.published(formatDate(frontmatter.date, lang), mins)}</p>
       </header>
     </div>
-    {isLesson && !frontmatter.slides && <div class="post-cover" aria-hidden="true"><Fragment set:html={coverSvg(frontmatter.lesson ?? 0)} /></div>}
-    {frontmatter.slides && <div class="wide"><SlideGallery set={frontmatter.slides} lang={lang} /></div>}
+    {isLesson && <div class="post-cover" aria-hidden="true"><Fragment set:html={coverSvg(slug, n)} /></div>}
     <div class="narrow">
-      {frontmatter.slides && <h2 class="notes-head">{lang === 'hi' ? 'पाठ के नोट्स' : 'Lesson notes'}</h2>}
+      {toc.length > 3 && (
+        <nav class="lesson-toc glass" aria-label={lang === 'hi' ? 'इस पाठ में' : 'In this lesson'}>
+          <strong>{lang === 'hi' ? 'इस पाठ में' : 'In this lesson'}</strong>
+          <ol>{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+        </nav>
+      )}
       <slot />
-      {isLesson && <Quiz n={frontmatter.lesson ?? 0} lang={lang} />}
-      {isLesson && <MarkDone n={frontmatter.lesson ?? 0} lang={lang} />}
+      {isLesson && <Quiz slug={slug} n={n} lang={lang} />}
+      {isLesson && <MarkDone slug={slug} lang={lang} />}
       <hr style="border: 0; border-top: 1px solid var(--line); margin: 48px 0 24px" />
       {isLesson ? (
         <div class="lesson-nav">

@@ -37,9 +37,9 @@ A के पास वाला random 0 या 1 देखता है; वह
 ## यह क्यों मायने रखता है
 
 - **Quantum computing:** entanglement से कई qubits 2ⁿ amplitudes की एक state साझा करते हैं।
-- **Quantum communication:** E91 protocol entangled photons से key बाँटता है (पाठ 5)।
-- **Teleportation:** entangled pair और दो classical bits से qubit की state दूसरी जगह पहुँचती है (पाठ 8)।
-- **Sensing:** entangled atoms precision की standard सीमा तोड़ सकते हैं (पाठ 6)।
+- **Quantum communication:** E91 protocol entangled photons से key बाँटता है (पाठ 41)।
+- **Teleportation:** entangled pair और दो classical bits से qubit की state दूसरी जगह पहुँचती है (पाठ 21)।
+- **Sensing:** entangled atoms precision की standard सीमा तोड़ सकते हैं (पाठ 44)।
 
 ## आज़माएँ
 

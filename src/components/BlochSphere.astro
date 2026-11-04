@@ -1,6 +1,6 @@
 ---
 // A qubit on the Bloch sphere. The amber state vector slowly precesses around the z-axis,
-// which is exactly what a qubit does in a magnetic field (Lesson 6). Static if reduced motion is on.
+// which is exactly what a qubit does in a magnetic field (Lesson 44). Static if reduced motion is on.
 const cx = 220, cy = 214, r = 160, e = 0.3; // e = sin(camera elevation)
 const ce = Math.sqrt(1 - e * e);
 const P = (u, v, z) => [cx + r * u, cy - r * (z * ce - v * e)];

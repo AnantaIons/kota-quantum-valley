@@ -1,4 +1,5 @@
 // UI text in English and Hindi. Lesson content lives in the Markdown files.
+import { isLessonSlug } from './data/course.js';
 export const t = {
   en: {
     tagline: 'Quantum learning, from Kota',
@@ -11,11 +12,10 @@ export const t = {
     footAbout: "Free quantum computing lessons from absolute zero, and the case for building India's quantum workforce in Kota.",
     footLearn: 'Learn', footInit: 'Initiative', footFollow: 'Follow',
     roadmap: 'Roadmap', allLessons: 'All lessons', learningLog: 'Learning log', journeyTag: 'Learning log', explainerTag: 'Explainer', allExplainers: 'all explainers', theLog: 'the learning log', soon: 'First post coming soon.', day: (n) => `Day ${n}`, whyKota: 'Why Kota', careers: 'Careers in quantum', about: 'About',
-    license: "Lessons and slides are licensed {cc}. Share them with credit; don't sell them.",
+    license: "Lessons are licensed {cc}. Share them with credit; don't sell them.",
     switchLabel: 'हिन्दी', switchAria: 'हिन्दी में पढ़ें',
-    lesson: (n) => `Lesson ${n}`, roadmapLabel: 'Roadmap', startHere: 'Start here', slides: (n) => `${n} slides`,
-    published: (d, n) => `Published ${d}${n ? `, with ${n} slides` : ''}`,
-    theSlides: 'The slides', tapSlide: 'Tap a slide to open it full size.', slideAlt: (i, title) => `Slide ${i}: ${title}`,
+    lesson: (n) => `Lesson ${n}`, roadmapLabel: 'Roadmap', startHere: 'Start here', comingSoon: 'Coming soon',
+    published: (d, mins) => `Published ${d}${mins ? `, ${mins} min read` : ''}`,
     prev: 'Previous', next: 'Next', backTo: 'Back to',
     chat: 'Chat with us', chatTitle: 'Questions about quantum, Kota or the lessons?', chatBody: 'Send us a message on Instagram. It opens a direct chat with @kota_quantum_valley, and we usually reply within a day.', chatButton: 'Message on Instagram', chatClose: 'Close chat',
   },
@@ -30,11 +30,10 @@ export const t = {
     footAbout: 'शून्य से क्वांटम कंप्यूटिंग के मुफ़्त पाठ, और भारत की क्वांटम वर्कफ़ोर्स कोटा में तैयार करने का प्रस्ताव।',
     footLearn: 'पढ़ें', footInit: 'पहल', footFollow: 'जुड़ें',
     glossary: 'शब्दकोश', roadmap: 'रोडमैप', journeyTag: 'लर्निंग लॉग', explainerTag: 'आसान व्याख्या', allExplainers: 'सभी व्याख्याएँ', theLog: 'लर्निंग लॉग', soon: 'पहली पोस्ट जल्द आ रही है।', day: (n) => `दिन ${n}`, allLessons: 'सभी पाठ', learningLog: 'लर्निंग लॉग', whyKota: 'कोटा क्यों', careers: 'क्वांटम में करियर', about: 'हमारे बारे में',
-    license: 'पाठ और स्लाइड {cc} लाइसेंस के तहत हैं। क्रेडिट देकर शेयर करें, बेचें नहीं।',
+    license: 'पाठ {cc} लाइसेंस के तहत हैं। क्रेडिट देकर शेयर करें, बेचें नहीं।',
     switchLabel: 'EN', switchAria: 'Read in English',
-    lesson: (n) => `पाठ ${n}`, roadmapLabel: 'रोडमैप', startHere: 'यहाँ से शुरू करें', slides: (n) => `${n} स्लाइड`,
-    published: (d, n) => `प्रकाशित ${d}${n ? `, ${n} स्लाइड के साथ` : ''}`,
-    theSlides: 'स्लाइड', tapSlide: 'किसी भी स्लाइड को बड़ा देखने के लिए उस पर टैप करें। स्लाइड अंग्रेज़ी में हैं।', slideAlt: (i, title) => `स्लाइड ${i}: ${title}`,
+    lesson: (n) => `पाठ ${n}`, roadmapLabel: 'रोडमैप', startHere: 'यहाँ से शुरू करें', comingSoon: 'जल्द आ रहा है',
+    published: (d, mins) => `प्रकाशित ${d}${mins ? `, ${mins} मिनट में पढ़ें` : ''}`,
     prev: 'पिछला', next: 'अगला', backTo: 'वापस',
     chat: 'हमसे बात करें', chatTitle: 'क्वांटम, कोटा या पाठों के बारे में कोई सवाल?', chatBody: 'हमें इंस्टाग्राम पर मैसेज करें। इससे @kota_quantum_valley के साथ सीधी चैट खुलती है, और हम आमतौर पर एक दिन में जवाब देते हैं।', chatButton: 'इंस्टाग्राम पर मैसेज करें', chatClose: 'चैट बंद करें',
   },
@@ -50,8 +49,8 @@ export function altPath(path) {
     if (m) return `/posts/${m[1]}/`;
     return p.replace(/^\/hi/, '') || '/';
   }
-  const m = p.match(/^\/posts\/((?:lesson-\d[^/]*)|roadmap-what-to-learn-first)\/$/);
-  if (m) return `/hi/lessons/${m[1]}/`;
+  const m = p.match(/^\/posts\/([^/]+)\/$/);
+  if (m && isLessonSlug(m[1])) return `/hi/lessons/${m[1]}/`;
   const post = p.match(/^\/posts\/([^/]+)\/$/);
   if (post) return `/hi/posts/${post[1]}/`;
   if (['/', '/lessons/', '/lab/', '/glossary/', '/why-kota/', '/about/', '/learn/', '/explainers/', '/careers/'].includes(p)) return '/hi' + p;

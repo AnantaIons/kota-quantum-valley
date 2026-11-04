@@ -1,9 +1,9 @@
 ---
 // Per-viewer "mark complete" toggle. Saved in this browser only.
-const { n, lang = 'en' } = Astro.props;
+const { slug, lang = 'en' } = Astro.props;
 const hi = lang === 'hi';
 ---
-<div class="markdone" data-markdone={n}>
+<div class="markdone" data-markdone={slug}>
   <button type="button" class="btn btn-ghost" data-md-btn>
     <span data-md-off>{hi ? '✓ पाठ पूरा हुआ, निशान लगाएँ' : '✓ Mark this lesson complete'}</span>
     <span data-md-on hidden>{hi ? '✓ पूरा हुआ (हटाने के लिए दबाएँ)' : '✓ Completed (tap to undo)'}</span>
@@ -11,11 +11,9 @@ const hi = lang === 'hi';
   <p class="meta">{hi ? 'प्रगति सिर्फ़ इसी ब्राउज़र में सहेजी जाती है।' : 'Progress is saved in this browser only.'}</p>
 </div>
 <script>
-  const KEY = 'kqv-done-v1';
-  const read = (): number[] => { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; } };
-  const write = (v: number[]) => { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch {} };
+  import { readDone as read, writeDone as write } from '../scripts/progress.js';
   document.querySelectorAll('[data-markdone]').forEach((root) => {
-    const el = root as HTMLElement, n = +el.dataset.markdone!;
+    const el = root as HTMLElement, n = el.dataset.markdone!;
     const off = el.querySelector('[data-md-off]') as HTMLElement, on = el.querySelector('[data-md-on]') as HTMLElement, btn = el.querySelector('[data-md-btn]') as HTMLElement;
     const paint = () => { const d = read().includes(n); off.hidden = d; on.hidden = !d; btn.classList.toggle('is-done', d); };
     btn.addEventListener('click', () => { const v = read(); const i = v.indexOf(n); if (i >= 0) v.splice(i, 1); else v.push(n); write(v); paint(); });

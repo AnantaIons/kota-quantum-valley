@@ -1,7 +1,7 @@
 ---
 import LessonGrid from './LessonGrid.astro';
 import { getPosts } from '../lib/posts.js';
-import { course1 } from '../data/course.js';
+import { course1, syllabus } from '../data/course.js';
 const { lang = 'en' } = Astro.props;
 const hi = lang === 'hi';
 const pre = hi ? '/hi' : '';
@@ -9,10 +9,11 @@ const lessons = getPosts('lesson', lang);
 const explainers = getPosts('explainer', lang);
 const bySlug = (slug) => explainers.find((p) => p.url.replace(/\/$/, '').endsWith('/' + slug));
 const total = lessons.length;
+const planned = syllabus.length;
 const C = course1[lang];
 const T = hi ? {
   kicker: 'पूरा course · मुफ़्त · हिन्दी और English',
-  lead: `एक रोडमैप और ${total - 1} पाठ, शून्य से असली quantum हार्डवेयर तक। हर पाठ में आसान व्याख्या, चलने वाला कोड, अभ्यास, सार और अंत में quiz है। क्रम से चलें; हर भाग पिछले पर बनता है।`,
+  lead: `एक रोडमैप और ${planned - 1} पाठ, शून्य से असली quantum हार्डवेयर तक। ${total < planned ? `अभी ${total} प्रकाशित हैं। ` : ''}हर पाठ में आसान व्याख्या, चलने वाला कोड, अभ्यास, सार और अंत में quiz है। क्रम से चलें; हर भाग पिछले पर बनता है।`,
   progress: (d, t) => `${t} में से ${d} पूरे`, progNote: 'प्रगति सिर्फ़ इसी ब्राउज़र में सहेजी जाती है। हर पाठ के अंत में "पूरा हुआ" का निशान लगाएँ।',
   part: 'भाग', read: 'साथ में पढ़ें', practice: 'अभ्यास और संदर्भ',
   lab: ['क्वांटम लैब', 'Bloch sphere, superposition, Bell state और circuit builder: 4 प्रयोग, ब्राउज़र में।'],
@@ -22,7 +23,7 @@ const T = hi ? {
   soon: 'जल्द', start: 'रोडमैप से शुरू करें',
 } : {
   kicker: 'Full course · Free · English and Hindi',
-  lead: `A roadmap plus ${total - 1} lessons, from absolute zero to real quantum hardware. Every lesson has a plain-language explanation, runnable code, exercises, a cheat sheet and a quiz at the end. Go in order; each part builds on the last.`,
+  lead: `A roadmap plus ${planned - 1} lessons, from absolute zero to real quantum hardware. ${total < planned ? `${total} are published so far. ` : ''}Every lesson has a plain-language explanation, runnable code, exercises, a cheat sheet and a quiz at the end. Go in order; each part builds on the last.`,
   progress: (d, t) => `${d} of ${t} complete`, progNote: 'Progress is saved in this browser only. Mark each lesson complete at the end of the page.',
   part: 'Part', read: 'Read alongside', practice: 'Practice and reference',
   lab: ['Quantum Lab', 'Bloch sphere, superposition, Bell states and a circuit builder: 4 experiments in your browser.'],
@@ -51,16 +52,15 @@ const startHref = hi ? '/hi/lessons/roadmap-what-to-learn-first/' : '/posts/road
     </nav>
 
     {course1.parts.map((p) => {
-      const ls = lessons.filter((l) => p.lessons.includes(l.lesson ?? 0));
       const ex = p.explainers.map(bySlug).filter(Boolean);
       return (
         <section class="course-part" id={`part-${p.id}`}>
           <div class="cpart-head">
-            <span class="cpart-id">{T.part} {p.id}</span>
+            <span class="cpart-id">{T.part} {p.id}, {hi ? `पाठ ${p.from}–${p.to}` : `Lessons ${p.from}–${p.to}`}</span>
             <h2>{p[lang][0]}</h2>
             <p>{p[lang][1]}</p>
           </div>
-          <LessonGrid lessons={ls} lang={lang} />
+          <LessonGrid lessons={lessons} from={p.from} to={p.to} lang={lang} />
           {ex.length > 0 && (
             <div class="cpart-ex">
               <span class="cpart-ex-t">{T.read}</span>
@@ -89,15 +89,16 @@ const startHref = hi ? '/hi/lessons/roadmap-what-to-learn-first/' : '/posts/road
   </div>
 </section>
 <script>
+  import { readDone } from '../scripts/progress.js';
   const el = document.querySelector('[data-progress]') as HTMLElement | null;
   if (el) {
-    let done: number[] = [];
-    try { done = JSON.parse(localStorage.getItem('kqv-done-v1') || '[]'); } catch {}
     const total = +el.dataset.total!;
+    const slugs = [...document.querySelectorAll('.lc[data-lesson]')].map((li) => (li as HTMLElement).dataset.lesson!);
+    const done: string[] = readDone().filter((s: string) => slugs.includes(s));
     const hi = JSON.parse(el.querySelector('[data-cp-t]')!.textContent!).hi;
     const d = done.length;
     (el.querySelector('[data-cp-text]') as HTMLElement).textContent = hi ? `${total} में से ${d} पूरे` : `${d} of ${total} complete`;
     (el.querySelector('[data-cp-fill]') as HTMLElement).style.width = (d / total) * 100 + '%';
-    document.querySelectorAll('.lc[data-lesson]').forEach((li) => { if (done.includes(+(li as HTMLElement).dataset.lesson!)) li.classList.add('is-done'); });
+    document.querySelectorAll('.lc[data-lesson]').forEach((li) => { if (done.includes((li as HTMLElement).dataset.lesson!)) li.classList.add('is-done'); });
   }
 </script>

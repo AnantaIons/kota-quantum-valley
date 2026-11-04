@@ -1,9 +1,9 @@
 ---
 // End-of-lesson quiz. Options are shuffled deterministically so answers aren't in a fixed position.
 import { quizzes } from '../data/quizzes.js';
-const { n, lang = 'en' } = Astro.props;
+const { slug, n = 0, lang = 'en' } = Astro.props;
 const hi = lang === 'hi';
-const raw = (quizzes[n] ?? []).map((q) => q[lang] ?? q.en);
+const raw = (quizzes[slug] ?? []).map((q) => q[lang] ?? q.en);
 const items = raw.map(([q, opts, ans, why], i) => {
   const shift = (n * 7 + i * 3 + 1) % opts.length;
   const order = opts.map((_, k) => (k + shift) % opts.length);

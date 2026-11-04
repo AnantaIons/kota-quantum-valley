@@ -31,7 +31,7 @@ Each qubit alone looks like a fair coin. But the two coins always agree, even if
 
 ## How to make one
 
-Two gates are enough (Lesson 2):
+Two gates are enough (Lesson 14):
 
 1. **H** on qubit A: it becomes (|0⟩ + |1⟩)/√2.
 2. **CNOT** with A as control and B as target: B copies A's value in each branch.
@@ -47,9 +47,9 @@ Whoever holds A sees a random 0 or 1. They can't choose it. Whoever holds B also
 ## Why it matters
 
 - **Quantum computing:** entanglement lets many qubits share one state of 2ⁿ amplitudes. Without it, a quantum computer could be simulated easily.
-- **Quantum communication:** the E91 protocol uses entangled photons for key distribution, and a Bell test exposes eavesdroppers (Lesson 5).
+- **Quantum communication:** the E91 protocol uses entangled photons for key distribution, and a Bell test exposes eavesdroppers (Lesson 41).
 - **Teleportation:** an entangled pair plus two classical bits moves a qubit's state from one place to another.
-- **Sensing:** entangled atoms can beat the standard precision limit (Lesson 6).
+- **Sensing:** entangled atoms can beat the standard precision limit (Lesson 44).
 
 ## Try it
 

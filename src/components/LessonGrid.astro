@@ -1,28 +1,40 @@
 ---
-// Lesson cards: a unique illustrated cover per lesson, number, summary.
-import slides from '../data/slides.json';
+// Lesson cards. Pass `lessons` (published posts) and optionally `from`/`to` to also show
+// planned lessons in that range as "coming soon" cards.
 import { coverSvg } from '../data/covers.js';
+import { syllabus } from '../data/course.js';
 import { lessonLabel } from '../lib/posts.js';
 import { t } from '../i18n.js';
-const { lessons = [], lang = 'en' } = Astro.props;
+const { lessons = [], lang = 'en', from, to } = Astro.props;
 const L = t[lang];
-const count = (p) => (p.slides && slides[p.slides] ? slides[p.slides].length : 0);
-const codeLabel = lang === 'hi' ? 'कोड के साथ' : 'with code';
+const planned = from === undefined ? [] : syllabus.filter((s) => s.n >= from && s.n <= to);
+const items = from === undefined
+  ? lessons.map((p) => ({ n: p.lesson, slug: p.slug, post: p }))
+  : planned.map((s) => ({ n: s.n, slug: s.slug, post: lessons.find((p) => p.slug === s.slug), title: s[lang] }));
 ---
 <ol class="lesson-cards">
-  {lessons.map((p) => (
-    <li class={p.lesson ? "lc" : "lc lc-start"} data-lesson={p.lesson ?? 0}>
-      <a href={p.url}>
+  {items.map(({ n, slug, post, title }) => post ? (
+    <li class={n ? 'lc' : 'lc lc-start'} data-lesson={slug}>
+      <a href={post.url}>
         <span class="lc-cover lc-svg" aria-hidden="true">
-          <Fragment set:html={coverSvg(p.lesson ?? 0)} />
-          {!p.lesson && <span class="lc-flag">{L.startHere}</span>}
+          <Fragment set:html={coverSvg(slug, n)} />
+          {!n && <span class="lc-flag">{L.startHere}</span>}
         </span>
         <span class="lc-body">
-          <span class="lc-kicker">{lessonLabel(p, lang)}<span class="lc-count">{count(p) ? L.slides(count(p)) : codeLabel}</span></span>
-          <h3>{p.title}</h3>
-          <p>{p.description}</p>
+          <span class="lc-kicker">{lessonLabel({ lesson: n }, lang)}</span>
+          <h3>{post.title}</h3>
+          <p>{post.description}</p>
         </span>
       </a>
+    </li>
+  ) : (
+    <li class="lc lc-soon">
+      <div>
+        <span class="lc-body">
+          <span class="lc-kicker">{lessonLabel({ lesson: n }, lang)}<span class="lc-count">{L.comingSoon}</span></span>
+          <h3>{title}</h3>
+        </span>
+      </div>
     </li>
   ))}
 </ol>

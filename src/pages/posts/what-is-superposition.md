@@ -43,7 +43,7 @@ No coin, and no "secretly 0 or 1" story, can do that. Probabilities are never ne
 
 Superposition alone doesn't make quantum computers fast. Ten qubits in superposition, measured, just give you ten random bits.
 
-The power comes from **superposition + interference**: an algorithm arranges the amplitudes so the wrong answers cancel and the right answer adds up, *before* you measure. That's what Grover's and Shor's algorithms do (Lesson 3).
+The power comes from **superposition + interference**: an algorithm arranges the amplitudes so the wrong answers cancel and the right answer adds up, *before* you measure. That's what Grover's and Shor's algorithms do (Lessons 24 and 28).
 
 ## Try it
 

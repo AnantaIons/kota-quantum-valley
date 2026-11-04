@@ -66,7 +66,7 @@ print(S.run([x], shots=1000).result()[0].data.meas.get_counts())
 {'0': 1000}
 ```
 
-|+⟩ looks completely random in the Z basis, and completely certain in the X basis. **Randomness depends on the question you ask.** This is exactly what BB84 exploits (Lesson 5).
+|+⟩ looks completely random in the Z basis, and completely certain in the X basis. **Randomness depends on the question you ask.** This is exactly what BB84 exploits (Lesson 41).
 
 ## 4. What "collapse" means
 

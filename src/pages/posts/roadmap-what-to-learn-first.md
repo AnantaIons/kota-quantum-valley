@@ -5,7 +5,7 @@ description: "The maths, physics, computer science and electronics you need, the
 date: 2026-10-28
 category: lesson
 lesson: 0
-slides: roadmap
+
 ---
 
 Quantum computing sits on **four pillars**: maths, physics, computer science and electronics. You don't need all of them on day one. You do need the maths first, because every later idea is written in it.

@@ -53,8 +53,7 @@ content:
         options:
           values: [journey, explainer, lesson]
       - { name: day, label: "Day number (Learning log only)", type: number }
-      - { name: lesson, label: "Lesson number (Lessons only, 0 = Roadmap)", type: number }
-      - { name: slides, label: "Slide folder in public/slides, e.g. lesson-7 (Lessons only)", type: string }
+      - { name: lesson, label: "Lesson number (set automatically from src/data/course.js; leave as is)", type: number }
       - { name: draft, label: Hide from site (draft), type: boolean }
       - { name: body, label: Content, type: rich-text }
 
@@ -89,8 +88,7 @@ content:
         required: true
         options:
           values: [lesson]
-      - { name: lesson, label: "Lesson number (0 = Roadmap)", type: number }
-      - { name: slides, label: "Slide folder, same as the English lesson (e.g. lesson-7)", type: string }
+      - { name: lesson, label: "Lesson number (set automatically from src/data/course.js; leave as is)", type: number }
       - { name: draft, label: Hide from site (draft), type: boolean }
       - { name: body, label: Content, type: rich-text }
 

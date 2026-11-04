@@ -1,10 +1,16 @@
-// End-of-lesson quizzes. Each question: [question, [options], correctIndex, explanation], in EN and HI.
+// End-of-lesson quizzes, keyed by lesson slug. Each question: [question, [options], correctIndex, explanation], in EN and HI.
 // Keep options in the same order in both languages.
 
-const Q = (en, hi) => ({ en, hi });
+import { Q } from './quiz/q.js';
+import { quiz as qA } from './quiz/part-a.js';
+import { quiz as qB } from './quiz/part-b.js';
+import { quiz as qC } from './quiz/part-c.js';
+import { quiz as qE } from './quiz/part-e.js';
+import { quiz as qG } from './quiz/part-g.js';
 
 export const quizzes = {
-  0: [
+  ...qA, ...qB, ...qC, ...qE, ...qG,
+  'roadmap-what-to-learn-first': [
     Q(['Which subject should you start with first?', ['Electronics', 'Maths', 'Chemistry', 'Cryptography'], 1, 'Every later idea in quantum computing is written in maths: complex numbers, vectors and matrices.'],
       ['सबसे पहले कौन-सा विषय शुरू करना चाहिए?', ['इलेक्ट्रॉनिक्स', 'मैथ्स', 'केमिस्ट्री', 'Cryptography'], 1, 'क्वांटम कंप्यूटिंग का हर आगे का विचार मैथ्स में लिखा है: complex numbers, vectors और matrices।']),
     Q(['Why does quantum computing need matrices?', ['To store files', 'Every gate is a matrix', 'To draw circuits', 'They make computers cold'], 1, 'A gate changes a state vector by matrix multiplication.'],
@@ -14,7 +20,7 @@ export const quizzes = {
     Q(['Which book is the "final goal" of the reading list?', ['The Art of Electronics', 'Feynman Lectures Vol. III', 'Nielsen & Chuang', 'Python Crash Course'], 2, 'Nielsen & Chuang, Quantum Computation and Quantum Information, is the standard textbook of the field.'],
       ['किताबों की सूची में "अंतिम लक्ष्य" कौन-सी है?', ['The Art of Electronics', 'Feynman Lectures Vol. III', 'Nielsen & Chuang', 'Python Crash Course'], 2, 'Nielsen & Chuang की Quantum Computation and Quantum Information इस क्षेत्र की मानक किताब है।']),
   ],
-  1: [
+  'qubits-and-quantum-states': [
     Q(['A qubit is in √0.8|0⟩ + √0.2|1⟩. What is P(1)?', ['0.8', '0.2', '0.45', '√0.2'], 1, 'P(1) = |β|² = (√0.2)² = 0.2.'],
       ['Qubit √0.8|0⟩ + √0.2|1⟩ में है। P(1) क्या है?', ['0.8', '0.2', '0.45', '√0.2'], 1, 'P(1) = |β|² = (√0.2)² = 0.2।']),
     Q(['Which of these is a valid qubit state?', ['[0.5, 0.5]', '[0.6, 0.8]', '[1, 1]', '[0.9, 0.9]'], 1, '0.6² + 0.8² = 0.36 + 0.64 = 1. The others don\'t add up to 1.'],
@@ -24,7 +30,7 @@ export const quizzes = {
     Q(['Why do amplitudes, not probabilities, make quantum computing powerful?', ['Amplitudes are bigger', 'Amplitudes can cancel each other', 'Amplitudes are always positive', 'Amplitudes are easy to read'], 1, 'Amplitudes can be negative or complex, so they can interfere and cancel. Probabilities never can.'],
       ['Probabilities नहीं, amplitudes क्वांटम कंप्यूटिंग को ताक़तवर क्यों बनाते हैं?', ['Amplitudes बड़े होते हैं', 'Amplitudes एक-दूसरे को cancel कर सकते हैं', 'Amplitudes हमेशा positive हैं', 'Amplitudes पढ़ना आसान है'], 1, 'Amplitudes negative या complex हो सकते हैं, इसलिए interfere करके cancel हो सकते हैं। Probabilities कभी नहीं।']),
   ],
-  2: [
+  'two-qubit-gates-and-circuits': [
     Q(['What does H do to |0⟩?', ['Makes |1⟩', 'Makes (|0⟩ + |1⟩)/√2', 'Makes −|0⟩', 'Nothing'], 1, 'H turns |0⟩ into the equal superposition |+⟩.'],
       ['H, |0⟩ के साथ क्या करता है?', ['|1⟩ बनाता है', '(|0⟩ + |1⟩)/√2 बनाता है', '−|0⟩ बनाता है', 'कुछ नहीं'], 1, 'H, |0⟩ को बराबर superposition |+⟩ में बदलता है।']),
     Q(['|+⟩ and |−⟩ both give 50/50. How can you tell them apart?', ['You can\'t', 'Apply H, then measure', 'Measure twice', 'Apply X, then measure'], 1, 'H maps |+⟩ → |0⟩ and |−⟩ → |1⟩, so the hidden sign becomes visible.'],
@@ -34,7 +40,7 @@ export const quizzes = {
     Q(['Which gates make a Bell pair from |00⟩?', ['X then Z', 'H then CNOT', 'T then S', 'SWAP'], 1, 'H on the first qubit, then CNOT, gives (|00⟩ + |11⟩)/√2.'],
       ['|00⟩ से Bell pair कौन-से gates बनाते हैं?', ['X फिर Z', 'H फिर CNOT', 'T फिर S', 'SWAP'], 1, 'पहले qubit पर H, फिर CNOT से (|00⟩ + |11⟩)/√2 मिलता है।']),
   ],
-  3: [
+  'oracles-deutsch-jozsa-bernstein-vazirani': [
     Q(['What is phase kickback?', ['A gate error', 'A target in |−⟩ moves the oracle\'s sign onto the input', 'Measuring twice', 'A kind of noise'], 1, 'With the target in |−⟩, flipping it just adds a −1 that attaches to the input state.'],
       ['Phase kickback क्या है?', ['Gate की ग़लती', '|−⟩ वाला target oracle का चिह्न input पर डाल देता है', 'दो बार measure करना', 'एक तरह का noise'], 1, 'Target |−⟩ में हो तो उसे पलटने से बस −1 जुड़ता है, जो input state पर चला जाता है।']),
     Q(['Deutsch–Jozsa measures all zeros. The function is…', ['Balanced', 'Constant', 'Random', 'Unknown'], 1, 'All zeros means constant; anything else means balanced.'],
@@ -44,7 +50,7 @@ export const quizzes = {
     Q(['What kind of speed-up does Grover give?', ['Exponential', 'Quadratic', 'None', 'Linear'], 1, 'About √N steps instead of N: a quadratic speed-up.'],
       ['Grover कैसा speed-up देता है?', ['Exponential', 'Quadratic', 'कोई नहीं', 'Linear'], 1, 'N की जगह लगभग √N कदम: quadratic speed-up।']),
   ],
-  4: [
+  'how-real-qubits-are-built': [
     Q(['What does T2 measure?', ['Chip temperature', 'How long the phase survives', 'Gate speed', 'Number of qubits'], 1, 'T2 is how long superposition (phase coherence) lasts.'],
       ['T2 क्या मापता है?', ['Chip का तापमान', 'Phase कितनी देर टिकता है', 'Gate की रफ़्तार', 'Qubits की संख्या'], 1, 'T2 बताता है superposition (phase coherence) कितनी देर रहती है।']),
     Q(['Fidelity is 99.9% per gate. Chance that 1,000 gates all succeed?', ['99.9%', 'About 37%', '0.1%', '90%'], 1, '0.999¹⁰⁰⁰ ≈ 0.37. Small errors pile up fast.'],
@@ -54,7 +60,7 @@ export const quizzes = {
     Q(['Which platform works at room temperature and suits networks?', ['Superconducting', 'Photonic', 'Trapped ions', 'Silicon spins'], 1, 'Photons travel through fibre and don\'t need cryogenic cooling for transmission.'],
       ['कौन-सा platform कमरे के तापमान पर चलता है और networks के लिए सही है?', ['Superconducting', 'Photonic', 'Trapped ions', 'Silicon spins'], 1, 'Photons fibre में चलते हैं और भेजने के लिए cryogenic cooling नहीं चाहिए।']),
   ],
-  5: [
+  'quantum-communication-and-qkd': [
     Q(['In BB84, what do Alice and Bob compare publicly?', ['Their bits', 'Their bases', 'Their keys', 'Nothing'], 1, 'They compare only the bases and keep positions where the bases matched.'],
       ['BB84 में Alice और Bob सबके सामने क्या मिलाते हैं?', ['अपने bits', 'अपने bases', 'अपनी keys', 'कुछ नहीं'], 1, 'वे सिर्फ़ bases मिलाते हैं और जहाँ bases मिले वहाँ के bits रखते हैं।']),
     Q(['If Eve measures every photon, what error rate appears?', ['0%', '25%', '50%', '100%'], 1, 'She picks the wrong basis half the time, and half of those give Bob a wrong bit: ½ × ½ = 25%.'],
@@ -64,7 +70,7 @@ export const quizzes = {
     Q(['What is post-quantum cryptography (PQC)?', ['QKD over satellites', 'Maths-based encryption that quantum computers can\'t easily break', 'A quantum computer', 'Encryption after a quantum computer is built'], 1, 'PQC runs on ordinary computers and relies on maths problems believed hard even for quantum computers.'],
       ['Post-quantum cryptography (PQC) क्या है?', ['Satellites पर QKD', 'गणित-आधारित encryption जिसे quantum computers आसानी से नहीं तोड़ सकते', 'एक quantum computer', 'Quantum computer बनने के बाद का encryption'], 1, 'PQC साधारण कंप्यूटरों पर चलता है और ऐसी गणितीय समस्याओं पर टिका है जो quantum computers के लिए भी कठिन मानी जाती हैं।']),
   ],
-  6: [
+  'quantum-sensing': [
     Q(['In Ramsey interferometry, P(0) equals…', ['sin(φ)', 'cos²(φ/2)', 'φ²', '1/φ'], 1, 'After H, phase φ, H: P(0) = cos²(φ/2).'],
       ['Ramsey interferometry में P(0) बराबर है…', ['sin(φ)', 'cos²(φ/2)', 'φ²', '1/φ'], 1, 'H, phase φ, H के बाद: P(0) = cos²(φ/2)।']),
     Q(['At the standard quantum limit, how many repeats give 100× better precision?', ['100', '10,000', '1,000', '10'], 1, 'Precision ∝ 1/√N, so 100× better needs N = 100² = 10,000.'],
@@ -74,7 +80,7 @@ export const quizzes = {
     Q(['One second is defined by…', ['The Earth\'s rotation', '9,192,631,770 cycles of caesium-133', 'A quartz crystal', 'GPS satellites'], 1, 'That is the SI definition of the second.'],
       ['एक second की परिभाषा है…', ['पृथ्वी का घूमना', 'Caesium-133 के 9,192,631,770 cycles', 'Quartz crystal', 'GPS satellites'], 1, 'यही second की SI परिभाषा है।']),
   ],
-  7: [
+  'your-first-quantum-program': [
     Q(['What does Statevector(qc) let you do?', ['Run on real hardware', 'Peek at the amplitudes (simulator only)', 'Measure 1,000 times', 'Draw the circuit'], 1, 'It computes the exact amplitudes, which real hardware can never show you.'],
       ['Statevector(qc) से क्या कर सकते हैं?', ['असली हार्डवेयर पर चलाना', 'Amplitudes देखना (सिर्फ़ simulator)', '1,000 बार measure करना', 'Circuit बनाना'], 1, 'यह ठीक-ठीक amplitudes निकालता है, जो असली हार्डवेयर कभी नहीं दिखा सकता।']),
     Q(['A Bell pair measured 1,000 times gives…', ['All four results equally', 'Only 00 and 11', 'Only 01 and 10', 'Always 00'], 1, 'The two qubits always agree: about half 00, half 11.'],
@@ -84,7 +90,7 @@ export const quizzes = {
     Q(['You apply X to qubit 1 of 2. Qiskit prints…', ["'01'", "'10'", "'11'", "'00'"], 1, 'Qiskit writes qubit 0 on the right, so the string is q1 q0 = 10.'],
       ['2 में से qubit 1 पर X लगाया। Qiskit छापता है…', ["'01'", "'10'", "'11'", "'00'"], 1, 'Qiskit qubit 0 को दाएँ लिखता है, तो string q1 q0 = 10 है।']),
   ],
-  8: [
+  'teleportation-and-superdense-coding': [
     Q(['Teleportation moves…', ['Matter', 'A quantum state', 'Energy', 'Photons faster than light'], 1, 'Only the state moves; Bob\'s qubit was already with Bob.'],
       ['Teleportation क्या भेजता है?', ['पदार्थ', 'एक quantum state', 'Energy', 'रोशनी से तेज़ photons'], 1, 'सिर्फ़ state जाती है; Bob का qubit पहले से Bob के पास था।']),
     Q(['How many classical bits does Alice send in teleportation?', ['0', '2', '1', '4'], 1, 'Two bits tell Bob which correction (nothing, X, Z, or both) to apply.'],
@@ -94,7 +100,7 @@ export const quizzes = {
     Q(['Superdense coding sends 2 classical bits using…', ['2 qubits sent', '1 qubit sent, plus a shared Bell pair', 'No qubits', '4 qubits'], 1, 'Alice encodes on her half of a Bell pair and sends just that one qubit.'],
       ['Superdense coding 2 classical bits भेजता है…', ['2 qubits भेजकर', '1 qubit भेजकर, साझा Bell pair के साथ', 'बिना qubits', '4 qubits'], 1, 'Alice Bell pair के अपने आधे हिस्से पर encode करके सिर्फ़ वही एक qubit भेजती है।']),
   ],
-  9: [
+  'grovers-search': [
     Q(['What does Grover\'s oracle do?', ['Measures the answer', 'Flips the sign of the marked state', 'Copies the answer', 'Sorts the list'], 1, 'It multiplies the marked amplitude by −1; probabilities don\'t change yet.'],
       ['Grover का oracle क्या करता है?', ['जवाब measure करता है', 'Marked state का चिह्न पलटता है', 'जवाब copy करता है', 'List sort करता है'], 1, 'यह marked amplitude को −1 से गुणा करता है; probabilities अभी नहीं बदलतीं।']),
     Q(['For N = 4, how many Grover rounds give the answer with certainty?', ['2', '1', '4', '√4 + 1'], 1, 'One round is exactly right for N = 4.'],
@@ -104,7 +110,7 @@ export const quizzes = {
     Q(['About how many rounds for N = 1,000,000?', ['500,000', '~785', '1,000', '20'], 1, '(π/4)·√1,000,000 ≈ 785.'],
       ['N = 10,00,000 के लिए लगभग कितने rounds?', ['5,00,000', '~785', '1,000', '20'], 1, '(π/4)·√10,00,000 ≈ 785।']),
   ],
-  10: [
+  'phase-estimation': [
     Q(['Phase estimation outputs the phase as…', ['A decimal number', 'Binary bits of the fraction φ', 'An angle in degrees', 'A probability'], 1, 'The counting register spells out φ as a binary fraction.'],
       ['Phase estimation phase को किस रूप में देता है?', ['Decimal संख्या', 'Fraction φ के binary bits', 'Degrees में कोण', 'Probability'], 1, 'Counting register φ को binary fraction के रूप में लिखता है।']),
     Q(['T has phase φ = 1/8. With 3 counting qubits, the register reads…', ['100', '001', '111', '010'], 1, '1/8 = 0.001 in binary, so the register reads 001.'],
@@ -114,7 +120,7 @@ export const quizzes = {
     Q(['What\'s the catch with the QFT?', ['Too slow', 'You can\'t read out all 2ⁿ amplitudes', 'Needs 1,000 qubits', 'Only works for primes'], 1, 'Measurement gives one result, so the QFT only helps inside algorithms built around it.'],
       ['QFT की शर्त क्या है?', ['बहुत धीमा', 'सभी 2ⁿ amplitudes नहीं पढ़ सकते', '1,000 qubits चाहिए', 'सिर्फ़ primes पर'], 1, 'Measurement एक ही नतीजा देता है, इसलिए QFT सिर्फ़ उसके इर्द-गिर्द बने algorithms में काम आता है।']),
   ],
-  11: [
+  'shors-algorithm': [
     Q(['Shor turns factoring into…', ['Sorting', 'Finding a period', 'Searching', 'Measuring'], 1, 'Factoring N reduces to finding the period of aˣ mod N.'],
       ['Shor factoring को किसमें बदलता है?', ['Sorting', 'Period ढूँढना', 'Search', 'Measuring'], 1, 'N की factoring, aˣ mod N का period ढूँढने में बदल जाती है।']),
     Q(['For N = 15, a = 7, the period r is…', ['2', '4', '7', '15'], 1, '7ˣ mod 15 = 1, 7, 4, 13, 1, … repeats every 4.'],
@@ -124,7 +130,7 @@ export const quizzes = {
     Q(['Roughly how many noisy physical qubits to break RSA-2048 (2025 estimate)?', ['50', 'About a million', '1,000', 'A billion'], 1, 'A 2025 estimate put it at under a million noisy qubits running for about a week.'],
       ['RSA-2048 तोड़ने के लिए लगभग कितने noisy physical qubits (2025 का अनुमान)?', ['50', 'लगभग 10 लाख', '1,000', 'एक अरब'], 1, '2025 के अनुमान के अनुसार 10 लाख से कम noisy qubits, लगभग एक हफ़्ते चलाकर।']),
   ],
-  12: [
+  'your-first-error-correcting-code': [
     Q(['Why can\'t you error-correct qubits by copying them 3 times?', ['Too expensive', 'No-cloning forbids copying unknown states', 'Copies are slower', 'You can'], 1, 'You can\'t copy an unknown qubit, so codes spread it out with entanglement instead.'],
       ['Qubits को 3 बार copy करके error ठीक क्यों नहीं कर सकते?', ['बहुत महँगा', 'No-cloning अनजान state copy नहीं करने देता', 'Copies धीमी', 'कर सकते हैं'], 1, 'अनजान qubit copy नहीं हो सकता, इसलिए codes उसे entanglement से फैलाते हैं।']),
     Q(['What does the syndrome reveal?', ['The data α and β', 'Which qubit has an error', 'The qubit temperature', 'Nothing'], 1, 'Parity checks locate the error without revealing the encoded information.'],
@@ -134,7 +140,7 @@ export const quizzes = {
     Q(['What does being "below threshold" mean?', ['The chip is cold', 'Adding qubits makes the logical qubit better', 'No errors at all', 'Fewer qubits needed'], 1, 'Below threshold, bigger codes give lower logical error rates, as Google\'s Willow showed in 2024.'],
       ['"Threshold से नीचे" का मतलब?', ['Chip ठंडी है', 'ज़्यादा qubits से logical qubit बेहतर होता है', 'कोई error नहीं', 'कम qubits चाहिए'], 1, 'Threshold से नीचे बड़े codes कम logical errors देते हैं, जैसा Google की Willow ने 2024 में दिखाया।']),
   ],
-  13: [
+  'variational-algorithms-vqe-qaoa': [
     Q(['In VQE, who adjusts the circuit\'s angles?', ['The quantum computer', 'A classical optimiser', 'The user by hand', 'Nobody'], 1, 'It\'s a loop: the quantum computer measures, a classical optimiser updates θ.'],
       ['VQE में circuit के कोण कौन बदलता है?', ['Quantum computer', 'Classical optimiser', 'User हाथ से', 'कोई नहीं'], 1, 'यह loop है: quantum computer measure करता है, classical optimiser θ बदलता है।']),
     Q(['The variational principle says the measured energy is…', ['Always exact', '≥ the true ground energy', '≤ the ground energy', 'Random'], 1, 'Any trial state\'s energy is at least the ground-state energy, so lowering it only helps.'],
@@ -144,7 +150,7 @@ export const quizzes = {
     Q(['QAOA is designed for…', ['Factoring', 'Combinatorial optimisation like MaxCut', 'Teleportation', 'Error correction'], 1, 'It alternates problem and mixer layers to find good solutions.'],
       ['QAOA किसके लिए बना है?', ['Factoring', 'MaxCut जैसे combinatorial optimisation', 'Teleportation', 'Error correction'], 1, 'यह problem और mixer layers बारी-बारी लगाकर अच्छे हल ढूँढता है।']),
   ],
-  14: [
+  'quantum-chemistry-and-machine-learning': [
     Q(['Why is chemistry hard for classical computers?', ['Molecules are big', 'Exact descriptions grow exponentially with electrons', 'Chemistry has no maths', 'They are too fast'], 1, 'Strongly correlated electrons need exponentially many numbers to describe exactly.'],
       ['Classical कंप्यूटरों के लिए chemistry कठिन क्यों?', ['Molecules बड़े हैं', 'ठीक विवरण electrons के साथ exponentially बढ़ता है', 'Chemistry में गणित नहीं', 'वे बहुत तेज़ हैं'], 1, 'गहराई से जुड़े electrons को ठीक लिखने के लिए exponentially ज़्यादा नंबर चाहिए।']),
     Q(['What is "dequantisation"?', ['Measuring qubits', 'A new classical algorithm matching a claimed quantum speed-up', 'Cooling a chip', 'Error correction'], 1, 'Ewin Tang\'s 2018 result began a series of classical algorithms matching claimed QML speed-ups.'],
@@ -154,7 +160,7 @@ export const quizzes = {
     Q(['First question to ask about any "quantum beats classical" claim?', ['Is it expensive?', 'Compared against which classical method?', 'How many authors?', 'Which country?'], 1, 'A speed-up over a weak baseline means little.'],
       ['"Quantum ने classical को हराया" दावे पर पहला सवाल?', ['महँगा है?', 'किस classical तरीके से तुलना?', 'कितने लेखक?', 'कौन-सा देश?'], 1, 'कमज़ोर baseline पर speed-up का कोई ख़ास मतलब नहीं।']),
   ],
-  15: [
+  'real-hardware-and-your-path': [
     Q(['What does transpiling do?', ['Translates to Hindi', 'Rewrites your circuit into the chip\'s native gates and connections', 'Speeds up Python', 'Measures qubits'], 1, 'Real chips only support certain gates between certain qubits.'],
       ['Transpiling क्या करता है?', ['हिन्दी में अनुवाद', 'Circuit को chip के अपने gates और connections में दोबारा लिखता है', 'Python तेज़ करता है', 'Qubits measure करता है'], 1, 'असली chips कुछ ही qubits के बीच कुछ ही gates चला सकती हैं।']),
     Q(['On real hardware, a Bell pair also shows some 01 and 10. Why?', ['A bug in Qiskit', 'Noise and errors', 'The wrong basis', 'Entanglement failed completely'], 1, 'Gate and readout errors on real qubits produce a few wrong results.'],
