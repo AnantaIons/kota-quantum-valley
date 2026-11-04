@@ -16,6 +16,8 @@ const lessons = getPosts('lesson', lang);
 const latest = getPosts(undefined, lang).filter((p) => p.category !== 'lesson').slice(0, 3);
 const slideTotal = lessons.reduce((n, p) => n + (slides[p.slides]?.length ?? 0), 0);
 const lessonCount = lessons.filter((p) => p.lesson).length;
+const sources = Object.values(import.meta.glob('../pages/posts/*.md', { query: '?raw', import: 'default', eager: true }));
+const codeCount = sources.reduce((n, src) => n + (String(src).match(/```python/g) || []).length, 0);
 const feed = ['lesson-6', 'lesson-5', 'lesson-4', 'lesson-3', 'lesson-2', 'lesson-1'];
 
 const c = hi ? {
@@ -23,8 +25,8 @@ const c = hi ? {
   h1a: 'भविष्य क्वांटम है।', h1b: 'आपका सफ़र यहीं से शुरू होता है।',
   lead: 'इंटरैक्टिव प्रयोगों, साफ़ स्लाइड और आसान भाषा के साथ क्वांटम कंप्यूटिंग की दुनिया खोजिए। शून्य से, मुफ़्त में, हिन्दी और अंग्रेज़ी में।',
   cta1: 'क्वांटम दुनिया में प्रवेश करें', cta2: 'क्वांटम लैब खोलें',
-  place: 'जिज्ञासु दिमाग़ों के लिए। शुरुआत कोटा, राजस्थान से।', scroll: 'स्क्रॉल करें',
-  stats: [[lessonCount, 'पाठ'], [slideTotal, 'स्लाइड'], ['4', 'लैब प्रयोग'], ['₹0', 'हमेशा मुफ़्त']],
+  place: 'हमेशा मुफ़्त · हिन्दी और English · शुरुआत कोटा, राजस्थान से।', scroll: 'स्क्रॉल करें',
+  stats: [[lessonCount, 'पाठ'], [codeCount, 'टेस्ट किए code programs'], [slideTotal, 'स्लाइड'], ['4', 'लैब प्रयोग']],
   jT: 'अपना क्वांटम सफ़र चुनें', jP: 'तीन रास्ते, आपके स्तर के हिसाब से। हर रास्ता हमारे मौजूदा पाठों से जुड़ा है, और नए पाठ जुड़ते रहेंगे।',
   paths: [
     { c: '#39E6A0', lvl: 'रास्ता 1', name: 'Quantum Explorer', who: 'कक्षा 8–10', topics: ['क्वांटम फ़िज़िक्स क्या है', 'Bits और binary', 'Qubit से परिचय', 'Superposition', 'Measurement', 'Entanglement की बुनियाद'], cta: 'पाठ 1 से शुरू करें', href: lessonUrl('lesson-1-quantum-from-absolute-zero') },
@@ -61,8 +63,8 @@ const c = hi ? {
   h1a: 'The future is quantum.', h1b: 'Your journey starts here.',
   lead: 'Discover the world of quantum computing through interactive experiments, clear slides and plain language. From absolute zero, for free, in English and Hindi.',
   cta1: 'Enter the quantum universe', cta2: 'Explore the Quantum Lab',
-  place: 'Built for curious minds. Starting in Kota, Rajasthan.', scroll: 'Scroll',
-  stats: [[lessonCount, 'lessons'], [slideTotal, 'slides'], ['4', 'lab experiments'], ['₹0', 'always free']],
+  place: 'Always free · English and Hindi · Starting in Kota, Rajasthan.', scroll: 'Scroll',
+  stats: [[lessonCount, 'lessons'], [codeCount, 'tested code programs'], [slideTotal, 'slides'], ['4', 'lab experiments']],
   jT: 'Choose your quantum journey', jP: 'Three paths for three levels. Each one starts from our existing lessons, and new lessons will keep filling them in.',
   paths: [
     { c: '#39E6A0', lvl: 'Path 1', name: 'Quantum Explorer', who: 'Class 8–10', topics: ['What is quantum physics?', 'Bits and binary', 'Introduction to qubits', 'Superposition', 'Measurement', 'Entanglement basics'], cta: 'Start with Lesson 1', href: lessonUrl('lesson-1-quantum-from-absolute-zero') },

@@ -1,24 +1,24 @@
 ---
-// Lesson cards: cover slide, lesson number, summary. Roadmap is marked "Start here".
+// Lesson cards: a unique illustrated cover per lesson, number, summary.
 import slides from '../data/slides.json';
+import { coverSvg } from '../data/covers.js';
 import { lessonLabel } from '../lib/posts.js';
 import { t } from '../i18n.js';
 const { lessons = [], lang = 'en' } = Astro.props;
 const L = t[lang];
 const count = (p) => (p.slides && slides[p.slides] ? slides[p.slides].length : 0);
+const codeLabel = lang === 'hi' ? 'कोड के साथ' : 'with code';
 ---
 <ol class="lesson-cards">
   {lessons.map((p) => (
     <li class={p.lesson ? 'lc' : 'lc lc-start'}>
       <a href={p.url}>
-        <span class="lc-cover">
-          {p.slides ? <img src={`/thumbs/${p.slides}/01.webp`} alt="" width="432" height="540" loading="lazy" decoding="async" /> : (
-            <span class="lc-art" aria-hidden="true"><span class="lc-art-n">{String(p.lesson).padStart(2, '0')}</span><span class="lc-art-k">|ψ⟩</span></span>
-          )}
+        <span class="lc-cover lc-svg" aria-hidden="true">
+          <Fragment set:html={coverSvg(p.lesson ?? 0)} />
           {!p.lesson && <span class="lc-flag">{L.startHere}</span>}
         </span>
         <span class="lc-body">
-          <span class="lc-kicker">{lessonLabel(p, lang)}{count(p) ? <span class="lc-count">{L.slides(count(p))}</span> : null}</span>
+          <span class="lc-kicker">{lessonLabel(p, lang)}<span class="lc-count">{count(p) ? L.slides(count(p)) : codeLabel}</span></span>
           <h3>{p.title}</h3>
           <p>{p.description}</p>
         </span>

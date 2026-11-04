@@ -4,6 +4,7 @@ import SlideGallery from '../components/SlideGallery.astro';
 import slides from '../data/slides.json';
 import { formatDate, getPosts, lessonLabel } from '../lib/posts.js';
 import { t } from '../i18n.js';
+import { coverSvg } from '../data/covers.js';
 
 const { frontmatter } = Astro.props;
 const lang = frontmatter.lang === 'hi' ? 'hi' : 'en';
@@ -21,7 +22,7 @@ if (isLesson) {
   prev = all[i - 1]; next = all[i + 1];
 }
 const slideCount = frontmatter.slides ? (slides[frontmatter.slides]?.length ?? 0) : 0;
-const image = frontmatter.slides ? `/slides/${frontmatter.slides}/01.webp` : undefined;
+const image = isLesson ? `/covers/lesson-${frontmatter.lesson ?? 0}.jpg` : undefined;
 ---
 <Base title={frontmatter.title} description={frontmatter.description} image={image} lang={lang}>
   <article class="article">
@@ -33,6 +34,7 @@ const image = frontmatter.slides ? `/slides/${frontmatter.slides}/01.webp` : und
         <p class="meta" style="margin: 0">{L.published(formatDate(frontmatter.date, lang), slideCount)}</p>
       </header>
     </div>
+    {isLesson && !frontmatter.slides && <div class="post-cover" aria-hidden="true"><Fragment set:html={coverSvg(frontmatter.lesson ?? 0)} /></div>}
     {frontmatter.slides && <div class="wide"><SlideGallery set={frontmatter.slides} lang={lang} /></div>}
     <div class="narrow">
       {frontmatter.slides && <h2 class="notes-head">{lang === 'hi' ? 'पाठ के नोट्स' : 'Lesson notes'}</h2>}

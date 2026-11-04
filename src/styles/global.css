@@ -558,3 +558,8 @@ html[lang='hi'] .brand-name { font-family: 'Space Grotesk', system-ui, sans-seri
 .lc-art::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(140,160,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(140,160,255,0.07) 1px, transparent 1px); background-size: 22px 22px; }
 .lc-art-n { position: relative; z-index: 1; font-family: var(--font-head); font-weight: 700; font-size: 4.2rem; line-height: 1; letter-spacing: -0.04em; background: var(--metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .lc-art-k { position: relative; z-index: 1; align-self: flex-end; font-family: var(--font-mono); color: var(--text-2); font-size: 0.95rem; }
+.lc-cover.lc-svg { padding: 0; height: auto; aspect-ratio: 8 / 5; background: #0a0f2a; }
+.lc-cover.lc-svg svg { display: block; width: 100%; height: 100%; transition: transform 0.4s; }
+.lc a:hover .lc-cover.lc-svg svg { transform: scale(1.04); }
+.post-cover { max-width: 760px; margin: 0 auto 8px; padding: 0 24px; }
+.post-cover svg { display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--border); }
