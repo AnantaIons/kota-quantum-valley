@@ -30,16 +30,6 @@ export const quizzes = {
     Q(['Why do amplitudes, not probabilities, make quantum computing powerful?', ['Amplitudes are bigger', 'Amplitudes can cancel each other', 'Amplitudes are always positive', 'Amplitudes are easy to read'], 1, 'Amplitudes can be negative or complex, so they can interfere and cancel. Probabilities never can.'],
       ['Probabilities नहीं, amplitudes क्वांटम कंप्यूटिंग को ताक़तवर क्यों बनाते हैं?', ['Amplitudes बड़े होते हैं', 'Amplitudes एक-दूसरे को cancel कर सकते हैं', 'Amplitudes हमेशा positive हैं', 'Amplitudes पढ़ना आसान है'], 1, 'Amplitudes negative या complex हो सकते हैं, इसलिए interfere करके cancel हो सकते हैं। Probabilities कभी नहीं।']),
   ],
-  'oracles-deutsch-jozsa-bernstein-vazirani': [
-    Q(['What is phase kickback?', ['A gate error', 'A target in |−⟩ moves the oracle\'s sign onto the input', 'Measuring twice', 'A kind of noise'], 1, 'With the target in |−⟩, flipping it just adds a −1 that attaches to the input state.'],
-      ['Phase kickback क्या है?', ['Gate की ग़लती', '|−⟩ वाला target oracle का चिह्न input पर डाल देता है', 'दो बार measure करना', 'एक तरह का noise'], 1, 'Target |−⟩ में हो तो उसे पलटने से बस −1 जुड़ता है, जो input state पर चला जाता है।']),
-    Q(['Deutsch–Jozsa measures all zeros. The function is…', ['Balanced', 'Constant', 'Random', 'Unknown'], 1, 'All zeros means constant; anything else means balanced.'],
-      ['Deutsch–Jozsa में सब शून्य आए। Function है…', ['Balanced', 'Constant', 'Random', 'अज्ञात'], 1, 'सब शून्य मतलब constant; कुछ और मतलब balanced।']),
-    Q(['How many oracle calls does Bernstein–Vazirani need for an n-bit secret?', ['n', '1', '2ⁿ', '√n'], 1, 'One call; the measured bits are the secret string.'],
-      ['n-bit secret के लिए Bernstein–Vazirani को कितनी oracle calls चाहिए?', ['n', '1', '2ⁿ', '√n'], 1, 'एक call; measure किए bits ही secret string हैं।']),
-    Q(['What kind of speed-up does Grover give?', ['Exponential', 'Quadratic', 'None', 'Linear'], 1, 'About √N steps instead of N: a quadratic speed-up.'],
-      ['Grover कैसा speed-up देता है?', ['Exponential', 'Quadratic', 'कोई नहीं', 'Linear'], 1, 'N की जगह लगभग √N कदम: quadratic speed-up।']),
-  ],
   'how-real-qubits-are-built': [
     Q(['What does T2 measure?', ['Chip temperature', 'How long the phase survives', 'Gate speed', 'Number of qubits'], 1, 'T2 is how long superposition (phase coherence) lasts.'],
       ['T2 क्या मापता है?', ['Chip का तापमान', 'Phase कितनी देर टिकता है', 'Gate की रफ़्तार', 'Qubits की संख्या'], 1, 'T2 बताता है superposition (phase coherence) कितनी देर रहती है।']),
@@ -99,16 +89,6 @@ export const quizzes = {
       ['ज़्यादा rounds करने पर क्या होता है?', ['कुछ नहीं', 'आप जवाब से आगे घूम जाते हैं', 'तेज़ हो जाता है', 'Circuit crash'], 1, 'Grover एक घुमाव है; अतिरिक्त rounds आगे निकल जाते हैं और सफलता घटती है।']),
     Q(['About how many rounds for N = 1,000,000?', ['500,000', '~785', '1,000', '20'], 1, '(π/4)·√1,000,000 ≈ 785.'],
       ['N = 10,00,000 के लिए लगभग कितने rounds?', ['5,00,000', '~785', '1,000', '20'], 1, '(π/4)·√10,00,000 ≈ 785।']),
-  ],
-  'phase-estimation': [
-    Q(['Phase estimation outputs the phase as…', ['A decimal number', 'Binary bits of the fraction φ', 'An angle in degrees', 'A probability'], 1, 'The counting register spells out φ as a binary fraction.'],
-      ['Phase estimation phase को किस रूप में देता है?', ['Decimal संख्या', 'Fraction φ के binary bits', 'Degrees में कोण', 'Probability'], 1, 'Counting register φ को binary fraction के रूप में लिखता है।']),
-    Q(['T has phase φ = 1/8. With 3 counting qubits, the register reads…', ['100', '001', '111', '010'], 1, '1/8 = 0.001 in binary, so the register reads 001.'],
-      ['T का phase φ = 1/8 है। 3 counting qubits पर register पढ़ता है…', ['100', '001', '111', '010'], 1, '1/8 = binary में 0.001, तो register 001 पढ़ता है।']),
-    Q(['Why is the QFT exponentially cheaper than the classical FFT?', ['It isn\'t', 'About n² gates vs about n·2ⁿ steps', 'It skips steps', 'It uses GPUs'], 1, 'n qubits hold 2ⁿ amplitudes, transformed with only ~n²/2 gates.'],
-      ['QFT, classical FFT से exponentially सस्ता क्यों?', ['नहीं है', 'लगभग n² gates बनाम n·2ⁿ कदम', 'कदम छोड़ देता है', 'GPU इस्तेमाल करता है'], 1, 'n qubits में 2ⁿ amplitudes होते हैं, जो सिर्फ़ ~n²/2 gates से बदलते हैं।']),
-    Q(['What\'s the catch with the QFT?', ['Too slow', 'You can\'t read out all 2ⁿ amplitudes', 'Needs 1,000 qubits', 'Only works for primes'], 1, 'Measurement gives one result, so the QFT only helps inside algorithms built around it.'],
-      ['QFT की शर्त क्या है?', ['बहुत धीमा', 'सभी 2ⁿ amplitudes नहीं पढ़ सकते', '1,000 qubits चाहिए', 'सिर्फ़ primes पर'], 1, 'Measurement एक ही नतीजा देता है, इसलिए QFT सिर्फ़ उसके इर्द-गिर्द बने algorithms में काम आता है।']),
   ],
   'shors-algorithm': [
     Q(['Shor turns factoring into…', ['Sorting', 'Finding a period', 'Searching', 'Measuring'], 1, 'Factoring N reduces to finding the period of aˣ mod N.'],
