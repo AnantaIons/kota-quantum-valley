@@ -1,16 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
-import LessonGrid from '../components/LessonGrid.astro';
-import { getPosts } from '../lib/posts.js';
-const lessons = getPosts('lesson');
+import CourseHub from '../components/CourseHub.astro';
 ---
-<Base title="Lessons" description="Free quantum computing lessons from absolute zero: qubits, gates, algorithms, hardware, communication and sensing.">
-  <section class="article">
-    <div class="wrap">
-      <p class="eyebrow">Lessons</p>
-      <h1>Quantum, from absolute zero.</h1>
-      <p class="desc" style="margin-bottom: 40px">15 lessons from absolute zero to real quantum hardware. Lessons 1–6 include the full Instagram slides; Lessons 7–15 add working Qiskit code you can run. Start with the roadmap, then go in order.</p>
-      <LessonGrid lessons={lessons} />
-    </div>
-  </section>
+<Base title="Course 1: Quantum Basics" description="A free course (roadmap + 15 lessons) from absolute zero to real quantum hardware: qubits, gates, algorithms, hardware, QKD, sensing, Qiskit coding, error correction and more.">
+  <CourseHub lang="en" />
 </Base>

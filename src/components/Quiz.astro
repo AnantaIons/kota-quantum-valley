@@ -1,0 +1,68 @@
+---
+// End-of-lesson quiz. Options are shuffled deterministically so answers aren't in a fixed position.
+import { quizzes } from '../data/quizzes.js';
+const { n, lang = 'en' } = Astro.props;
+const hi = lang === 'hi';
+const raw = (quizzes[n] ?? []).map((q) => q[lang] ?? q.en);
+const items = raw.map(([q, opts, ans, why], i) => {
+  const shift = (n * 7 + i * 3 + 1) % opts.length;
+  const order = opts.map((_, k) => (k + shift) % opts.length);
+  return { q, opts: order.map((k) => opts[k]), ans: order.indexOf(ans), why };
+});
+const T = hi
+  ? { title: 'अपनी समझ जाँचें', sub: `${items.length} सवाल। जवाब चुनते ही सही उत्तर और कारण दिखेगा।`, right: 'सही!', wrong: 'नहीं।', score: (s, t) => `आपका स्कोर: ${t} में से ${s}`, retry: 'फिर से करें' }
+  : { title: 'Check your understanding', sub: `${items.length} questions. Pick an answer to see whether it's right, and why.`, right: 'Correct.', wrong: 'Not quite.', score: (s, t) => `Your score: ${s} out of ${t}`, retry: 'Try again' };
+---
+{items.length > 0 && (
+  <section class="quiz glass" data-quiz data-total={items.length}>
+    <h2>{T.title}</h2>
+    <p class="meta">{T.sub}</p>
+    <ol class="quiz-list">
+      {items.map((it, i) => (
+        <li class="quiz-q" data-ans={it.ans}>
+          <p class="quiz-text">{it.q}</p>
+          <div class="quiz-opts">
+            {it.opts.map((o, k) => <button type="button" class="quiz-opt" data-k={k}>{o}</button>)}
+          </div>
+          <p class="quiz-why" hidden><strong data-verdict></strong> {it.why}</p>
+        </li>
+      ))}
+    </ol>
+    <div class="quiz-foot" hidden>
+      <strong data-score></strong>
+      <button type="button" class="btn btn-ghost btn-sm" data-retry>{T.retry}</button>
+    </div>
+    <script type="application/json" data-quiz-t set:html={JSON.stringify({ right: T.right, wrong: T.wrong, hi })} />
+  </section>
+)}
+<script>
+  document.querySelectorAll('[data-quiz]').forEach((root) => {
+    const el = root as HTMLElement;
+    const T = JSON.parse(el.querySelector('[data-quiz-t]')!.textContent!);
+    const total = +el.dataset.total!;
+    let answered = 0, score = 0;
+    const foot = el.querySelector('.quiz-foot') as HTMLElement;
+    const showScore = () => {
+      foot.hidden = false;
+      (el.querySelector('[data-score]') as HTMLElement).textContent = T.hi ? `आपका स्कोर: ${total} में से ${score}` : `Your score: ${score} out of ${total}`;
+    };
+    el.querySelectorAll('.quiz-q').forEach((q) => {
+      const qe = q as HTMLElement, ans = +qe.dataset.ans!;
+      qe.querySelectorAll('.quiz-opt').forEach((b) => b.addEventListener('click', () => {
+        if (qe.dataset.done) return;
+        qe.dataset.done = '1';
+        const k = +(b as HTMLElement).dataset.k!;
+        qe.querySelectorAll('.quiz-opt').forEach((x) => { const xk = +(x as HTMLElement).dataset.k!; if (xk === ans) x.classList.add('ok'); else if (xk === k) x.classList.add('bad'); (x as HTMLButtonElement).disabled = true; });
+        const why = qe.querySelector('.quiz-why') as HTMLElement; why.hidden = false;
+        (why.querySelector('[data-verdict]') as HTMLElement).textContent = k === ans ? T.right : T.wrong;
+        answered++; if (k === ans) score++;
+        if (answered === total) showScore();
+      }));
+    });
+    el.querySelector('[data-retry]')!.addEventListener('click', () => {
+      answered = 0; score = 0; foot.hidden = true;
+      el.querySelectorAll('.quiz-q').forEach((q) => { delete (q as HTMLElement).dataset.done; (q.querySelector('.quiz-why') as HTMLElement).hidden = true; });
+      el.querySelectorAll('.quiz-opt').forEach((x) => { x.classList.remove('ok', 'bad'); (x as HTMLButtonElement).disabled = false; });
+    });
+  });
+</script>

@@ -11,7 +11,7 @@ const codeLabel = lang === 'hi' ? 'कोड के साथ' : 'with code';
 ---
 <ol class="lesson-cards">
   {lessons.map((p) => (
-    <li class={p.lesson ? 'lc' : 'lc lc-start'}>
+    <li class={p.lesson ? "lc" : "lc lc-start"} data-lesson={p.lesson ?? 0}>
       <a href={p.url}>
         <span class="lc-cover lc-svg" aria-hidden="true">
           <Fragment set:html={coverSvg(p.lesson ?? 0)} />

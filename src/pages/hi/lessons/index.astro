@@ -1,16 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
-import LessonGrid from '../../../components/LessonGrid.astro';
-import { getPosts } from '../../../lib/posts.js';
-const lessons = getPosts('lesson', 'hi');
+import CourseHub from '../../../components/CourseHub.astro';
 ---
-<Base lang="hi" title="पाठ" description="क्वांटम कंप्यूटिंग के मुफ़्त पाठ, शून्य से: क्यूबिट, गेट, एल्गोरिद्म, हार्डवेयर, कम्युनिकेशन और सेंसिंग।">
-  <section class="article">
-    <div class="wrap">
-      <p class="eyebrow">पाठ</p>
-      <h1>क्वांटम, बिल्कुल शून्य से।</h1>
-      <p class="desc" style="margin-bottom: 40px">शून्य से असली quantum हार्डवेयर तक 15 पाठ। पाठ 1–6 में पूरी इंस्टाग्राम स्लाइड हैं; पाठ 7–15 में चलने वाला Qiskit कोड है। पहले रोडमैप पढ़ें, फिर क्रम से आगे बढ़ें।</p>
-      <LessonGrid lessons={lessons} lang="hi" />
-    </div>
-  </section>
+<Base lang="hi" title="कोर्स 1: क्वांटम की बुनियाद" description="शून्य से असली quantum हार्डवेयर तक मुफ़्त course (रोडमैप + 15 पाठ): qubits, gates, algorithms, हार्डवेयर, QKD, sensing, Qiskit कोडिंग, error correction और बहुत कुछ।">
+  <CourseHub lang="hi" />
 </Base>

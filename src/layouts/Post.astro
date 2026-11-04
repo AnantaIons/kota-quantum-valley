@@ -5,6 +5,9 @@ import slides from '../data/slides.json';
 import { formatDate, getPosts, lessonLabel } from '../lib/posts.js';
 import { t } from '../i18n.js';
 import { coverSvg } from '../data/covers.js';
+import Quiz from '../components/Quiz.astro';
+import MarkDone from '../components/MarkDone.astro';
+import { course1, partOf } from '../data/course.js';
 
 const { frontmatter } = Astro.props;
 const lang = frontmatter.lang === 'hi' ? 'hi' : 'en';
@@ -21,6 +24,7 @@ if (isLesson) {
   const i = all.findIndex((p) => p.lesson === frontmatter.lesson);
   prev = all[i - 1]; next = all[i + 1];
 }
+const part = isLesson ? partOf(frontmatter.lesson ?? 0) : null;
 const slideCount = frontmatter.slides ? (slides[frontmatter.slides]?.length ?? 0) : 0;
 const image = isLesson ? `/covers/lesson-${frontmatter.lesson ?? 0}.jpg` : undefined;
 ---
@@ -28,7 +32,7 @@ const image = isLesson ? `/covers/lesson-${frontmatter.lesson ?? 0}.jpg` : undef
   <article class="article">
     <div class="narrow">
       <header>
-        <p class="eyebrow">{eyebrow}</p>
+        <p class="eyebrow">{eyebrow}{part && <span class="part-tag"> · {course1[lang].short}, {lang === 'hi' ? 'भाग' : 'Part'} {part.id}: {part[lang][0]}</span>}</p>
         <h1>{frontmatter.title}</h1>
         {frontmatter.description && <p class="desc">{frontmatter.description}</p>}
         <p class="meta" style="margin: 0">{L.published(formatDate(frontmatter.date, lang), slideCount)}</p>
@@ -39,6 +43,8 @@ const image = isLesson ? `/covers/lesson-${frontmatter.lesson ?? 0}.jpg` : undef
     <div class="narrow">
       {frontmatter.slides && <h2 class="notes-head">{lang === 'hi' ? 'पाठ के नोट्स' : 'Lesson notes'}</h2>}
       <slot />
+      {isLesson && <Quiz n={frontmatter.lesson ?? 0} lang={lang} />}
+      {isLesson && <MarkDone n={frontmatter.lesson ?? 0} lang={lang} />}
       <hr style="border: 0; border-top: 1px solid var(--line); margin: 48px 0 24px" />
       {isLesson ? (
         <div class="lesson-nav">

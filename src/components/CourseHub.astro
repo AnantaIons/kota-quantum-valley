@@ -1,0 +1,103 @@
+---
+import LessonGrid from './LessonGrid.astro';
+import { getPosts } from '../lib/posts.js';
+import { course1 } from '../data/course.js';
+const { lang = 'en' } = Astro.props;
+const hi = lang === 'hi';
+const pre = hi ? '/hi' : '';
+const lessons = getPosts('lesson', lang);
+const explainers = getPosts('explainer', lang);
+const bySlug = (slug) => explainers.find((p) => p.url.replace(/\/$/, '').endsWith('/' + slug));
+const total = lessons.length;
+const C = course1[lang];
+const T = hi ? {
+  kicker: 'पूरा course · मुफ़्त · हिन्दी और English',
+  lead: `एक रोडमैप और ${total - 1} पाठ, शून्य से असली quantum हार्डवेयर तक। हर पाठ में आसान व्याख्या, चलने वाला कोड, अभ्यास, सार और अंत में quiz है। क्रम से चलें; हर भाग पिछले पर बनता है।`,
+  progress: (d, t) => `${t} में से ${d} पूरे`, progNote: 'प्रगति सिर्फ़ इसी ब्राउज़र में सहेजी जाती है। हर पाठ के अंत में "पूरा हुआ" का निशान लगाएँ।',
+  part: 'भाग', read: 'साथ में पढ़ें', practice: 'अभ्यास और संदर्भ',
+  lab: ['क्वांटम लैब', 'Bloch sphere, superposition, Bell state और circuit builder: 4 प्रयोग, ब्राउज़र में।'],
+  glossary: ['शब्दकोश', '37 ज़रूरी शब्द आसान भाषा में।'],
+  next: 'आगे आ रहा है', c2: ['कोर्स 2: नींव', 'मैथ्स, फ़िज़िक्स, केमिस्ट्री, कंप्यूटर साइंस और इलेक्ट्रॉनिक्स, बुनियादी स्तर पर, ताकि हर छात्र तैयार हो।'],
+  c3: ['कोर्स 3: IBM Quantum सीरीज़', 'IBM Quantum Learning के रास्ते पर एक-एक करके, हिन्दी में व्याख्या और असली हार्डवेयर पर प्रयोग।'],
+  soon: 'जल्द', start: 'रोडमैप से शुरू करें',
+} : {
+  kicker: 'Full course · Free · English and Hindi',
+  lead: `A roadmap plus ${total - 1} lessons, from absolute zero to real quantum hardware. Every lesson has a plain-language explanation, runnable code, exercises, a cheat sheet and a quiz at the end. Go in order; each part builds on the last.`,
+  progress: (d, t) => `${d} of ${t} complete`, progNote: 'Progress is saved in this browser only. Mark each lesson complete at the end of the page.',
+  part: 'Part', read: 'Read alongside', practice: 'Practice and reference',
+  lab: ['Quantum Lab', 'Bloch sphere, superposition, Bell states and a circuit builder: 4 experiments in your browser.'],
+  glossary: ['Glossary', '37 key terms in plain language.'],
+  next: 'Coming next', c2: ['Course 2: Foundations', 'Maths, physics, chemistry, computer science and electronics at the basic level, so every student is ready.'],
+  c3: ['Course 3: IBM Quantum series', 'Following IBM Quantum Learning one topic at a time, with explanations in Hindi and English and experiments on real hardware.'],
+  soon: 'Soon', start: 'Start with the roadmap',
+};
+const startHref = hi ? '/hi/lessons/roadmap-what-to-learn-first/' : '/posts/roadmap-what-to-learn-first/';
+---
+<section class="article course">
+  <div class="wrap">
+    <p class="eyebrow">{T.kicker}</p>
+    <h1>{C.name}</h1>
+    <p class="desc" style="max-width: 64ch">{T.lead}</p>
+
+    <div class="course-progress glass" data-progress data-total={total}>
+      <div class="cp-top"><strong data-cp-text>{T.progress(0, total)}</strong><a class="btn btn-primary btn-sm" href={startHref}>{T.start}</a></div>
+      <div class="cp-bar"><i data-cp-fill style="width:0%"></i></div>
+      <p class="meta">{T.progNote}</p>
+      <script type="application/json" data-cp-t set:html={JSON.stringify({ hi })} />
+    </div>
+
+    <nav class="course-toc" aria-label={hi ? 'भाग' : 'Parts'}>
+      {course1.parts.map((p) => <a href={`#part-${p.id}`}><span>{p.id}</span>{p[lang][0]}</a>)}
+    </nav>
+
+    {course1.parts.map((p) => {
+      const ls = lessons.filter((l) => p.lessons.includes(l.lesson ?? 0));
+      const ex = p.explainers.map(bySlug).filter(Boolean);
+      return (
+        <section class="course-part" id={`part-${p.id}`}>
+          <div class="cpart-head">
+            <span class="cpart-id">{T.part} {p.id}</span>
+            <h2>{p[lang][0]}</h2>
+            <p>{p[lang][1]}</p>
+          </div>
+          <LessonGrid lessons={ls} lang={lang} />
+          {ex.length > 0 && (
+            <div class="cpart-ex">
+              <span class="cpart-ex-t">{T.read}</span>
+              <ul>{ex.map((e) => <li><a href={e.url}>{e.title}</a></li>)}</ul>
+            </div>
+          )}
+        </section>
+      );
+    })}
+
+    <section class="course-part">
+      <div class="cpart-head"><h2>{T.practice}</h2></div>
+      <div class="tech">
+        <a class="tech-card glass" href={`${pre}/lab/`}><h3>{T.lab[0]}</h3><p>{T.lab[1]}</p></a>
+        <a class="tech-card glass" href={`${pre}/glossary/`}><h3>{T.glossary[0]}</h3><p>{T.glossary[1]}</p></a>
+        <a class="tech-card glass" href={`${pre}/explainers/`}><h3>{hi ? 'सभी व्याख्याएँ' : 'All explainers'}</h3><p>{hi ? 'हर ज़रूरी विचार पर एक पेज।' : 'One page per core idea.'}</p></a>
+      </div>
+    </section>
+
+    <section class="course-part">
+      <div class="cpart-head"><h2>{T.next}</h2></div>
+      <div class="tech next-courses">
+        {[T.c2, T.c3].map(([a, b]) => <div class="tech-card glass"><span class="tech-top"><span /><span class="status research">{T.soon}</span></span><h3>{a}</h3><p>{b}</p></div>)}
+      </div>
+    </section>
+  </div>
+</section>
+<script>
+  const el = document.querySelector('[data-progress]') as HTMLElement | null;
+  if (el) {
+    let done: number[] = [];
+    try { done = JSON.parse(localStorage.getItem('kqv-done-v1') || '[]'); } catch {}
+    const total = +el.dataset.total!;
+    const hi = JSON.parse(el.querySelector('[data-cp-t]')!.textContent!).hi;
+    const d = done.length;
+    (el.querySelector('[data-cp-text]') as HTMLElement).textContent = hi ? `${total} में से ${d} पूरे` : `${d} of ${total} complete`;
+    (el.querySelector('[data-cp-fill]') as HTMLElement).style.width = (d / total) * 100 + '%';
+    document.querySelectorAll('.lc[data-lesson]').forEach((li) => { if (done.includes(+(li as HTMLElement).dataset.lesson!)) li.classList.add('is-done'); });
+  }
+</script>
