@@ -717,3 +717,20 @@ details.course-part > summary:focus-visible { outline: 2px solid var(--cyan); ou
 .cpart-count { font-size: 0.85rem; color: var(--text-3); margin: 4px 0 0; }
 details.course-part { margin-top: 0; padding: 20px 0; border-top: 1px solid var(--line); }
 details.course-part:first-of-type { margin-top: 36px; }
+
+/* Narrow phones: keep the header (brand, search, language, menu) on one line */
+@media (max-width: 440px) {
+  .site-header .wrap { gap: 6px; }
+  .brand { gap: 8px; }
+  .site-header .brand-name { font-size: 0.92rem; }
+  .menu summary { padding: 8px 10px; }
+  .lang-mobile { padding: 6px 9px; margin-left: 0; }
+  .search-mobile { padding: 7px 8px; }
+}
+@media (max-width: 370px) { .site-header .brand-name { display: none; } }
+
+/* Long code in table cells may wrap, so tables never push the page sideways */
+.article td code, .article th code { overflow-wrap: anywhere; }
+.table-wrap { overflow-x: auto; margin: 1.4em 0; -webkit-overflow-scrolling: touch; }
+.table-wrap > table { margin: 0; }
+.article :not(pre) > code { overflow-wrap: anywhere; }

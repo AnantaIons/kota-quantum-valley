@@ -188,7 +188,7 @@ qubits   amplitudes        memory to store them (16 bytes each)
 
 अगर qubit की state में दो continuous real parameters हैं, तो क्या वह अनंत bits रख सकता है? नहीं, और यह field के सबसे अहम तथ्यों में से एक है।
 
-**Holevo का प्रमेय** (1973) कहता है कि n qubits उन्हें measure करने वाले को ज़्यादा से ज़्यादा **n bits** classical जानकारी दे सकते हैं। आप α और β पढ़ नहीं सकते: एक measurement एक bit देता है और superposition नष्ट कर देता है। α और β का अनुमान लगाने के लिए state की कई प्रतियाँ चाहिए (पाठ 20), और अनजान state copy नहीं हो सकती (पाठ 16)।
+**Holevo का प्रमेय** (1973) कहता है कि n qubits उन्हें measure करने वाले को ज़्यादा से ज़्यादा **n bits** classical जानकारी दे सकते हैं। आप α और β पढ़ नहीं सकते: एक measurement एक bit देता है और superposition नष्ट कर देता है। α और β का अनुमान लगाने के लिए state की कई प्रतियाँ चाहिए (पाठ 8), और अनजान state copy नहीं हो सकती (पाठ 16)।
 
 तो qubits की ताक़त ज़्यादा data रखने से नहीं आती। वह इससे आती है कि गणना के दौरान, आख़िर के एक measurement से पहले, **amplitudes कैसे मिलते और interfere करते** हैं। पाठ 31 असली quantum speed-ups को मिथकों से अलग करते समय इस बात पर लौटता है।
 

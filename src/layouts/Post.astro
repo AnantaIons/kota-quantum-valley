@@ -39,7 +39,9 @@ const wrapSections = (html) => {
     return `<details class="lsec"${i === 0 ? ' open' : ''}><summary class="lsec-sum">${chunk.slice(0, end)}</summary><div class="lsec-body">${chunk.slice(end)}</div></details>`;
   }).join('');
 };
-const body = sectioned ? wrapSections(content) : content;
+// Wide tables scroll sideways inside their own box instead of widening the page on phones
+const wrapTables = (html) => html.replace(/<table>/g, '<div class="table-wrap"><table>').replace(/<\/table>/g, '</table></div>');
+const body = wrapTables(sectioned ? wrapSections(content) : content);
 const image = isLesson ? `/covers/${slug}.jpg` : undefined;
 ---
 <Base title={frontmatter.title} description={frontmatter.description} image={image} lang={lang}>

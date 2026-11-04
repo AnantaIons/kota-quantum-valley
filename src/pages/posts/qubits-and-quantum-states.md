@@ -187,7 +187,7 @@ Thirty qubits need about 17 GB, which fits on a good workstation. Forty need 17.
 
 If a qubit's state has two continuous real parameters, can it store infinitely many bits? No, and this is one of the most important facts in the field.
 
-**Holevo's theorem** (1973) says that n qubits can deliver at most **n bits** of classical information to whoever measures them. You can't read out α and β: one measurement gives one bit and destroys the superposition. Estimating α and β takes many copies of the state (Lesson 20), and an unknown state can't be copied (Lesson 16).
+**Holevo's theorem** (1973) says that n qubits can deliver at most **n bits** of classical information to whoever measures them. You can't read out α and β: one measurement gives one bit and destroys the superposition. Estimating α and β takes many copies of the state (Lesson 8), and an unknown state can't be copied (Lesson 16).
 
 So the power of qubits doesn't come from storing more data. It comes from **how amplitudes combine and interfere** during a computation, before the single measurement at the end. Lesson 31 returns to this point when separating real quantum speed-ups from myths.
 
