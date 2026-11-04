@@ -1,4 +1,55 @@
 import { Q } from './q.js';
 
+// Part A: Getting ready (Lessons 1–5)
 export const quiz = {
+  'bits-and-classical-computing': [
+    Q(['How many different values can 5 bits hold?', ['5', '10', '25', '32'], 3, 'n bits hold 2ⁿ values: 2⁵ = 32. But only one of them at a time.'],
+      ['5 bits में कितनी अलग values आ सकती हैं?', ['5', '10', '25', '32'], 3, 'n bits में 2ⁿ values: 2⁵ = 32। लेकिन एक समय में सिर्फ़ एक।']),
+    Q(['Why is the AND gate not reversible?', ['It has two inputs', 'Different inputs give the same output, so the input can\'t be recovered', 'It uses transistors', 'It outputs 1 too often'], 1, 'Output 0 can come from 00, 01 or 10. Information about the input is lost.'],
+      ['AND gate reversible क्यों नहीं है?', ['इसके दो inputs हैं', 'अलग inputs एक ही output देते हैं, तो input वापस नहीं मिलता', 'यह transistors इस्तेमाल करता है', 'यह बहुत बार 1 देता है'], 1, 'Output 0, 00, 01 या 10 से आ सकता है। Input की जानकारी खो जाती है।']),
+    Q(['Writing 0 = [1, 0] and 1 = [0, 1], which matrix is the NOT gate?', ['[[1, 0], [0, 1]]', '[[0, 1], [1, 0]]', '[[1, 1], [0, 0]]', '[[1, 0], [0, −1]]'], 1, 'Its columns are the outputs: NOT sends [1, 0] to [0, 1] and [0, 1] to [1, 0]. This is the quantum X gate.'],
+      ['0 = [1, 0] और 1 = [0, 1] लिखें, तो NOT gate कौन-सी matrix है?', ['[[1, 0], [0, 1]]', '[[0, 1], [1, 0]]', '[[1, 1], [0, 0]]', '[[1, 0], [0, −1]]'], 1, 'इसके columns outputs हैं: NOT, [1, 0] को [0, 1] और [0, 1] को [1, 0] भेजता है। यही quantum X gate है।']),
+    Q(['What is the key difference between a probabilistic bit and a qubit?', ['A qubit can only be 0 or 1', 'A qubit\'s entries are amplitudes that can be negative or complex, so paths can cancel', 'A probabilistic bit uses more memory', 'There is no difference'], 1, 'Probabilities only add. Amplitudes can cancel (interference), which is what quantum algorithms exploit.'],
+      ['Probabilistic bit और qubit में मुख्य फ़र्क़ क्या है?', ['Qubit सिर्फ़ 0 या 1 हो सकता है', 'Qubit की entries amplitudes हैं जो negative या complex हो सकती हैं, तो रास्ते कट सकते हैं', 'Probabilistic bit ज़्यादा memory लेता है', 'कोई फ़र्क़ नहीं'], 1, 'Probabilities सिर्फ़ जुड़ती हैं। Amplitudes कट सकते हैं (interference), और quantum algorithms इसी का फ़ायदा उठाते हैं।']),
+  ],
+  'complex-numbers-for-quantum': [
+    Q(['What is (1 + 2i)(1 − 2i)?', ['1 − 4i', '−3', '5', '1 + 4i'], 2, 'A number times its conjugate is |z|² = 1² + 2² = 5, always real.'],
+      ['(1 + 2i)(1 − 2i) क्या है?', ['1 − 4i', '−3', '5', '1 + 4i'], 2, 'किसी नंबर गुणा उसका conjugate |z|² = 1² + 2² = 5 है, हमेशा real।']),
+    Q(['Multiplying a complex number by i does what to its arrow?', ['Doubles its length', 'Rotates it by 90°', 'Reflects it', 'Nothing'], 1, 'i has length 1 and angle 90°. Multiplying multiplies lengths and adds angles.'],
+      ['किसी complex number को i से गुणा करने पर उसके तीर का क्या होता है?', ['लंबाई दोगुनी', '90° घूमता है', 'उलट जाता है', 'कुछ नहीं'], 1, 'i की लंबाई 1 और कोण 90° है। गुणा में लंबाइयाँ गुणा होती हैं और कोण जुड़ते हैं।']),
+    Q(['An amplitude α is multiplied by e^(iθ). What happens to its probability |α|²?', ['It is multiplied by cos θ', 'It doesn\'t change', 'It becomes zero', 'It doubles'], 1, '|e^(iθ)| = 1, so |e^(iθ)α|² = |α|². A phase alone is invisible; it only matters when amplitudes interfere.'],
+      ['Amplitude α को e^(iθ) से गुणा किया। उसकी probability |α|² का क्या होता है?', ['cos θ से गुणा', 'नहीं बदलती', 'शून्य हो जाती है', 'दोगुनी'], 1, '|e^(iθ)| = 1, तो |e^(iθ)α|² = |α|²। अकेला phase अदृश्य है; वह सिर्फ़ amplitudes के interference में मायने रखता है।']),
+    Q(['Two equal amplitudes 1 and e^(iθ) are added. For which θ do they cancel completely?', ['0°', '90°', '180°', '360°'], 2, '|1 + e^(iθ)|² = 2 + 2cos θ, which is 0 at θ = 180°: e^(iπ) = −1.'],
+      ['दो बराबर amplitudes 1 और e^(iθ) जोड़े गए। किस θ पर वे पूरी तरह कटते हैं?', ['0°', '90°', '180°', '360°'], 2, '|1 + e^(iθ)|² = 2 + 2cos θ, जो θ = 180° पर 0 है: e^(iπ) = −1।']),
+  ],
+  'vectors-and-dirac-notation': [
+    Q(['Why does the inner product conjugate the first vector?', ['To make it faster', 'So that a vector\'s length squared is always real and non-negative', 'Because kets are rows', 'It doesn\'t'], 1, 'Without it, [1, i]·[1, i] = 1 − 1 = 0. With it, each term is |z|², so ⟨v|v⟩ ≥ 0.'],
+      ['Inner product पहले vector का conjugate क्यों लेता है?', ['तेज़ होने के लिए', 'ताकि vector की लंबाई का वर्ग हमेशा real और non-negative हो', 'क्योंकि kets rows हैं', 'नहीं लेता'], 1, 'इसके बिना [1, i]·[1, i] = 1 − 1 = 0। इसके साथ हर पद |z|² है, तो ⟨v|v⟩ ≥ 0।']),
+    Q(['What is ⟨+|−⟩?', ['1', '0', '1/√2', '−1'], 1, '(1/√2)(1/√2) + (1/√2)(−1/√2) = ½ − ½ = 0. They are orthogonal: one measurement can tell them apart perfectly.'],
+      ['⟨+|−⟩ क्या है?', ['1', '0', '1/√2', '−1'], 1, '(1/√2)(1/√2) + (1/√2)(−1/√2) = ½ − ½ = 0। ये orthogonal हैं: एक measurement इन्हें पूरी तरह अलग पहचान सकता है।']),
+    Q(['A qubit is in |0⟩. What is the probability of finding it in |+⟩?', ['0', '¼', '½', '1'], 2, '|⟨+|0⟩|² = (1/√2)² = ½. |0⟩ is certain in the 0/1 basis but 50/50 in the +/− basis.'],
+      ['Qubit |0⟩ में है। उसके |+⟩ में मिलने की probability?', ['0', '¼', '½', '1'], 2, '|⟨+|0⟩|² = (1/√2)² = ½। |0⟩, 0/1 basis में पक्का है पर +/− basis में 50/50।']),
+    Q(['If |ψ⟩ = [α, β], what is the bra ⟨ψ|?', ['[α, β] as a column', '[α*, β*] as a row', '[β, α]', '[−α, −β]'], 1, 'A bra is the conjugate transpose of the ket: flip to a row and conjugate each entry.'],
+      ['अगर |ψ⟩ = [α, β], तो bra ⟨ψ| क्या है?', ['[α, β] column की तरह', '[α*, β*] row की तरह', '[β, α]', '[−α, −β]'], 1, 'Bra, ket का conjugate transpose है: row बनाइए और हर entry का conjugate लीजिए।']),
+  ],
+  'matrices-and-unitary-operations': [
+    Q(['In a circuit, gate A is applied first and then gate B. What is the combined matrix?', ['AB', 'BA', 'A + B', 'It depends on the state'], 1, 'B(A|ψ⟩) = (BA)|ψ⟩. The first gate is written on the right.'],
+      ['Circuit में पहले gate A और फिर gate B लगता है। मिली हुई matrix क्या है?', ['AB', 'BA', 'A + B', 'State पर निर्भर'], 1, 'B(A|ψ⟩) = (BA)|ψ⟩। पहला gate दाईं ओर लिखा जाता है।']),
+    Q(['Which condition makes a matrix U unitary?', ['U = Uᵀ', 'U†U = I', 'All entries are real', 'det U = 0'], 1, 'U†U = I means U preserves lengths and inner products, and U† undoes U.'],
+      ['कौन-सी शर्त matrix U को unitary बनाती है?', ['U = Uᵀ', 'U†U = I', 'सभी entries real हों', 'det U = 0'], 1, 'U†U = I का मतलब U लंबाई और inner products नहीं बदलता, और U†, U को उलट देता है।']),
+    Q(['Which of these is NOT a reason quantum gates must be unitary?', ['Probabilities must still add up to 1', 'Distinguishable states must stay distinguishable', 'Gates must be reversible', 'Gates must have real entries'], 3, 'Unitary gates can have complex entries (for example S = [[1, 0], [0, i]]). The other three are all consequences of U†U = I.'],
+      ['इनमें से कौन quantum gates के unitary होने का कारण नहीं है?', ['Probabilities का जोड़ 1 रहना चाहिए', 'पहचानी जा सकने वाली states वैसी रहनी चाहिए', 'Gates reversible होने चाहिए', 'Gates की entries real होनी चाहिए'], 3, 'Unitary gates में complex entries हो सकती हैं (जैसे S = [[1, 0], [0, i]])। बाक़ी तीनों U†U = I से निकलते हैं।']),
+    Q(['What are the eigenvalues of the Z gate, and its eigenvectors?', ['0 and 1; |+⟩ and |−⟩', '+1 and −1; |0⟩ and |1⟩', 'i and −i; |0⟩ and |1⟩', '1 and 1; any state'], 1, 'Z|0⟩ = +|0⟩ and Z|1⟩ = −|1⟩. Measuring Z is the ordinary 0/1 measurement with outcomes labelled +1 and −1.'],
+      ['Z gate के eigenvalues और eigenvectors क्या हैं?', ['0 और 1; |+⟩ और |−⟩', '+1 और −1; |0⟩ और |1⟩', 'i और −i; |0⟩ और |1⟩', '1 और 1; कोई भी state'], 1, 'Z|0⟩ = +|0⟩ और Z|1⟩ = −|1⟩। Z measure करना साधारण 0/1 measurement है, नतीजों पर +1 और −1 का label।']),
+  ],
+  'probability-and-the-quantum-experiments': [
+    Q(['A 50/50 qubit is measured 1,000 times. What is the typical spread in the number of 1s?', ['About 1', 'About 16', 'About 100', 'About 500'], 1, '√(N·p·(1 − p)) = √(1000 × 0.25) ≈ 15.8. Seeing 488 or 514 ones is completely normal.'],
+      ['50/50 qubit 1,000 बार measure किया। 1s की संख्या में आम फैलाव कितना है?', ['लगभग 1', 'लगभग 16', 'लगभग 100', 'लगभग 500'], 1, '√(N·p·(1 − p)) = √(1000 × 0.25) ≈ 15.8। 488 या 514 ones दिखना पूरी तरह सामान्य है।']),
+    Q(['To halve the uncertainty of an estimated probability, you need...', ['twice as many shots', 'four times as many shots', 'half as many shots', 'the same number of shots'], 1, 'Uncertainty ≈ √(p(1 − p)/N). Because of the square root, 4× the shots gives ½ the uncertainty.'],
+      ['अनुमानित probability की अनिश्चितता आधी करने के लिए चाहिए...', ['दोगुने shots', 'चार गुना shots', 'आधे shots', 'उतने ही shots'], 1, 'अनिश्चितता ≈ √(p(1 − p)/N)। वर्गमूल की वजह से 4× shots से अनिश्चितता ½ होती है।']),
+    Q(['In the double-slit experiment, what makes the stripes disappear?', ['Sending particles one at a time', 'Finding out which slit each particle went through', 'Using electrons instead of light', 'Making the slits wider apart'], 1, 'Single particles still build up stripes. But once the paths can be told apart, amplitudes no longer add, and P becomes P₁ + P₂.'],
+      ['Double-slit प्रयोग में धारियाँ किससे ग़ायब होती हैं?', ['एक-एक कण भेजने से', 'यह पता लगाने से कि हर कण किस slit से गया', 'रोशनी की जगह electrons से', 'Slits को और दूर करने से'], 1, 'अकेले कण भी धारियाँ बनाते हैं। लेकिन जैसे ही रास्ते पहचाने जा सकें, amplitudes नहीं जुड़ते, और P, P₁ + P₂ बन जाता है।']),
+    Q(['Photons polarised at 0° meet filters at 45° and then 90°. What fraction gets through?', ['0', '¼', '½', '1'], 1, 'Each filter passes cos²45° = ½. ½ × ½ = ¼. Without the middle filter, nothing gets through.'],
+      ['0° पर polarised photons पहले 45° और फिर 90° filters से मिलते हैं। कितना हिस्सा निकलता है?', ['0', '¼', '½', '1'], 1, 'हर filter cos²45° = ½ निकालता है। ½ × ½ = ¼। बीच वाले filter के बिना कुछ नहीं निकलता।']),
+  ],
 };
