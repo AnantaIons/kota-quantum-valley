@@ -30,16 +30,6 @@ export const quizzes = {
     Q(['Why do amplitudes, not probabilities, make quantum computing powerful?', ['Amplitudes are bigger', 'Amplitudes can cancel each other', 'Amplitudes are always positive', 'Amplitudes are easy to read'], 1, 'Amplitudes can be negative or complex, so they can interfere and cancel. Probabilities never can.'],
       ['Probabilities नहीं, amplitudes क्वांटम कंप्यूटिंग को ताक़तवर क्यों बनाते हैं?', ['Amplitudes बड़े होते हैं', 'Amplitudes एक-दूसरे को cancel कर सकते हैं', 'Amplitudes हमेशा positive हैं', 'Amplitudes पढ़ना आसान है'], 1, 'Amplitudes negative या complex हो सकते हैं, इसलिए interfere करके cancel हो सकते हैं। Probabilities कभी नहीं।']),
   ],
-  'how-real-qubits-are-built': [
-    Q(['What does T2 measure?', ['Chip temperature', 'How long the phase survives', 'Gate speed', 'Number of qubits'], 1, 'T2 is how long superposition (phase coherence) lasts.'],
-      ['T2 क्या मापता है?', ['Chip का तापमान', 'Phase कितनी देर टिकता है', 'Gate की रफ़्तार', 'Qubits की संख्या'], 1, 'T2 बताता है superposition (phase coherence) कितनी देर रहती है।']),
-    Q(['Fidelity is 99.9% per gate. Chance that 1,000 gates all succeed?', ['99.9%', 'About 37%', '0.1%', '90%'], 1, '0.999¹⁰⁰⁰ ≈ 0.37. Small errors pile up fast.'],
-      ['हर gate की fidelity 99.9% है। 1,000 gates सब सही होने की संभावना?', ['99.9%', 'लगभग 37%', '0.1%', '90%'], 1, '0.999¹⁰⁰⁰ ≈ 0.37। छोटी ग़लतियाँ जल्दी जुड़ जाती हैं।']),
-    Q(['Why do transmon qubits run at about 10 mK?', ['To save power', 'So heat can\'t flip the qubit', 'To make chips smaller', 'For faster internet'], 1, 'At room temperature, thermal energy would randomly excite the qubit.'],
-      ['Transmon qubits लगभग 10 mK पर क्यों चलते हैं?', ['बिजली बचाने', 'ताकि गर्मी qubit न पलटे', 'Chip छोटी करने', 'तेज़ इंटरनेट के लिए'], 1, 'कमरे के तापमान पर गर्मी की energy qubit को randomly excite कर देगी।']),
-    Q(['Which platform works at room temperature and suits networks?', ['Superconducting', 'Photonic', 'Trapped ions', 'Silicon spins'], 1, 'Photons travel through fibre and don\'t need cryogenic cooling for transmission.'],
-      ['कौन-सा platform कमरे के तापमान पर चलता है और networks के लिए सही है?', ['Superconducting', 'Photonic', 'Trapped ions', 'Silicon spins'], 1, 'Photons fibre में चलते हैं और भेजने के लिए cryogenic cooling नहीं चाहिए।']),
-  ],
   'quantum-communication-and-qkd': [
     Q(['In BB84, what do Alice and Bob compare publicly?', ['Their bits', 'Their bases', 'Their keys', 'Nothing'], 1, 'They compare only the bases and keep positions where the bases matched.'],
       ['BB84 में Alice और Bob सबके सामने क्या मिलाते हैं?', ['अपने bits', 'अपने bases', 'अपनी keys', 'कुछ नहीं'], 1, 'वे सिर्फ़ bases मिलाते हैं और जहाँ bases मिले वहाँ के bits रखते हैं।']),
