@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kota-quantum-valley.chitransh-baregama.workers.dev/sitemap-index.xml
+Sitemap: https://kotaquantumvalley.in/sitemap-index.xml

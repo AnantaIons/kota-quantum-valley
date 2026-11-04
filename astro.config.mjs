@@ -4,6 +4,6 @@ import sitemap from '@astrojs/sitemap';
 
 // Live address. When the domain is connected, change it here and in public/robots.txt.
 export default defineConfig({
-  site: 'https://kota-quantum-valley.chitransh-baregama.workers.dev',
+  site: 'https://kotaquantumvalley.in',
   integrations: [sitemap()],
 });

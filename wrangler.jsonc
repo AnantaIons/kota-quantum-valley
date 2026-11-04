@@ -3,6 +3,10 @@
   "name": "kota-quantum-valley",
   "compatibility_date": "2026-10-01",
   "workers_dev": true,
+  "routes": [
+    { "pattern": "kotaquantumvalley.in", "custom_domain": true },
+    { "pattern": "www.kotaquantumvalley.in", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page",
