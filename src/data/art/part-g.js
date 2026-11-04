@@ -61,4 +61,32 @@ export const art = {
       <circle cx='${noisy[0].toFixed(1)}' cy='${noisy[1].toFixed(1)}' r='7' fill='${P}'/><line x1='${target[0].toFixed(1)}' y1='${target[1].toFixed(1)}' x2='${noisy[0].toFixed(1)}' y2='${noisy[1].toFixed(1)}' stroke='${P}' stroke-width='2' stroke-dasharray='3 3'/>
       <rect x='26' y='26' width='170' height='34' rx='8' fill='${BG}' fill-opacity='.85' stroke='${G}' stroke-width='1.5'/>${tx(111, 49, 'b = A·s + e', { size: 15, fill: GL, anchor: 'middle' })}`;
   })(),
+  // Part I: a network split into two groups, with the cut links highlighted
+  'quantum-optimisation-and-finance': (() => {
+    const pos = [[90, 70], [190, 50], [140, 150], [290, 90], [240, 190], [330, 180]];
+    const group = [0, 0, 1, 1, 0, 1];
+    const edges = [[0, 1], [0, 2], [1, 2], [1, 3], [2, 4], [3, 4], [3, 5], [4, 5], [0, 5]];
+    const lines = edges.map(([a, b]) => { const cut = group[a] !== group[b]; return `<line x1='${pos[a][0]}' y1='${pos[a][1]}' x2='${pos[b][0]}' y2='${pos[b][1]}' stroke='${cut ? P : M}' stroke-width='${cut ? 2.6 : 1.6}' ${cut ? "stroke-dasharray='6 4'" : "stroke-opacity='.6'"}/>`; }).join('');
+    const nodes = pos.map(([x, y], i) => `<circle cx='${x}' cy='${y}' r='15' fill='${group[i] ? G : V}' stroke='${BG}' stroke-width='2'/>`).join('');
+    return `${lines}${nodes}${tx(30, 220, 'MaxCut: 7 of 9 links cut', { size: 12, fill: M })}`;
+  })(),
+
+  // Four hubs of a national mission, linked
+  'the-quantum-industry-and-india': (() => {
+    const hubs = [[110, 70, 'IISc'], [300, 70, 'IITM'], [110, 180, 'IITB'], [300, 180, 'IITD']];
+    const links = [[0, 1], [0, 2], [1, 3], [2, 3], [0, 3], [1, 2]].map(([a, b]) => `<line x1='${hubs[a][0]}' y1='${hubs[a][1]}' x2='${hubs[b][0]}' y2='${hubs[b][1]}' stroke='${GL}' stroke-opacity='.35' stroke-width='1.6'/>`).join('');
+    const nodes = hubs.map(([x, y, name], i) => `<circle cx='${x}' cy='${y}' r='30' fill='${[V, P, GR, G][i]}' fill-opacity='.22' stroke='${[V, P, GR, G][i]}' stroke-width='2.2'/>${tx(x, y + 5, name, { size: 13, fill: T, anchor: 'middle', font: head, weight: 700 })}`).join('');
+    return `${links}<circle cx='205' cy='125' r='26' fill='${BG}' stroke='${G}' stroke-width='2.4'/>${tx(205, 131, 'NQM', { size: 14, fill: GL, anchor: 'middle', font: head, weight: 700 })}${nodes}`;
+  })(),
+
+  // A paper's figure: data points with error bars and a fitted decay curve
+  'reading-quantum-research': (() => {
+    const X = (m) => 70 + m * 0.7, Y = (v) => 205 - (v - 0.45) * 300;
+    const data = [[1, 0.992], [10, 0.957], [25, 0.905], [50, 0.829], [100, 0.709], [200, 0.585], [400, 0.517]];
+    const fit = plot((x) => Y(0.5 * 0.99144 ** ((x - 70) / 0.7) + 0.5), 70, X(410), 3);
+    const pts = data.map(([m, v], i) => `<line x1='${X(m).toFixed(1)}' y1='${(Y(v) - 7).toFixed(1)}' x2='${X(m).toFixed(1)}' y2='${(Y(v) + 7).toFixed(1)}' stroke='${T}' stroke-width='1.5'/><circle cx='${X(m).toFixed(1)}' cy='${Y(v).toFixed(1)}' r='5' fill='${V}' stroke='${T}' stroke-width='1.2'/>`).join('');
+    return `<rect x='40' y='22' width='330' height='200' rx='10' fill='${BG}' fill-opacity='.6' stroke='${M}' stroke-opacity='.5'/>
+      <line x1='62' y1='210' x2='360' y2='210' stroke='${M}' stroke-width='1.4'/><line x1='62' y1='210' x2='62' y2='40' stroke='${M}' stroke-width='1.4'/>
+      <path d='${fit}' fill='none' stroke='${G}' stroke-width='2.4'/>${pts}${tx(350, 52, 'A·pᵐ + B', { size: 13, fill: GL, anchor: 'end' })}`;
+  })(),
 };
