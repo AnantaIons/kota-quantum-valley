@@ -734,3 +734,53 @@ details.course-part:first-of-type { margin-top: 36px; }
 .table-wrap { overflow-x: auto; margin: 1.4em 0; -webkit-overflow-scrolling: touch; }
 .table-wrap > table { margin: 0; }
 .article :not(pre) > code { overflow-wrap: anywhere; }
+
+/* ---------- Motion (home page) ---------- */
+.hero h1 .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.hero h1 .w > span { display: inline-block; }
+.motion .hero-nexus .pill, .motion .hero-nexus .h1b, .motion .hero-nexus .lead, .motion .hero-nexus .btn-row,
+.motion .hero-nexus .hero-place, .motion .hero-nexus .stats, .motion .hero-nexus .qviz { opacity: 0; }
+.motion .hero-nexus h1 .w > span { transform: translateY(105%); }
+
+/* Technology icons: draw in once, then small loops on hover */
+.ticon .d { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.motion .tech-card:not(.drawn) .ticon .d { stroke-dashoffset: 1; }
+.tech-card.drawn .ticon .d { transition: stroke-dashoffset 1.3s cubic-bezier(0.22, 1, 0.36, 1); }
+.ticon .ic-pulse, .ticon .ic-mol, .ticon .ic-w1, .ticon .ic-w2, .ticon .ic-shackle { transform-box: fill-box; transform-origin: center; }
+.ticon .ic-photon { offset-path: path('M6.5 12c2.5-5 8.5-5 11 0'); offset-distance: 0%; opacity: 0; }
+.ticon .ic-electron { offset-path: path('M3 12a9 3.2 0 1 0 18 0a9 3.2 0 1 0 -18 0'); offset-distance: 25%; }
+.tech-card:hover .ic-pulse, .tech-card.play .ic-pulse { animation: ic-pulse 1.2s ease-in-out 2; }
+.tech-card:hover .ic-photon, .tech-card.play .ic-photon { animation: ic-photon 1.1s ease-in-out 2; }
+.tech-card:hover .ic-shackle, .tech-card.play .ic-shackle { animation: ic-shackle 1.1s cubic-bezier(0.22, 1, 0.36, 1); }
+.tech-card:hover .ic-lattice circle, .tech-card.play .ic-lattice circle { animation: ic-twinkle 1s ease-in-out; }
+.ic-lattice circle:nth-child(2) { animation-delay: 0.1s !important; } .ic-lattice circle:nth-child(3) { animation-delay: 0.2s !important; }
+.ic-lattice circle:nth-child(4) { animation-delay: 0.3s !important; } .ic-lattice circle:nth-child(5) { animation-delay: 0.4s !important; } .ic-lattice circle:nth-child(6) { animation-delay: 0.5s !important; }
+.tech-card:hover .ic-w1, .tech-card.play .ic-w1 { animation: ic-wave 1.2s ease-out 2; }
+.tech-card:hover .ic-w2, .tech-card.play .ic-w2 { animation: ic-wave 1.2s 0.2s ease-out 2; }
+.tech-card:hover .ic-mol, .tech-card.play .ic-mol { animation: ic-wobble 1.4s ease-in-out; }
+.tech-card:hover .ic-electron, .tech-card.play .ic-electron { animation: ic-orbit 1.4s linear 2; }
+@keyframes ic-pulse { 50% { transform: scale(1.7); opacity: 0.6; } }
+@keyframes ic-photon { 0% { offset-distance: 0%; opacity: 0; } 15%, 85% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
+@keyframes ic-shackle { 30% { transform: translateY(-2.5px); } 60% { transform: translateY(0); } }
+@keyframes ic-twinkle { 50% { opacity: 0.2; } }
+@keyframes ic-wave { 0% { opacity: 0.2; transform: scale(0.85); } 60% { opacity: 1; transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes ic-wobble { 25% { transform: rotate(-14deg); } 60% { transform: rotate(10deg); } 100% { transform: rotate(0); } }
+@keyframes ic-orbit { from { offset-distance: 25%; } to { offset-distance: 125%; } }
+
+/* Pointer spotlight on cards (devices with a mouse) */
+.tech-card { position: relative; }
+.spot::after { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: radial-gradient(240px circle at var(--mx, -999px) var(--my, -999px), rgba(246, 222, 154, 0.75), transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity 0.3s; }
+.spot:hover::after { opacity: 1; }
+.spot:hover { background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(230, 195, 106, 0.08), transparent 65%), linear-gradient(180deg, rgba(30, 40, 90, 0.5), rgba(14, 21, 51, 0.55)); }
+
+/* Smooth fades between pages (browsers that support cross-document view transitions) */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.25s; }
+.site-header { view-transition-name: site-header; }
+@media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
+.motion-done .hero-nexus .pill, .motion-done .hero-nexus .h1b, .motion-done .hero-nexus .lead, .motion-done .hero-nexus .btn-row,
+.motion-done .hero-nexus .hero-place, .motion-done .hero-nexus .stats, .motion-done .hero-nexus .qviz { opacity: 1; }
+.motion-done .hero-nexus h1 .w > span { transform: none; }

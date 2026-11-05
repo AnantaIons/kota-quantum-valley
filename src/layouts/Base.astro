@@ -46,6 +46,7 @@ const year = new Date().getFullYear();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
     {lang === 'hi' && <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600&family=Mukta:wght@600;700;800&display=swap" rel="stylesheet" />}
+    {isHome && <script is:inline>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('motion'); setTimeout(function () { if (!window.__kqvMotion) document.documentElement.classList.remove('motion'); }, 6000); }</script>}
     <link rel="alternate" hreflang={lang === 'hi' ? 'en' : 'hi'} href={new URL(alt, Astro.site)} />
   </head>
   <body>

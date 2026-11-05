@@ -2,6 +2,8 @@
 import PostList from './PostList.astro';
 import QubitHero from './QubitHero.astro';
 import Particles from './Particles.astro';
+import Fridge from './Fridge.astro';
+import Mobius from './Mobius.astro';
 import site from '../data/site.json';
 import { getPosts } from '../lib/posts.js';
 import { course1, syllabus, lessonNumber, partOf } from '../data/course.js';
@@ -16,7 +18,7 @@ const published = new Set(lessons.map((p) => p.slug));
 const lessonUrl = (slug) => published.has(slug) ? (hi ? `/hi/lessons/${slug}/` : `/posts/${slug}/`) : `${pre}/lessons/#part-${partOf(lessonNumber(slug) ?? 0)?.id ?? 'A'}`;
 const lessonTag = (slug) => (hi ? `पाठ ${lessonNumber(slug)}` : `Lesson ${lessonNumber(slug)}`);
 const latest = getPosts(undefined, lang).filter((p) => p.category !== 'lesson').slice(0, 3);
-const lessonCount = lessons.filter((p) => p.lesson).length;
+const lessonCount = lessons.length;
 const quizCount = lessons.reduce((n, p) => n + (quizzes[p.slug]?.length ?? 0), 0);
 const sources = Object.values(import.meta.glob('../pages/posts/*.md', { query: '?raw', import: 'default', eager: true }));
 const codeCount = sources.reduce((n, src) => n + (String(src).match(/```python/g) || []).length, 0);
@@ -26,7 +28,7 @@ const partStats = course1.parts.map((p) => {
 });
 
 const c = hi ? {
-  pill: 'नया: कोर्स 1 अब 50 पाठों का',
+  pill: 'नया: कोर्स 1 पूरा हुआ, 50 विस्तृत पाठ',
   h1a: 'भविष्य क्वांटम है।', h1b: 'आपका सफ़र यहीं से शुरू होता है।',
   lead: 'शून्य से क्वांटम कंप्यूटिंग सीखिए: ऐसे पाठ जो हर क़दम समझाते हैं, चलने वाला कोड, और आपके ब्राउज़र में प्रयोग। मुफ़्त, हिन्दी और अंग्रेज़ी में।',
   cta1: 'कोर्स 1 शुरू करें', cta2: 'क्वांटम लैब खोलें',
@@ -69,7 +71,7 @@ const c = hi ? {
   igT: 'इंस्टाग्राम पर हमसे जुड़ें।', igP: `नए पाठों की ख़बर, छोटे quantum facts और सवालों के जवाब ${site.instagramHandle} पर। कोई सवाल हो तो सीधे मैसेज करें।`, igBtn: 'इंस्टाग्राम पर फ़ॉलो करें', igDm: 'मैसेज करें', igCard: 'कोटा से, क्वांटम की पढ़ाई। हर हफ़्ते नए पाठ।',
   logT: 'सबके सामने सीखना', logP: `Kota Quantum Valley की शुरुआत ${site.founderName} ने की है, जो राजस्थान के एक एम्बेडेड फ़र्मवेयर इंजीनियर हैं और क्वांटम शून्य से सीख रहे हैं।`, about: 'इस पहल के बारे में',
 } : {
-  pill: 'New: Course 1 is growing to 50 lessons',
+  pill: 'New: Course 1 is complete, with 50 in-depth lessons',
   h1a: 'The future is quantum.', h1b: 'Your journey starts here.',
   lead: 'Learn quantum computing from absolute zero, with lessons that explain every step, code you can run, and experiments in your browser. Free, in English and Hindi.',
   cta1: 'Start Course 1', cta2: 'Explore the Quantum Lab',
@@ -124,6 +126,16 @@ const icons = {
   chem: '<circle cx="6" cy="7" r="2.2"/><circle cx="18" cy="7" r="2.2"/><circle cx="12" cy="17" r="2.2"/><path d="M8 8l3 7M16 8l-3 7M8.2 7h7.6"/>',
   chip: '<circle cx="12" cy="12" r="8"/><ellipse cx="12" cy="12" rx="8" ry="3"/><path d="M12 4v16"/>',
 };
+// Animated technology icons: strokes draw in once (class "d"), small parts move on hover.
+const techIcons = {
+  compute: '<rect class="d" pathLength="1" x="6" y="6" width="12" height="12" rx="2"/><path class="d" pathLength="1" d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/><circle class="ic-pulse" cx="12" cy="12" r="2.2"/>',
+  comm: '<circle class="d" pathLength="1" cx="4.5" cy="12" r="2"/><circle class="d" pathLength="1" cx="19.5" cy="12" r="2"/><path class="d" pathLength="1" d="M6.5 12c2.5-5 8.5-5 11 0M6.5 12c2.5 5 8.5 5 11 0"/><circle class="ic-photon" r="1.5" fill="currentColor" stroke="none"/>',
+  lock: '<rect class="d" pathLength="1" x="5" y="11" width="14" height="10" rx="2"/><path class="d ic-shackle" pathLength="1" d="M8 11V8a4 4 0 0 1 8 0v3"/><g class="ic-lattice" fill="currentColor" stroke="none"><circle cx="9" cy="14.5" r=".9"/><circle cx="12" cy="14.5" r=".9"/><circle cx="15" cy="14.5" r=".9"/><circle cx="9" cy="17.5" r=".9"/><circle cx="12" cy="17.5" r=".9"/><circle cx="15" cy="17.5" r=".9"/></g>',
+  sensor: '<circle class="d" pathLength="1" cx="12" cy="12" r="2.6"/><path class="d ic-w1" pathLength="1" d="M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7"/><path class="d ic-w2" pathLength="1" d="M5.6 5.6a9 9 0 0 0 0 12.8M18.4 5.6a9 9 0 0 1 0 12.8"/>',
+  chem: '<g class="ic-mol"><path class="d" pathLength="1" d="M8 8.2l3 7M16 8.2l-3 7M8.4 7h7.2"/><circle class="d" pathLength="1" cx="6" cy="7" r="2.2"/><circle class="d" pathLength="1" cx="18" cy="7" r="2.2"/><circle class="d" pathLength="1" cx="12" cy="17" r="2.2"/></g>',
+  chip: '<ellipse class="d" pathLength="1" cx="12" cy="12" rx="9" ry="3.2"/><ellipse class="d" pathLength="1" cx="12" cy="12" rx="9" ry="3.2" transform="rotate(60 12 12)"/><ellipse class="d" pathLength="1" cx="12" cy="12" rx="9" ry="3.2" transform="rotate(-60 12 12)"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/><circle class="ic-electron" r="1.3" fill="currentColor" stroke="none"/>',
+};
+const techSvg = (k) => `<svg class="ticon ticon-${k}" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${techIcons[k]}</svg>`;
 const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[k]}</svg>`;
 ---
 <section class="hero hero-nexus">
@@ -133,7 +145,7 @@ const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" 
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <a class="pill" href={`${pre}/lessons/`}><span class="pill-dot"></span>{c.pill}</a>
-      <h1>{c.h1a}<span class="h1b">{c.h1b}</span></h1>
+      <h1>{c.h1a.split(' ').map((w) => <><span class="w"><span>{w}</span></span>{' '}</>)}<span class="h1b">{c.h1b}</span></h1>
       <p class="lead">{c.lead}</p>
       <div class="btn-row">
         <a class="btn btn-primary btn-lg" href={`${pre}/lessons/`}>{c.cta1}</a>
@@ -141,7 +153,7 @@ const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" 
       </div>
       <p class="hero-place">{c.place}</p>
       <dl class="stats">
-        {c.stats.map(([n, l]) => <div><dt>{l}</dt><dd>{n}</dd></div>)}
+        {c.stats.map(([n, l]) => <div><dt>{l}</dt><dd data-count={n}>{n}</dd></div>)}
       </dl>
     </div>
     <QubitHero lang={lang} />
@@ -180,16 +192,18 @@ const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" 
         <ul>{c.labList.map((l) => <li>{l}</li>)}</ul>
         <a class="btn btn-primary" href={`${pre}/lab/`}>{c.labCta}</a>
       </div>
-      <div class="lab-screen" aria-hidden="true">
+      <div class="lab-screen" aria-hidden="true" data-shots>
         <div class="row"><span>{c.labScreen[0]}</span><b>sim</b></div>
         <div class="row"><span>{c.labScreen[1]}</span><b>H|0⟩ = (|0⟩ + |1⟩)/√2</b></div>
-        <div class="row"><span>{c.labScreen[2]}</span><b>× 1000</b></div>
-        <div class="hist"><div style="height: 50%"><span>503</span></div><div style="height: 49%"><span>497</span></div></div>
+        <div class="row"><span>{c.labScreen[2]}</span><b data-total>× 1000</b></div>
+        <div class="hist"><div data-bar style="height: 80%"><span>503</span></div><div data-bar style="height: 79%"><span>497</span></div></div>
         <div class="row"><span>|0⟩ &nbsp;·&nbsp; |1⟩</span><span>{c.labScreen[3]}: 500 · 500</span></div>
       </div>
     </div>
   </div>
 </section>
+
+<Fridge lang={lang} lessonHref={lessonUrl('superconducting-qubits-and-control-electronics')} />
 
 <section class="block tint" id="courses">
   <div class="wrap">
@@ -241,7 +255,7 @@ const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" 
         const more = slug ? lessonTag(slug) : '';
         const inner = (
           <>
-            <span class="tech-top"><Fragment set:html={svg(ic)} /><span class={`status ${st}`}>{c.st[st]}</span></span>
+            <span class="tech-top"><Fragment set:html={techSvg(ic)} /><span class={`status ${st}`}>{c.st[st]}</span></span>
             <h3>{name}</h3>
             <p>{text}</p>
             <span class="tech-more">{more}</span>
@@ -252,6 +266,8 @@ const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" 
     </div>
   </div>
 </section>
+
+<Mobius lang={lang} lessonHref={lessonUrl('rotations-and-any-single-qubit-gate')} />
 
 <section class="block how-section">
   <div class="wrap">
@@ -316,3 +332,7 @@ const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" 
     </div>
   </div>
 </section>
+
+<script>
+  import '../scripts/home-motion.js';
+</script>

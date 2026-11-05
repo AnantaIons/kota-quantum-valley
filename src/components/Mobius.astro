@@ -1,0 +1,176 @@
+---
+// "Turn it twice": a Möbius strip drawn live in SVG, with an arrow that comes back flipped after
+// one loop and restored after two, the classic picture of a qubit needing 720° to return.
+const { lang = 'en', lessonHref = '/posts/rotations-and-any-single-qubit-gate/' } = Astro.props;
+const hi = lang === 'hi';
+const c = hi ? {
+  eyebrow: 'एक अजीब सच',
+  title: 'Qubit को एक बार घुमाइए, वह पहले जैसा नहीं रहता।',
+  lead: 'Qubit को पूरे 360° घुमाने पर उसकी state के आगे minus चिह्न आ जाता है। सिर्फ़ दूसरा पूरा चक्कर, यानी 720°, उसे ठीक पहले जैसा लौटाता है।',
+  pic: 'Möbius पट्टी इसकी क्लासिक तस्वीर है: तीर के साथ एक चक्कर लगाइए, वह उलटी दिशा में मिलता है; दो चक्कर, और वह घर लौट आता है।',
+  note: 'अकेले में यह minus चिह्न दिखता नहीं, लेकिन जब qubit किसी और चीज़ से interfere करता है तब दिखता है। Neutron प्रयोगों ने 1975 में इसकी पुष्टि की। (Möbius पट्टी एक तस्वीर है, पूरा गणित नहीं।)',
+  link: 'क्यों, यह पाठ 11 में देखिए', angle: 'घुमाव', aria: 'घूमती हुई Möbius पट्टी जिस पर एक तीर चलता है',
+} : {
+  eyebrow: 'A strange fact',
+  title: "Turn a qubit once, and it isn't the same.",
+  lead: 'Rotate a qubit through a full 360° and its state picks up a minus sign. Only a second full turn, 720° in all, brings it back exactly.',
+  pic: "A Möbius strip is the classic picture: follow the arrow once around and it points the other way; go around twice and it's home.",
+  note: 'The minus sign is invisible on its own, but it shows up when the qubit interferes with something else. Neutron experiments confirmed it in 1975. (The strip is a picture, not the full maths.)',
+  link: 'See why, in Lesson 11', angle: 'Rotation', aria: 'A turning Möbius strip with an arrow travelling along it',
+};
+---
+<section class="block mobius" data-mobius>
+  <div class="wrap mobius-grid">
+    <div class="mobius-visual">
+      <svg viewBox="-200 -150 400 300" role="img" aria-label={c.aria} data-mobius-svg>
+        <defs>
+          <radialGradient id="mb-glow" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#8957ff" stop-opacity="0.35" /><stop offset="1" stop-color="#8957ff" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+        <ellipse cx="0" cy="10" rx="190" ry="120" fill="url(#mb-glow)" />
+        <g data-back></g>
+        <g data-marker class="mb-marker"><line /><circle r="4.5" /><circle class="mb-tip" r="3" /></g>
+        <g data-front></g>
+      </svg>
+    </div>
+    <div class="mobius-copy">
+      <p class="eyebrow">{c.eyebrow}</p>
+      <h2>{c.title}</h2>
+      <p class="lead">{c.lead}</p>
+      <p>{c.pic}</p>
+      <div class="mb-track" aria-hidden="true">
+        <div class="mb-rail"><i data-mobius-fill></i><b data-mobius-dot></b></div>
+        <div class="mb-ticks"><span>0°<em>|ψ⟩</em></span><span>360°<em>−|ψ⟩</em></span><span>720°<em>|ψ⟩</em></span></div>
+      </div>
+      <p class="mb-readout"><span>{c.angle}</span> <strong data-mobius-angle>0°</strong> <span class="mb-state" data-mobius-state>|ψ⟩</span></p>
+      <p class="mb-note">{c.note}</p>
+      <a class="btn btn-ghost" href={lessonHref}>{c.link}</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector('[data-mobius]');
+  if (root) {
+    const svg = root.querySelector('[data-mobius-svg]');
+    const back = svg.querySelector('[data-back]'), front = svg.querySelector('[data-front]');
+    const marker = svg.querySelector('[data-marker]');
+    const [mLine, mDot, mTip] = [marker.querySelector('line'), marker.querySelector('circle'), marker.querySelector('.mb-tip')];
+    const angleEl = root.querySelector('[data-mobius-angle]'), stateEl = root.querySelector('[data-mobius-state]');
+    const fill = root.querySelector('[data-mobius-fill]'), dot = root.querySelector('[data-mobius-dot]');
+    const NS = 'http://www.w3.org/2000/svg';
+    const N = 140, R = 1, W = 0.42, SCALE = 118, CAM = 4.2;
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Point and surface normal of the Möbius strip at (u, s)
+    const P = (u, s) => { const r = R + s * Math.cos(u / 2); return [r * Math.cos(u), r * Math.sin(u), s * Math.sin(u / 2)]; };
+    const normal = (u) => {
+      const e = 1e-4, a = P(u, 0), du = P(u + e, 0), ds = P(u, e);
+      const tu = du.map((v, i) => v - a[i]), ts = ds.map((v, i) => v - a[i]);
+      const n = [tu[1] * ts[2] - tu[2] * ts[1], tu[2] * ts[0] - tu[0] * ts[2], tu[0] * ts[1] - tu[1] * ts[0]];
+      const L = Math.hypot(...n); return n.map((v) => v / L);
+    };
+    const pool = (g) => Array.from({ length: N }, () => { const p = document.createElementNS(NS, 'path'); g.appendChild(p); return p; });
+    const backPaths = pool(back), frontPaths = pool(front);
+
+    // Colours run gold → violet → gold around the loop
+    const gold = [230, 195, 106], violet = [137, 87, 255];
+    const colour = (u, shade) => {
+      const t = (1 - Math.cos(u)) / 2;
+      const c = gold.map((g, i) => g + (violet[i] - g) * t);
+      const k = 0.38 + 0.62 * shade;
+      return `rgb(${c.map((v) => Math.round(v * k)).join(',')})`;
+    };
+    const quads = Array.from({ length: N }, (_, i) => {
+      const u0 = (i / N) * Math.PI * 2, u1 = ((i + 1) / N) * Math.PI * 2;
+      return { u: (u0 + u1) / 2, pts: [P(u0, -W), P(u1, -W), P(u1, W), P(u0, W)], n: normal((u0 + u1) / 2) };
+    });
+
+    let rotZ = 0.3, tilt = 1.05, tPhase = 0;
+    const rot = ([x, y, z]) => {
+      const x1 = x * Math.cos(rotZ) - y * Math.sin(rotZ), y1 = x * Math.sin(rotZ) + y * Math.cos(rotZ);
+      return [x1, y1 * Math.cos(tilt) - z * Math.sin(tilt), y1 * Math.sin(tilt) + z * Math.cos(tilt)];
+    };
+    const view = (v) => { const r = rot(v), k = CAM / (CAM - r[2]); return [r[0] * k * SCALE, r[1] * k * SCALE, r[2]]; };
+    const light = (() => { const l = [0.35, -0.55, 0.76], L = Math.hypot(...l); return l.map((v) => v / L); })();
+
+    const draw = () => {
+      const um = tPhase * Math.PI * 4;                     // the arrow's position: two loops = 720°
+      const mp = view(P(um, 0));
+      const n = normal(um).map((v) => v * 0.32);
+      const mt = view(P(um, 0).map((v, i) => v + n[i]));
+      const zm = (mp[2] + mt[2]) / 2;
+      const items = quads.map((q) => {
+        const pr = q.pts.map(view);
+        const z = (pr[0][2] + pr[1][2] + pr[2][2] + pr[3][2]) / 4;
+        const nr = rot(q.n);
+        const shade = Math.abs(nr[0] * light[0] + nr[1] * light[1] + nr[2] * light[2]);
+        return { pr, z, fill: colour(q.u, shade) };
+      }).sort((a, b) => a.z - b.z);
+      let bi = 0, fi = 0;
+      for (const it of items) {
+        const d = `M${it.pr.map((p) => `${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join('L')}Z`;
+        const el = it.z < zm ? backPaths[bi++] : frontPaths[fi++];
+        el.setAttribute('d', d); el.setAttribute('fill', it.fill); el.setAttribute('stroke', it.fill);
+      }
+      for (; bi < N; bi++) backPaths[bi].setAttribute('d', '');
+      for (; fi < N; fi++) frontPaths[fi].setAttribute('d', '');
+      mLine.setAttribute('x1', mp[0]); mLine.setAttribute('y1', mp[1]); mLine.setAttribute('x2', mt[0]); mLine.setAttribute('y2', mt[1]);
+      mDot.setAttribute('cx', mp[0]); mDot.setAttribute('cy', mp[1]);
+      mTip.setAttribute('cx', mt[0]); mTip.setAttribute('cy', mt[1]);
+
+      const deg = Math.round(tPhase * 720);
+      angleEl.textContent = `${deg}°`;
+      const flipped = deg >= 360 && deg < 720;
+      stateEl.textContent = flipped ? '−|ψ⟩' : '|ψ⟩';
+      stateEl.classList.toggle('neg', flipped);
+      fill.style.width = `${tPhase * 100}%`; dot.style.left = `${tPhase * 100}%`;
+    };
+
+    if (still) { tPhase = 0.5; draw(); }
+    else {
+      let running = false, last = 0, frame = 0;
+      const tick = (now) => {
+        if (!running) return;
+        const dt = Math.min(0.05, (now - last) / 1000); last = now;
+        tPhase = (tPhase + dt / 14) % 1;                    // 14 seconds for the full 720°
+        rotZ += dt * 0.18;
+        if ((frame++ & 1) === 0) draw();                    // about 30 frames a second is plenty
+        requestAnimationFrame(tick);
+      };
+      new IntersectionObserver(([en]) => {
+        running = en.isIntersecting;
+        if (running) { last = performance.now(); requestAnimationFrame(tick); }
+      }).observe(svg);
+      draw();
+    }
+  }
+</script>
+
+<style is:global>
+  .mobius-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+  .mobius-visual svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .mobius-visual path { stroke-width: 0.7; stroke-linejoin: round; }
+  .mb-marker line { stroke: #f4f7ff; stroke-width: 3; stroke-linecap: round; }
+  .mb-marker circle { fill: #f4f7ff; }
+  .mb-marker .mb-tip { fill: var(--green); filter: drop-shadow(0 0 6px var(--green)); }
+  .mobius-copy h2 { margin-top: 0; }
+  .mobius-copy .lead { color: var(--text-2); }
+  .mobius-copy > p { color: #d5dbef; max-width: 52ch; }
+  .mb-track { margin: 26px 0 10px; max-width: 420px; }
+  .mb-rail { position: relative; height: 4px; border-radius: 4px; background: rgba(140, 160, 255, 0.18); }
+  .mb-rail i { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: linear-gradient(90deg, var(--cyan), var(--violet), var(--cyan)); background-size: 420px 100%; }
+  .mb-rail b { position: absolute; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: #f4f7ff; box-shadow: 0 0 12px rgba(230, 195, 106, 0.8); }
+  .mb-ticks { display: flex; justify-content: space-between; margin-top: 10px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-3); }
+  .mb-ticks span { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .mb-ticks span:first-child { align-items: flex-start; }
+  .mb-ticks span:last-child { align-items: flex-end; }
+  .mb-ticks em { font-style: normal; color: var(--text-2); }
+  .mb-readout { display: flex; align-items: baseline; gap: 12px; font-family: var(--font-mono); color: var(--text-3); margin: 14px 0 6px; }
+  .mb-readout strong { font-family: var(--font-head); font-size: 2rem; color: var(--text); min-width: 3.4ch; font-variant-numeric: tabular-nums; }
+  .mb-state { font-size: 1.15rem; color: var(--green); }
+  .mb-state.neg { color: #ff8fb8; }
+  .mb-note { font-size: 0.92rem; color: var(--text-2) !important; }
+  @media (max-width: 900px) { .mobius-grid { grid-template-columns: 1fr; gap: 12px; } .mobius-visual { max-width: 520px; margin: 0 auto; width: 100%; } }
+</style>
