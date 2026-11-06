@@ -12,7 +12,7 @@ prerequisites: "Chapter 1; expanding brackets; the binomial theorem for small po
 estimated_minutes: 110
 version: 0.1.0
 status: mathematically_checked
-publication_status: not_published
+publication_status: published
 ---
 
 # Chapter 2 · Meeting i: Arithmetic with a + bi

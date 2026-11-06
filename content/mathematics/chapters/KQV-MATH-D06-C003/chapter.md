@@ -12,7 +12,7 @@ prerequisites: "Chapters 1 and 2; simultaneous linear equations; absolute value 
 estimated_minutes: 100
 version: 0.1.0
 status: mathematically_checked
-publication_status: not_published
+publication_status: published
 ---
 
 # Chapter 3 · Real and Imaginary Parts, and Equality

@@ -37,8 +37,9 @@
   ],
   "changes": [],
   "publication": {
-    "status": "not_published",
-    "approved_by": null,
-    "approved_at": null
+    "status": "published",
+    "approved_by": "founder",
+    "approved_at": "2026-11-06",
+    "note": "Published at the founder's request after the private preview."
   }
 }

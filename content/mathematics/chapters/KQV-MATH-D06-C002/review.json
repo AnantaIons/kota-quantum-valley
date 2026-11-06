@@ -33,8 +33,9 @@
     "0.1.0 (before publication): long equations split over several lines so that every equation fits a phone screen (checked at 360 px). No mathematical content changed."
   ],
   "publication": {
-    "status": "not_published",
-    "approved_by": null,
-    "approved_at": null
+    "status": "published",
+    "approved_by": "founder",
+    "approved_at": "2026-11-06",
+    "note": "Published at the founder's request after the private preview."
   }
 }
