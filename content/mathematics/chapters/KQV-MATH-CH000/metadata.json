@@ -1,0 +1,43 @@
+{
+  "id": "KQV-MATH-CH000",
+  "slug": "chapter-0",
+  "chapter_number": 0,
+  "title": "Why Mathematics? From Everyday Questions to Quantum Ideas",
+  "short_title": "Why Mathematics?",
+  "subtitle": "The problems it solves, the ideas it connects, and your path through the course.",
+  "domain_id": null,
+  "volume": "Orientation",
+  "level": "L1",
+  "stage": 0,
+  "prerequisites": [],
+  "prerequisite_note": "Basic arithmetic; unfamiliar algebra is explained as it appears.",
+  "objectives": [
+    "Explain what several major branches of mathematics are for, in terms of the questions they answer.",
+    "Follow three small worked problems: a break-even comparison, a maximum area, and an instantaneous speed.",
+    "Distinguish a formula, a model, a proof and a calculation, and say what each can and cannot establish.",
+    "Explain why x^2 + 1 = 0 has no real solution and why that motivates complex numbers.",
+    "Choose a sensible starting route through the course."
+  ],
+  "definitions": ["function notation C(n)", "model", "proof", "counterexample"],
+  "theorems": [
+    { "statement": "Among rectangles with perimeter 20 m, the 5 m by 5 m square has the greatest area.", "proof": "complete (completing the square)", "scope": "rectangles only" }
+  ],
+  "quantum_links": [
+    { "section": "0.6", "kind": "worked example", "summary": "Measurement probabilities |α|² and |β|² for real amplitudes 3/5 and 4/5; normalisation check." }
+  ],
+  "exercises": ["0.11-Q1", "0.11-Q2", "0.11-Q3", "0.11-Q4", "0.11-Q5", "0.11-Q6"],
+  "sources": ["F1", "Q1"],
+  "next": { "id": "KQV-MATH-D06-C001", "title": "Why Complex Numbers Are Needed" },
+  "estimated_minutes": 35,
+  "language": "en",
+  "translations": { "hi": null },
+  "status": "mathematically_checked",
+  "version": "0.1.1",
+  "reviewed_at": "2026-11-06",
+  "reviewer_type": "AI review with automated symbolic checks; no human mathematician review yet",
+  "unresolved_issues": [
+    "F1: the English OpenStax page could not be opened from the review environment; the section title was confirmed through the Spanish edition and a mirror. Open the link once to confirm.",
+    "Stage 9 is named 'Independent mathematical work' here but 'Quantum mathematics and research preparation' in the course plan. Founder to choose one name.",
+    "Hindi version not yet written; it needs an independent review before publishing."
+  ]
+}

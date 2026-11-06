@@ -12,7 +12,7 @@ export default function pagefindIntegration() {
       'astro:build:done': async ({ dir, logger }) => {
         const site = fileURLToPath(dir);
         const { index } = await pagefind.createIndex({
-          excludeSelectors: ['pre', '.quiz', '.markdone', '.lesson-toc', '.lesson-nav', '.post-cover', '.lsec-tools'],
+          excludeSelectors: ['pre', '.quiz', '.markdone', '.lesson-toc', '.lesson-nav', '.post-cover', '.lsec-tools', '.katex', '.mch-review'],
         });
         const { page_count, errors } = await index.addDirectory({ path: site });
         if (errors?.length) logger.warn(errors.join('\n'));

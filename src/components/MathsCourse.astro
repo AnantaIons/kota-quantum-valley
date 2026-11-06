@@ -1,0 +1,165 @@
+---
+// Course 2 overview page (English and Hindi). Course data comes from content/mathematics.
+import Solid from './Solid.astro';
+import { getChapters, course, ledgers } from '../lib/maths.js';
+const { lang = 'en' } = Astro.props;
+const hi = lang === 'hi';
+const chapters = (await getChapters()).filter((c) => c.public);
+const ch0 = chapters.find((c) => c.meta.chapter_number === 0);
+const d06 = ledgers.D06;
+const parts = d06.groups.map((g) => ({ ...g, count: d06.chapters.filter((c) => c.group === g.n).length }));
+const firstNext = d06.chapters[0];
+
+const T = hi ? {
+  eyebrow: 'कोर्स 2, मुफ़्त, अभी शुरू',
+  lead: 'कक्षा 10 की नींव से quantum theory के गणित तक, एक-एक क़दम। हर विचार पहले सहज रूप में, फिर सटीक परिभाषाएँ, पूरे derivation और हल किए गए सवाल।',
+  start: 'अध्याय 0 पढ़ें (English)', road: 'रोडमैप देखें',
+  status: 'अध्याय 0 अभी अंग्रेज़ी में है। इसका हिन्दी संस्करण तैयार हो रहा है, और प्रकाशित होने से पहले उसकी अलग से जाँच होगी।',
+  open: 'अभी खुला', chN: 'अध्याय 0', chHi: 'गणित क्यों? रोज़ के सवालों से quantum विचारों तक',
+  time: 'लगभग 35 मिनट। बस बुनियादी अंकगणित चाहिए।', youWill: 'इस अध्याय में आप',
+  objectives: ['जानेंगे कि गणित की बड़ी शाखाएँ किन सवालों का जवाब देती हैं।', 'तीन छोटे सवाल हल करेंगे: दो दुकानों के दाम की तुलना, सबसे बड़ा क्षेत्रफल, और किसी पल की चाल।', 'formula, model, proof और गणना का फ़र्क़ समझेंगे, और यह कि हर एक क्या साबित कर सकता है।', 'देखेंगे कि x² + 1 = 0 का कोई real हल क्यों नहीं है, और यही complex numbers तक क्यों ले जाता है।', 'कोर्स में अपनी शुरुआत की सही जगह चुनेंगे।'],
+  read: 'अध्याय 0 पढ़ें',
+  howT: 'हर अध्याय कैसे बना है',
+  how: [['पहले एक असली सवाल', 'हर अध्याय ऐसे सवाल से शुरू होता है जिसके लिए नया विचार ज़रूरी है।'], ['पहले समझ, फिर सटीक परिभाषा', 'पहले चित्र या उदाहरण, फिर हर चिह्न का ठीक-ठीक मतलब।'], ['हर क़दम लिखा हुआ', 'हर क़दम का कारण, और जहाँ दावे को proof चाहिए वहाँ proof।'], ['हल किए सवाल और आम ग़लतियाँ', 'अलग-अलग स्तर पर, उन ग़लतफ़हमियों के साथ जो छात्रों को अटकाती हैं।'], ['पूरे हल के साथ अभ्यास', 'पहले ख़ुद कोशिश करें; जवाब तभी खुलते हैं जब आप उन्हें खोलें।'], ['Quantum वहीं जहाँ सच में लागू हो', 'Quantum science से जुड़ाव सिर्फ़ वहाँ, जहाँ गणित सच में वहाँ ले जाता है।']],
+  checkT: 'हम कैसे जाँचते हैं', check: 'कोई अध्याय प्रकाशित होने से पहले उसकी हर गणना code में दोबारा चलाई जाती है और हर स्रोत खोलकर जाँचा जाता है। Advanced अध्यायों की जाँच एक गणितज्ञ भी करेगा। हर अध्याय के अंत में उसकी जाँच का पूरा रिकॉर्ड दिखता है।',
+  roadT: 'रोडमैप', roadP: 'नौ चरण, नींव से स्वतंत्र गणितीय काम तक। ये एक-दूसरे में मिलते हैं; हर अध्याय बताता है कि उसे ठीक-ठीक क्या चाहिए।',
+  stages: [['अंकगणित, भिन्न, घात, समीकरण, sets, logic और proof', 'चिह्नों का मतलब क्या है? कौन-से क़दम सही हैं?'], ['Functions, graphs, coordinate geometry, trigonometry और complex numbers', 'राशियाँ आपस में कैसे जुड़ी हैं? जगह, कोण और घुमाव कैसे लिखें?'], ['Vectors, matrices, linear systems और linear transformations', 'कई जुड़ी हुई राशियों को एक साथ कैसे लिखें और बदलें?'], ['Limits, derivatives, integrals और multivariable calculus', 'कोई चीज़ कितनी तेज़ी से बदलती है? समय या जगह में क्या जमा होता है?'], ['Counting, probability, statistics और stochastic processes', 'कौन-से नतीजे संभव हैं? Data किस बात का कितना समर्थन करता है?'], ['Differential equations, Fourier analysis, numerical methods और optimization', 'कोई system समय के साथ कैसे बदलता है? हल कैसे निकालें या उसका अनुमान लगाएँ?'], ['Number theory, abstract algebra, discrete mathematics, graph theory और symmetry', 'कौन-से pattern टिके रहते हैं? Operations और networks कैसे जुड़ते हैं?'], ['Real और complex analysis, measure theory, topology, differential geometry, tensors, Hilbert spaces और operators', 'हमारे तरीक़े कब काम करते हैं? ज़्यादा सामान्य spaces पर कैसे सोचें?'], ['Proof design, counterexamples, mathematical information theory, papers पढ़ना और दोहराई जा सकने वाली गणना', 'क्या हम किसी नए दावे को परख सकते हैं, उसकी मान्यताएँ बता सकते हैं और ज़िम्मेदारी से जाँच सकते हैं?']],
+  cnT: 'पहला विषय: Complex numbers', cnP: `नौ भागों में योजना, i की ज़रूरत से quantum interference तक। अध्याय 1, "${firstNext.title}", इसके बाद आएगा।`,
+  part: 'भाग', chs: (n) => `${n} अध्याय`, planned: 'योजना में',
+  domT: 'कोर्स कहाँ तक जाएगा', domP: 'गणित के 18 क्षेत्र जिनकी योजना है। कोई अध्याय यहाँ तभी आता है जब वह अपनी जाँच पास कर ले।',
+  stageName: course.hi.stages,
+} : {
+  eyebrow: 'Course 2, free, starting now',
+  lead: 'Mathematics from Class 10 foundations to the mathematics of quantum theory, one step at a time. Every idea comes with intuition first, then careful definitions, full derivations and worked problems with solutions.',
+  start: 'Start Chapter 0', road: 'See the roadmap',
+  status: 'Chapter 0 is open. Complex Numbers comes next.',
+  open: 'Open now', chN: 'Chapter 0', chHi: '',
+  time: `About ${ch0?.meta.estimated_minutes ?? 35} minutes. You need basic arithmetic.`, youWill: 'In this chapter you will',
+  objectives: ch0?.meta.objectives.map((o) => o.replace(/^Explain/, 'explain').replace(/^Follow/, 'follow').replace(/^Distinguish/, 'distinguish').replace(/^Choose/, 'choose').replace('x^2 + 1 = 0', 'x² + 1 = 0')) ?? [],
+  read: 'Read Chapter 0',
+  howT: 'How every chapter is built',
+  how: [['A real question first', 'Every chapter starts from a problem that needs the new idea.'], ['Intuition, then precise definitions', 'A picture or example first, then the exact meaning of every symbol.'], ['Every step shown', 'Derivations give the reason for each step, with proofs wherever a claim needs one.'], ['Worked problems and common mistakes', 'At several levels, with the misconceptions that trip students up.'], ['Practice with full solutions', 'Try the questions first; the answers stay folded until you open them.'], ['Quantum where it really applies', 'Connections to quantum science appear only where the mathematics genuinely leads there.']],
+  checkT: 'How we check', check: 'Before a chapter is published, every calculation is re-run in code and every source is opened and confirmed. Advanced chapters also need review by a mathematician. Each chapter shows its own check record at the end.',
+  roadT: 'The roadmap', roadP: 'Nine stages, from foundations to independent work. They overlap; each chapter states exactly what it needs.',
+  stages: course.stages.map((s) => [s.subjects, s.question]),
+  cnT: 'First subject: complex numbers', cnP: `Planned in nine parts, from why we need i to quantum interference. Chapter 1, "${firstNext.title}", comes next.`,
+  part: 'Part', chs: (n) => `${n} chapters`, planned: 'Planned',
+  domT: 'Where the course goes', domP: 'Eighteen planned areas of mathematics. A chapter appears here only after it passes its checks.',
+  stageName: course.stages.map((s) => s.name),
+};
+const pre = hi ? '/hi' : '';
+const ch0Href = ch0 ? `/mathematics/${ch0.meta.slug}/` : '#';
+---
+<section class="hero mhero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap mhero-grid">
+    <div>
+      <p class="eyebrow">{T.eyebrow}</p>
+      <h1>Mathematics for Quantum Science</h1>
+      <p class="lead">{T.lead}</p>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-lg" href={ch0Href}>{T.start}</a>
+        <a class="btn btn-ghost btn-lg" href="#roadmap">{T.road}</a>
+      </div>
+      <p class="mhero-status">{T.status}</p>
+    </div>
+    <div class="v3host mhero-art" data-3d="tesseract" aria-hidden="true"><Solid shape="cube" tone="cobalt" size={260} /></div>
+  </div>
+</section>
+
+<section class="block" style="padding-top: 0">
+  <div class="wrap">
+    {ch0 && (
+      <article class="mch0 glass">
+        <div>
+          <span class="status now">{T.open}</span>
+          <p class="mch0-n">{T.chN}</p>
+          <h2>{ch0.meta.title}</h2>
+          {T.chHi && <p class="mch0-hi">{T.chHi}</p>}
+          <p class="mch0-sub">{ch0.meta.subtitle}</p>
+          <p class="meta">{T.time}</p>
+          <a class="btn btn-primary" href={ch0Href}>{T.read}</a>
+        </div>
+        <div>
+          <p class="mch0-will">{T.youWill}</p>
+          <ul>{T.objectives.map((o) => <li>{o}</li>)}</ul>
+        </div>
+      </article>
+    )}
+  </div>
+</section>
+
+<section class="block tint">
+  <div class="wrap">
+    <div class="section-head"><h2>{T.howT}</h2><p>{T.check}</p></div>
+    <ol class="how-steps">{T.how.map(([h, p]) => <li><strong>{h}</strong><span>{p}</span></li>)}</ol>
+  </div>
+</section>
+
+<section class="block" id="roadmap">
+  <div class="wrap">
+    <div class="section-head"><h2>{T.roadT}</h2><p>{T.roadP}</p></div>
+    <ol class="mroad">
+      {T.stages.map(([subjects, q], i) => (
+        <li><span class="mroad-n">{i + 1}</span><div><h3>{T.stageName[i]}</h3><p class="mroad-s">{subjects}</p><p class="mroad-q">{q}</p></div></li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<section class="block tint">
+  <div class="wrap">
+    <div class="section-head"><h2>{T.cnT}</h2><p>{T.cnP}</p></div>
+    <ol class="mparts">
+      {parts.map((p) => <li class="glass"><span>{T.part} {p.n}</span><strong>{p.name}</strong><small>{T.chs(p.count)} · {T.planned}</small></li>)}
+    </ol>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-head"><h2>{T.domT}</h2><p>{T.domP}</p></div>
+    <ul class="chips mdomains">{course.domains.map((d) => <li>{d.name}</li>)}</ul>
+  </div>
+</section>
+
+<script>
+  import { boot3d } from '../scripts/three/boot.js';
+  boot3d();
+</script>
+
+<style is:global>
+  .mhero { padding: clamp(56px, 8vw, 104px) 0 clamp(48px, 6vw, 80px); }
+  .mhero-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 40px; align-items: center; position: relative; }
+  .mhero h1 { font-size: clamp(2.5rem, 6vw, 4.6rem); letter-spacing: -0.035em; line-height: 1; margin: 0 0 22px; max-width: 13ch; background: linear-gradient(100deg, #fff 30%, #F8E3A3 55%, #B58CFF 85%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .mhero .lead { color: var(--text-2); max-width: 54ch; }
+  .mhero-status { margin-top: 22px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-2); }
+  .mhero-art { width: min(320px, 100%); aspect-ratio: 1; justify-self: center; --bleed: 18%; }
+  .mhero-art > svg { width: 100%; height: 100%; }
+  .mch0 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; padding: 32px; border-radius: var(--r-lg, 24px); }
+  .mch0 h2 { margin: 4px 0 8px; font-size: clamp(1.5rem, 3vw, 2.1rem); }
+  .mch0-n { margin: 14px 0 0; font-family: var(--font-mono); font-size: 0.8rem; color: var(--cyan); }
+  .mch0-hi { margin: 0 0 6px; color: var(--text); }
+  .mch0-sub { color: var(--text-2); }
+  .mch0-will { font-family: var(--font-mono); font-size: 0.8rem; color: var(--cobalt-text); margin: 0 0 10px; }
+  .mch0 ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
+  .mch0 li { color: #d5dbef; }
+  .mroad { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .mroad li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; padding: 18px; border: 1px solid var(--border); border-radius: var(--r-md); background: rgba(14, 21, 51, 0.5); }
+  .mroad-n { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; font-family: var(--font-head); font-weight: 700; color: #1b1405; background: var(--metal); }
+  .mroad h3 { margin: 2px 0 6px; font-size: 1.08rem; }
+  .mroad-s { margin: 0 0 8px; font-size: 0.88rem; color: var(--text-2); }
+  .mroad-q { margin: 0; font-size: 0.88rem; color: var(--cobalt-text); }
+  .mparts { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .mparts li { display: flex; flex-direction: column; gap: 4px; padding: 18px; border-radius: var(--r-md); }
+  .mparts span { font-family: var(--font-mono); font-size: 0.74rem; color: var(--cyan); }
+  .mparts strong { font-family: var(--font-head); font-size: 1.02rem; }
+  .mparts small { color: var(--text-3); font-size: 0.8rem; }
+  .mdomains { gap: 8px; }
+  @media (max-width: 900px) {
+    .mhero-grid, .mch0 { grid-template-columns: 1fr; }
+    .mhero-art { order: -1; width: 200px; }
+    .mroad, .mparts { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  }
+  @media (max-width: 600px) { .mroad, .mparts { grid-template-columns: 1fr; } .mch0 { padding: 22px; } }
+</style>

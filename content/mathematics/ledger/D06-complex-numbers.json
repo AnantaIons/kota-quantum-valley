@@ -1,0 +1,1615 @@
+{
+  "domain": "D06",
+  "domain_name": "Complex numbers and complex analysis",
+  "planned": 75,
+  "version": "0.1.0",
+  "status": "proposed — awaiting founder approval before Chapter 1 is drafted",
+  "notes": [
+    "Prerequisites inside D06 use chapter IDs. Prerequisites in other domains are listed as text until those domains have ledgers.",
+    "Flags: mandatory-pilot-a/b/c and mandatory-quantum mark the chapters the master specification requires; expert-review marks chapters that need a qualified human reviewer before publication; bridge marks short catch-up lessons; history-needs-sources means every historical statement must be sourced."
+  ],
+  "groups": [
+    {
+      "n": 1,
+      "name": "Foundations and ordered-pair construction"
+    },
+    {
+      "n": 2,
+      "name": "Algebra and geometry of complex numbers"
+    },
+    {
+      "n": 3,
+      "name": "Polar form and Euler's formula"
+    },
+    {
+      "n": 4,
+      "name": "Complex functions and holomorphy"
+    },
+    {
+      "n": 5,
+      "name": "Contour integration and Cauchy theory"
+    },
+    {
+      "n": 6,
+      "name": "Laurent series, residues and analytic continuation"
+    },
+    {
+      "n": 7,
+      "name": "Riemann surfaces and advanced connections"
+    },
+    {
+      "n": 8,
+      "name": "Quantum amplitudes, phase and interference"
+    },
+    {
+      "n": 9,
+      "name": "Research reading and capstone"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "KQV-MATH-D06-C001",
+      "n": 1,
+      "group": 1,
+      "group_name": "Foundations and ordered-pair construction",
+      "title": "Why Complex Numbers Are Needed",
+      "level": "L1",
+      "objective": "See exactly where the real numbers run out (x^2 + 1 = 0) and what it means to extend a number system consistently.",
+      "prerequisites": [
+        "KQV-MATH-CH000"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Proof that x^2 >= 0 for every real x.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [
+        "history-needs-sources"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C002",
+      "n": 2,
+      "group": 1,
+      "group_name": "Foundations and ordered-pair construction",
+      "title": "Meeting i: Arithmetic with a + bi",
+      "level": "L1",
+      "objective": "Add, subtract and multiply numbers of the form a + bi using i^2 = -1.",
+      "prerequisites": [
+        "KQV-MATH-D06-C001"
+      ],
+      "external_prerequisites": [
+        "D03 · expanding brackets"
+      ],
+      "proofs": "Derive the product rule (a+bi)(c+di).",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C003",
+      "n": 3,
+      "group": 1,
+      "group_name": "Foundations and ordered-pair construction",
+      "title": "Real and Imaginary Parts, and Equality",
+      "level": "L1",
+      "objective": "Use Re and Im; solve equations by equating real and imaginary parts.",
+      "prerequisites": [
+        "KQV-MATH-D06-C002"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Equality of complex numbers from the definition.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C004",
+      "n": 4,
+      "group": 1,
+      "group_name": "Foundations and ordered-pair construction",
+      "title": "Complex Numbers as Ordered Pairs",
+      "level": "L2",
+      "objective": "Build C as pairs (a, b) with defined addition and multiplication, and recover i as (0, 1).",
+      "prerequisites": [
+        "KQV-MATH-D06-C003"
+      ],
+      "external_prerequisites": [
+        "D01 · ordered pairs and sets"
+      ],
+      "proofs": "Show (0,1)(0,1) = (-1,0) from the definitions.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [
+        "mandatory-pilot-a"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C005",
+      "n": 5,
+      "group": 1,
+      "group_name": "Foundations and ordered-pair construction",
+      "title": "Checking the Field Laws",
+      "level": "L3",
+      "objective": "Prove that the ordered-pair construction satisfies every field axiom.",
+      "prerequisites": [
+        "KQV-MATH-D06-C004"
+      ],
+      "external_prerequisites": [
+        "D03 · field axioms"
+      ],
+      "proofs": "Complete proofs of commutativity, associativity, distributivity, identities and inverses.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [
+        "mandatory-pilot-a"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C006",
+      "n": 6,
+      "group": 1,
+      "group_name": "Foundations and ordered-pair construction",
+      "title": "The Conjugate and Its Rules",
+      "level": "L1",
+      "objective": "Define the conjugate and prove its rules for sums and products.",
+      "prerequisites": [
+        "KQV-MATH-D06-C003"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Proofs of conj(z+w) and conj(zw).",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C007",
+      "n": 7,
+      "group": 1,
+      "group_name": "Foundations and ordered-pair construction",
+      "title": "Division and Reciprocals",
+      "level": "L2",
+      "objective": "Divide complex numbers by multiplying by the conjugate; find 1/z.",
+      "prerequisites": [
+        "KQV-MATH-D06-C005",
+        "KQV-MATH-D06-C006"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Derive the reciprocal formula and show it is the field inverse.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C008",
+      "n": 8,
+      "group": 1,
+      "group_name": "Foundations and ordered-pair construction",
+      "title": "Why C Cannot Be Ordered",
+      "level": "L3",
+      "objective": "Prove there is no ordering of C compatible with addition and multiplication.",
+      "prerequisites": [
+        "KQV-MATH-D06-C005"
+      ],
+      "external_prerequisites": [
+        "D01 · proof by contradiction"
+      ],
+      "proofs": "Complete proof by contradiction using i.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C009",
+      "n": 9,
+      "group": 1,
+      "group_name": "Foundations and ordered-pair construction",
+      "title": "R Inside C: A Consistent Extension",
+      "level": "L3",
+      "objective": "Show the map a -> (a, 0) preserves the operations, so C genuinely extends R.",
+      "prerequisites": [
+        "KQV-MATH-D06-C005",
+        "KQV-MATH-D06-C008"
+      ],
+      "external_prerequisites": [
+        "D03 · homomorphisms (bridge)"
+      ],
+      "proofs": "Embedding proof; R[x]/(x^2+1) remark marked advanced.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [
+        "mandatory-pilot-a"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C010",
+      "n": 10,
+      "group": 2,
+      "group_name": "Algebra and geometry of complex numbers",
+      "title": "The Complex Plane",
+      "level": "L1",
+      "objective": "Picture complex numbers as points and arrows in the Argand plane.",
+      "prerequisites": [
+        "KQV-MATH-D06-C003"
+      ],
+      "external_prerequisites": [
+        "D05 · coordinate geometry"
+      ],
+      "proofs": null,
+      "lab": "Plot points and read off Re and Im.",
+      "quantum": null,
+      "estimated_hours": 1,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C011",
+      "n": 11,
+      "group": 2,
+      "group_name": "Algebra and geometry of complex numbers",
+      "title": "Addition as Vector Addition",
+      "level": "L1",
+      "objective": "See addition and subtraction as the parallelogram rule and displacement.",
+      "prerequisites": [
+        "KQV-MATH-D06-C010"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Geometric interpretation of z + w.",
+      "lab": "Drag two points; watch the sum.",
+      "quantum": null,
+      "estimated_hours": 1,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C012",
+      "n": 12,
+      "group": 2,
+      "group_name": "Algebra and geometry of complex numbers",
+      "title": "Modulus: Distance from Zero",
+      "level": "L2",
+      "objective": "Define |z| and prove |z|^2 = z times its conjugate.",
+      "prerequisites": [
+        "KQV-MATH-D06-C006",
+        "KQV-MATH-D06-C010"
+      ],
+      "external_prerequisites": [
+        "D05 · Pythagoras"
+      ],
+      "proofs": "Proof of |z|^2 = z conj(z).",
+      "lab": null,
+      "quantum": "Probabilities are squared moduli of amplitudes.",
+      "estimated_hours": 1,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C013",
+      "n": 13,
+      "group": 2,
+      "group_name": "Algebra and geometry of complex numbers",
+      "title": "Properties of the Modulus",
+      "level": "L2",
+      "objective": "Prove |zw| = |z||w| and |z/w| = |z|/|w|.",
+      "prerequisites": [
+        "KQV-MATH-D06-C007",
+        "KQV-MATH-D06-C012"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Complete proofs.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C014",
+      "n": 14,
+      "group": 2,
+      "group_name": "Algebra and geometry of complex numbers",
+      "title": "The Triangle Inequality",
+      "level": "L2",
+      "objective": "Prove the triangle inequality, its equality cases and the reverse inequality.",
+      "prerequisites": [
+        "KQV-MATH-D06-C013"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Complete proof with equality case.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C015",
+      "n": 15,
+      "group": 2,
+      "group_name": "Algebra and geometry of complex numbers",
+      "title": "Distances, Circles and Regions",
+      "level": "L2",
+      "objective": "Describe circles, discs and half-planes with equations in z.",
+      "prerequisites": [
+        "KQV-MATH-D06-C014"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Locus derivations.",
+      "lab": "Shade the set |z - c| < r.",
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C016",
+      "n": 16,
+      "group": 2,
+      "group_name": "Algebra and geometry of complex numbers",
+      "title": "Quadratic Equations with Complex Roots",
+      "level": "L2",
+      "objective": "Solve any real quadratic over C; prove non-real roots of real polynomials come in conjugate pairs.",
+      "prerequisites": [
+        "KQV-MATH-D06-C007"
+      ],
+      "external_prerequisites": [
+        "D03 · quadratic formula"
+      ],
+      "proofs": "Conjugate-root proof for real coefficients.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C017",
+      "n": 17,
+      "group": 2,
+      "group_name": "Algebra and geometry of complex numbers",
+      "title": "Square Roots of a Complex Number",
+      "level": "L2",
+      "objective": "Find both square roots of a + bi algebraically.",
+      "prerequisites": [
+        "KQV-MATH-D06-C016"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Derivation by equating parts; there are exactly two roots for nonzero z.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C018",
+      "n": 18,
+      "group": 2,
+      "group_name": "Algebra and geometry of complex numbers",
+      "title": "Polynomials and the Fundamental Theorem of Algebra",
+      "level": "L3",
+      "objective": "State the Fundamental Theorem of Algebra precisely and use it to factor polynomials.",
+      "prerequisites": [
+        "KQV-MATH-D06-C016",
+        "KQV-MATH-D06-C017"
+      ],
+      "external_prerequisites": [
+        "D03 · polynomial division"
+      ],
+      "proofs": "Statement with hypotheses; proof deferred to C045.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C019",
+      "n": 19,
+      "group": 2,
+      "group_name": "Algebra and geometry of complex numbers",
+      "title": "Geometry with Complex Numbers",
+      "level": "L2",
+      "objective": "Use complex numbers for midpoints, rotation by i and similar triangles.",
+      "prerequisites": [
+        "KQV-MATH-D06-C011",
+        "KQV-MATH-D06-C013"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Multiplication by i rotates by 90 degrees (algebraic proof).",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C020",
+      "n": 20,
+      "group": 3,
+      "group_name": "Polar form and Euler's formula",
+      "title": "Angles, Radians and the Unit Circle",
+      "level": "L2",
+      "objective": "Bridge lesson: radians, sine and cosine on the unit circle.",
+      "prerequisites": [
+        "KQV-MATH-D06-C010"
+      ],
+      "external_prerequisites": [
+        "D05 · trigonometric ratios"
+      ],
+      "proofs": null,
+      "lab": "Unit-circle explorer.",
+      "quantum": null,
+      "estimated_hours": 1,
+      "flags": [
+        "bridge"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C021",
+      "n": 21,
+      "group": 3,
+      "group_name": "Polar form and Euler's formula",
+      "title": "Polar Form and the Argument",
+      "level": "L2",
+      "objective": "Write z = r(cos t + i sin t); define arg and the principal value; avoid atan pitfalls.",
+      "prerequisites": [
+        "KQV-MATH-D06-C012",
+        "KQV-MATH-D06-C020"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Existence and uniqueness of polar form for nonzero z (argument up to 2 pi).",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C022",
+      "n": 22,
+      "group": 3,
+      "group_name": "Polar form and Euler's formula",
+      "title": "Multiplication Rotates and Scales",
+      "level": "L2",
+      "objective": "Prove that moduli multiply and arguments add.",
+      "prerequisites": [
+        "KQV-MATH-D06-C021"
+      ],
+      "external_prerequisites": [
+        "D05 · angle-addition formulas"
+      ],
+      "proofs": "Complete proof from the angle-addition formulas.",
+      "lab": "Interactive rotation model: multiply by w and watch the plane turn and stretch.",
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C023",
+      "n": 23,
+      "group": 3,
+      "group_name": "Polar form and Euler's formula",
+      "title": "De Moivre's Theorem",
+      "level": "L2",
+      "objective": "Prove De Moivre's theorem for integer powers and derive trig identities.",
+      "prerequisites": [
+        "KQV-MATH-D06-C022"
+      ],
+      "external_prerequisites": [
+        "D01 · induction"
+      ],
+      "proofs": "Proof by induction, including negative powers.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C024",
+      "n": 24,
+      "group": 3,
+      "group_name": "Polar form and Euler's formula",
+      "title": "Roots of Unity and nth Roots",
+      "level": "L2",
+      "objective": "Find all nth roots; prove the nth roots of unity sum to zero.",
+      "prerequisites": [
+        "KQV-MATH-D06-C023"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Geometric-series proof of the zero sum.",
+      "lab": "Regular polygons of roots.",
+      "quantum": "Used again in the quantum Fourier transform (C069).",
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C025",
+      "n": 25,
+      "group": 3,
+      "group_name": "Polar form and Euler's formula",
+      "title": "The Exponential Series",
+      "level": "L3",
+      "objective": "Bridge: define exp by its power series and prove absolute convergence.",
+      "prerequisites": [
+        "KQV-MATH-D06-C014"
+      ],
+      "external_prerequisites": [
+        "D04 · sequences and series"
+      ],
+      "proofs": "Ratio-test convergence proof.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [
+        "bridge"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C026",
+      "n": 26,
+      "group": 3,
+      "group_name": "Polar form and Euler's formula",
+      "title": "Euler's Formula, Derived Rigorously",
+      "level": "L3",
+      "objective": "Derive e^(it) = cos t + i sin t from the series definitions; prove exp(z + w) = exp(z) exp(w).",
+      "prerequisites": [
+        "KQV-MATH-D06-C022",
+        "KQV-MATH-D06-C025"
+      ],
+      "external_prerequisites": [
+        "D04 · Cauchy product of series"
+      ],
+      "proofs": "Complete derivation; second proof via the differential equation f' = i f with uniqueness.",
+      "lab": "Interactive rotation model: e^(it) traced on the unit circle with live checks of |e^(it)| = 1.",
+      "quantum": "Phases e^(i phi) on amplitudes.",
+      "estimated_hours": 2.5,
+      "flags": [
+        "mandatory-pilot-b"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C027",
+      "n": 27,
+      "group": 3,
+      "group_name": "Polar form and Euler's formula",
+      "title": "Computing with r e^(it)",
+      "level": "L2",
+      "objective": "Multiply, divide and take powers in exponential form; meet e^(i pi) + 1 = 0.",
+      "prerequisites": [
+        "KQV-MATH-D06-C026"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Derivations from C026.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C028",
+      "n": 28,
+      "group": 3,
+      "group_name": "Polar form and Euler's formula",
+      "title": "The Complex Logarithm and Complex Powers",
+      "level": "L3",
+      "objective": "Define log z and z^w; understand why they are multivalued.",
+      "prerequisites": [
+        "KQV-MATH-D06-C027"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Counterexample: log(zw) = log z + log w fails for principal values.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C029",
+      "n": 29,
+      "group": 4,
+      "group_name": "Complex functions and holomorphy",
+      "title": "Functions as Maps of the Plane",
+      "level": "L3",
+      "objective": "Visualise w = z^2, 1/z and e^z as transformations.",
+      "prerequisites": [
+        "KQV-MATH-D06-C027"
+      ],
+      "external_prerequisites": [
+        "D04 · functions"
+      ],
+      "proofs": null,
+      "lab": "Domain-colouring and grid-mapping explorer with a text description fallback.",
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C030",
+      "n": 30,
+      "group": 4,
+      "group_name": "Complex functions and holomorphy",
+      "title": "Limits and Continuity in C",
+      "level": "L3",
+      "objective": "Use epsilon-delta limits in the plane.",
+      "prerequisites": [
+        "KQV-MATH-D06-C029",
+        "KQV-MATH-D06-C014"
+      ],
+      "external_prerequisites": [
+        "D04 · limits"
+      ],
+      "proofs": "Proofs of limit laws.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C031",
+      "n": 31,
+      "group": 4,
+      "group_name": "Complex functions and holomorphy",
+      "title": "Complex Differentiability",
+      "level": "L3",
+      "objective": "Define the complex derivative; prove conj(z) is nowhere complex-differentiable.",
+      "prerequisites": [
+        "KQV-MATH-D06-C030"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Complete counterexample proof.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C032",
+      "n": 32,
+      "group": 4,
+      "group_name": "Complex functions and holomorphy",
+      "title": "The Cauchy–Riemann Equations",
+      "level": "L3",
+      "objective": "Derive the Cauchy–Riemann equations; state the sufficient condition with exact hypotheses.",
+      "prerequisites": [
+        "KQV-MATH-D06-C031"
+      ],
+      "external_prerequisites": [
+        "D08 · partial derivatives"
+      ],
+      "proofs": "Necessity proof; sufficiency with continuous partials.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C033",
+      "n": 33,
+      "group": 4,
+      "group_name": "Complex functions and holomorphy",
+      "title": "Holomorphic Functions",
+      "level": "L4",
+      "objective": "Define holomorphic and entire functions on open sets, with first examples and non-examples.",
+      "prerequisites": [
+        "KQV-MATH-D06-C032"
+      ],
+      "external_prerequisites": [
+        "D04 · open sets"
+      ],
+      "proofs": "Closure properties with full hypotheses.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [
+        "mandatory-pilot-c",
+        "expert-review"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C034",
+      "n": 34,
+      "group": 4,
+      "group_name": "Complex functions and holomorphy",
+      "title": "Harmonic Functions and Conjugates",
+      "level": "L3",
+      "objective": "Show real and imaginary parts of holomorphic functions are harmonic; find harmonic conjugates.",
+      "prerequisites": [
+        "KQV-MATH-D06-C032"
+      ],
+      "external_prerequisites": [
+        "D08 · second partial derivatives"
+      ],
+      "proofs": "Proof assuming C^2 regularity (justified later by C044).",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C035",
+      "n": 35,
+      "group": 4,
+      "group_name": "Complex functions and holomorphy",
+      "title": "Power Series and the Radius of Convergence",
+      "level": "L3",
+      "objective": "Find radii of convergence; state and prove the Cauchy–Hadamard formula.",
+      "prerequisites": [
+        "KQV-MATH-D06-C025",
+        "KQV-MATH-D06-C030"
+      ],
+      "external_prerequisites": [
+        "D04 · limsup"
+      ],
+      "proofs": "Complete proof.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C036",
+      "n": 36,
+      "group": 4,
+      "group_name": "Complex functions and holomorphy",
+      "title": "Power Series Are Holomorphic",
+      "level": "L4",
+      "objective": "Prove power series can be differentiated term by term inside their disc.",
+      "prerequisites": [
+        "KQV-MATH-D06-C035",
+        "KQV-MATH-D06-C033"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Complete proof.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C037",
+      "n": 37,
+      "group": 4,
+      "group_name": "Complex functions and holomorphy",
+      "title": "Exponential and Trigonometric Functions in C",
+      "level": "L3",
+      "objective": "Study exp, sin, cos, sinh and cosh on C: periods, zeros and unboundedness.",
+      "prerequisites": [
+        "KQV-MATH-D06-C036",
+        "KQV-MATH-D06-C026"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Proofs of periodicity and zero sets.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C038",
+      "n": 38,
+      "group": 4,
+      "group_name": "Complex functions and holomorphy",
+      "title": "Conformal Maps and Möbius Transformations",
+      "level": "L4",
+      "objective": "Show holomorphic maps preserve angles where f' is nonzero; study Möbius maps.",
+      "prerequisites": [
+        "KQV-MATH-D06-C033",
+        "KQV-MATH-D06-C015"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Angle preservation proof; Möbius maps send circles and lines to circles and lines.",
+      "lab": "Möbius map explorer.",
+      "quantum": null,
+      "estimated_hours": 2.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C039",
+      "n": 39,
+      "group": 5,
+      "group_name": "Contour integration and Cauchy theory",
+      "title": "Paths and Contour Integrals",
+      "level": "L3",
+      "objective": "Define integrals of complex functions along parametrised curves.",
+      "prerequisites": [
+        "KQV-MATH-D06-C030"
+      ],
+      "external_prerequisites": [
+        "D08 · definite integrals"
+      ],
+      "proofs": "Reparametrisation invariance.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C040",
+      "n": 40,
+      "group": 5,
+      "group_name": "Contour integration and Cauchy theory",
+      "title": "The ML Estimate",
+      "level": "L3",
+      "objective": "Bound contour integrals by length times maximum.",
+      "prerequisites": [
+        "KQV-MATH-D06-C039",
+        "KQV-MATH-D06-C014"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Complete proof.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C041",
+      "n": 41,
+      "group": 5,
+      "group_name": "Contour integration and Cauchy theory",
+      "title": "Antiderivatives and Path Independence",
+      "level": "L3",
+      "objective": "Use antiderivatives to evaluate contour integrals; see why 1/z has none on C minus 0.",
+      "prerequisites": [
+        "KQV-MATH-D06-C040"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Fundamental theorem for contour integrals; integral of 1/z round the unit circle is 2 pi i.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C042",
+      "n": 42,
+      "group": 5,
+      "group_name": "Contour integration and Cauchy theory",
+      "title": "Cauchy's Theorem",
+      "level": "L4",
+      "objective": "State Cauchy's theorem with exact hypotheses and prove it via Goursat's theorem.",
+      "prerequisites": [
+        "KQV-MATH-D06-C041",
+        "KQV-MATH-D06-C033"
+      ],
+      "external_prerequisites": [
+        "D05 · simply connected / star-shaped regions (bridge)"
+      ],
+      "proofs": "Goursat for triangles; star-shaped domains in full; general version scoped with exact missing steps.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 3,
+      "flags": [
+        "expert-review"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C043",
+      "n": 43,
+      "group": 5,
+      "group_name": "Contour integration and Cauchy theory",
+      "title": "Cauchy's Integral Formula",
+      "level": "L4",
+      "objective": "Prove the integral formula and the formula for derivatives.",
+      "prerequisites": [
+        "KQV-MATH-D06-C042"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Complete proof.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C044",
+      "n": 44,
+      "group": 5,
+      "group_name": "Contour integration and Cauchy theory",
+      "title": "Holomorphic Implies Analytic",
+      "level": "L4",
+      "objective": "Prove every holomorphic function has a convergent Taylor series locally.",
+      "prerequisites": [
+        "KQV-MATH-D06-C043",
+        "KQV-MATH-D06-C036"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Complete proof.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C045",
+      "n": 45,
+      "group": 5,
+      "group_name": "Contour integration and Cauchy theory",
+      "title": "Liouville's Theorem and a Proof of the Fundamental Theorem of Algebra",
+      "level": "L4",
+      "objective": "Prove Liouville's theorem and use it to prove the Fundamental Theorem of Algebra.",
+      "prerequisites": [
+        "KQV-MATH-D06-C044",
+        "KQV-MATH-D06-C018"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Complete proofs.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C046",
+      "n": 46,
+      "group": 5,
+      "group_name": "Contour integration and Cauchy theory",
+      "title": "Maximum Modulus and the Identity Theorem",
+      "level": "L4",
+      "objective": "Prove the maximum modulus principle and the identity theorem.",
+      "prerequisites": [
+        "KQV-MATH-D06-C044"
+      ],
+      "external_prerequisites": [
+        "D04 · connectedness"
+      ],
+      "proofs": "Complete proofs.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C047",
+      "n": 47,
+      "group": 5,
+      "group_name": "Contour integration and Cauchy theory",
+      "title": "Morera's Theorem and Uniform Limits",
+      "level": "L4",
+      "objective": "Prove Morera's theorem; show uniform limits of holomorphic functions are holomorphic.",
+      "prerequisites": [
+        "KQV-MATH-D06-C043"
+      ],
+      "external_prerequisites": [
+        "D04 · uniform convergence"
+      ],
+      "proofs": "Complete proofs.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C048",
+      "n": 48,
+      "group": 6,
+      "group_name": "Laurent series, residues and analytic continuation",
+      "title": "Laurent Series",
+      "level": "L4",
+      "objective": "Expand functions in annuli; prove uniqueness of Laurent coefficients.",
+      "prerequisites": [
+        "KQV-MATH-D06-C044"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Existence and uniqueness proofs.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C049",
+      "n": 49,
+      "group": 6,
+      "group_name": "Laurent series, residues and analytic continuation",
+      "title": "Isolated Singularities",
+      "level": "L4",
+      "objective": "Classify removable singularities, poles and essential singularities.",
+      "prerequisites": [
+        "KQV-MATH-D06-C048"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Riemann's removable singularity theorem; Casorati–Weierstrass.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C050",
+      "n": 50,
+      "group": 6,
+      "group_name": "Laurent series, residues and analytic continuation",
+      "title": "Residues and the Residue Theorem",
+      "level": "L4",
+      "objective": "Prove the residue theorem for finitely many isolated singularities.",
+      "prerequisites": [
+        "KQV-MATH-D06-C049",
+        "KQV-MATH-D06-C042"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Complete proof under stated hypotheses.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2.5,
+      "flags": [
+        "expert-review"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C051",
+      "n": 51,
+      "group": 6,
+      "group_name": "Laurent series, residues and analytic continuation",
+      "title": "Computing Residues",
+      "level": "L3",
+      "objective": "Use practical rules for simple and higher-order poles.",
+      "prerequisites": [
+        "KQV-MATH-D06-C050"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Derivations of each rule.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C052",
+      "n": 52,
+      "group": 6,
+      "group_name": "Laurent series, residues and analytic continuation",
+      "title": "Real Integrals by Residues I",
+      "level": "L4",
+      "objective": "Evaluate rational and trigonometric integrals with residues.",
+      "prerequisites": [
+        "KQV-MATH-D06-C051",
+        "KQV-MATH-D06-C040"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Each estimate justified.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C053",
+      "n": 53,
+      "group": 6,
+      "group_name": "Laurent series, residues and analytic continuation",
+      "title": "Real Integrals by Residues II: Jordan's Lemma",
+      "level": "L4",
+      "objective": "Evaluate Fourier-type integrals using Jordan's lemma.",
+      "prerequisites": [
+        "KQV-MATH-D06-C052"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Proof of Jordan's lemma.",
+      "lab": null,
+      "quantum": "Fourier transform of a Lorentzian line shape.",
+      "estimated_hours": 2.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C054",
+      "n": 54,
+      "group": 6,
+      "group_name": "Laurent series, residues and analytic continuation",
+      "title": "The Argument Principle and Rouché's Theorem",
+      "level": "L4",
+      "objective": "Count zeros and poles with contour integrals.",
+      "prerequisites": [
+        "KQV-MATH-D06-C050"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Complete proofs.",
+      "lab": "Winding-number visualiser.",
+      "quantum": null,
+      "estimated_hours": 2.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C055",
+      "n": 55,
+      "group": 6,
+      "group_name": "Laurent series, residues and analytic continuation",
+      "title": "Analytic Continuation",
+      "level": "L4",
+      "objective": "Extend functions beyond their first domain; uniqueness from the identity theorem.",
+      "prerequisites": [
+        "KQV-MATH-D06-C046",
+        "KQV-MATH-D06-C048"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Uniqueness proof; examples.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C056",
+      "n": 56,
+      "group": 6,
+      "group_name": "Laurent series, residues and analytic continuation",
+      "title": "Branch Points and Branch Cuts",
+      "level": "L4",
+      "objective": "Handle log and roots with explicit branch cuts.",
+      "prerequisites": [
+        "KQV-MATH-D06-C055",
+        "KQV-MATH-D06-C028"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Continuity of a chosen branch on the cut plane.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C057",
+      "n": 57,
+      "group": 7,
+      "group_name": "Riemann surfaces and advanced connections",
+      "title": "The Riemann Sphere",
+      "level": "L4",
+      "objective": "Add a point at infinity via stereographic projection; Möbius maps as automorphisms.",
+      "prerequisites": [
+        "KQV-MATH-D06-C038"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Stereographic projection formulas.",
+      "lab": "Rotating Riemann sphere.",
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C058",
+      "n": 58,
+      "group": 7,
+      "group_name": "Riemann surfaces and advanced connections",
+      "title": "Riemann Surfaces of sqrt(z) and log z",
+      "level": "L5",
+      "objective": "Build the surfaces on which sqrt(z) and log z become single-valued.",
+      "prerequisites": [
+        "KQV-MATH-D06-C056",
+        "KQV-MATH-D06-C057"
+      ],
+      "external_prerequisites": [
+        "D05 · topology vocabulary (bridge)"
+      ],
+      "proofs": "Constructions with precise gluing; topology prerequisites declared.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 3,
+      "flags": [
+        "expert-review"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C059",
+      "n": 59,
+      "group": 7,
+      "group_name": "Riemann surfaces and advanced connections",
+      "title": "The Riemann Mapping Theorem",
+      "level": "L5",
+      "objective": "State the theorem with exact hypotheses and understand its meaning.",
+      "prerequisites": [
+        "KQV-MATH-D06-C046",
+        "KQV-MATH-D06-C038"
+      ],
+      "external_prerequisites": [
+        "D04 · normal families (bridge)"
+      ],
+      "proofs": "Proof sketch with each missing step named.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 3,
+      "flags": [
+        "expert-review"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C060",
+      "n": 60,
+      "group": 7,
+      "group_name": "Riemann surfaces and advanced connections",
+      "title": "Infinite Products and the Gamma Function",
+      "level": "L5",
+      "objective": "Define Gamma by products and continuation; prove the reflection formula.",
+      "prerequisites": [
+        "KQV-MATH-D06-C055"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Proofs with convergence hypotheses.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 3,
+      "flags": [
+        "expert-review"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C061",
+      "n": 61,
+      "group": 7,
+      "group_name": "Riemann surfaces and advanced connections",
+      "title": "The Riemann Zeta Function",
+      "level": "L6",
+      "objective": "Continue zeta(s) and state the Riemann hypothesis precisely as an open problem.",
+      "prerequisites": [
+        "KQV-MATH-D06-C060"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Continuation sketch; open problem stated with a verified source.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 3,
+      "flags": [
+        "expert-review",
+        "research-ladder"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C062",
+      "n": 62,
+      "group": 7,
+      "group_name": "Riemann surfaces and advanced connections",
+      "title": "Dispersion Relations and Causality",
+      "level": "L5",
+      "objective": "Derive Kramers–Kronig relations with their hypotheses.",
+      "prerequisites": [
+        "KQV-MATH-D06-C053",
+        "KQV-MATH-D06-C055"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Derivation with stated decay and analyticity assumptions.",
+      "lab": null,
+      "quantum": "Response functions in physics; causality to analyticity.",
+      "estimated_hours": 3,
+      "flags": [
+        "expert-review"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C063",
+      "n": 63,
+      "group": 8,
+      "group_name": "Quantum amplitudes, phase and interference",
+      "title": "Amplitudes: Complex Numbers That Give Probabilities",
+      "level": "Q",
+      "objective": "Use the Born rule for a qubit with complex amplitudes; normalise a state.",
+      "prerequisites": [
+        "KQV-MATH-D06-C012",
+        "KQV-MATH-CH000"
+      ],
+      "external_prerequisites": [
+        "D10 · probability basics"
+      ],
+      "proofs": "Normalisation proof.",
+      "lab": null,
+      "quantum": "Core: measurement probabilities from amplitudes.",
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C064",
+      "n": 64,
+      "group": 8,
+      "group_name": "Quantum amplitudes, phase and interference",
+      "title": "Global Phase and Relative Phase",
+      "level": "Q",
+      "objective": "Prove a global phase changes no measurement probability; show a relative phase can.",
+      "prerequisites": [
+        "KQV-MATH-D06-C063",
+        "KQV-MATH-D06-C027"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Proof for any measurement basis; counterexample: |+> and |-> have equal standard-basis probabilities but differ in the X basis.",
+      "lab": "Phase dial: global vs relative phase with live probabilities.",
+      "quantum": "Mandatory global-phase counterexample.",
+      "estimated_hours": 2,
+      "flags": [
+        "mandatory-quantum"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C065",
+      "n": 65,
+      "group": 8,
+      "group_name": "Quantum amplitudes, phase and interference",
+      "title": "Interference: Add Amplitudes, Not Probabilities",
+      "level": "Q",
+      "objective": "Derive |a + b|^2 = |a|^2 + |b|^2 + 2 Re(a conj(b)) and read it as interference.",
+      "prerequisites": [
+        "KQV-MATH-D06-C064",
+        "KQV-MATH-D06-C013"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Complete derivation.",
+      "lab": null,
+      "quantum": "Two-path interference.",
+      "estimated_hours": 1.5,
+      "flags": [
+        "mandatory-quantum"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C066",
+      "n": 66,
+      "group": 8,
+      "group_name": "Quantum amplitudes, phase and interference",
+      "title": "The Mach–Zehnder Interferometer",
+      "level": "Q",
+      "objective": "Model beam splitters and phase shifters as 2x2 complex matrices; derive cos^2 and sin^2 output probabilities.",
+      "prerequisites": [
+        "KQV-MATH-D06-C065"
+      ],
+      "external_prerequisites": [
+        "D07 · 2x2 matrix multiplication"
+      ],
+      "proofs": "Derivation; unitarity check.",
+      "lab": "Interferometer lab with phase slider, probabilities and simulated counts; test oracle P0 + P1 = 1.",
+      "quantum": "Mathematically honest quantum interference application.",
+      "estimated_hours": 2.5,
+      "flags": [
+        "mandatory-quantum"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C067",
+      "n": 67,
+      "group": 8,
+      "group_name": "Quantum amplitudes, phase and interference",
+      "title": "Phase on the Bloch Sphere",
+      "level": "Q",
+      "objective": "See why the relative phase phi is a longitude on the Bloch sphere.",
+      "prerequisites": [
+        "KQV-MATH-D06-C064",
+        "KQV-MATH-D06-C021"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Derivation of the Bloch parametrisation; global phase removed.",
+      "lab": null,
+      "quantum": "Bloch sphere.",
+      "estimated_hours": 1.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C068",
+      "n": 68,
+      "group": 8,
+      "group_name": "Quantum amplitudes, phase and interference",
+      "title": "Phase Kickback and the Hadamard Test",
+      "level": "Q",
+      "objective": "Estimate Re<psi|U|psi> from measurement probabilities.",
+      "prerequisites": [
+        "KQV-MATH-D06-C066"
+      ],
+      "external_prerequisites": [
+        "D07 · inner products"
+      ],
+      "proofs": "Derivation of the outcome probabilities.",
+      "lab": null,
+      "quantum": "Phase estimation building block.",
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C069",
+      "n": 69,
+      "group": 8,
+      "group_name": "Quantum amplitudes, phase and interference",
+      "title": "Roots of Unity in the Quantum Fourier Transform",
+      "level": "Q",
+      "objective": "Build the DFT matrix and prove its columns are orthonormal.",
+      "prerequisites": [
+        "KQV-MATH-D06-C024",
+        "KQV-MATH-D06-C066"
+      ],
+      "external_prerequisites": [
+        "D07 · unitary matrices"
+      ],
+      "proofs": "Orthogonality proof from the roots-of-unity sum.",
+      "lab": null,
+      "quantum": "QFT.",
+      "estimated_hours": 2.5,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C070",
+      "n": 70,
+      "group": 8,
+      "group_name": "Quantum amplitudes, phase and interference",
+      "title": "Unitary Evolution as Rotation",
+      "level": "Q",
+      "objective": "Understand e^(-iEt/hbar) phases on energy eigenstates and the beats they create.",
+      "prerequisites": [
+        "KQV-MATH-D06-C026",
+        "KQV-MATH-D06-C064"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Derivation of beat probabilities.",
+      "lab": null,
+      "quantum": "Time evolution; relative phases between energy levels.",
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C071",
+      "n": 71,
+      "group": 9,
+      "group_name": "Research reading and capstone",
+      "title": "Reading a Complex Analysis Proof",
+      "level": "L5",
+      "objective": "Read a full proof closely: hypotheses, quantifiers and each implication.",
+      "prerequisites": [
+        "KQV-MATH-D06-C045",
+        "KQV-MATH-D06-C046"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Guided reconstruction of a classical proof.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C072",
+      "n": 72,
+      "group": 9,
+      "group_name": "Research reading and capstone",
+      "title": "Complex Numbers in Software",
+      "level": "L3",
+      "objective": "Handle floating point, atan2, branch cuts and cancellation in code.",
+      "prerequisites": [
+        "KQV-MATH-D06-C028"
+      ],
+      "external_prerequisites": [
+        "D17 · floating-point basics"
+      ],
+      "proofs": null,
+      "lab": "Notebook with tolerance-aware tests.",
+      "quantum": null,
+      "estimated_hours": 2,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C073",
+      "n": 73,
+      "group": 9,
+      "group_name": "Research reading and capstone",
+      "title": "Research Ladder: Complex Analysis in Quantum Science",
+      "level": "L6",
+      "objective": "Follow verified references from classical results to current research directions.",
+      "prerequisites": [
+        "KQV-MATH-D06-C062",
+        "KQV-MATH-D06-C070"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Research ladder; only independently verified sources.",
+      "lab": null,
+      "quantum": "Green's functions and analytic structure (scoped).",
+      "estimated_hours": 3,
+      "flags": [
+        "expert-review",
+        "research-ladder"
+      ],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C074",
+      "n": 74,
+      "group": 9,
+      "group_name": "Research reading and capstone",
+      "title": "Capstone I: An Interference Experiment End to End",
+      "level": "Q",
+      "objective": "Simulate an interferometer, compare counts with theory and report uncertainty.",
+      "prerequisites": [
+        "KQV-MATH-D06-C066",
+        "KQV-MATH-D06-C072"
+      ],
+      "external_prerequisites": [
+        "D10 · binomial distribution"
+      ],
+      "proofs": null,
+      "lab": "Full simulation with test oracle.",
+      "quantum": "Interference with data.",
+      "estimated_hours": 3,
+      "flags": [],
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-MATH-D06-C075",
+      "n": 75,
+      "group": 9,
+      "group_name": "Research reading and capstone",
+      "title": "Capstone II: Prove and Present",
+      "level": "L5",
+      "objective": "Write and present a complete proof of a major theorem from this domain.",
+      "prerequisites": [
+        "KQV-MATH-D06-C045",
+        "KQV-MATH-D06-C054"
+      ],
+      "external_prerequisites": [],
+      "proofs": "Student-written proof assessed with a rubric.",
+      "lab": null,
+      "quantum": null,
+      "estimated_hours": 4,
+      "flags": [],
+      "status": "proposed"
+    }
+  ]
+}

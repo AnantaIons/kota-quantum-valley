@@ -1,0 +1,20 @@
+{
+  "id": "KQV-MATH-CH000",
+  "version": "0.1.1",
+  "date": "2026-11-06",
+  "reviewer": "Claude (AI). AI self-check is not a guarantee; no qualified human review yet.",
+  "checks": [
+    { "check": "Computation pass: every number and identity recomputed with exact fractions and SymPy", "tool": "tests/check_ch000.py", "result": "PASS", "detail": "22 of 22 checks passed: break-even at 40 pages, rectangle identity and maximum, difference quotient 4 + h and its limit, x^2 + 1 = 0 has no real roots, 3/5 and 4/5 amplitudes, checkpoint answers 2 and 5." },
+    { "check": "Proof pass A/B: hypotheses, domains and scope of each claim", "tool": "manual reading", "result": "PASS", "detail": "Rectangle maximum is scoped to rectangles with perimeter 20; the speed argument divides only for nonzero h; x^2 + 1 > 0 is stated for real x; the counterexample to 'every prime is odd' is valid." },
+    { "check": "Quantum pass: normalisation, basis, interpretation of probabilities", "tool": "manual reading", "result": "PASS", "detail": "Pure-state normalisation and standard-basis measurement probabilities stated correctly; probabilities described as predictions over repeated preparations." },
+    { "check": "Source Q1 (IBM Quantum Learning, Basics of Quantum Information, Single systems: Quantum information)", "tool": "web fetch", "result": "PASS", "detail": "The page states that quantum state vectors are unit vectors in the Euclidean norm and that each classical state appears with probability equal to the absolute value squared of its entry." },
+    { "check": "Source F1 (OpenStax Precalculus 2e, Section 1.1)", "tool": "web search and fetch", "result": "NEEDS HUMAN REVIEW", "detail": "The English URL was blocked from the review environment. The same section exists in the Spanish edition (1.1 Funciones y notación de funciones) and in a LibreTexts mirror of Precalculus 2e. Open the English link once to confirm." },
+    { "check": "Citation markers", "tool": "manual", "result": "FIXED", "detail": "F1 was listed in the references but not cited in the text; added [F1] at the function-notation sentence in Section 0.2." },
+    { "check": "Consistency with the course plan", "tool": "manual", "result": "NEEDS FOUNDER DECISION", "detail": "Stage 9 name differs between Chapter 0 and MATHEMATICS_COURSE_PLAN.md." }
+  ],
+  "changes_from_handoff": [
+    "Added the [F1] citation marker in Section 0.2.",
+    "Status drafted → mathematically_checked; version 0.1.0 → 0.1.1."
+  ],
+  "publication": { "status": "not_published", "approved_by": null, "approved_at": null }
+}

@@ -18,7 +18,7 @@ const T = hi ? {
   part: 'भाग', read: 'साथ में पढ़ें', practice: 'अभ्यास और संदर्भ',
   lab: ['क्वांटम लैब', 'Bloch sphere, superposition, Bell state और circuit builder: 4 प्रयोग, ब्राउज़र में।'],
   glossary: ['शब्दकोश', '37 ज़रूरी शब्द आसान भाषा में।'],
-  next: 'आगे आ रहा है', c2: ['कोर्स 2: नींव', 'मैथ्स, फ़िज़िक्स, केमिस्ट्री, कंप्यूटर साइंस और इलेक्ट्रॉनिक्स, बुनियादी स्तर पर, ताकि हर छात्र तैयार हो।'],
+  next: 'आगे के कोर्स', c2: ['कोर्स 2: Mathematics for Quantum Science', 'कक्षा 10 की नींव से quantum theory के गणित तक। अध्याय 0 अभी खुला है।', '/hi/mathematics/', 'शुरू हो गया'],
   c3: ['कोर्स 3: IBM Quantum सीरीज़', 'IBM Quantum Learning के रास्ते पर एक-एक करके, हिन्दी में व्याख्या और असली हार्डवेयर पर प्रयोग।'],
   soon: 'जल्द', start: 'रोडमैप से शुरू करें',
 } : {
@@ -28,7 +28,7 @@ const T = hi ? {
   part: 'Part', read: 'Read alongside', practice: 'Practice and reference',
   lab: ['Quantum Lab', 'Bloch sphere, superposition, Bell states and a circuit builder: 4 experiments in your browser.'],
   glossary: ['Glossary', '37 key terms in plain language.'],
-  next: 'Coming next', c2: ['Course 2: Foundations', 'Maths, physics, chemistry, computer science and electronics at the basic level, so every student is ready.'],
+  next: 'More courses', c2: ['Course 2: Mathematics for Quantum Science', 'From Class 10 foundations to the mathematics of quantum theory. Chapter 0 is open now.', '/mathematics/', 'Started'],
   c3: ['Course 3: IBM Quantum series', 'Following IBM Quantum Learning one topic at a time, with explanations in Hindi and English and experiments on real hardware.'],
   soon: 'Soon', start: 'Start with the roadmap',
 };
@@ -88,7 +88,10 @@ const startHref = hi ? '/hi/lessons/roadmap-what-to-learn-first/' : '/posts/road
     <section class="course-part">
       <div class="cpart-head"><h2>{T.next}</h2></div>
       <div class="tech next-courses">
-        {[T.c2, T.c3].map(([a, b]) => <div class="tech-card glass"><span class="tech-top"><span /><span class="status research">{T.soon}</span></span><h3>{a}</h3><p>{b}</p></div>)}
+        {[T.c2, T.c3].map(([a, b, href, st]) => {
+          const inner = <><span class="tech-top"><span /><span class={`status ${href ? 'now' : 'research'}`}>{st ?? T.soon}</span></span><h3>{a}</h3><p>{b}</p></>;
+          return href ? <a class="tech-card glass" href={href}>{inner}</a> : <div class="tech-card glass">{inner}</div>;
+        })}
       </div>
     </section>
   </div>

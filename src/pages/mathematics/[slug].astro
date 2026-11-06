@@ -1,0 +1,95 @@
+---
+// A Course 2 chapter. The text comes from content/mathematics/chapters/<id>/chapter.md;
+// this page adds the header, contents, review record and navigation.
+import Base from '../../layouts/Base.astro';
+import { getChapters, course, ledgers } from '../../lib/maths.js';
+import 'katex/dist/katex.min.css';
+
+export async function getStaticPaths() {
+  const chapters = await getChapters();
+  return chapters.filter((c) => c.public).map((ch) => ({ params: { slug: ch.meta.slug }, props: { ch } }));
+}
+const { ch } = Astro.props;
+const m = ch.meta;
+const toc = ch.headings.filter((h) => h.depth === 2 && !/^references/i.test(h.text) && !/^from everyday/i.test(h.text));
+const levels = { L1: 'Class 10 onwards', L2: 'Class 11–12', L3: 'Undergraduate', L4: 'Graduate', L5: 'PhD preparation', L6: 'Research', Q: 'Quantum thread' };
+const label = { PASS: 'Passed', FIXED: 'Fixed', FAIL: 'Failed', 'NEEDS HUMAN REVIEW': 'Needs a person to check', 'NEEDS FOUNDER DECISION': 'Decision pending' };
+const tone = (r) => (r === 'PASS' || r === 'FIXED' ? 'ok' : r === 'FAIL' ? 'bad' : 'wait');
+const next = m.next && Object.values(ledgers).flatMap((l) => l.chapters).find((c) => c.id === m.next.id);
+// Paragraph labels from the source become styled notes
+const body = ch.html
+  .replace(/<p><strong>What mathematics solved:<\/strong>/g, '<p class="mch-note solved"><strong>What mathematics solved:</strong>')
+  .replace(/<p><strong>Where the answer stops:<\/strong>/g, '<p class="mch-note limit"><strong>Where the answer stops:</strong>');
+const when = new Date(ch.review.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base title={`Chapter ${m.chapter_number}: ${m.short_title}`} description={m.subtitle} lang="en">
+  <article class="article mch" data-pagefind-body>
+    <div class="narrow">
+      <header>
+        <p class="eyebrow"><a href="/mathematics/">Course 2: Mathematics for Quantum Science</a>, Chapter {m.chapter_number}</p>
+        <h1>{m.title}</h1>
+        <p class="desc">{m.subtitle}</p>
+        <dl class="mch-facts">
+          <div><dt>Time</dt><dd>About {m.estimated_minutes} minutes</dd></div>
+          <div><dt>Level</dt><dd>{levels[m.level]}</dd></div>
+          <div><dt>You need</dt><dd>{m.prerequisite_note}</dd></div>
+        </dl>
+      </header>
+
+      <nav class="lesson-toc glass" aria-label="In this chapter">
+        <strong>In this chapter</strong>
+        <ol>{toc.map((h) => <li><a href={`#${h.id}`}>{h.text.replace(/^\d+(\.\d+)*\s*·\s*/, '')}</a></li>)}</ol>
+      </nav>
+
+      <div class="mch-body"><Fragment set:html={body} /></div>
+
+      <section class="mch-review glass" aria-labelledby="mch-review-h">
+        <h2 id="mch-review-h">How this chapter was checked</h2>
+        <p class="meta">Version {ch.review.version}, checked {when}. Every calculation was re-run in code and the sources were checked; anything still open is listed below. A mathematician has not reviewed this chapter yet. If you spot a mistake, please tell us on Instagram.</p>
+        <ul>
+          {ch.review.checks.filter((c) => c.result !== 'NEEDS FOUNDER DECISION').map((c) => (
+            <li class={tone(c.result)}><span class="mch-chip">{label[c.result] ?? c.result}</span><span><strong>{c.check}.</strong> {c.detail}</span></li>
+          ))}
+        </ul>
+      </section>
+
+      <nav class="lesson-nav mch-nav" aria-label="Course 2">
+        <a href="/mathematics/"><small>Back to</small><strong>Course 2 overview</strong></a>
+        {next && <div class="next soon"><small>Next: Chapter 1, in preparation</small><strong>{next.title}</strong></div>}
+      </nav>
+    </div>
+  </article>
+</Base>
+
+<style is:global>
+  .mch-facts { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 22px 0 0; }
+  .mch-facts div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .mch-facts dt { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-3); }
+  .mch-facts dd { margin: 0; color: var(--text); font-size: 0.95rem; }
+  .mch-body h3 { margin-top: 2em; }
+  .mch-body .katex { font-size: 1.08em; }
+  .mch-body .katex-display { overflow-x: auto; overflow-y: hidden; padding: 8px 2px; margin: 1.1em 0; }
+  .mch-body blockquote { border-left-color: var(--cyan); background: rgba(230, 195, 106, 0.06); padding: 14px 18px; border-radius: 0 var(--r-md) var(--r-md) 0; }
+  .mch-note { padding: 12px 16px; border-radius: var(--r-md); margin: 1.2em 0; }
+  .mch-note.solved { background: rgba(41, 121, 255, 0.1); border: 1px solid rgba(41, 121, 255, 0.3); }
+  .mch-note.limit { background: rgba(137, 87, 255, 0.08); border: 1px solid rgba(137, 87, 255, 0.28); }
+  .mch-note strong { color: var(--text); }
+  .mch-body a.cite { font-family: var(--font-mono); font-size: 0.82em; text-decoration: none; color: var(--cobalt-text); white-space: nowrap; }
+  .mch-body a.cite:hover { text-decoration: underline; }
+  .mch-body li[id^='ref-']:target { background: rgba(230, 195, 106, 0.1); border-radius: 6px; }
+  .answers { margin: 1.4em 0 2em; border: 1px solid var(--border-strong); border-radius: var(--r-md); padding: 0 20px; background: rgba(137, 87, 255, 0.06); }
+  .answers > summary { cursor: pointer; padding: 14px 0; font-weight: 600; color: var(--cyan); list-style-position: inside; }
+  .answers[open] > summary { border-bottom: 1px solid var(--border); margin-bottom: 14px; }
+  .mch-review { margin: 56px 0 0; padding: 22px 24px; border-radius: var(--r-md); }
+  .mch-review h2 { margin: 0 0 6px; font-size: 1.3rem; }
+  .mch-review ul { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 10px; }
+  .mch-review li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: start; font-size: 0.9rem; color: var(--text-2); }
+  .mch-chip { font-family: var(--font-mono); font-size: 0.7rem; padding: 3px 8px; border-radius: 999px; white-space: nowrap; border: 1px solid; }
+  .mch-review li.ok .mch-chip { color: #8ff0c4; border-color: rgba(57, 230, 160, 0.45); }
+  .mch-review li.wait .mch-chip { color: var(--cyan); border-color: rgba(230, 195, 106, 0.5); }
+  .mch-review li.bad .mch-chip { color: #ff9cb8; border-color: rgba(255, 120, 160, 0.5); }
+  .mch-nav .soon { display: block; padding: 18px 20px; border: 1px dashed var(--border-strong); border-radius: var(--r-md); color: var(--text-2); text-align: right; }
+  .mch-nav .soon small { display: block; font-size: 0.8rem; margin-bottom: 2px; font-family: var(--font-mono); }
+  @media (max-width: 640px) { .mch-nav { grid-template-columns: 1fr; } .mch-nav .soon { text-align: left; } }
+  @media (max-width: 560px) { .mch-review li { grid-template-columns: 1fr; gap: 4px; } .mch-chip { justify-self: start; } }
+</style>

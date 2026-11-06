@@ -11,7 +11,7 @@ export const t = {
     menu: 'Menu', explainers: 'Explainers', newLabel: 'New',
     footAbout: "Free quantum computing lessons from absolute zero, and the case for building India's quantum workforce in Kota.",
     footLearn: 'Learn', footInit: 'Initiative', footFollow: 'Follow',
-    roadmap: 'Roadmap', allLessons: 'All lessons', learningLog: 'Learning log', journeyTag: 'Learning log', explainerTag: 'Explainer', allExplainers: 'all explainers', theLog: 'the learning log', soon: 'First post coming soon.', day: (n) => `Day ${n}`, whyKota: 'Why Kota', careers: 'Careers in quantum', resume: 'Free resume maker', about: 'About',
+    roadmap: 'Roadmap', allLessons: 'All lessons', learningLog: 'Learning log', journeyTag: 'Learning log', explainerTag: 'Explainer', allExplainers: 'all explainers', theLog: 'the learning log', soon: 'First post coming soon.', day: (n) => `Day ${n}`, whyKota: 'Why Kota', careers: 'Careers in quantum', resume: 'Free resume maker', maths: 'Course 2: Mathematics', about: 'About',
     license: "Lessons are licensed {cc}. Share them with credit; don't sell them.",
     switchLabel: 'हिन्दी', switchAria: 'हिन्दी में पढ़ें',
     lesson: (n) => `Lesson ${n}`, roadmapLabel: 'Roadmap', startHere: 'Start here', comingSoon: 'Coming soon',
@@ -29,7 +29,7 @@ export const t = {
     menu: 'मेनू', explainers: 'आसान व्याख्या', newLabel: 'नया',
     footAbout: 'शून्य से क्वांटम कंप्यूटिंग के मुफ़्त पाठ, और भारत की क्वांटम वर्कफ़ोर्स कोटा में तैयार करने का प्रस्ताव।',
     footLearn: 'पढ़ें', footInit: 'पहल', footFollow: 'जुड़ें',
-    glossary: 'शब्दकोश', roadmap: 'रोडमैप', journeyTag: 'लर्निंग लॉग', explainerTag: 'आसान व्याख्या', allExplainers: 'सभी व्याख्याएँ', theLog: 'लर्निंग लॉग', soon: 'पहली पोस्ट जल्द आ रही है।', day: (n) => `दिन ${n}`, allLessons: 'सभी पाठ', learningLog: 'लर्निंग लॉग', whyKota: 'कोटा क्यों', careers: 'क्वांटम में करियर', resume: 'मुफ़्त रिज़्यूमे मेकर', about: 'हमारे बारे में',
+    glossary: 'शब्दकोश', roadmap: 'रोडमैप', journeyTag: 'लर्निंग लॉग', explainerTag: 'आसान व्याख्या', allExplainers: 'सभी व्याख्याएँ', theLog: 'लर्निंग लॉग', soon: 'पहली पोस्ट जल्द आ रही है।', day: (n) => `दिन ${n}`, allLessons: 'सभी पाठ', learningLog: 'लर्निंग लॉग', whyKota: 'कोटा क्यों', careers: 'क्वांटम में करियर', resume: 'मुफ़्त रिज़्यूमे मेकर', maths: 'कोर्स 2: गणित', about: 'हमारे बारे में',
     license: 'पाठ {cc} लाइसेंस के तहत हैं। क्रेडिट देकर शेयर करें, बेचें नहीं।',
     switchLabel: 'EN', switchAria: 'Read in English',
     lesson: (n) => `पाठ ${n}`, roadmapLabel: 'रोडमैप', startHere: 'यहाँ से शुरू करें', comingSoon: 'जल्द आ रहा है',
@@ -53,6 +53,7 @@ export function altPath(path) {
   if (m && isLessonSlug(m[1])) return `/hi/lessons/${m[1]}/`;
   const post = p.match(/^\/posts\/([^/]+)\/$/);
   if (post) return `/hi/posts/${post[1]}/`;
-  if (['/', '/lessons/', '/lab/', '/glossary/', '/why-kota/', '/about/', '/learn/', '/explainers/', '/careers/', '/resume/'].includes(p)) return '/hi' + p;
+  if (['/', '/lessons/', '/lab/', '/glossary/', '/why-kota/', '/about/', '/learn/', '/explainers/', '/careers/', '/resume/', '/mathematics/'].includes(p)) return '/hi' + p;
+  if (p.startsWith('/mathematics/')) return '/hi/mathematics/';   // chapters are English-only for now
   return '/hi/';
 }

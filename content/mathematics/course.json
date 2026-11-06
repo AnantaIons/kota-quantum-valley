@@ -1,0 +1,198 @@
+{
+  "course": "Course 2: Mathematics for Quantum Science",
+  "short": "Course 2",
+  "slug": "mathematics",
+  "audience": "From Class 10 foundations through undergraduate and graduate mathematics, PhD preparation and selected research topics relevant to quantum science.",
+  "levels": {
+    "L1": "Class 10 foundations",
+    "L2": "Class 11–12",
+    "L3": "Undergraduate",
+    "L4": "Graduate",
+    "L5": "PhD readiness",
+    "L6": "Research literacy",
+    "Q": "Quantum thread"
+  },
+  "statuses": [
+    "proposed",
+    "outlined",
+    "drafted",
+    "mathematically_checked",
+    "source_checked",
+    "expert_reviewed",
+    "approved",
+    "published",
+    "revised"
+  ],
+  "public_statuses": [
+    "mathematically_checked",
+    "source_checked",
+    "expert_reviewed",
+    "approved",
+    "published",
+    "revised"
+  ],
+  "stages": [
+    {
+      "n": 1,
+      "name": "Foundations",
+      "subjects": "Arithmetic, fractions, powers, equations, sets, logic and proof",
+      "question": "What do the symbols mean? Which steps are valid?"
+    },
+    {
+      "n": 2,
+      "name": "Relationships and shape",
+      "subjects": "Functions, graphs, coordinate geometry, trigonometry and complex numbers",
+      "question": "How are quantities related? How do we describe location, angle and rotation?"
+    },
+    {
+      "n": 3,
+      "name": "Many quantities together",
+      "subjects": "Vectors, matrices, linear systems and linear transformations",
+      "question": "How can we represent and transform several linked quantities at once?"
+    },
+    {
+      "n": 4,
+      "name": "Change and accumulation",
+      "subjects": "Limits, derivatives, integrals and multivariable calculus",
+      "question": "How fast does something change? What accumulates over time or space?"
+    },
+    {
+      "n": 5,
+      "name": "Uncertainty and evidence",
+      "subjects": "Counting, probability, statistics and stochastic processes",
+      "question": "What outcomes are possible? What does data support, and with what uncertainty?"
+    },
+    {
+      "n": 6,
+      "name": "Evolving systems and computation",
+      "subjects": "Differential equations, Fourier analysis, numerical methods and optimization",
+      "question": "How does a system evolve? What frequencies are present? How can we compute or approximate a solution?"
+    },
+    {
+      "n": 7,
+      "name": "Structure and connection",
+      "subjects": "Number theory, abstract algebra, discrete mathematics, graph theory and symmetry",
+      "question": "Which patterns persist? How do operations and networks fit together?"
+    },
+    {
+      "n": 8,
+      "name": "Deeper mathematical frameworks",
+      "subjects": "Real and complex analysis, measure theory, topology, differential geometry, tensors, Hilbert spaces and operators",
+      "question": "When do our methods work? How do we reason about more general spaces and transformations?"
+    },
+    {
+      "n": 9,
+      "name": "Independent mathematical work",
+      "subjects": "Proof design, counterexamples, mathematical information theory, reading papers and reproducible computation",
+      "question": "Can we assess an unfamiliar claim, explain its assumptions and investigate it responsibly?",
+      "open_question": "The course plan calls this stage 'Quantum mathematics and research preparation' (quantum information mathematics, operator methods, quantum algorithms, error correction). Founder to choose."
+    }
+  ],
+  "domains": [
+    {
+      "id": "D01",
+      "name": "Logic, sets, proof and foundations",
+      "planned": 45
+    },
+    {
+      "id": "D02",
+      "name": "Numbers, arithmetic and number theory",
+      "planned": 55
+    },
+    {
+      "id": "D03",
+      "name": "Elementary algebra through abstract algebra",
+      "planned": 60
+    },
+    {
+      "id": "D04",
+      "name": "Functions, sequences and real analysis",
+      "planned": 65
+    },
+    {
+      "id": "D05",
+      "name": "Geometry, trigonometry and differential geometry",
+      "planned": 55
+    },
+    {
+      "id": "D06",
+      "name": "Complex numbers and complex analysis",
+      "planned": 75,
+      "ledger": "ledger/D06-complex-numbers.json"
+    },
+    {
+      "id": "D07",
+      "name": "Linear algebra and matrix theory",
+      "planned": 80
+    },
+    {
+      "id": "D08",
+      "name": "Calculus, measure and integration",
+      "planned": 65
+    },
+    {
+      "id": "D09",
+      "name": "ODEs, PDEs and dynamical systems",
+      "planned": 70
+    },
+    {
+      "id": "D10",
+      "name": "Probability, statistics and stochastic processes",
+      "planned": 65
+    },
+    {
+      "id": "D11",
+      "name": "Fourier and harmonic analysis",
+      "planned": 55
+    },
+    {
+      "id": "D12",
+      "name": "Groups, Lie theory and symmetry",
+      "planned": 65
+    },
+    {
+      "id": "D13",
+      "name": "Multilinear algebra, tensors and tensor networks",
+      "planned": 50
+    },
+    {
+      "id": "D14",
+      "name": "Optimization and variational mathematics",
+      "planned": 50
+    },
+    {
+      "id": "D15",
+      "name": "Classical and quantum information mathematics",
+      "planned": 60
+    },
+    {
+      "id": "D16",
+      "name": "Hilbert spaces, operators and spectral theory",
+      "planned": 65
+    },
+    {
+      "id": "D17",
+      "name": "Numerical mathematics and computational simulation",
+      "planned": 55
+    },
+    {
+      "id": "D18",
+      "name": "Quantum algorithms, codes and mathematical quantum theory",
+      "planned": 65
+    }
+  ],
+  "hi": {
+    "course": "कोर्स 2: Mathematics for Quantum Science",
+    "stages": [
+      "नींव",
+      "संबंध और आकार",
+      "कई राशियाँ एक साथ",
+      "बदलाव और संचय",
+      "अनिश्चितता और प्रमाण",
+      "बदलते सिस्टम और गणना",
+      "संरचना और जुड़ाव",
+      "गहरे गणितीय ढाँचे",
+      "स्वतंत्र गणितीय काम"
+    ]
+  }
+}
