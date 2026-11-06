@@ -117,6 +117,7 @@ const can = { x: cx - 36, y: mxc.y + mxc.t + 6, w: 72, h: 84 };
           <span>{c.temp}</span>
           <strong data-fridge-temp>300 K</strong>
         </div>
+        <div class="v3host fridge-art" data-3d="fridge" data-labels={JSON.stringify(tLabel.map((l) => l.replace('≈ ', '')))}>
         <svg viewBox="0 0 480 640" role="img" aria-label={c.caption} data-fridge-svg data-active="0">
           <defs>
             <linearGradient id="fg-top" x1="0" x2="1">
@@ -181,6 +182,8 @@ const can = { x: cx - 36, y: mxc.y + mxc.t + 6, w: 72, h: 84 };
             <line x1="0" y1="20" x2="22" y2="20" class="up" /><text x="30" y="24">{c.up}</text>
           </g>
         </svg>
+        </div>
+        <p class="fridge-key" aria-hidden="true"><span class="down">{c.down}</span><span class="up">{c.up}</span></p>
         <figcaption>{c.caption}</figcaption>
       </figure>
     </div>
@@ -201,6 +204,7 @@ const can = { x: cx - 36, y: mxc.y + mxc.t + 6, w: 72, h: 84 };
   const setStage = (i) => {
     if (i === current) return;
     current = i;
+    root.frActive = i;
     svg.dataset.active = String(i);
     items.forEach((li, k) => li.classList.toggle('on', k === i));
     svg.querySelectorAll('[data-plate]').forEach((g) => g.classList.toggle('cold', +g.dataset.plate <= i && i > 0));
@@ -247,6 +251,15 @@ const can = { x: cx - 36, y: mxc.y + mxc.t + 6, w: 72, h: 84 };
   .fridge-stages p { margin: 0; color: var(--text-2); max-width: 48ch; }
   .fridge-visual { margin: 0; position: sticky; top: 84px; }
   .fridge-visual svg { width: 100%; height: auto; max-height: calc(100vh - 140px); display: block; margin: 0 auto; overflow: visible; }
+  .fridge-art { margin: 0 auto; }
+  .fr3l { font-size: 13px; color: var(--text-2); transition: color 0.3s; line-height: 1; }
+  .fr3l::before { content: ''; display: inline-block; width: 12px; height: 1px; margin-right: 6px; vertical-align: middle; background: var(--text-3); }
+  .fr3l.here { color: var(--cobalt-text); font-weight: 600; }
+  .fr3l.here::before { background: var(--cobalt-text); }
+  .fridge-key { display: none; justify-content: center; gap: 20px; margin: 6px 0 0; font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-3); }
+  .fridge-art.is-3d ~ .fridge-key { display: flex; }
+  .fridge-key span::before { content: ''; display: inline-block; width: 18px; height: 3px; border-radius: 2px; margin-right: 8px; vertical-align: middle; background: #fff1c2; box-shadow: 0 0 6px #fff1c2; }
+  .fridge-key .up::before { background: var(--sci); box-shadow: 0 0 6px var(--sci); }
   .fridge-visual figcaption { font-size: 0.82rem; color: var(--text-3); text-align: center; margin-top: 8px; }
 
   .fr-rods-back line { stroke: #6b5a33; stroke-width: 3; opacity: 0.55; }

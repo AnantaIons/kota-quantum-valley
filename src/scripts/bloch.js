@@ -58,23 +58,35 @@ export function createBloch(svg, opts = {}) {
   // drag to rotate the view
   let drag = null;
   const host = opts.dragTarget || svg;
-  host.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY, moved: false }; host.setPointerCapture?.(e.pointerId); });
-  host.addEventListener('pointermove', (e) => {
+  let off = false;
+  const down = (e) => { drag = { x: e.clientX, y: e.clientY, moved: false }; host.setPointerCapture?.(e.pointerId); };
+  const move = (e) => {
     if (!drag) return;
     const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
     if (Math.abs(dx) + Math.abs(dy) > 3) drag.moved = true;
     view.yaw += dx * 0.01; view.pitch = Math.max(-1.3, Math.min(1.3, view.pitch + dy * 0.01));
     drag.x = e.clientX; drag.y = e.clientY; draw();
-  });
+  };
   const end = () => { const m = drag?.moved; drag = null; return m; };
-  host.addEventListener('pointerup', (e) => { if (!end() && opts.onClick) opts.onClick(e); });
+  const up = (e) => { if (!end() && opts.onClick) opts.onClick(e); };
+  host.addEventListener('pointerdown', down);
+  host.addEventListener('pointermove', move);
+  host.addEventListener('pointerup', up);
   host.addEventListener('pointercancel', end);
+  const redraw = () => { if (!off) draw(); };
 
   draw();
   return {
-    setVec(v) { vec = v; draw(); },
-    setTrace(z) { trace = z; draw(); },
-    tilt(dx, dy) { extraYaw = dx; extraPitch = dy; draw(); },
+    setVec(v) { vec = v; redraw(); },
+    setTrace(z) { trace = z; redraw(); },
+    tilt(dx, dy) { extraYaw = dx; extraPitch = dy; redraw(); },
     get vec() { return vec; },
+    get view() { return view; },
+    // Hand over to the 3D version: stop listening and stop drawing
+    destroy() {
+      off = true;
+      host.removeEventListener('pointerdown', down); host.removeEventListener('pointermove', move);
+      host.removeEventListener('pointerup', up); host.removeEventListener('pointercancel', end);
+    },
   };
 }

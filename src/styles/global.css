@@ -823,3 +823,25 @@ details.course-part:first-of-type { margin-top: 36px; }
 .markdone .md-badge { display: none; order: 1; }
 .markdone:has(.is-done) .md-badge { display: block; }
 @media (max-width: 560px) { .path-solid { top: 60px; right: 14px; width: 50px; height: 50px; } .course-solid { width: 56px; height: 56px; } }
+
+/* ---------- Real 3D objects (src/scripts/three): the canvas fades in over its SVG drawing ---------- */
+:where(.v3host) { position: relative; }
+.v3host > .v3d { position: absolute; left: calc(-1 * var(--bleed, 0%)); top: calc(-1 * var(--bleed, 0%)); width: calc(100% + 2 * var(--bleed, 0%)); height: calc(100% + 2 * var(--bleed, 0%)); pointer-events: none; opacity: 0; transition: opacity 0.9s ease; }
+.v3host.is-3d > .v3d { opacity: 1; }
+.v3host > svg { transition: opacity 0.6s ease; }
+.v3host.is-3d > svg { opacity: 0; }
+.b3l { position: absolute; left: 0; top: 0; font-family: var(--font-mono); font-size: 15px; color: var(--text-2); pointer-events: none; white-space: nowrap; text-shadow: 0 0 8px rgba(5, 8, 22, 0.95); }
+.b3l.ax { font-size: 12px; color: #7fe6ff; }
+.b3l.live { color: var(--cyan); }
+.v3host:not(.is-3d) > .b3l { display: none; }
+.lab-sphere-wrap { max-width: 440px; margin: 0 auto; cursor: grab; touch-action: none; }
+.lab-sphere-wrap:active { cursor: grabbing; }
+.path-solid { --bleed: 34%; width: 92px; height: 92px; top: auto; bottom: 18px; right: 20px; }
+.path h3 { padding-right: 0; }
+.path-solid > svg, .course-solid > svg, .cm-cloud > svg { width: 100%; height: 100%; }
+.course-solid { --bleed: 30%; width: 92px; height: 92px; }
+.course-soon h3 { padding-right: 96px; }
+.cm-orbital { margin: 34px 0 0 12px; width: 210px; }
+.cm-cloud { --bleed: 24%; width: 210px; height: 210px; }
+.cm-orbital figcaption { margin-top: 6px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-3); text-align: center; }
+@media (max-width: 560px) { .path-solid { width: 76px; height: 76px; top: auto; bottom: 16px; } .course-solid { width: 76px; height: 76px; } .course-soon h3 { padding-right: 80px; } }

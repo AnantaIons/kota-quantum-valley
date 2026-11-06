@@ -12,6 +12,7 @@
     "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.4.2",
     "motion": "^14.9.1",
-    "pagefind": "^1.6.0"
+    "pagefind": "^1.6.0",
+    "three": "0.186.1"
   }
 }

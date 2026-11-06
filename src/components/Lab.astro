@@ -55,7 +55,7 @@ const L = hi ? {
     <div class="exp-head"><h2 id="e1">{L.e1}</h2><span class="exp-num">{L.e1n}</span></div>
     <div class="exp-grid">
       <div>
-        <svg id="lab-bloch" class="lab-sphere" role="img" aria-label={L.e1}></svg>
+        <div class="lab-sphere-wrap v3host" data-lab-sphere><svg id="lab-bloch" class="lab-sphere" role="img" aria-label={L.e1}></svg></div>
         <p class="meta" style="text-align: center; font-family: var(--font-mono)">{L.drag}</p>
       </div>
       <div>
@@ -159,6 +159,7 @@ const L = hi ? {
 
 <script>
   import { createBloch } from '../scripts/bloch.js';
+  import { can3d } from '../scripts/three/boot.js';
   import { apply1, bloch, normPhase, fmt, ROT, rotate, apply2single, cnot, sample, C } from '../scripts/qsim.js';
 
   const root = document.querySelector('[data-lab]') as HTMLElement | null;
@@ -170,7 +171,15 @@ const L = hi ? {
     // ---------- Experiment 1 ----------
     let st: number[][] = [[1, 0], [0, 0]];
     let hist: string[] = [];
-    const sphere = createBloch(document.getElementById('lab-bloch') as any);
+    let sphere: any = createBloch(document.getElementById('lab-bloch') as any);
+    // Upgrade to the real 3D sphere when it's available
+    if (can3d()) import('../scripts/three/bloch3d.js').then(({ createBloch3D }) => {
+      const host = $('[data-lab-sphere]');
+      const v = sphere.view;
+      const b3 = createBloch3D(host, { dragTarget: host, yaw: v.yaw, pitch: v.pitch });
+      if (!b3) return;
+      sphere.destroy(); b3.setVec(sphere.vec); sphere = b3;
+    }).catch(() => {});
     let busy = false;
     const ket = (s: number[][]) => {
       const n = normPhase(s);

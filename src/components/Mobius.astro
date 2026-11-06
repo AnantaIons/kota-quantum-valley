@@ -21,7 +21,7 @@ const c = hi ? {
 ---
 <section class="block mobius" data-mobius>
   <div class="wrap mobius-grid">
-    <div class="mobius-visual">
+    <div class="mobius-visual v3host" data-3d="mobius">
       <svg viewBox="-200 -150 400 300" role="img" aria-label={c.aria} data-mobius-svg>
         <defs>
           <radialGradient id="mb-glow" cx="0.5" cy="0.5" r="0.5">
@@ -95,7 +95,19 @@ const c = hi ? {
     const view = (v) => { const r = rot(v), k = CAM / (CAM - r[2]); return [r[0] * k * SCALE, r[1] * k * SCALE, r[2]]; };
     const light = (() => { const l = [0.35, -0.55, 0.76], L = Math.hypot(...l); return l.map((v) => v / L); })();
 
+    const vis = root.querySelector('.mobius-visual');
+    const readout = () => {
+      root.mbPhase = tPhase;
+      const deg = Math.round(tPhase * 720);
+      angleEl.textContent = `${deg}°`;
+      const flipped = deg >= 360 && deg < 720;
+      stateEl.textContent = flipped ? '−|ψ⟩' : '|ψ⟩';
+      stateEl.classList.toggle('neg', flipped);
+      fill.style.width = `${tPhase * 100}%`; dot.style.left = `${tPhase * 100}%`;
+    };
     const draw = () => {
+      readout();
+      if (vis.classList.contains('is-3d')) return;       // the 3D strip is drawing instead
       const um = tPhase * Math.PI * 4;                     // the arrow's position: two loops = 720°
       const mp = view(P(um, 0));
       const n = normal(um).map((v) => v * 0.32);
@@ -119,13 +131,6 @@ const c = hi ? {
       mLine.setAttribute('x1', mp[0]); mLine.setAttribute('y1', mp[1]); mLine.setAttribute('x2', mt[0]); mLine.setAttribute('y2', mt[1]);
       mDot.setAttribute('cx', mp[0]); mDot.setAttribute('cy', mp[1]);
       mTip.setAttribute('cx', mt[0]); mTip.setAttribute('cy', mt[1]);
-
-      const deg = Math.round(tPhase * 720);
-      angleEl.textContent = `${deg}°`;
-      const flipped = deg >= 360 && deg < 720;
-      stateEl.textContent = flipped ? '−|ψ⟩' : '|ψ⟩';
-      stateEl.classList.toggle('neg', flipped);
-      fill.style.width = `${tPhase * 100}%`; dot.style.left = `${tPhase * 100}%`;
     };
 
     if (still) { tPhase = 0.5; draw(); }
@@ -150,11 +155,12 @@ const c = hi ? {
 
 <style is:global>
   .mobius-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+  .mobius-visual { --bleed: 10%; }
   .mobius-visual svg { width: 100%; height: auto; display: block; overflow: visible; }
   .mobius-visual path { stroke-width: 0.7; stroke-linejoin: round; }
   .mb-marker line { stroke: #f4f7ff; stroke-width: 3; stroke-linecap: round; }
   .mb-marker circle { fill: #f4f7ff; }
-  .mb-marker .mb-tip { fill: var(--green); filter: drop-shadow(0 0 6px var(--green)); }
+  .mb-marker .mb-tip { fill: var(--cyan); filter: drop-shadow(0 0 6px var(--cyan)); }
   .mobius-copy h2 { margin-top: 0; }
   .mobius-copy .lead { color: var(--text-2); }
   .mobius-copy > p { color: #d5dbef; max-width: 52ch; }
@@ -169,8 +175,8 @@ const c = hi ? {
   .mb-ticks em { font-style: normal; color: var(--text-2); }
   .mb-readout { display: flex; align-items: baseline; gap: 12px; font-family: var(--font-mono); color: var(--text-3); margin: 14px 0 6px; }
   .mb-readout strong { font-family: var(--font-head); font-size: 2rem; color: var(--text); min-width: 3.4ch; font-variant-numeric: tabular-nums; }
-  .mb-state { font-size: 1.15rem; color: var(--green); }
-  .mb-state.neg { color: #ff8fb8; }
+  .mb-state { font-size: 1.15rem; color: var(--cyan); }
+  .mb-state.neg { color: #B58CFF; }
   .mb-note { font-size: 0.92rem; color: var(--text-2) !important; }
   @media (max-width: 900px) { .mobius-grid { grid-template-columns: 1fr; gap: 12px; } .mobius-visual { max-width: 520px; margin: 0 auto; width: 100%; } }
 </style>

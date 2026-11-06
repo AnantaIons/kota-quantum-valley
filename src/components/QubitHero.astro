@@ -7,18 +7,18 @@ const t = hi ? {
   popT: 'Qubit क्या है?', p1: 'Bit या तो 0 होता है या 1। Qubit इन दोनों का मिश्रण हो सकता है, जिसे superposition कहते हैं।',
   p2: 'इस गोले (Bloch sphere) पर हर बिंदु एक qubit state है। ऊपर |0⟩, नीचे |1⟩, और बीच में मिश्रण।',
   p3: 'यह तीर अभी z-अक्ष के चारों ओर घूम रहा है, जैसे magnetic field में spin घूमता है (पाठ 44)। ऊपर दिखे नंबर इसी state से निकाले गए हैं।',
-  note: 'पीछे के चमकते कण सिर्फ़ सजावट हैं, कोई quantum प्रक्रिया नहीं।', go: 'लैब में ख़ुद आज़माएँ', close: 'बंद करें',
+  note: 'गोले के चारों ओर चमकता जाल और पीछे के कण सिर्फ़ सजावट हैं, कोई quantum प्रक्रिया नहीं।', go: 'लैब में ख़ुद आज़माएँ', close: 'बंद करें',
 } : {
   hint: 'Drag to rotate · tap to learn', live: 'Live qubit state',
   popT: 'What is a qubit?', p1: 'A bit is 0 or 1. A qubit can be a blend of both, called a superposition.',
   p2: 'Every point on this sphere (the Bloch sphere) is a qubit state: |0⟩ at the top, |1⟩ at the bottom, blends in between.',
   p3: 'The arrow is precessing around the z-axis, exactly what a spin does in a magnetic field (Lesson 44). The numbers shown are computed from this state.',
-  note: 'The drifting particles in the background are decoration, not a quantum process.', go: 'Try it yourself in the Lab', close: 'Close',
+  note: 'The glowing network around the sphere and the drifting particles are decoration, not a quantum process.', go: 'Try it yourself in the Lab', close: 'Close',
 };
 const labHref = hi ? '/hi/lab/' : '/lab/';
 ---
 <div class="qviz" data-qviz>
-  <div class="qviz-sphere" data-qsphere role="button" tabindex="0" aria-label={t.popT}>
+  <div class="qviz-sphere v3host" data-qsphere role="button" tabindex="0" aria-label={t.popT}>
     <svg id="hero-bloch" aria-hidden="true"></svg>
     <span class="qviz-hint">{t.hint}</span>
   </div>
@@ -43,13 +43,14 @@ const labHref = hi ? '/hi/lab/' : '/lab/';
 
 <script>
   import { createBloch } from '../scripts/bloch.js';
+  import { can3d } from '../scripts/three/boot.js';
   const root = document.querySelector('[data-qviz]');
   if (root) {
     const svg = root.querySelector('#hero-bloch');
     const sphere = root.querySelector('[data-qsphere]');
     const pop = root.querySelector('[data-qpop]');
     const toggle = () => pop.classList.toggle('open');
-    const b = createBloch(svg, { dragTarget: sphere, onClick: toggle });
+    let b = createBloch(svg, { dragTarget: sphere, onClick: toggle });
     sphere.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
     root.querySelector('[data-qclose]').addEventListener('click', () => pop.classList.remove('open'));
     const theta = 1.0;
@@ -70,6 +71,18 @@ const labHref = hi ? '/hi/lab/' : '/lab/';
       rB.textContent = `(${re.toFixed(2)} ${im < 0 ? '−' : '+'} ${Math.abs(im).toFixed(2)}i)`;
     }
     setPhi();
+    // Swap in the real 3D sphere once it has loaded; the SVG stays if 3D isn't available.
+    if (can3d()) {
+      const go = () => import('../scripts/three/bloch3d.js').then(({ createBloch3D }) => {
+        const v = b.view;
+        const b3 = createBloch3D(sphere, { dragTarget: sphere, onClick: toggle, yaw: v.yaw, pitch: v.pitch });
+        if (!b3) return;
+        b.destroy();
+        b3.setTrace(Math.cos(theta)); b3.setVec(b.vec);
+        b = b3;
+      }).catch(() => {});
+      ('requestIdleCallback' in window) ? requestIdleCallback(go, { timeout: 900 }) : setTimeout(go, 300);
+    }
     if (!still) {
       const tick = (now) => {
         phi += ((now - last) / 1000) * (Math.PI * 2 / 14); last = now;
