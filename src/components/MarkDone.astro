@@ -5,7 +5,7 @@ const hi = lang === 'hi';
 import Solid from './Solid.astro';
 ---
 <div class="markdone" data-markdone={slug}>
-  <Solid shape="dodeca" tone="gold" size={46} speed={0.35} class="md-badge" />
+  <div class="v3host md-badge" data-3d="gem" data-shape="dodeca" data-tone="gold"><Solid shape="dodeca" tone="gold" size={46} speed={0.35} /></div>
   <button type="button" class="btn btn-ghost" data-md-btn>
     <span data-md-off>{hi ? '✓ पाठ पूरा हुआ, निशान लगाएँ' : '✓ Mark this lesson complete'}</span>
     <span data-md-on hidden>{hi ? '✓ पूरा हुआ (हटाने के लिए दबाएँ)' : '✓ Completed (tap to undo)'}</span>
@@ -14,6 +14,8 @@ import Solid from './Solid.astro';
 </div>
 <script>
   import { readDone as read, writeDone as write } from '../scripts/progress.js';
+  import { boot3d } from '../scripts/three/boot.js';
+  boot3d(document.querySelector('.markdone') || document);
   document.querySelectorAll('[data-markdone]').forEach((root) => {
     const el = root as HTMLElement, n = el.dataset.markdone!;
     const off = el.querySelector('[data-md-off]') as HTMLElement, on = el.querySelector('[data-md-on]') as HTMLElement, btn = el.querySelector('[data-md-btn]') as HTMLElement;

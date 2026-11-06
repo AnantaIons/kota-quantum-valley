@@ -108,7 +108,7 @@ export function createBloch3D(host, opts = {}) {
     frame.add(Object.assign(new Points(trail, ctx.glowPoints()), { renderOrder: 4 }));
 
     // decorative network of points around the globe: gold at the top, violet, cobalt below
-    plexus = new Group(); frame.add(plexus);
+    plexus = new Group(); if (opts.plexus !== false) frame.add(plexus);
     const n = small ? 64 : 96, R = 1.3, pts = [];
     let seed = 7; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
     for (let i = 0; i < n; i++) {

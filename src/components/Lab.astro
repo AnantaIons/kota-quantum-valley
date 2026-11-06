@@ -176,7 +176,7 @@ const L = hi ? {
     if (can3d()) import('../scripts/three/bloch3d.js').then(({ createBloch3D }) => {
       const host = $('[data-lab-sphere]');
       const v = sphere.view;
-      const b3 = createBloch3D(host, { dragTarget: host, yaw: v.yaw, pitch: v.pitch });
+      const b3 = createBloch3D(host, { dragTarget: host, yaw: v.yaw, pitch: v.pitch, plexus: false });
       if (!b3) return;
       sphere.destroy(); b3.setVec(sphere.vec); sphere = b3;
     }).catch(() => {});

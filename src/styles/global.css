@@ -181,11 +181,11 @@ section.tint { background: var(--deep); border-top: 1px solid var(--border); bor
   background:
     radial-gradient(560px 420px at 74% 46%, rgba(0, 71, 171, 0.5), transparent 70%),
     radial-gradient(360px 300px at 80% 40%, rgba(230, 195, 106, 0.16), transparent 70%),
-    radial-gradient(600px 420px at 0% 100%, rgba(255, 79, 216, 0.08), transparent 70%); }
+    radial-gradient(600px 420px at 0% 100%, rgba(90, 43, 214, 0.16), transparent 70%); }
 #particles { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 40px; align-items: center; position: relative; }
 .hero h1 { font-size: clamp(2.8rem, 6.6vw, 5.4rem); letter-spacing: -0.04em; line-height: 0.98; margin: 0; max-width: 12ch; }
-.hero h1 .h1b { display: block; font-size: 0.5em; letter-spacing: -0.02em; line-height: 1.2; margin-top: 18px; background: linear-gradient(90deg, var(--cyan), var(--violet) 70%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero h1 .h1b { display: block; font-size: 0.5em; letter-spacing: -0.02em; line-height: 1.2; margin-top: 18px; background: linear-gradient(90deg, #F8E3A3, #F2A541 30%, #B58CFF 68%, #6FA3FF); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero .lead { max-width: 48ch; margin-top: 26px; color: var(--text-2); }
 .hero-place { display: flex; align-items: center; gap: 10px; margin-top: 30px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-2); }
 .hero-place::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
@@ -804,7 +804,7 @@ details.course-part:first-of-type { margin-top: 36px; }
 .btn-ghost:hover, .btn-line:hover { background: #0047AB; border-color: #2979FF; color: #fff; box-shadow: 0 0 0 4px rgba(41, 121, 255, 0.18), 0 0 28px -4px rgba(41, 121, 255, 0.8); }
 .announce { background: linear-gradient(90deg, #0047AB 0%, #06306f 55%, #071426 100%); }
 .site-footer { background: linear-gradient(180deg, #071426 0%, #03050f 70%); }
-.site-footer::before { background: linear-gradient(90deg, transparent, #2979FF, var(--cyan), transparent); }
+.site-footer::before { background: linear-gradient(90deg, transparent, #2979FF, #8957FF 45%, var(--cyan) 70%, transparent); }
 .eyebrow { color: var(--cobalt-text); }
 
 /* Geometric icons */
@@ -845,3 +845,15 @@ details.course-part:first-of-type { margin-top: 36px; }
 .cm-cloud { --bleed: 24%; width: 210px; height: 210px; }
 .cm-orbital figcaption { margin-top: 6px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-3); text-align: center; }
 @media (max-width: 560px) { .path-solid { width: 76px; height: 76px; top: auto; bottom: 16px; } .course-solid { width: 76px; height: 76px; } .course-soon h3 { padding-right: 80px; } }
+
+/* ---------- Gold, purple and cobalt together ---------- */
+.glass {
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgba(137, 87, 255, 0.13), transparent 55%),
+    radial-gradient(90% 70% at 0% 100%, rgba(242, 165, 65, 0.05), transparent 60%),
+    linear-gradient(165deg, rgba(0, 71, 171, 0.34) 0%, rgba(7, 20, 38, 0.78) 62%);
+}
+.quote-section { overflow-x: clip; }
+::selection { background: rgba(137, 87, 255, 0.45); color: #fff; }
+.markdone .md-badge { --bleed: 30%; width: 54px; height: 54px; }
+.md-badge > svg { width: 100%; height: 100%; }

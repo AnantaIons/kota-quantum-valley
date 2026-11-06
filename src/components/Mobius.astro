@@ -155,6 +155,7 @@ const c = hi ? {
 
 <style is:global>
   .mobius-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+  .mobius { overflow-x: clip; }
   .mobius-visual { --bleed: 10%; }
   .mobius-visual svg { width: 100%; height: auto; display: block; overflow: visible; }
   .mobius-visual path { stroke-width: 0.7; stroke-linejoin: round; }
@@ -166,7 +167,7 @@ const c = hi ? {
   .mobius-copy > p { color: #d5dbef; max-width: 52ch; }
   .mb-track { margin: 26px 0 10px; max-width: 420px; }
   .mb-rail { position: relative; height: 4px; border-radius: 4px; background: rgba(140, 160, 255, 0.18); }
-  .mb-rail i { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: linear-gradient(90deg, var(--cyan), var(--cobalt-hi), var(--cyan)); background-size: 420px 100%; }
+  .mb-rail i { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: linear-gradient(90deg, var(--cyan), #F2A541 25%, #8957FF 50%, #B58CFF 75%, var(--cyan)); background-size: 420px 100%; }
   .mb-rail b { position: absolute; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: #f4f7ff; box-shadow: 0 0 12px rgba(230, 195, 106, 0.8); }
   .mb-ticks { display: flex; justify-content: space-between; margin-top: 10px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-3); }
   .mb-ticks span { display: flex; flex-direction: column; align-items: center; gap: 2px; }
