@@ -791,3 +791,35 @@ details.course-part:first-of-type { margin-top: 36px; }
 .motion-done .hero-nexus .pill, .motion-done .hero-nexus .h1b, .motion-done .hero-nexus .lead, .motion-done .hero-nexus .btn-row,
 .motion-done .hero-nexus .hero-place, .motion-done .hero-nexus .stats, .motion-done .hero-nexus .qviz { opacity: 1; }
 .motion-done .hero-nexus h1 .w > span { transform: none; }
+
+/* ---------- Cobalt forward: blue glass, blue secondary buttons ---------- */
+.glass {
+  background: linear-gradient(165deg, rgba(0, 71, 171, 0.34) 0%, rgba(7, 20, 38, 0.78) 62%);
+  border-color: rgba(41, 121, 255, 0.3);
+  box-shadow: inset 0 1px 0 rgba(140, 190, 255, 0.12), 0 24px 60px -36px rgba(0, 71, 171, 0.9);
+}
+.card { background: linear-gradient(165deg, rgba(0, 71, 171, 0.3) 0%, rgba(7, 20, 38, 0.8) 65%); border-color: rgba(41, 121, 255, 0.28); }
+.spot:hover { background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(41, 121, 255, 0.16), transparent 65%), linear-gradient(165deg, rgba(0, 71, 171, 0.34) 0%, rgba(7, 20, 38, 0.78) 62%); }
+.btn-ghost, .btn-line { background: linear-gradient(180deg, rgba(0, 71, 171, 0.75), rgba(0, 55, 135, 0.75)); border-color: rgba(41, 121, 255, 0.75); color: #fff; }
+.btn-ghost:hover, .btn-line:hover { background: #0047AB; border-color: #2979FF; color: #fff; box-shadow: 0 0 0 4px rgba(41, 121, 255, 0.18), 0 0 28px -4px rgba(41, 121, 255, 0.8); }
+.announce { background: linear-gradient(90deg, #0047AB 0%, #06306f 55%, #071426 100%); }
+.site-footer { background: linear-gradient(180deg, #071426 0%, #03050f 70%); }
+.site-footer::before { background: linear-gradient(90deg, transparent, #2979FF, var(--cyan), transparent); }
+.eyebrow { color: var(--cobalt-text); }
+
+/* Geometric icons */
+.path-solid { position: absolute; right: 16px; top: 34px; width: 56px; height: 56px; opacity: 0.95; }
+.path h3 { padding-right: 70px; }
+.course-soon, .course-main .cm-copy { position: relative; }
+.course-solid { position: absolute; right: 20px; top: 18px; }
+.course-main .cm-orbital { margin: 40px 0 0 24px; }
+@media (max-width: 900px) { .course-main .cm-orbital { display: none; } }
+.course-maths { overflow: hidden; }
+.course-maths .golden-spiral { position: absolute; right: 10px; bottom: -6px; width: 190px; opacity: 0.4; pointer-events: none; }
+.course-soon > :not(.golden-spiral) { position: relative; }
+.course-soon > .course-solid { position: absolute; }
+.markdone { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; }
+.markdone .meta { flex-basis: 100%; order: 3; }
+.markdone .md-badge { display: none; order: 1; }
+.markdone:has(.is-done) .md-badge { display: block; }
+@media (max-width: 560px) { .path-solid { top: 60px; right: 14px; width: 50px; height: 50px; } .course-solid { width: 56px; height: 56px; } }

@@ -5,6 +5,8 @@ import Particles from './Particles.astro';
 import Fridge from './Fridge.astro';
 import Mobius from './Mobius.astro';
 import GoldInfinity from './GoldInfinity.astro';
+import Solid from './Solid.astro';
+import GoldenSpiral from './GoldenSpiral.astro';
 import site from '../data/site.json';
 import { getPosts } from '../lib/posts.js';
 import { course1, syllabus, lessonNumber, partOf } from '../data/course.js';
@@ -37,9 +39,9 @@ const c = hi ? {
   stats: [[lessonCount, 'पाठ प्रकाशित'], [codeCount, 'टेस्ट किए code programs'], [quizCount, 'quiz सवाल'], ['4', 'लैब प्रयोग']],
   jT: 'अपना क्वांटम सफ़र चुनें', jP: 'तीन रास्ते, आपके स्तर के हिसाब से। हर रास्ता हमारे मौजूदा पाठों से जुड़ा है, और नए पाठ जुड़ते रहेंगे।',
   paths: [
-    { c: '#39E6A0', lvl: 'रास्ता 1', name: 'Quantum Explorer', who: 'कक्षा 8–10', topics: ['Bits और logic gates', 'Qubit से परिचय', 'Superposition', 'Measurement', 'Entanglement की बुनियाद', 'आज की क्वांटम तकनीक'], cta: 'पाठ 1 से शुरू करें', href: lessonUrl('bits-and-classical-computing') },
-    { c: '#E6C36A', lvl: 'रास्ता 2', name: 'Quantum Scientist', who: 'कक्षा 11–12 और JEE छात्र', topics: ['Complex numbers', 'Vectors और matrices', 'Bloch sphere', 'Quantum gates', 'Circuits', 'Interference'], cta: 'रोडमैप से शुरू करें', href: lessonUrl('roadmap-what-to-learn-first'), note: 'यह JEE सिलेबस का हिस्सा नहीं है, लेकिन उसी फ़िज़िक्स और मैथ्स पर बना है।' },
-    { c: '#2979FF', lvl: 'रास्ता 3', name: 'Quantum Architect', who: 'कॉलेज और एडवांस्ड छात्र', topics: ['Tensor products', 'Bell tests', 'Deutsch–Jozsa', 'Grover', 'QFT और Shor', 'Error correction', 'Hardware', 'QKD'], cta: 'पाठ 12 से शुरू करें', href: lessonUrl('many-qubits-and-the-tensor-product') },
+    { solid: ['tetra', 'green'], c: '#39E6A0', lvl: 'रास्ता 1', name: 'Quantum Explorer', who: 'कक्षा 8–10', topics: ['Bits और logic gates', 'Qubit से परिचय', 'Superposition', 'Measurement', 'Entanglement की बुनियाद', 'आज की क्वांटम तकनीक'], cta: 'पाठ 1 से शुरू करें', href: lessonUrl('bits-and-classical-computing') },
+    { solid: ['octa', 'gold'], c: '#E6C36A', lvl: 'रास्ता 2', name: 'Quantum Scientist', who: 'कक्षा 11–12 और JEE छात्र', topics: ['Complex numbers', 'Vectors और matrices', 'Bloch sphere', 'Quantum gates', 'Circuits', 'Interference'], cta: 'रोडमैप से शुरू करें', href: lessonUrl('roadmap-what-to-learn-first'), note: 'यह JEE सिलेबस का हिस्सा नहीं है, लेकिन उसी फ़िज़िक्स और मैथ्स पर बना है।' },
+    { solid: ['icosa', 'cobalt'], c: '#2979FF', lvl: 'रास्ता 3', name: 'Quantum Architect', who: 'कॉलेज और एडवांस्ड छात्र', topics: ['Tensor products', 'Bell tests', 'Deutsch–Jozsa', 'Grover', 'QFT और Shor', 'Error correction', 'Hardware', 'QKD'], cta: 'पाठ 12 से शुरू करें', href: lessonUrl('many-qubits-and-the-tensor-product') },
   ],
   labT: 'क्वांटम फ़िज़िक्स सिर्फ़ पढ़ें नहीं। उसके साथ प्रयोग करें।', labP: 'हमारी क्वांटम लैब आपके ब्राउज़र में एक असली state-vector simulator चलाती है।',
   labList: ['Bloch sphere पर X, Y, Z, H, S, T gates लगाएँ', 'Qubit को 1,000 बार measure करें और histogram देखें', 'H + CNOT से Bell state बनाएँ और correlation देखें', 'अपना circuit बनाएँ (4 qubits तक) और Qiskit code निकालें'],
@@ -47,7 +49,7 @@ const c = hi ? {
   coursesT: 'हमारे कोर्स', coursesP: 'शून्य से शुरू होकर एक-एक क़दम आगे। कोर्स 1 अभी खुला है; अगले दो तैयार हो रहे हैं।',
   open: 'अभी खुला', prep: 'तैयार हो रहा है', c1p: 'Bits और complex numbers से शुरू करके qubits, gates, entanglement, algorithms, error correction, हार्डवेयर और आपके करियर के रास्ते तक। 9 भाग, हर पाठ में कोड और quiz।',
   facts1: [['पाठ', syllabus.length], ['भाग', course1.parts.length], ['प्रकाशित', lessons.length]], seeAll: 'सभी पाठ देखें', partOfN: (d, n) => `${n} में से ${d}`,
-  c2: ['कोर्स 2: नींव', 'वह मैथ्स, फ़िज़िक्स, केमिस्ट्री, कंप्यूटर साइंस और इलेक्ट्रॉनिक्स जिस पर क्वांटम टिका है, बुनियादी स्तर से।', ['मैथ्स', 'फ़िज़िक्स', 'केमिस्ट्री', 'कंप्यूटर साइंस', 'इलेक्ट्रॉनिक्स']],
+  c2: ['कोर्स 2: Mathematics for Quantum Science', 'कक्षा 10 की नींव से quantum theory के गणित तक, एक-एक क़दम। हर विचार पहले सहज रूप में, फिर पूरे derivation और हल किए अभ्यासों के साथ।', ['Algebra', 'Complex numbers', 'Linear algebra', 'Calculus', 'Probability']],
   c3: ['कोर्स 3: IBM Quantum सीरीज़', 'IBM Quantum Learning के सिलेबस के क्रम में, हमारी अपनी व्याख्या के साथ, और असली IBM हार्डवेयर पर प्रयोग।', ['Basics of quantum information', 'Algorithms', 'Error correction', 'Utility-scale']],
   howT: 'हर पाठ कैसे बना है', howP: 'कोई स्लाइड नहीं, कोई shortcut नहीं। हर पाठ एक ही क्रम में चलता है, ताकि आप हर विचार को पूरी तरह समझें।',
   how: [['आसान भाषा में विचार', 'जो आप पहले से जानते हैं वहाँ से शुरुआत, रोज़ की मिसाल के साथ।'], ['मैथ्स, धीरे-धीरे', 'हर क़दम लिखा हुआ, 11वीं-12वीं की मैथ्स से।'], ['चलने वाला कोड', 'Qiskit में टेस्ट किया हुआ, साथ में वह output जो आपको दिखना चाहिए।'], ['ख़ुद करके देखें', 'छोटे अभ्यास, जवाबों के साथ।'], ['सार', 'पूरा पाठ एक स्क्रीन पर, दोहराने के लिए।'], ['Quiz', 'चार सवाल, हर जवाब का कारण, फिर पाठ पूरा।']],
@@ -80,9 +82,9 @@ const c = hi ? {
   stats: [[lessonCount, 'lessons published'], [codeCount, 'tested code programs'], [quizCount, 'quiz questions'], ['4', 'lab experiments']],
   jT: 'Choose your quantum journey', jP: 'Three paths for three levels. Each one starts from our existing lessons, and new lessons will keep filling them in.',
   paths: [
-    { c: '#39E6A0', lvl: 'Path 1', name: 'Quantum Explorer', who: 'Class 8–10', topics: ['Bits and logic gates', 'Introduction to qubits', 'Superposition', 'Measurement', 'Entanglement basics', 'Quantum tech today'], cta: 'Start with Lesson 1', href: lessonUrl('bits-and-classical-computing') },
-    { c: '#E6C36A', lvl: 'Path 2', name: 'Quantum Scientist', who: 'Class 11–12 and JEE students', topics: ['Complex numbers', 'Vectors and matrices', 'Bloch sphere', 'Quantum gates', 'Circuits', 'Interference'], cta: 'Start with the roadmap', href: lessonUrl('roadmap-what-to-learn-first'), note: 'Not part of the JEE syllabus, but built on the same physics and maths.' },
-    { c: '#2979FF', lvl: 'Path 3', name: 'Quantum Architect', who: 'College and advanced students', topics: ['Tensor products', 'Bell tests', 'Deutsch–Jozsa', 'Grover', 'QFT and Shor', 'Error correction', 'Hardware', 'QKD'], cta: 'Start with Lesson 12', href: lessonUrl('many-qubits-and-the-tensor-product') },
+    { solid: ['tetra', 'green'], c: '#39E6A0', lvl: 'Path 1', name: 'Quantum Explorer', who: 'Class 8–10', topics: ['Bits and logic gates', 'Introduction to qubits', 'Superposition', 'Measurement', 'Entanglement basics', 'Quantum tech today'], cta: 'Start with Lesson 1', href: lessonUrl('bits-and-classical-computing') },
+    { solid: ['octa', 'gold'], c: '#E6C36A', lvl: 'Path 2', name: 'Quantum Scientist', who: 'Class 11–12 and JEE students', topics: ['Complex numbers', 'Vectors and matrices', 'Bloch sphere', 'Quantum gates', 'Circuits', 'Interference'], cta: 'Start with the roadmap', href: lessonUrl('roadmap-what-to-learn-first'), note: 'Not part of the JEE syllabus, but built on the same physics and maths.' },
+    { solid: ['icosa', 'cobalt'], c: '#2979FF', lvl: 'Path 3', name: 'Quantum Architect', who: 'College and advanced students', topics: ['Tensor products', 'Bell tests', 'Deutsch–Jozsa', 'Grover', 'QFT and Shor', 'Error correction', 'Hardware', 'QKD'], cta: 'Start with Lesson 12', href: lessonUrl('many-qubits-and-the-tensor-product') },
   ],
   labT: "Don't just learn quantum physics. Experiment with it.", labP: 'Our Quantum Lab runs a real state-vector simulator right in your browser.',
   labList: ['Apply X, Y, Z, H, S and T gates on a 3D Bloch sphere', 'Measure a qubit 1,000 times and watch the histogram', 'Build a Bell state with H + CNOT and see the correlations', 'Drag and drop your own circuit (up to 4 qubits) and export Qiskit code'],
@@ -90,7 +92,7 @@ const c = hi ? {
   coursesT: 'Our courses', coursesP: 'Start from zero and go one step at a time. Course 1 is open now; the next two are being prepared.',
   open: 'Open now', prep: 'In preparation', c1p: 'From bits and complex numbers to qubits, gates, entanglement, algorithms, error correction, hardware and your career path. 9 parts, with code and a quiz in every lesson.',
   facts1: [['lessons', syllabus.length], ['parts', course1.parts.length], ['published', lessons.length]], seeAll: 'See all lessons', partOfN: (d, n) => `${d} of ${n}`,
-  c2: ['Course 2: Foundations', 'The maths, physics, chemistry, computer science and electronics that quantum rests on, from the basic level up.', ['Maths', 'Physics', 'Chemistry', 'Computer science', 'Electronics']],
+  c2: ['Course 2: Mathematics for Quantum Science', 'From Class 10 foundations to the mathematics of quantum theory, one step at a time. Every idea comes with intuition first, then full derivations and worked exercises.', ['Algebra', 'Complex numbers', 'Linear algebra', 'Calculus', 'Probability']],
   c3: ['Course 3: IBM Quantum series', 'Following the IBM Quantum Learning syllabus in order, explained in our own words, with experiments on real IBM hardware.', ['Basics of quantum information', 'Algorithms', 'Error correction', 'Utility-scale']],
   howT: 'How every lesson works', howP: 'No slides and no shortcuts. Every lesson follows the same order, so you understand each idea fully before the next.',
   how: [['The idea in plain words', 'Starting from what you already know, with an everyday picture.'], ['The maths, slowly', 'Every step written out, using Class 11–12 maths.'], ['Code you can run', 'Tested in Qiskit, with the exact output you should see.'], ['Try it yourself', 'Short exercises, with answers.'], ['Cheat sheet', 'The whole lesson on one screen, for revision.'], ['Quiz', 'Four questions with the reason for each answer, then mark it complete.']],
@@ -171,7 +173,7 @@ const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" 
     <div class="paths">
       {c.paths.map((p) => (
         <article class="path glass" style={`--c: ${p.c}`}>
-          <span class="path-orb" aria-hidden="true"></span>
+          <Solid shape={p.solid[0]} tone={p.solid[1]} size={64} class="path-solid" />
           <span class="path-level"><span>{p.lvl}</span><span>{p.who}</span></span>
           <h3>{p.name}</h3>
           {p.note ? <p class="who">{p.note}</p> : <p class="who">&nbsp;</p>}
@@ -219,6 +221,7 @@ const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" 
         <p>{c.c1p}</p>
         <dl class="cm-facts">{c.facts1.map(([l, v]) => <div><dt>{l}</dt><dd>{v}</dd></div>)}</dl>
         <a class="btn btn-primary" href={`${pre}/lessons/`}>{c.seeAll}</a>
+        <Solid shape="orbital" tone="mix" size={170} speed={0.1} tilt={0.35} class="cm-orbital" />
       </div>
       <ol class="cm-parts">
         {partStats.map((p) => (
@@ -233,8 +236,10 @@ const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" 
       </ol>
     </article>
     <div class="course-soon-row">
-      {[c.c2, c.c3].map(([name, text, chips]) => (
-        <article class="course-soon glass">
+      {[[c.c2, 'cube', 'cobalt'], [c.c3, 'dodeca', 'gold']].map(([[name, text, chips], shape, tone], i) => (
+        <article class={`course-soon glass${i === 0 ? ' course-maths' : ''}`}>
+          {i === 0 && <GoldenSpiral />}
+          <Solid shape={shape} tone={tone} size={70} class="course-solid" />
           <span class="status research">{c.prep}</span>
           <h3>{name}</h3>
           <p>{text}</p>

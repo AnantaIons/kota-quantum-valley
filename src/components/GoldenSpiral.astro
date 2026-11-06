@@ -1,0 +1,57 @@
+---
+// Fibonacci squares with the golden spiral through them: thin gold lines, drawn in once when seen.
+const fib = [1, 1, 2, 3, 5, 8, 13, 21];
+// Lay squares out counter-clockwise; each new square sits beside the rectangle so far.
+let x0 = 0, y0 = 0, x1 = 1, y1 = 1;
+const squares = [{ x: 0, y: 0, s: 1 }];
+const arcs = [];
+const dirs = ['right', 'up', 'left', 'down'];
+for (let i = 1; i < fib.length; i++) {
+  const s = fib[i], d = dirs[(i - 1) % 4];
+  let sq;
+  if (d === 'right') { sq = { x: x1, y: y0, s }; x1 += s; }
+  else if (d === 'up') { sq = { x: x0, y: y0 - s, s }; y0 -= s; }
+  else if (d === 'left') { sq = { x: x0 - s, y: y0, s }; x0 -= s; }
+  else { sq = { x: x0, y: y1, s }; y1 += s; }
+  squares.push(sq);
+}
+// Quarter arcs: in each square, a quarter circle centred on one corner joins the two corners next
+// to it. Choose the corners so that each arc starts where the previous one ended.
+const cornersOf = (q) => [[q.x, q.y], [q.x + q.s, q.y], [q.x + q.s, q.y + q.s], [q.x, q.y + q.s]];
+const same = (a, b) => Math.abs(a[0] - b[0]) < 1e-9 && Math.abs(a[1] - b[1]) < 1e-9;
+function chain(i, P, dir) {
+  if (i === squares.length) return [];
+  const q = squares[i], cs = cornersOf(q);
+  for (let k = 0; k < 4; k++) {
+    const C = cs[k], A = cs[(k + 1) % 4], B = cs[(k + 3) % 4];
+    for (const [S, E] of [[A, B], [B, A]]) {
+      if (P && !same(S, P)) continue;
+      const sweep = (S[0] - C[0]) * (E[1] - C[1]) - (S[1] - C[1]) * (E[0] - C[0]) > 0 ? 1 : 0;
+      if (dir !== undefined && sweep !== dir) continue;      // a spiral turns the same way all along
+      const rest = chain(i + 1, E, sweep);
+      if (rest) return [`M${S[0]} ${S[1]} A${q.s} ${q.s} 0 0 ${sweep} ${E[0]} ${E[1]}`, ...rest];
+    }
+  }
+  return null;
+}
+arcs.push(...(chain(0, null, undefined) || []));
+const vb = `${x0 - 0.5} ${y0 - 0.5} ${x1 - x0 + 1} ${y1 - y0 + 1}`;
+---
+<svg class="golden-spiral" viewBox={vb} aria-hidden="true" data-spiral>
+  <g class="gs-squares">{squares.map((q) => <rect x={q.x} y={q.y} width={q.s} height={q.s} />)}</g>
+  <path class="gs-arc" d={arcs.join(' ')} pathLength="1" />
+</svg>
+
+<script>
+  document.querySelectorAll('[data-spiral]').forEach((svg) => {
+    new IntersectionObserver(([e], o) => { if (e.isIntersecting) { svg.classList.add('drawn'); o.disconnect(); } }, { threshold: 0.4 }).observe(svg);
+  });
+</script>
+
+<style is:global>
+  .golden-spiral { display: block; overflow: visible; }
+  .golden-spiral rect { fill: none; stroke: rgba(212, 175, 55, 0.28); stroke-width: 0.08; vector-effect: non-scaling-stroke; }
+  .golden-spiral .gs-arc { fill: none; stroke: #D4AF37; stroke-width: 1.4; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.4s cubic-bezier(0.22, 1, 0.36, 1); filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.6)); }
+  .golden-spiral.drawn .gs-arc { stroke-dashoffset: 0; }
+  @media (prefers-reduced-motion: reduce) { .golden-spiral .gs-arc { stroke-dashoffset: 0; } }
+</style>
