@@ -10,7 +10,7 @@ level: L1
 ceiling: T6
 prerequisites: "Chapter 0; solving quadratic equations; reading a graph. The university and PhD-level parts also use polynomial division and the idea of a field, explained where they appear."
 estimated_minutes: 90
-version: 0.1.0
+version: 0.1.1
 status: mathematically_checked
 publication_status: published
 ---
@@ -69,6 +69,8 @@ Each familiar number system was created, historically and logically, because an 
 | $x^2=2$ | Rationals $\mathbb{Q}$ | $x=\pm\sqrt{2}$ | Reals $\mathbb{R}$ |
 | $x^2=-1$ | Reals $\mathbb{R}$ | $x=\pm i$ | Complex numbers $\mathbb{C}$ |
 
+![Each number system sits inside the next, and each step was forced by an equation the smaller system could not solve.](diagram:c1-systems)
+
 Every step follows the same three-part pattern.
 
 1. **An equation gets stuck.** Its coefficients belong to the old system, but no solution does.
@@ -100,6 +102,8 @@ $$
 Setting this to zero, a real solution exists exactly when $\left(x+\tfrac{b}{2a}\right)^2=\tfrac{b^2-4ac}{4a^2}$ has a real solution, that is, when the discriminant $D=b^2-4ac$ satisfies $D\ge0$. When $D<0$ we are back to "a real square equals a negative number", the same obstacle as $x^2=-1$.
 
 **Picture.** The graph of $y=x^2+1$ is a parabola whose lowest point is $(0,1)$. It never meets the $x$-axis. A real root of a polynomial is a point where its graph crosses or touches the axis, so no crossing means no real root. That picture is honest, but it is also limited: it shows *that* there is no real solution, not what a solution in a larger system would look like. Geometry for complex numbers lives in a plane, not on a line (Chapter 10).
+
+![The graph of y = x² + 1 never meets the x-axis, so x² + 1 = 0 has no real root. Lowering the parabola to y = x² − 1 creates two crossings, at ±1.](diagram:c1-parabolas)
 
 ### "No solution" always means "no solution in a stated system"
 
@@ -242,6 +246,10 @@ $$
 
 The non-real parts cancel, exactly as Bombelli found [H2]. The other two roots come from dividing $x^3-15x-4$ by $x-4$, which leaves $x^2+4x+1$, with roots $-2\pm\sqrt3$. All three roots are real: $4$, $-2+\sqrt3\approx-0.27$ and $-2-\sqrt3\approx-3.73$.
 
+![Bombelli's cubic y = x³ − 15x − 4. Its local maximum is above the axis and its local minimum below, so it crosses three times: at 4 and at −2 ± √3. Yet Cardano's formula reaches these real roots only through √−121.](diagram:c1-bombelli)
+
+![Bombelli's two cube roots, 2 + i and 2 − i, drawn as arrows in the plane that Chapter 10 introduces. Their non-real parts cancel and the sum is the real number 4.](diagram:c1-sum)
+
 ### When does $R<0$ happen? Exactly when there are three real roots
 
 **Theorem 1.2.** *Let $p,q$ be real. The depressed cubic $f(y)=y^3+py+q$ has three distinct real roots if and only if $4p^3+27q^2<0$, that is, if and only if $R<0$.*
@@ -261,6 +269,8 @@ f(-s)\,f(s)=q^2-\frac{4p^2}{9}s^2=q^2+\frac{4p^3}{27}=\frac{4p^3+27q^2}{27}.
 $$
 
 So three distinct real roots occur exactly when $4p^3+27q^2<0$. Finally $4p^3+27q^2=108R$, so this is the same as $R<0$. ∎
+
+![The sign of R decides the shape. One crossing when R > 0, a touching point (repeated root) when R = 0, three crossings when R < 0.](diagram:c1-cases)
 
 The quantity $\Delta=-4p^3-27q^2=-108R$ is the *discriminant* of the cubic; it equals $\big((r_1-r_2)(r_1-r_3)(r_2-r_3)\big)^2$ for the roots $r_1,r_2,r_3$ (Problem T6.1 uses this).
 
@@ -347,6 +357,8 @@ $$
 *Proof.* (a) Every orthonormal basis of $\mathbb{R}^2$ consists, up to signs and order, of $(\cos\theta,\sin\theta)$ and $(-\sin\theta,\cos\theta)$ for some angle $\theta$. For bases with angles $\theta$ and $\varphi$, the squared inner products are $\cos^2(\theta-\varphi)$ and $\sin^2(\theta-\varphi)$, so the bases are unbiased exactly when $\cos^2(\theta-\varphi)=\tfrac12$, that is, when $\theta-\varphi$ is an odd multiple of $45^\circ$. If three bases with angles $\theta_1,\theta_2,\theta_3$ were pairwise unbiased, then $\theta_2-\theta_1$ and $\theta_3-\theta_1$ would both be odd multiples of $45^\circ$, so their difference $\theta_3-\theta_2$ would be an even multiple of $45^\circ$, a multiple of $90^\circ$. Then $\cos^2(\theta_3-\theta_2)\in\{0,1\}$, not $\tfrac12$: a contradiction.
 
 (b) Each pair of vectors listed is orthonormal. For the complex inner product $\langle u,v\rangle=\overline{u_1}v_1+\overline{u_2}v_2$, a vector from one basis and a vector from another always have inner product of modulus $\tfrac{1}{\sqrt2}$. For example $\langle\tfrac{1}{\sqrt2}(1,1),\tfrac{1}{\sqrt2}(1,i)\rangle=\tfrac12(1+i)$, whose squared modulus is $\tfrac14(1+1)=\tfrac12$. The other cases are similar (Problem T5.6). ∎
+
+![In the real plane, the Z basis (0° and 90°) and the X basis (45° and 135°) are unbiased. A third basis would need directions 45° from all four arrows, and there are none. In ℂ² the Y basis supplies them.](diagram:c1-mub)
 
 So the standard picture of a qubit, with three mutually unbiased measurements, is impossible with real amplitudes alone; the third basis needs $i$. This is honest but limited. It shows that *this description* needs complex numbers. Whether *quantum theory itself* could be rewritten with real numbers is a subtler question, and its answer is surprising: see Section 1.14.
 

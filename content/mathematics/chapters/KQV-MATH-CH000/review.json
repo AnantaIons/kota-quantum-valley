@@ -1,6 +1,6 @@
 {
   "id": "KQV-MATH-CH000",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "date": "2026-11-06",
   "reviewer": "Claude (AI). AI self-check is not a guarantee; no qualified human review yet.",
   "checks": [
@@ -50,7 +50,8 @@
   "changes_from_handoff": [
     "Added the [F1] citation marker in Section 0.2.",
     "Status drafted → mathematically_checked; version 0.1.0 → 0.1.1.",
-    "Stage 9 in the Section 0.5 roadmap renamed to 'Quantum mathematics and research preparation' with matching subjects and question (founder decision); version 0.1.1 → 0.1.2."
+    "Stage 9 in the Section 0.5 roadmap renamed to 'Quantum mathematics and research preparation' with matching subjects and question (founder decision); version 0.1.1 → 0.1.2.",
+    "0.1.3: diagrams added, generated from the exact functions by diagrams/make.py."
   ],
   "publication": {
     "status": "published",

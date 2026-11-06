@@ -50,7 +50,9 @@ for (const id of fs.readdirSync(dir)) {
   for (const f of ['chapter.md', 'metadata.json', 'review.json']) if (!fs.existsSync(path.join(base, f))) err(`${id}: missing ${f}`);
   if (errors.length) continue;
   const meta = read(`chapters/${id}/metadata.json`), review = read(`chapters/${id}/review.json`);
-  const { data, errors: texErr } = await renderChapter(fs.readFileSync(path.join(base, 'chapter.md'), 'utf8'));
+  const ddir = path.join(base, 'diagrams');
+  const diagrams = fs.existsSync(ddir) ? Object.fromEntries(fs.readdirSync(ddir).filter((f) => f.endsWith('.svg')).map((f) => [f.replace(/\.svg$/, ''), fs.readFileSync(path.join(ddir, f), 'utf8')])) : {};
+  const { data, errors: texErr } = await renderChapter(fs.readFileSync(path.join(base, 'chapter.md'), 'utf8'), diagrams);
   if (meta.id !== id) err(`${id}: metadata id is ${meta.id}`);
   if (data.id !== id) err(`${id}: chapter.md front matter id is ${data.id}`);
   if (data.status !== meta.status) err(`${id}: status differs (chapter.md ${data.status}, metadata ${meta.status})`);
@@ -58,7 +60,7 @@ for (const id of fs.readdirSync(dir)) {
   if (!course.statuses.includes(meta.status)) err(`${id}: unknown status ${meta.status}`);
   if (slugs.has(meta.slug)) err(`${id}: duplicate slug ${meta.slug}`);
   slugs.add(meta.slug);
-  texErr.forEach((e) => err(`${id}: equation does not render: ${e}`));
+  texErr.forEach((e) => err(`${id}: ${e.startsWith('missing diagram') ? e : `equation does not render: ${e}`}`));
   if (course.public_statuses.includes(meta.status) && review.checks.some((c) => c.result === 'FAIL')) err(`${id}: has a FAIL in review.json but is marked ${meta.status}`);
   known.set(id, meta.prerequisites);
   notes.push(`${id}: ${meta.status}, equations OK`);

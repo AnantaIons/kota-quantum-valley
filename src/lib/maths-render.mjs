@@ -52,7 +52,19 @@ function headingIds(out) {
   };
 }
 
-export async function renderChapter(src) {
+// ![Caption](diagram:name) on its own line becomes a numbered figure with the SVG inlined,
+// so diagrams take the page's fonts and colours. diagrams maps name -> SVG text.
+function figures(html, diagrams, chapterNo, missing) {
+  let k = 0;
+  return html.replace(/<p><img src="diagram:([\w-]+)" alt="([^"]*)"\s*\/?><\/p>/g, (_, name, alt) => {
+    const svg = diagrams[name];
+    if (!svg) { missing.push(name); return ''; }
+    k += 1;
+    return `<figure class="mdia" id="fig-${name}"><div class="mdia-art">${svg.trim()}</div><figcaption><strong>Figure ${chapterNo}.${k}.</strong> ${alt}</figcaption></figure>`;
+  });
+}
+
+export async function renderChapter(src, diagrams = {}) {
   const { data, body } = splitFrontmatter(src);
   const md = body.replace(/^\s*#\s+[^\n]*\n/, '');            // the page template prints the title
   const headings = [];
@@ -74,6 +86,9 @@ export async function renderChapter(src) {
   // "Answers" sections stay folded until the learner has tried the questions
   html = html.replace(/(<h3 id="[^"]+">(Answers[^<]*)<\/h3>)([\s\S]*?)(?=<h[23][\s>]|$)/g,
     (_, h, label, rest) => `<details class="answers"><summary>${label}</summary>${rest}</details>`);
+  const missing = [];
+  html = figures(html, diagrams, data.chapter_number ?? '', missing);
   const errors = (html.match(/class="katex-error"[^>]*>[^<]*/g) || []).map((s) => s.replace(/.*>/, ''));
+  missing.forEach((n) => errors.push(`missing diagram ${n}`));
   return { data, html, headings, errors };
 }

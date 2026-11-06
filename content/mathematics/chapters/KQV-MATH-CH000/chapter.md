@@ -8,7 +8,7 @@ language: en
 level: orientation
 prerequisites: "Basic arithmetic; unfamiliar algebra is explained as it appears."
 estimated_minutes: 35
-version: 0.1.2
+version: 0.1.3
 status: mathematically_checked
 publication_status: published
 ---
@@ -98,6 +98,8 @@ For 10 pages, A charges ₹60 and B charges ₹30. For 100 pages, A charges ₹2
 
 So B is cheaper below 40 pages, the prices match at 40, and A is cheaper above 40.
 
+![The two pricing rules as lines. Below 40 pages shop B is cheaper; above 40, shop A is cheaper; at 40 pages both cost ₹120.](diagram:c0-shops)
+
 **What mathematics solved:** Instead of checking every possible order, algebra gave us the decision boundary. Functions described the two pricing rules, and inequalities tell us which rule gives the smaller result.
 
 **Where the answer stops:** If one shop adds a delivery fee or a bulk discount, the model must change. Correct algebra cannot repair an incorrect description of the prices.
@@ -131,6 +133,8 @@ $$
 The square of a real number cannot be negative. Therefore $A$ cannot exceed 25. It reaches 25 when $l=5$, which also gives $w=5$.
 
 We have proved that the 5 m by 5 m square has the greatest area **among rectangles with this perimeter**.
+
+![The area l(10 − l) of every rectangle with perimeter 20 m. The curve is highest at l = 5, the square, where the area is 25 m².](diagram:c0-area)
 
 **What mathematics solved:** Geometry described the shape, algebra connected the measurements, and optimization identified the best permitted choice. A proof showed that no untested rectangle does better.
 
@@ -170,6 +174,8 @@ For $h=0.1$, this is 4.1. For $h=0.01$, it is 4.01. As $h$ approaches zero, the 
 This limiting value is the instantaneous speed: 4 metres per second at that moment in this model.
 
 Notice that we did not divide by zero. We simplified for nonzero $h$, then examined the limiting value.
+
+![Distance d = t². Secant lines from t = 2 to t = 2 + h have slope 4 + h; as h shrinks they approach the tangent line of slope 4, the speed at t = 2.](diagram:c0-speed)
 
 **What mathematics solved:** Calculus makes the idea of change “at an instant” precise. Later, integration will help us recover accumulated quantities from rates of change.
 

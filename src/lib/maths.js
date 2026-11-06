@@ -8,6 +8,7 @@ import { renderChapter } from './maths-render.mjs';
 const sources = import.meta.glob('/content/mathematics/chapters/*/chapter.md', { query: '?raw', import: 'default', eager: true });
 const metas = import.meta.glob('/content/mathematics/chapters/*/metadata.json', { import: 'default', eager: true });
 const reviews = import.meta.glob('/content/mathematics/chapters/*/review.json', { import: 'default', eager: true });
+const svgs = import.meta.glob('/content/mathematics/chapters/*/diagrams/*.svg', { query: '?raw', import: 'default', eager: true });
 
 const dirOf = (p) => p.split('/').slice(-2, -1)[0];
 export const ledgers = { D06: d06 };
@@ -21,7 +22,8 @@ export async function getChapters() {
     const dir = dirOf(p);
     const src = sources[`/content/mathematics/chapters/${dir}/chapter.md`];
     const review = reviews[`/content/mathematics/chapters/${dir}/review.json`];
-    const r = await renderChapter(src);
+    const diagrams = Object.fromEntries(Object.entries(svgs).filter(([k]) => k.includes(`/chapters/${dir}/`)).map(([k, v]) => [k.split('/').pop().replace(/\.svg$/, ''), v]));
+    const r = await renderChapter(src, diagrams);
     list.push({ meta, review, ...r, public: course.public_statuses.includes(meta.status) });
   }
   cache = list.sort((a, b) => a.meta.chapter_number - b.meta.chapter_number);

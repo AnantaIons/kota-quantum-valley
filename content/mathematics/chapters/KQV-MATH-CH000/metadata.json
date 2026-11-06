@@ -57,7 +57,7 @@
   "estimated_minutes": 35,
   "language": "en",
   "status": "mathematically_checked",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "reviewed_at": "2026-11-06",
   "reviewer_type": "AI review with automated symbolic checks; no human mathematician review yet",
   "unresolved_issues": [
