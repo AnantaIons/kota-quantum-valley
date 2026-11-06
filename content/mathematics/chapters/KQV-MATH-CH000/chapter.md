@@ -10,7 +10,7 @@ prerequisites: "Basic arithmetic; unfamiliar algebra is explained as it appears.
 estimated_minutes: 35
 version: 0.1.2
 status: mathematically_checked
-publication_status: not_published
+publication_status: published
 ---
 
 # Chapter 0 · Why Mathematics?

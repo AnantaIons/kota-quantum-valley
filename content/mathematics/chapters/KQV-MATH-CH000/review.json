@@ -53,8 +53,9 @@
     "Stage 9 in the Section 0.5 roadmap renamed to 'Quantum mathematics and research preparation' with matching subjects and question (founder decision); version 0.1.1 → 0.1.2."
   ],
   "publication": {
-    "status": "not_published",
-    "approved_by": null,
-    "approved_at": null
+    "status": "published",
+    "approved_by": "founder",
+    "approved_at": "2026-11-06",
+    "note": "Published at the founder's request with the open review items shown on the page."
   }
 }

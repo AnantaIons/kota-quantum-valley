@@ -3,7 +3,7 @@
   "domain_name": "Complex numbers and complex analysis",
   "planned": 75,
   "version": "0.2.0",
-  "status": "proposed — awaiting founder approval before Chapter 1 is drafted",
+  "status": "approved by the founder on 6 November 2026; chapters are written in order",
   "notes": [
     "Depth standard (founder, 6 November 2026): every chapter climbs from its entry level to its ceiling, the hardest problems its topic produces, with a full problem ladder through the listed tiers (see course.json, depth_standard and tiers).",
     "Prerequisites inside D06 use chapter IDs. Prerequisites in other domains are listed as text until those domains have ledgers.",
@@ -76,7 +76,7 @@
       "flags": [
         "history-needs-sources"
       ],
-      "status": "proposed"
+      "status": "mathematically_checked"
     },
     {
       "id": "KQV-MATH-D06-C002",
@@ -2148,5 +2148,9 @@
       "flags": [],
       "status": "proposed"
     }
-  ]
+  ],
+  "approved": {
+    "by": "founder",
+    "date": "2026-11-06"
+  }
 }

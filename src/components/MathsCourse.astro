@@ -6,23 +6,25 @@ const chapters = (await getChapters()).filter((c) => c.public);
 const ch0 = chapters.find((c) => c.meta.chapter_number === 0);
 const d06 = ledgers.D06;
 const parts = d06.groups.map((g) => ({ ...g, count: d06.chapters.filter((c) => c.group === g.n).length }));
-const firstNext = d06.chapters[0];
+const open06 = chapters.filter((c) => c.meta.domain_id === 'D06');
+const firstNext = d06.chapters.find((c) => !open06.some((o) => o.meta.id === c.id)) ?? d06.chapters[0];
+const openIn = (g) => open06.filter((c) => d06.chapters.find((r) => r.id === c.meta.id)?.group === g).length;
 
 const T = {
   eyebrow: 'Course 2, free, starting now',
   lead: 'Mathematics from Class 10 foundations to the mathematics of quantum theory. Every chapter starts with intuition and climbs, one justified step at a time, to the hardest problems its topic produces, up to PhD level.',
   start: 'Start Chapter 0', road: 'See the roadmap',
-  status: 'Chapter 0 is open. Complex Numbers comes next.',
+  status: open06.length ? `Chapter 0 and ${open06.length === 1 ? 'the first Complex Numbers chapter are' : `${open06.length} Complex Numbers chapters are`} open.` : 'Chapter 0 is open. Complex Numbers comes next.',
   open: 'Open now', chN: 'Chapter 0',
   time: `About ${ch0?.meta.estimated_minutes ?? 35} minutes. You need basic arithmetic.`, youWill: 'In this chapter you will',
   objectives: ch0?.meta.objectives.map((o) => o.replace(/^Explain/, 'explain').replace(/^Follow/, 'follow').replace(/^Distinguish/, 'distinguish').replace(/^Choose/, 'choose').replace('x^2 + 1 = 0', 'x² + 1 = 0')) ?? [],
   read: 'Read Chapter 0',
   howT: 'How every chapter is built',
   how: [['Intuition, then precise definitions', 'A real question first, then a picture or example, then the exact meaning of every symbol.'], ['Every step and every proof', 'Each step of a derivation comes with its reason; every theorem used is proved, with its full hypotheses.'], ['A toolkit of techniques', 'Every standard method for the topic: when to use it, why it works, and a worked example.'], ['A ladder of problems to the top', 'From warm-ups through board, JEE Main, JEE Advanced, olympiad and university problems to PhD qualifying level, wherever the topic reaches that far.'], ['Full solutions and a mastery check', 'Every problem is solved in full, with the common wrong approaches. A final mixed set shows whether you have mastered the topic.'], ['Quantum where it really applies', 'Connections to quantum science appear only where the mathematics genuinely leads there.']],
-  checkT: 'How we check', check: 'Before a chapter is published, every calculation is re-run in code and every source is opened and confirmed. Advanced chapters also need review by a mathematician. Each chapter shows its own check record at the end.',
+  checkT: 'How we check', check: 'Before a chapter is published, every calculation is re-run in code and every source is checked. Graduate-level proofs stay marked until a mathematician has reviewed them. Each chapter shows its own check record at the end.',
   roadT: 'The roadmap', roadP: 'Nine stages, from foundations to quantum mathematics and research preparation. They overlap; each chapter states exactly what it needs.',
   stages: course.stages.map((s) => [s.subjects, s.question]),
-  cnT: 'First subject: complex numbers', cnP: `Planned in nine parts, from why we need i to quantum interference. Chapter 1, "${firstNext.title}", comes next.`,
+  cnT: 'First subject: complex numbers', cnP: `Planned in nine parts, from why we need i to quantum interference. ${open06.length ? `${open06.length === 1 ? 'Chapter 1 is' : `Chapters 1 to ${open06.length} are`} open; ` : ''}Chapter ${firstNext.n}, "${firstNext.title}", comes next.`,
   part: 'Part', chs: (n) => `${n} chapters`, planned: 'Planned',
   domT: 'Where the course goes', domP: 'Eighteen planned areas of mathematics. A chapter appears here only after it passes its checks.',
   stageName: course.stages.map((s) => s.name),
@@ -88,8 +90,21 @@ const ch0Href = ch0 ? `/mathematics/${ch0.meta.slug}/` : '#';
 <section class="block tint">
   <div class="wrap">
     <div class="section-head"><h2>{T.cnT}</h2><p>{T.cnP}</p></div>
+    {open06.length > 0 && (
+      <ul class="mopen">
+        {open06.map((c) => (
+          <li><a class="glass" href={`/mathematics/${c.meta.slug}/`}>
+            <span class="status now">Open now</span>
+            <small>Chapter {c.meta.subject_chapter} of {c.meta.subject_total}</small>
+            <strong>{c.meta.title}</strong>
+            <span class="mopen-sub">{c.meta.subtitle}</span>
+            <span class="mopen-meta">About {c.meta.estimated_minutes} minutes to read, plus about {c.meta.practice_hours} hours of problems, from Class 10 up to PhD qualifying level.</span>
+          </a></li>
+        ))}
+      </ul>
+    )}
     <ol class="mparts">
-      {parts.map((p) => <li class="glass"><span>{T.part} {p.n}</span><strong>{p.name}</strong><small>{T.chs(p.count)} · {T.planned}</small></li>)}
+      {parts.map((p) => <li class="glass"><span>{T.part} {p.n}</span><strong>{p.name}</strong><small>{T.chs(p.count)} · {openIn(p.n) ? `${openIn(p.n)} open` : T.planned}</small></li>)}
     </ol>
   </div>
 </section>
@@ -133,6 +148,14 @@ const ch0Href = ch0 ? `/mathematics/${ch0.meta.slug}/` : '#';
   .mparts strong { font-family: var(--font-head); font-size: 1.02rem; }
   .mparts small { color: var(--text-3); font-size: 0.8rem; }
   .mdomains { gap: 8px; }
+  .mopen { list-style: none; padding: 0; margin: 0 0 22px; display: grid; gap: 14px; }
+  .mopen a { display: flex; flex-direction: column; gap: 6px; padding: 24px 26px; border-radius: var(--r-md); text-decoration: none; color: var(--text); border-color: rgba(230, 195, 106, 0.4); }
+  .mopen a:hover { border-color: var(--cyan); }
+  .mopen .status { align-self: flex-start; }
+  .mopen small { font-family: var(--font-mono); font-size: 0.78rem; color: var(--cyan); margin-top: 6px; }
+  .mopen strong { font-family: var(--font-head); font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
+  .mopen-sub { color: var(--text-2); }
+  .mopen-meta { font-size: 0.86rem; color: var(--text-3); }
   @media (max-width: 900px) {
     .mhero-grid, .mch0 { grid-template-columns: 1fr; }
     .mhero-art { order: -1; width: 200px; }

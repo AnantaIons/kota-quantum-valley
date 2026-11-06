@@ -69,8 +69,10 @@ export async function renderChapter(src) {
   // Reference list items get anchors; [F1]-style markers in the text link to them
   html = html.replace(/<li><strong>\[([A-Z]\d+)\]<\/strong>/g, '<li id="ref-$1"><strong>[$1]</strong>');
   html = html.replace(/(?<!<strong>)\[([A-Z]\d+)\](?!<\/strong>)/g, '<a class="cite" href="#ref-$1">[$1]</a>');
+  html = html.replace(/\[([A-Z]\d+(?:,\s*[A-Z]\d+)+)\]/g, (_, list) =>
+    '[' + list.split(/,\s*/).map((r) => `<a class="cite" href="#ref-${r}">${r}</a>`).join(', ') + ']');
   // "Answers" sections stay folded until the learner has tried the questions
-  html = html.replace(/(<h3 id="[^"]+">(Answers[^<]*)<\/h3>)([\s\S]*?)(?=<h2[\s>]|$)/g,
+  html = html.replace(/(<h3 id="[^"]+">(Answers[^<]*)<\/h3>)([\s\S]*?)(?=<h[23][\s>]|$)/g,
     (_, h, label, rest) => `<details class="answers"><summary>${label}</summary>${rest}</details>`);
   const errors = (html.match(/class="katex-error"[^>]*>[^<]*/g) || []).map((s) => s.replace(/.*>/, ''));
   return { data, html, headings, errors };

@@ -6,32 +6,41 @@ import { getChapters, course, ledgers } from '../../lib/maths.js';
 import 'katex/dist/katex.min.css';
 
 export async function getStaticPaths() {
-  const chapters = await getChapters();
-  return chapters.filter((c) => c.public).map((ch) => ({ params: { slug: ch.meta.slug }, props: { ch } }));
+  const chapters = (await getChapters()).filter((c) => c.public);
+  return chapters.map((ch, i) => ({ params: { slug: ch.meta.slug }, props: { ch, prev: chapters[i - 1], nextOpen: chapters[i + 1] } }));
 }
-const { ch } = Astro.props;
+const { ch, prev, nextOpen } = Astro.props;
 const m = ch.meta;
 const toc = ch.headings.filter((h) => h.depth === 2 && !/^references/i.test(h.text) && !/^from everyday/i.test(h.text));
 const levels = { L1: 'Class 10 onwards', L2: 'Class 11–12', L3: 'Undergraduate', L4: 'Graduate', L5: 'PhD preparation', L6: 'Research', Q: 'Quantum thread' };
 const label = { PASS: 'Passed', FIXED: 'Fixed', FAIL: 'Failed', 'NEEDS HUMAN REVIEW': 'Needs a person to check', 'NEEDS FOUNDER DECISION': 'Decision pending' };
 const tone = (r) => (r === 'PASS' || r === 'FIXED' ? 'ok' : r === 'FAIL' ? 'bad' : 'wait');
 const next = m.next && Object.values(ledgers).flatMap((l) => l.chapters).find((c) => c.id === m.next.id);
+const tierNames = { T3: 'JEE Advanced', T4: 'Olympiad', T5: 'University', T6: 'PhD qualifying', R: 'Research' };
+const chapterName = (meta) => (meta.subject ? `${meta.subject}, Chapter ${meta.subject_chapter}` : `Chapter ${meta.chapter_number}`);
+const nextName = (c) => (c.n ? `Complex numbers, Chapter ${c.n}` : '');
+const timeText = m.practice_hours ? `About ${m.estimated_minutes} minutes to read, plus about ${m.practice_hours} hours of problems` : `About ${m.estimated_minutes} minutes`;
+const levelText = m.ceiling ? `${levels[m.level]} up to ${tierNames[m.ceiling]}` : levels[m.level];
 // Paragraph labels from the source become styled notes
 const body = ch.html
   .replace(/<p><strong>What mathematics solved:<\/strong>/g, '<p class="mch-note solved"><strong>What mathematics solved:</strong>')
-  .replace(/<p><strong>Where the answer stops:<\/strong>/g, '<p class="mch-note limit"><strong>Where the answer stops:</strong>');
+  .replace(/<p><strong>Where the answer stops:<\/strong>/g, '<p class="mch-note limit"><strong>Where the answer stops:</strong>')
+  // Theorems, proofs and numbered problems get their own styles
+  .replace(/<p><strong>((?:Theorem|Proposition|Lemma|Cardano's formula)[^<]*)<\/strong>/g, '<p class="mth-thm"><strong>$1</strong>')
+  .replace(/<p><em>Proof\.<\/em>/g, '<p class="mth-proof"><em>Proof.</em>')
+  .replace(/<p><strong>((?:T\d|M)\d*\.?\d*)<\/strong>/g, '<p class="mprob"><strong>$1</strong>');
 const when = new Date(ch.review.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
-<Base title={`Chapter ${m.chapter_number}: ${m.short_title}`} description={m.subtitle} lang="en">
+<Base title={`${chapterName(m)}: ${m.short_title}`} description={m.subtitle} lang="en">
   <article class="article mch" data-pagefind-body>
     <div class="narrow">
       <header>
-        <p class="eyebrow"><a href="/mathematics/">Course 2: Mathematics for Quantum Science</a>, Chapter {m.chapter_number}</p>
+        <p class="eyebrow"><a href="/mathematics/">Course 2: Mathematics for Quantum Science</a>, {chapterName(m)}{m.subject_total ? ` of ${m.subject_total}` : ''}</p>
         <h1>{m.title}</h1>
         <p class="desc">{m.subtitle}</p>
         <dl class="mch-facts">
-          <div><dt>Time</dt><dd>About {m.estimated_minutes} minutes</dd></div>
-          <div><dt>Level</dt><dd>{levels[m.level]}</dd></div>
+          <div><dt>Time</dt><dd>{timeText}</dd></div>
+          <div><dt>Level</dt><dd>{levelText}</dd></div>
           <div><dt>You need</dt><dd>{m.prerequisite_note}</dd></div>
         </dl>
       </header>
@@ -54,8 +63,9 @@ const when = new Date(ch.review.date).toLocaleDateString('en-IN', { day: 'numeri
       </section>
 
       <nav class="lesson-nav mch-nav" aria-label="Course 2">
-        <a href="/mathematics/"><small>Back to</small><strong>Course 2 overview</strong></a>
-        {next && <div class="next soon"><small>Next: Chapter 1, in preparation</small><strong>{next.title}</strong></div>}
+        {prev ? <a href={`/mathematics/${prev.meta.slug}/`}><small>Previous: {chapterName(prev.meta)}</small><strong>{prev.meta.title}</strong></a> : <a href="/mathematics/"><small>Back to</small><strong>Course 2 overview</strong></a>}
+        {nextOpen ? <a class="next" href={`/mathematics/${nextOpen.meta.slug}/`}><small>Next: {chapterName(nextOpen.meta)}</small><strong>{nextOpen.meta.title}</strong></a>
+          : next && <div class="next soon"><small>Next: {nextName(next)}, in preparation</small><strong>{next.title}</strong></div>}
       </nav>
     </div>
   </article>
@@ -88,6 +98,10 @@ const when = new Date(ch.review.date).toLocaleDateString('en-IN', { day: 'numeri
   .mch-review li.ok .mch-chip { color: #8ff0c4; border-color: rgba(57, 230, 160, 0.45); }
   .mch-review li.wait .mch-chip { color: var(--cyan); border-color: rgba(230, 195, 106, 0.5); }
   .mch-review li.bad .mch-chip { color: #ff9cb8; border-color: rgba(255, 120, 160, 0.5); }
+  .mth-thm { padding: 14px 18px; margin: 1.4em 0 0.8em; border-left: 3px solid var(--cyan); background: rgba(230, 195, 106, 0.06); border-radius: 0 var(--r-md) var(--r-md) 0; }
+  .mth-proof { padding: 0 0 0 18px; border-left: 1px dashed var(--border-strong); }
+  .mprob { margin-top: 1.3em; }
+  .mprob > strong:first-child { font-family: var(--font-mono); color: var(--cyan); margin-right: 4px; }
   .mch-nav .soon { display: block; padding: 18px 20px; border: 1px dashed var(--border-strong); border-radius: var(--r-md); color: var(--text-2); text-align: right; }
   .mch-nav .soon small { display: block; font-size: 0.8rem; margin-bottom: 2px; font-family: var(--font-mono); }
   @media (max-width: 640px) { .mch-nav { grid-template-columns: 1fr; } .mch-nav .soon { text-align: left; } }

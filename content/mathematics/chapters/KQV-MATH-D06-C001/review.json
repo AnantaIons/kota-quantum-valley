@@ -1,0 +1,56 @@
+{
+  "id": "KQV-MATH-D06-C001",
+  "version": "0.1.0",
+  "date": "2026-11-06",
+  "reviewer": "Claude (AI). AI self-check is not a guarantee; no qualified human review yet.",
+  "checks": [
+    {
+      "check": "Computation pass: every number, identity and worked example recomputed with SymPy and NumPy",
+      "tool": "tests/check_c001.py",
+      "result": "PASS",
+      "detail": "71 of 71 checks passed, including the depressed-cubic formulas, Bombelli's cube roots and all three roots, the three-real-roots criterion (algebra plus 500 random cases), the trigonometric formula (300 random cases), the Galois group of x^3 - 3x + 1, the quaternion identities, and the mutually unbiased bases."
+    },
+    {
+      "check": "Proof pass A/B: hypotheses, domains and quantifiers in Theorems 1.1, 1.2, 1.6 and Problems T5.5, T6.1, T6.3, T6.4, T6.5",
+      "tool": "manual reconstruction",
+      "result": "PASS",
+      "detail": "Each implication rechecked; the product condition uv = -p/3 is stated wherever cube roots are chosen; the casus irreducibilis is stated only for cubics irreducible over Q, with x^3 - 7x + 6 as the boundary example."
+    },
+    {
+      "check": "Proof of the casus irreducibilis (Problem T6.2)",
+      "tool": "manual reconstruction",
+      "result": "NEEDS HUMAN REVIEW",
+      "detail": "Complete proof written (prime-step reduction, square root of the discriminant in the base field, irreducibility lemma for x^p - b, normality forcing a non-real cube root of unity). Graduate-level claim: needs a qualified mathematician before publication."
+    },
+    {
+      "check": "Quantum pass: mutually unbiased bases, inner products, measurement probabilities",
+      "tool": "numerical check and manual reading",
+      "result": "PASS",
+      "detail": "Complex inner product conjugates the first argument; all cross-basis squared overlaps equal 1/2; the claim is scoped to the standard qubit description, with the research question kept separate."
+    },
+    {
+      "check": "History sources H1, H2, H3",
+      "tool": "web fetch",
+      "result": "PASS",
+      "detail": "Ars Magna 1545, dal Ferro and Tartaglia, Cardano's unresolved irreducible case (H1); L'Algebra 1572, x^3 = 15x + 4, 'sophistic' quantities, Bombelli's result 4 (H2); sum 10 and product 40 with 5 ± sqrt(-15) (H3). Claims not found in these sources were removed."
+    },
+    {
+      "check": "Mathematics sources S2, S3, S4, Q1",
+      "tool": "web fetch",
+      "result": "PASS",
+      "detail": "S2 states the theorem and the condition q^2/4 + p^3/27 < 0; S4 states Frobenius's theorem, the 1878 paper (S3) and the dimensions 1, 2, 4, 8 remark; Q1 bibliographic data and abstract claim checked."
+    },
+    {
+      "check": "Source S1 (Cox, Galois Theory, sections 1.3 and 8.6)",
+      "tool": "secondary listing",
+      "result": "NEEDS HUMAN REVIEW",
+      "detail": "Section numbers come from the reference list of S2; the book itself was not available to check."
+    }
+  ],
+  "publication": {
+    "status": "published",
+    "approved_by": "founder",
+    "approved_at": "2026-11-06",
+    "note": "Published at the founder's request with the open review items shown on the page."
+  }
+}
