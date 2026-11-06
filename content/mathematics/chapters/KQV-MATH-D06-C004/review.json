@@ -1,0 +1,50 @@
+{
+  "id": "KQV-MATH-D06-C004",
+  "version": "0.1.0",
+  "date": "2026-11-06",
+  "reviewer": "Claude (AI). AI self-check is not a guarantee; no qualified human review yet.",
+  "checks": [
+    {
+      "check": "Computation pass",
+      "tool": "tests/check_c004.py",
+      "result": "PASS",
+      "detail": "99 of 99 checks. Pair arithmetic is implemented from Definition 4.1 alone; commutativity, associativity and distributivity symbolically; remainder modulo x^2+1 equals value at i on 60 random polynomials; Phi respects products on 60 random cases; the classification algebra (forced product, completed square, norms); Theorem 4.8 by exhaustive search for primes up to 31, -1 as a square for primes below 2000; the powers of 1 + x modulo 3; Kuratowski pairs exhaustively; f(J) on 30 random polynomials; every worked example, answer and mastery item; the numbers used in the diagrams."
+    },
+    {
+      "check": "Errors caught by the computation pass",
+      "tool": "tests/check_c004.py",
+      "result": "NONE",
+      "detail": "No chapter answer changed. One test was replaced because SymPy could not decide it symbolically (division by a possibly zero symbol)."
+    },
+    {
+      "check": "Proof pass A/B",
+      "tool": "manual reconstruction",
+      "result": "PASS",
+      "detail": "Theorems 4.1-4.8 and all T4/T5 answers rechecked step by step; well-definedness of quotient operations proved; associativity of the general product justified by the polynomial model; Fermat's little theorem proved where used."
+    },
+    {
+      "check": "Source pass",
+      "tool": "web",
+      "result": "PASS",
+      "detail": "[H1] bibliographic data (Transactions of the Royal Irish Academy 17 (1837), 293-422) and the description of complex numbers as algebraic couples, ordered pairs of real numbers, checked against the Trinity College Dublin edition. No other historical claims are made."
+    },
+    {
+      "check": "Plan change",
+      "tool": "manual",
+      "result": "NOTED",
+      "detail": "The approved plan listed tiers T1, T3, T5 for this chapter; T2 and T4 were added for depth at the founder's request for more depth. Ceiling unchanged (T5)."
+    },
+    {
+      "check": "Layout pass",
+      "tool": "Playwright at 1280, 390 and 360 px",
+      "result": "PASS",
+      "detail": "830 equations render with no errors; no equation or page is wider than a 360 px phone; the four figures were inspected and label collisions fixed."
+    }
+  ],
+  "changes": [],
+  "publication": {
+    "status": "not_published",
+    "approved_by": null,
+    "approved_at": null
+  }
+}

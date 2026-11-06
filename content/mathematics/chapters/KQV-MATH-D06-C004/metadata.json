@@ -1,0 +1,116 @@
+{
+  "id": "KQV-MATH-D06-C004",
+  "slug": "complex-numbers-4",
+  "chapter_number": 4,
+  "order": 4,
+  "subject": "Complex numbers",
+  "subject_chapter": 4,
+  "subject_total": 75,
+  "title": "Complex Numbers as Ordered Pairs",
+  "short_title": "Ordered pairs",
+  "subtitle": "Building the complex numbers out of real numbers alone, so that i is no longer an assumption, and three other ways to build them.",
+  "domain_id": "D06",
+  "volume": "Part 1: Foundations and ordered-pair construction",
+  "level": "L2",
+  "ceiling": "T5",
+  "tiers": [
+    "T1",
+    "T2",
+    "T3",
+    "T4",
+    "T5"
+  ],
+  "prerequisites": [
+    "KQV-MATH-D06-C003"
+  ],
+  "prerequisite_note": "Chapters 1 to 3; ordered pairs; dividing one polynomial by another. University sections introduce rings and quotients from scratch.",
+  "objectives": [
+    "Define the complex numbers as ordered pairs of real numbers and compute from the definition alone.",
+    "Prove that (0, 1)(0, 1) = (−1, 0) and recover the form a + bi.",
+    "Explain why the construction shows that complex arithmetic cannot lead to a contradiction.",
+    "Build ℂ as polynomials modulo x² + 1 and prove the two constructions are isomorphic.",
+    "Classify every two-dimensional real number system with an identity: complex, dual and split-complex numbers.",
+    "Construct complex numbers modulo a prime and decide when they form a field."
+  ],
+  "definitions": [
+    "complex numbers as ordered pairs",
+    "i = (0, 1)",
+    "congruence modulo x² + 1",
+    "quotient ring R[x]/(x² + 1)",
+    "isomorphism",
+    "dual numbers",
+    "split-complex numbers",
+    "zero divisor",
+    "norm",
+    "F_p[x]/(x² + 1)"
+  ],
+  "theorems": [
+    {
+      "id": "4.1",
+      "statement": "(0,1)(0,1) = (−1,0)",
+      "proof": "complete"
+    },
+    {
+      "id": "4.2",
+      "statement": "the pairs (a,0) form a copy of R",
+      "proof": "complete"
+    },
+    {
+      "id": "4.3",
+      "statement": "(a,b) = a + bi",
+      "proof": "complete"
+    },
+    {
+      "id": "4.4",
+      "statement": "commutativity, associativity, distributivity of pairs",
+      "proof": "complete"
+    },
+    {
+      "id": "4.5",
+      "statement": "R[x]/(x² + 1) is isomorphic to the pairs; evaluation at i has kernel (x² + 1)",
+      "proof": "complete"
+    },
+    {
+      "id": "4.6",
+      "statement": "classification of 2-dimensional real algebras with identity: C, dual, split-complex",
+      "proof": "complete"
+    },
+    {
+      "id": "4.7",
+      "statement": "any field containing R and a square root of −1 contains a copy of C",
+      "proof": "complete"
+    },
+    {
+      "id": "4.8",
+      "statement": "F_p[x]/(x² + 1) is a field iff p ≡ 3 mod 4 (p odd)",
+      "proof": "complete"
+    }
+  ],
+  "quantum_links": [],
+  "exercises": [
+    "T1.1-T1.8",
+    "T2.1-T2.6",
+    "T3.1-T3.7",
+    "T4.1-T4.6",
+    "T5.1-T5.7",
+    "M1-M8"
+  ],
+  "sources": [
+    "H1"
+  ],
+  "next": {
+    "id": "KQV-MATH-D06-C005",
+    "title": "Checking the Field Laws"
+  },
+  "prev": {
+    "id": "KQV-MATH-D06-C003"
+  },
+  "estimated_minutes": 110,
+  "practice_hours": 6,
+  "language": "en",
+  "status": "mathematically_checked",
+  "version": "0.1.0",
+  "reviewed_at": "2026-11-06",
+  "reviewer_type": "AI review with automated symbolic and numerical checks; no human mathematician review yet",
+  "unresolved_issues": []
+}
