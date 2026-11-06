@@ -106,7 +106,7 @@
       "quantum": null,
       "estimated_hours": 4.5,
       "flags": [],
-      "status": "proposed"
+      "status": "mathematically_checked"
     },
     {
       "id": "KQV-MATH-D06-C003",
@@ -133,7 +133,7 @@
       "quantum": null,
       "estimated_hours": 2.5,
       "flags": [],
-      "status": "proposed"
+      "status": "mathematically_checked"
     },
     {
       "id": "KQV-MATH-D06-C004",

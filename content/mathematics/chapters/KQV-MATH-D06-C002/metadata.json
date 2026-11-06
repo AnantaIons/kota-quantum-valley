@@ -1,0 +1,116 @@
+{
+  "id": "KQV-MATH-D06-C002",
+  "slug": "complex-numbers-2",
+  "chapter_number": 2,
+  "order": 2,
+  "subject": "Complex numbers",
+  "subject_chapter": 2,
+  "subject_total": 75,
+  "title": "Meeting i: Arithmetic with a + bi",
+  "short_title": "Arithmetic with a + bi",
+  "subtitle": "Adding, multiplying and raising to powers with i, from the first calculation to Gaussian integers and the two-squares theorem.",
+  "domain_id": "D06",
+  "volume": "Part 1: Foundations and ordered-pair construction",
+  "level": "L1",
+  "ceiling": "T5",
+  "tiers": [
+    "T1",
+    "T2",
+    "T3",
+    "T4",
+    "T5"
+  ],
+  "prerequisites": [
+    "KQV-MATH-D06-C001"
+  ],
+  "prerequisite_note": "Chapter 1, expanding brackets and the binomial theorem. University sections also use divisibility and remainders.",
+  "objectives": [
+    "Add, subtract and multiply in standard form without errors.",
+    "Reduce powers of i and sum runs of powers.",
+    "Compute powers of 1 + i and 1 + ω by finding a real power.",
+    "Turn binomial sums into real and imaginary parts, including the roots-of-unity filter.",
+    "Work with norms, units, primes and division with remainder in the Gaussian integers.",
+    "Prove the two-squares theorem for primes and find the squares.",
+    "Represent complex numbers as 2×2 real matrices and compute with Pauli matrices."
+  ],
+  "definitions": [
+    "standard form",
+    "real part",
+    "imaginary part",
+    "purely imaginary",
+    "conjugate (preview)",
+    "Gaussian integer",
+    "norm",
+    "unit",
+    "associate",
+    "Gaussian prime"
+  ],
+  "theorems": [
+    {
+      "id": "2.1",
+      "statement": "closure of standard form",
+      "proof": "complete"
+    },
+    {
+      "id": "2.2",
+      "statement": "the norm is multiplicative (two-square identity)",
+      "proof": "complete"
+    },
+    {
+      "id": "2.3",
+      "statement": "units of Z[i]",
+      "proof": "complete"
+    },
+    {
+      "id": "2.4",
+      "statement": "division with remainder in Z[i]",
+      "proof": "complete"
+    },
+    {
+      "id": "2.5",
+      "statement": "Euclid's lemma in Z[i]",
+      "proof": "complete"
+    },
+    {
+      "id": "2.6",
+      "statement": "Wilson's theorem",
+      "proof": "complete"
+    },
+    {
+      "id": "2.7",
+      "statement": "an odd prime is a sum of two squares iff p ≡ 1 mod 4",
+      "proof": "complete"
+    }
+  ],
+  "quantum_links": [
+    {
+      "section": "2.9",
+      "kind": "worked example",
+      "summary": "Pauli matrix products XY = iZ etc.; multiplying amplitudes by i leaves probabilities unchanged."
+    }
+  ],
+  "exercises": [
+    "T1.1-T1.8",
+    "T2.1-T2.8",
+    "T3.1-T3.8",
+    "T4.1-T4.7",
+    "T5.1-T5.8",
+    "M1-M10"
+  ],
+  "sources": [],
+  "next": {
+    "id": "KQV-MATH-D06-C003",
+    "title": "Real and Imaginary Parts, and Equality"
+  },
+  "prev": {
+    "id": "KQV-MATH-D06-C001"
+  },
+  "estimated_minutes": 110,
+  "practice_hours": 6,
+  "language": "en",
+  "status": "mathematically_checked",
+  "version": "0.1.0",
+  "reviewed_at": "2026-11-06",
+  "reviewer_type": "AI review with automated symbolic and numerical checks; no human mathematician review yet",
+  "unresolved_issues": []
+}

@@ -1,0 +1,87 @@
+{
+  "id": "KQV-MATH-D06-C003",
+  "slug": "complex-numbers-3",
+  "chapter_number": 3,
+  "order": 3,
+  "subject": "Complex numbers",
+  "subject_chapter": 3,
+  "subject_total": 75,
+  "title": "Real and Imaginary Parts, and Equality",
+  "short_title": "Real and imaginary parts",
+  "subtitle": "Why one complex equation is two real ones, and how to solve equations in z, its conjugate and its size, up to olympiad level.",
+  "domain_id": "D06",
+  "volume": "Part 1: Foundations and ordered-pair construction",
+  "level": "L1",
+  "ceiling": "T4",
+  "tiers": [
+    "T1",
+    "T2",
+    "T3",
+    "T4"
+  ],
+  "prerequisites": [
+    "KQV-MATH-D06-C001",
+    "KQV-MATH-D06-C002"
+  ],
+  "prerequisite_note": "Chapters 1 and 2; simultaneous linear equations; absolute value and square roots of real numbers.",
+  "objectives": [
+    "Prove that the standard form a + bi is unique.",
+    "Use Re and Im as functions, knowing which rules they obey and which they break.",
+    "Solve equations in z, its conjugate and |z| by comparing parts, without losing or inventing solutions.",
+    "Decide when az + b z̄ = c has one solution, none, or infinitely many.",
+    "Read an equation in z as curves in the plane: one real condition gives a curve, two give points.",
+    "Solve functional equations over the complex numbers by substitution, including the degenerate cases.",
+    "Express the qubit averages ⟨X⟩ and ⟨Y⟩ as the real and imaginary parts of one complex number."
+  ],
+  "definitions": [
+    "equality of complex numbers",
+    "real part",
+    "imaginary part",
+    "real-linear",
+    "conjugate (shorthand)",
+    "modulus (shorthand)",
+    "functional equation"
+  ],
+  "theorems": [
+    {
+      "id": "3.1",
+      "statement": "uniqueness of the standard form a + bi",
+      "proof": "complete"
+    },
+    {
+      "id": "3.2",
+      "statement": "az + b conj(z) = c is uniquely solvable iff |a| ≠ |b|",
+      "proof": "complete"
+    }
+  ],
+  "quantum_links": [
+    {
+      "section": "3.7",
+      "kind": "worked example",
+      "summary": "⟨X⟩ = 2 Re(conj(α)β) and ⟨Y⟩ = 2 Im(conj(α)β); a qubit has 2 real parameters after normalisation and global phase."
+    }
+  ],
+  "exercises": [
+    "T1.1-T1.8",
+    "T2.1-T2.8",
+    "T3.1-T3.8",
+    "T4.1-T4.6",
+    "M1-M8"
+  ],
+  "sources": [],
+  "next": {
+    "id": "KQV-MATH-D06-C004",
+    "title": "Complex Numbers as Ordered Pairs"
+  },
+  "prev": {
+    "id": "KQV-MATH-D06-C002"
+  },
+  "estimated_minutes": 100,
+  "practice_hours": 5,
+  "language": "en",
+  "status": "mathematically_checked",
+  "version": "0.1.0",
+  "reviewed_at": "2026-11-06",
+  "reviewer_type": "AI review with automated symbolic and numerical checks; no human mathematician review yet",
+  "unresolved_issues": []
+}

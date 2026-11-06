@@ -65,6 +65,7 @@ const body = ch.html
   .mch-body h3 { margin-top: 2em; }
   .mch-body .katex { font-size: 1.08em; }
   .mch-body .katex-display { overflow-x: auto; overflow-y: hidden; padding: 8px 2px; margin: 1.1em 0; }
+  @media (max-width: 380px) { .mch-body .katex-display > .katex { font-size: 0.96em; } }
   .mch-body blockquote { border-left-color: var(--cyan); background: rgba(230, 195, 106, 0.06); padding: 14px 18px; border-radius: 0 var(--r-md) var(--r-md) 0; }
   .mch-note { padding: 12px 16px; border-radius: var(--r-md); margin: 1.2em 0; }
   .mch-note.solved { background: rgba(41, 121, 255, 0.1); border: 1px solid rgba(41, 121, 255, 0.3); }
@@ -94,6 +95,7 @@ const body = ch.html
   .mdia .head.c1 { fill: #E6C36A; } .mdia .head.c2 { fill: #A98BFF; } .mdia .head.c3 { fill: #5E95FF; } .mdia .head.c4 { fill: #00D4FF; } .mdia .head.c5 { fill: #8f9bbd; }
   .mdia .head { stroke: none; }
   .mdia .dash { stroke-dasharray: 6 5; }
+  .mdia .hole { fill: #070c20; stroke-width: 2.2; }
   .mdia .p1 { fill: #E6C36A; } .mdia .p2 { fill: #A98BFF; } .mdia .p3 { fill: #5E95FF; } .mdia .p4 { fill: #00D4FF; } .mdia .p5 { fill: #dfe5f5; }
   .mdia rect.f1 { fill: rgba(230, 195, 106, 0.07); } .mdia rect.f2 { fill: rgba(137, 87, 255, 0.1); } .mdia rect.f3 { fill: rgba(41, 121, 255, 0.07); }
   .mdia rect.c1, .mdia rect.c2, .mdia rect.c3, .mdia rect.c4, .mdia rect.c5 { stroke-width: 1.4; }

@@ -1,0 +1,44 @@
+{
+  "id": "KQV-MATH-D06-C003",
+  "version": "0.1.0",
+  "date": "2026-11-06",
+  "reviewer": "Claude (AI). AI self-check is not a guarantee; no qualified human review yet.",
+  "checks": [
+    {
+      "check": "Computation pass",
+      "tool": "tests/check_c003.py",
+      "result": "PASS",
+      "detail": "90 of 90 checks. Every equation in z, conj(z) and |z| in the chapter is re-solved without the chapter's case analysis (z = x + iy and r = |z| as real unknowns, solved by SymPy) and the solution set compared with the text; Theorem 3.2's determinant symbolically and its explicit solution on 200 random cases; the T4.1 solution family at the exceptional points for symbolic c and at 50 other points; the T4.5 count table by direct solving at eight values of a; the Pauli averages symbolically; and the numbers used in the diagrams."
+    },
+    {
+      "check": "Errors caught by the computation pass",
+      "tool": "tests/check_c003.py",
+      "result": "FIXED",
+      "detail": "Two first-run failures were in the test script itself (comparing an expanded with an unexpanded expression), not in the chapter; no chapter answer changed."
+    },
+    {
+      "check": "Proof pass A/B",
+      "tool": "manual reconstruction",
+      "result": "PASS",
+      "detail": "Theorems 3.1 and 3.2 and all T3/T4 answers rechecked step by step; every squaring step records its sign condition and every candidate is checked; case splits are exhaustive."
+    },
+    {
+      "check": "Cross-reference pass",
+      "tool": "manual",
+      "result": "PASS",
+      "detail": "Chapter numbers 6, 12, 14, 15, 17, 64 and 67 match the approved plan; Course 1 Lesson 7 states that (⟨X⟩, ⟨Y⟩, ⟨Z⟩) is the Bloch vector."
+    },
+    {
+      "check": "Layout pass",
+      "tool": "Playwright at 1280, 390 and 360 px",
+      "result": "PASS",
+      "detail": "610 equations render with no errors; no equation or page is wider than a 360 px phone; the five figures were inspected and label collisions fixed."
+    }
+  ],
+  "changes": [],
+  "publication": {
+    "status": "not_published",
+    "approved_by": null,
+    "approved_at": null
+  }
+}

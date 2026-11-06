@@ -1,6 +1,6 @@
 {
   "id": "KQV-MATH-D06-C001",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "date": "2026-11-06",
   "reviewer": "Claude (AI). AI self-check is not a guarantee; no qualified human review yet.",
   "checks": [
@@ -54,6 +54,7 @@
     "note": "Published at the founder's request with the open review items shown on the page."
   },
   "changes": [
-    "0.1.1: diagrams added, generated from the exact functions by diagrams/make.py."
+    "0.1.1: diagrams added, generated from the exact functions by diagrams/make.py.",
+    "0.1.2: long equations split over several lines so that every equation fits a phone screen (checked at 360 px); the trigonometric root formula now names the angle θ₀. No mathematical content changed."
   ]
 }

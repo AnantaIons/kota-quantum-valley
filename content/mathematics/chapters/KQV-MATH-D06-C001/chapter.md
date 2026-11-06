@@ -10,7 +10,7 @@ level: L1
 ceiling: T6
 prerequisites: "Chapter 0; solving quadratic equations; reading a graph. The university and PhD-level parts also use polynomial division and the idea of a field, explained where they appear."
 estimated_minutes: 90
-version: 0.1.1
+version: 0.1.2
 status: mathematically_checked
 publication_status: published
 ---
@@ -138,7 +138,7 @@ $$
 Substitute $x=y-\dfrac{b}{3a}$. Expanding (Problem T5.1 asks you to do this in full) gives a *depressed cubic*, one with no $y^2$ term:
 
 $$
-y^3+py+q=0,\qquad p=\frac{3ac-b^2}{3a^2},\qquad q=\frac{2b^3-9abc+27a^2d}{27a^3}.
+\begin{gathered}y^3+py+q=0,\\ p=\frac{3ac-b^2}{3a^2},\qquad q=\frac{2b^3-9abc+27a^2d}{27a^3}.\end{gathered}
 $$
 
 Why it works: in $(y-k)^3=y^3-3ky^2+\dots$, the $y^2$ coefficient after substitution is $-3ak+b$, which vanishes exactly when $k=\tfrac{b}{3a}$. Cardano described this kind of transformation in the *Ars Magna* [H1]. From now on we work with $y^3+py+q=0$.
@@ -176,9 +176,8 @@ $$
 Two numbers with known sum $S$ and product $P$ are the roots of $t^2-St+P=0$. So $u^3$ and $v^3$ are the roots of the *resolvent quadratic*
 
 $$
-t^2+qt-\frac{p^3}{27}=0,
-\qquad
-t=-\frac{q}{2}\pm\sqrt{\frac{q^2}{4}+\frac{p^3}{27}}.
+\begin{gathered}t^2+qt-\frac{p^3}{27}=0,\\
+t=-\frac{q}{2}\pm\sqrt{\frac{q^2}{4}+\frac{p^3}{27}}.\end{gathered}
 $$
 
 Write $R=\dfrac{q^2}{4}+\dfrac{p^3}{27}$. This single number decides everything that follows.
@@ -186,8 +185,8 @@ Write $R=\dfrac{q^2}{4}+\dfrac{p^3}{27}$. This single number decides everything 
 **Cardano's formula.** *A root of $y^3+py+q=0$ is*
 
 $$
-y=\sqrt[3]{-\frac{q}{2}+\sqrt{R}}+\sqrt[3]{-\frac{q}{2}-\sqrt{R}},
-\qquad R=\frac{q^2}{4}+\frac{p^3}{27},
+\begin{gathered}y=\sqrt[3]{-\frac{q}{2}+\sqrt{R}}+\sqrt[3]{-\frac{q}{2}-\sqrt{R}},\\
+R=\frac{q^2}{4}+\frac{p^3}{27},\end{gathered}
 $$
 
 *where the two cube roots must be chosen with product $-p/3$.*
@@ -205,7 +204,7 @@ $$
 and
 
 $$
-x=\sqrt[3]{10+\sqrt{108}}+\sqrt[3]{10-\sqrt{108}}=\sqrt[3]{10+6\sqrt3}-\sqrt[3]{6\sqrt3-10}.
+\begin{aligned}x&=\sqrt[3]{10+\sqrt{108}}+\sqrt[3]{10-\sqrt{108}}\\&=\sqrt[3]{10+6\sqrt3}-\sqrt[3]{6\sqrt3-10}.\end{aligned}
 $$
 
 That looks nothing like a whole number, but $(1+\sqrt3)^3=1+3\sqrt3+9+3\sqrt3=10+6\sqrt3$ and $(\sqrt3-1)^3=3\sqrt3-9+3\sqrt3-1=6\sqrt3-10$. So
@@ -235,7 +234,7 @@ $$
 Bombelli's idea [H2] was to look for cube roots of the form $a+b\sqrt{-1}$ with whole numbers $a,b$, computing with $\sqrt{-1}$ under the usual rules and the single extra rule $(\sqrt{-1})^2=-1$. Writing $i$ for $\sqrt{-1}$, we have $\sqrt{-121}=11i$ and
 
 $$
-(2+i)^3=8+3\cdot4\cdot i+3\cdot2\cdot i^2+i^3=8+12i-6-i=2+11i.
+\begin{aligned}(2+i)^3&=8+3\cdot4\cdot i+3\cdot2\cdot i^2+i^3\\&=8+12i-6-i=2+11i.\end{aligned}
 $$
 
 Similarly $(2-i)^3=2-11i$. The product condition holds: $(2+i)(2-i)=4-i^2=5=-p/3$. Therefore
@@ -265,7 +264,7 @@ $$
 Since $f(-s)-f(s)=-\tfrac{4p}{3}s>0$, the condition $f(-s)>0>f(s)$ is equivalent to $f(-s)\,f(s)<0$. And
 
 $$
-f(-s)\,f(s)=q^2-\frac{4p^2}{9}s^2=q^2+\frac{4p^3}{27}=\frac{4p^3+27q^2}{27}.
+\begin{aligned}f(-s)\,f(s)&=q^2-\frac{4p^2}{9}s^2\\&=q^2+\frac{4p^3}{27}=\frac{4p^3+27q^2}{27}.\end{aligned}
 $$
 
 So three distinct real roots occur exactly when $4p^3+27q^2<0$. Finally $4p^3+27q^2=108R$, so this is the same as $R<0$. ∎
@@ -291,7 +290,7 @@ This is the precise sense in which complex numbers are **needed**: not as a conv
 There is a way to write the three roots without non-real numbers, using trigonometry (Problem T5.4). For $p<0$ and $R\le0$,
 
 $$
-y_k=2\sqrt{-\frac{p}{3}}\,\cos\!\left(\frac13\arccos\!\left(\frac{3q}{2p}\sqrt{-\frac{3}{p}}\right)-\frac{2\pi k}{3}\right),\qquad k=0,1,2.
+\begin{gathered}y_k=2\sqrt{-\frac{p}{3}}\,\cos\!\left(\theta_0-\frac{2\pi k}{3}\right),\ \ k=0,1,2,\\ \theta_0=\tfrac13\arccos\!\left(\frac{3q}{2p}\sqrt{-\frac{3}{p}}\right).\end{gathered}
 $$
 
 For $x^3-3x+1=0$ this gives the roots $2\cos\frac{2\pi}{9}$, $2\cos\frac{8\pi}{9}$ and $2\cos\frac{14\pi}{9}$. This does not contradict Theorem 1.3: $\cos$ and $\arccos$ are not radicals. The formula replaces "cube root of a non-real number" with "one third of an angle", and Chapter 22 shows these are the same operation viewed geometrically: multiplying complex numbers adds their angles, so taking a cube root divides an angle by three.
@@ -349,9 +348,9 @@ Two orthonormal bases $\{e_1,e_2\}$ and $\{f_1,f_2\}$ of a two-dimensional space
 **Proposition 1.6.** *(a) In the real plane $\mathbb{R}^2$, at most two orthonormal bases are pairwise mutually unbiased. (b) In $\mathbb{C}^2$ there are three:*
 
 $$
-Z:\ |0\rangle,\ |1\rangle;\qquad
-X:\ \tfrac{1}{\sqrt2}(|0\rangle\pm|1\rangle);\qquad
-Y:\ \tfrac{1}{\sqrt2}(|0\rangle\pm i|1\rangle).
+\begin{aligned}Z&:\ |0\rangle,\ |1\rangle;\\
+X&:\ \tfrac{1}{\sqrt2}(|0\rangle\pm|1\rangle);\\
+Y&:\ \tfrac{1}{\sqrt2}(|0\rangle\pm i|1\rangle).\end{aligned}
 $$
 
 *Proof.* (a) Every orthonormal basis of $\mathbb{R}^2$ consists, up to signs and order, of $(\cos\theta,\sin\theta)$ and $(-\sin\theta,\cos\theta)$ for some angle $\theta$. For bases with angles $\theta$ and $\varphi$, the squared inner products are $\cos^2(\theta-\varphi)$ and $\sin^2(\theta-\varphi)$, so the bases are unbiased exactly when $\cos^2(\theta-\varphi)=\tfrac12$, that is, when $\theta-\varphi$ is an odd multiple of $45^\circ$. If three bases with angles $\theta_1,\theta_2,\theta_3$ were pairwise unbiased, then $\theta_2-\theta_1$ and $\theta_3-\theta_1$ would both be odd multiples of $45^\circ$, so their difference $\theta_3-\theta_2$ would be an even multiple of $45^\circ$, a multiple of $90^\circ$. Then $\cos^2(\theta_3-\theta_2)\in\{0,1\}$, not $\tfrac12$: a contradiction.

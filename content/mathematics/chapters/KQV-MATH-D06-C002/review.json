@@ -1,0 +1,40 @@
+{
+  "id": "KQV-MATH-D06-C002",
+  "version": "0.1.0",
+  "date": "2026-11-06",
+  "reviewer": "Claude (AI). AI self-check is not a guarantee; no qualified human review yet.",
+  "checks": [
+    {
+      "check": "Computation pass",
+      "tool": "tests/check_c002.py",
+      "result": "PASS",
+      "detail": "100 of 100 checks: every worked example and answer, the binomial and roots-of-unity filter formulas (n up to 60), Euclidean division (400 random cases), Wilson's theorem and the two-squares theorem for primes below 2000, all omega identities, Pauli products, and the integer solutions of x^2 + y^2 = 2026 by exhaustive search."
+    },
+    {
+      "check": "Error caught by the computation pass",
+      "tool": "tests/check_c002.py",
+      "result": "FIXED",
+      "detail": "T4.2 stated (2+i)(3+2i)(4+i) = -9+32i; the correct product is 9+32i (the squares in the answer were already right)."
+    },
+    {
+      "check": "Proof pass A/B",
+      "tool": "manual reconstruction",
+      "result": "PASS",
+      "detail": "Theorems 2.1-2.7 and all T4/T5 answers rechecked step by step; division used only where justified by multiplication; unique factorisation stated as a consequence of Euclid's lemma with the argument named."
+    },
+    {
+      "check": "Quantum pass",
+      "tool": "manual and symbolic",
+      "result": "PASS",
+      "detail": "Pauli products and the unchanged norm under multiplication by i; global versus relative phase deferred to Chapter 64."
+    }
+  ],
+  "changes": [
+    "0.1.0 (before publication): long equations split over several lines so that every equation fits a phone screen (checked at 360 px). No mathematical content changed."
+  ],
+  "publication": {
+    "status": "not_published",
+    "approved_by": null,
+    "approved_at": null
+  }
+}
