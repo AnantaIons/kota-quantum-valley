@@ -1,0 +1,26 @@
+{
+  "id": "KQV-PROG-C000",
+  "version": "0.1.0",
+  "date": "2026-11-06",
+  "reviewer": "Claude (AI). AI self-check is not a guarantee; no human review yet.",
+  "checks": [
+    {
+      "check": "Code pass",
+      "tool": "tools/run_chapter.py",
+      "result": "PASS",
+      "detail": "16 of 16 checks: every program compiled with gcc 13.3 (-std=c17 -Wall -Wextra -Werror) or parsed by Python 3.13, and every terminal session on the page replayed with its output compared line by line (deliberately broken examples are compiled and their real error messages compared)."
+    },
+    {
+      "check": "Fact pass",
+      "tool": "manual",
+      "result": "PASS",
+      "detail": "Installation commands (apt build-essential, xcode-select, wsl --install, MSYS2 pacman package, Termux pkg) and the gcc 13 / gcc 14 difference for implicit declarations checked; error messages are real output."
+    }
+  ],
+  "changes": [],
+  "publication": {
+    "status": "not_published",
+    "approved_by": null,
+    "approved_at": null
+  }
+}

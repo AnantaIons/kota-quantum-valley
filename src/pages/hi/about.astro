@@ -1,21 +1,68 @@
 ---
 import Base from '../../layouts/Base.astro';
 import site from '../../data/site.json';
+import { getPosts } from '../../lib/posts.js';
+import { getChapters } from '../../lib/maths.js';
+import { getProgChapters } from '../../lib/programming.js';
+const lessons = getPosts('lesson', 'hi').length;
+const maths = (await getChapters()).filter((c) => c.public).length;
+const prog = (await getProgChapters()).filter((c) => c.public).length;
 ---
-<Base lang="hi" title="हमारे बारे में" description="Kota Quantum Valley के पीछे कौन है, और क्यों।">
-  <section class="article">
+<Base lang="hi" title="हमारे बारे में" description="Kota Quantum Valley के पीछे कौन है, यह पहल क्या बना रही है, और आप कैसे मदद कर सकते हैं।">
+  <section class="article about">
     <div class="narrow">
       <p class="eyebrow">हमारे बारे में</p>
       <h1>इसके पीछे कौन है?</h1>
       <p class="desc">Kota Quantum Valley की शुरुआत {site.founderName} ने की है, जो राजस्थान के एक एम्बेडेड फ़र्मवेयर इंजीनियर हैं।</p>
-      <p>दिन में मैं असली इलेक्ट्रॉनिक्स के लिए फ़र्मवेयर लिखता हूँ। क्वांटम कंप्यूटरों को ठीक इसी तरह की इंजीनियरिंग चाहिए: ऐसे इलेक्ट्रॉनिक्स और फ़र्मवेयर जो क्यूबिट को कंट्रोल करें। इसलिए मैं क्वांटम शून्य से सीख रहा हूँ और हर कदम यहाँ साझा कर रहा हूँ।</p>
-      <p>इस साइट के दो काम हैं:</p>
+
+      <h2>संस्थापक</h2>
+      <p>मैं {site.founderName} हूँ। मैंने गवर्नमेंट इंजीनियरिंग कॉलेज अजमेर से इलेक्ट्रॉनिक्स और कम्युनिकेशन इंजीनियरिंग (B.Tech) की पढ़ाई की, और साढ़े तीन साल से ज़्यादा समय से एम्बेडेड फ़र्मवेयर लिख रहा हूँ: वह सॉफ़्टवेयर जो इलेक्ट्रॉनिक डिवाइस के अंदर चलता है। मेरा काम स्मार्ट एनर्जी मीटरिंग फ़र्मवेयर के रिसर्च और डेवलपमेंट में है, C में, हार्डवेयर के बिल्कुल पास।</p>
+      <p>क्वांटम कंप्यूटरों को ठीक इसी तरह की इंजीनियरिंग चाहिए। हर qubit को क्लासिकल इलेक्ट्रॉनिक्स और फ़र्मवेयर नियंत्रित करते हैं, जो बिल्कुल सही समय पर pulse भेजते हैं और नतीजे पढ़ते हैं। इसलिए मैं क्वांटम कंप्यूटिंग शून्य से सीख रहा हूँ, और हर क़दम यहाँ साझा कर रहा हूँ, ताकि जो भी छात्र चाहे, वही रास्ता अपना सके।</p>
+
+      <h2>यह पहल</h2>
+      <p>Kota Quantum Valley के दो काम हैं।</p>
       <ol>
-        <li><strong>सबके सामने सीखना।</strong> अगर मैं सीख सकता हूँ, तो कोटा का कोई भी छात्र सीख सकता है। और नोट्स मुफ़्त हैं।</li>
-        <li><strong>कोटा का पक्ष रखना।</strong> कोटा को भारत के क्वांटम नक्शे पर होना चाहिए, सिर्फ़ ऐसी जगह नहीं जहाँ से लोग चले जाते हैं।</li>
+        <li><strong>मुफ़्त और गहराई से पढ़ाना।</strong> अगर मैं सीख सकता हूँ, तो कोटा का कोई भी छात्र सीख सकता है, और नोट्स मुफ़्त होने चाहिए। हर पाठ शून्य से शुरू होकर सबसे कठिन सवालों तक जाता है, आसान भाषा में, चलने वाले कोड और असली आउटपुट के साथ।</li>
+        <li><strong>कोटा का पक्ष रखना।</strong> कोटा को भारत के क्वांटम नक्शे पर होना चाहिए, सिर्फ़ ऐसी जगह नहीं जहाँ से छात्र चले जाते हैं। <a href="/hi/why-kota/">कोटा क्यों</a> पेज स्रोतों के साथ यह तर्क रखता है।</li>
       </ol>
+
+      <h2>अब तक हमने क्या बनाया है</h2>
+      <div class="grid about-grid">
+        <a class="card" href="/hi/lessons/"><h3>कोर्स 1: क्वांटम की बुनियाद</h3><p>bits से असली क्वांटम हार्डवेयर तक {lessons} पाठ, हिन्दी और English में, हर पाठ में कोड, अभ्यास और quiz।</p></a>
+        <a class="card" href="/mathematics/"><h3>कोर्स 2: गणित</h3><p>क्वांटम विज्ञान के लिए गणित, कक्षा 10 से PhD स्तर तक। {maths} अध्याय खुले, हर गणना कोड में जाँची गई। (English)</p></a>
+        <a class="card" href="/programming/"><h3>कोर्स 3: C और Python</h3><p>दो भाषाओं में साथ-साथ प्रोग्रामिंग, पहले प्रोग्राम से quantum simulator तक।{prog ? ` ${prog} अध्याय खुले।` : ''} (English)</p></a>
+        <a class="card" href="/hi/lab/"><h3>क्वांटम लैब</h3><p>ब्राउज़र में चार प्रयोग: Bloch sphere, superposition, Bell states और circuit builder।</p></a>
+        <a class="card" href="/hi/careers/"><h3>करियर और रिज़्यूमे मेकर</h3><p>कौन-सी क्वांटम नौकरियाँ हैं, उनके लिए क्या चाहिए, और एक मुफ़्त रिज़्यूमे मेकर।</p></a>
+        <a class="card" href={site.instagram} rel="noopener" target="_blank"><h3>इंस्टाग्राम</h3><p>क्वांटम में नए छात्रों के लिए विस्तृत carousels, {site.instagramHandle} पर।</p></a>
+      </div>
+
+      <h2>हम कैसे काम करते हैं</h2>
+      <ul>
+        <li><strong>मुफ़्त।</strong> कोई पेवॉल नहीं, कोई साइन-अप नहीं। पाठ Creative Commons लाइसेंस के तहत हैं; क्रेडिट देकर शेयर करें।</li>
+        <li><strong>ईमानदार।</strong> हम साफ़ बताते हैं कि क्या आज इस्तेमाल में है और क्या अभी research है, और अपने स्रोत देते हैं।</li>
+        <li><strong>जाँचा हुआ।</strong> पेज प्रकाशित होने से पहले हर गणना कोड में दोबारा चलाई जाती है और हर प्रोग्राम compile करके चलाया जाता है।</li>
+        <li><strong>आपकी भाषा में।</strong> कोर्स 1 और मुख्य पेज हिन्दी और English में हैं; कोर्स 2 और 3 अभी English में हैं।</li>
+      </ul>
+
+      <h2>आगे क्या</h2>
+      <p>कोर्स 2 और 3 अध्याय-दर-अध्याय बढ़ेंगे, कोर्स 4 असली IBM हार्डवेयर पर IBM Quantum Learning के सिलेबस को फ़ॉलो करेगा, और राजस्थान क्वांटम मिशन की बात इंस्टाग्राम पर जारी रहेगी।</p>
+
+      <h2>आप कैसे मदद कर सकते हैं</h2>
+      <ul>
+        <li>कोई पाठ ऐसे एक छात्र के साथ शेयर करें जिसे वह पसंद आए।</li>
+        <li>कोई ग़लती मिली, या कुछ साफ़ नहीं है? हमें बताएँ; हर सुधार कोर्स को बेहतर बनाता है।</li>
+        <li>कोटा के शिक्षक, संस्थान और कंपनियाँ: अगर आप क्वांटम स्किलिंग प्रोग्राम चलाना या छात्रों को इंटर्नशिप देना चाहते हैं, तो संपर्क करें।</li>
+      </ul>
+
       <h2>संपर्क करें</h2>
-      <p><a href={site.instagram} rel="noopener" target="_blank">इंस्टाग्राम {site.instagramHandle}</a> पर जुड़ें{site.email ? <>, या ईमेल करें <a href={`mailto:${site.email}`}>{site.email}</a></> : null}।</p>
+      <p><a href={site.instagram} rel="noopener" target="_blank">इंस्टाग्राम {site.instagramHandle}</a> पर हमें फ़ॉलो करें{site.instagramDM ? <>, या <a href={site.instagramDM} rel="noopener" target="_blank">हमें मैसेज भेजें</a></> : null}{site.email ? <>, या <a href={`mailto:${site.email}`}>{site.email}</a> पर ईमेल करें</> : null}।</p>
     </div>
   </section>
 </Base>
+
+<style is:global>
+  .about-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .about-grid a.card { text-decoration: none; color: inherit; }
+  .about-grid a.card:hover h3 { color: var(--cyan); }
+  .about-grid .card p { margin: 6px 0 0; }
+</style>

@@ -1,0 +1,71 @@
+/* Chapter pages of Courses 2 and 3: theorems, proofs, problems, answers, figures. */
+.mch-facts { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 22px 0 0; }
+.mch-facts div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.mch-facts dt { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-3); }
+.mch-facts dd { margin: 0; color: var(--text); font-size: 0.95rem; }
+.mch-body h3 { margin-top: 2em; }
+.mch-body .katex { font-size: 1.08em; }
+.mch-body .katex-display { overflow-x: auto; overflow-y: hidden; padding: 8px 2px; margin: 1.1em 0; }
+@media (max-width: 380px) { .mch-body .katex-display > .katex { font-size: 0.96em; } }
+.mch-body blockquote { border-left-color: var(--cyan); background: rgba(230, 195, 106, 0.06); padding: 14px 18px; border-radius: 0 var(--r-md) var(--r-md) 0; }
+.mch-note { padding: 12px 16px; border-radius: var(--r-md); margin: 1.2em 0; }
+.mch-note.solved { background: rgba(41, 121, 255, 0.1); border: 1px solid rgba(41, 121, 255, 0.3); }
+.mch-note.limit { background: rgba(137, 87, 255, 0.08); border: 1px solid rgba(137, 87, 255, 0.28); }
+.mch-note strong { color: var(--text); }
+.mch-body a.cite { font-family: var(--font-mono); font-size: 0.82em; text-decoration: none; color: var(--cobalt-text); white-space: nowrap; }
+.mch-body a.cite:hover { text-decoration: underline; }
+.mch-body li[id^='ref-']:target { background: rgba(230, 195, 106, 0.1); border-radius: 6px; }
+.answers { margin: 1.4em 0 2em; border: 1px solid var(--border-strong); border-radius: var(--r-md); padding: 0 20px; background: rgba(137, 87, 255, 0.06); }
+.answers > summary { cursor: pointer; padding: 14px 0; font-weight: 600; color: var(--cyan); list-style-position: inside; }
+.answers[open] > summary { border-bottom: 1px solid var(--border); margin-bottom: 14px; }
+.mdia { margin: 1.8em auto; max-width: 560px; }
+.mdia-art { padding: 14px 10px 8px; border: 1px solid var(--border); border-radius: var(--r-md); background: radial-gradient(120% 90% at 100% 0%, rgba(137, 87, 255, 0.08), transparent 60%), rgba(7, 12, 32, 0.6); }
+.mdia svg { display: block; width: 100%; height: auto; overflow: visible; }
+.mdia figcaption { margin-top: 10px; font-size: 0.88rem; color: var(--text-2); line-height: 1.5; }
+.mdia figcaption strong { color: var(--text); font-weight: 600; }
+.mdia .grid { stroke: rgba(94, 149, 255, 0.13); stroke-width: 1; }
+.mdia .ax { stroke: #8f9bbd; stroke-width: 1.3; fill: none; }
+.mdia .head.ax { fill: #8f9bbd; stroke: none; }
+.mdia .tick { fill: #8f9bbd; font: 11px var(--font-mono); }
+.mdia .lab { fill: #dfe5f5; font: 13px var(--font-body); }
+.mdia .lab.m { font-family: KaTeX_Math, 'Times New Roman', serif; font-style: italic; font-size: 15px; }
+.mdia .lab.small { font-size: 11.5px; }
+.mdia .lab.big { font: 700 24px var(--font-head); }
+.mdia .c1, .mdia .c2, .mdia .c3, .mdia .c4, .mdia .c5 { fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.mdia .c1 { stroke: #E6C36A; } .mdia .c2 { stroke: #A98BFF; } .mdia .c3 { stroke: #5E95FF; } .mdia .c4 { stroke: #00D4FF; } .mdia .c5 { stroke: #8f9bbd; stroke-width: 1.5; }
+.mdia .head.c1 { fill: #E6C36A; } .mdia .head.c2 { fill: #A98BFF; } .mdia .head.c3 { fill: #5E95FF; } .mdia .head.c4 { fill: #00D4FF; } .mdia .head.c5 { fill: #8f9bbd; }
+.mdia .head { stroke: none; }
+.mdia .dash { stroke-dasharray: 6 5; }
+.mdia .hole { fill: #070c20; stroke-width: 2.2; }
+.mdia .p1 { fill: #E6C36A; } .mdia .p2 { fill: #A98BFF; } .mdia .p3 { fill: #5E95FF; } .mdia .p4 { fill: #00D4FF; } .mdia .p5 { fill: #dfe5f5; }
+.mdia rect.f1 { fill: rgba(230, 195, 106, 0.07); } .mdia rect.f2 { fill: rgba(137, 87, 255, 0.1); } .mdia rect.f3 { fill: rgba(41, 121, 255, 0.07); }
+.mdia rect.c1, .mdia rect.c2, .mdia rect.c3, .mdia rect.c4, .mdia rect.c5 { stroke-width: 1.4; }
+.mdia .f1.poly { fill: rgba(230, 195, 106, 0.14); stroke: none; } .mdia .f2.poly { fill: rgba(137, 87, 255, 0.16); stroke: none; } .mdia .f3.poly { fill: rgba(41, 121, 255, 0.16); stroke: none; }
+.mdia .t1 { fill: #E6C36A; } .mdia .t2 { fill: #BFA3FF; } .mdia .t3 { fill: #7AAEFF; } .mdia .t4 { fill: #6fe3ff; } .mdia .t5 { fill: #8f9bbd; }
+@media (max-width: 560px) { .mdia-art { padding: 10px 4px 4px; } }
+.mth-thm { padding: 14px 18px; margin: 1.4em 0 0.8em; border-left: 3px solid var(--cyan); background: rgba(230, 195, 106, 0.06); border-radius: 0 var(--r-md) var(--r-md) 0; }
+.mth-proof { padding: 0 0 0 18px; border-left: 1px dashed var(--border-strong); }
+.mprob { margin-top: 1.3em; }
+.mprob > strong:first-child { font-family: var(--font-mono); color: var(--cyan); margin-right: 4px; }
+.mch-nav .soon { display: block; padding: 18px 20px; border: 1px dashed var(--border-strong); border-radius: var(--r-md); color: var(--text-2); text-align: right; }
+.mch-nav .soon small { display: block; font-size: 0.8rem; margin-bottom: 2px; font-family: var(--font-mono); }
+@media (max-width: 640px) { .mch-nav { grid-template-columns: 1fr; } .mch-nav .soon { text-align: left; } }
+
+/* Course 3: labelled code blocks, and C beside Python */
+.pblock { margin: 1.2em 0; min-width: 0; }
+.pblock figcaption { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-3); margin: 0 0 6px 2px; }
+.pblock-c figcaption { color: #7AAEFF; }
+.pblock-python figcaption { color: #E6C36A; }
+.pblock-output figcaption, .pblock-bash figcaption { color: #BFA3FF; }
+.pcode { margin: 0; font-size: 0.84rem; line-height: 1.6; padding: 14px 16px; background: #030510 !important; }
+.pout { background: rgba(137, 87, 255, 0.07) !important; border-style: dashed; color: #dfe5f5; }
+.pcon { color: #b9c2dc; }
+.pc-cmd { color: #f2f4fb; }
+.pc-dollar { color: #BFA3FF; user-select: none; }
+.pc-skip { color: #6f7896; }
+.pblock-console figcaption { color: #BFA3FF; }
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; margin: 1.2em 0; }
+.pair .pblock { margin: 0; display: flex; flex-direction: column; }
+.pair .pcode { flex: 1; }
+.prog .pair { width: min(1080px, calc(100vw - 48px)); position: relative; left: 50%; transform: translateX(-50%); }
+@media (max-width: 860px) { .pair { grid-template-columns: minmax(0, 1fr); } }

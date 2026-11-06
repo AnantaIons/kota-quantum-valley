@@ -1,0 +1,50 @@
+---
+// A Course 3 chapter. The text comes from content/programming/chapters/<id>/chapter.md.
+import Base from '../../layouts/Base.astro';
+import { getProgChapters, plan, course } from '../../lib/programming.js';
+import 'katex/dist/katex.min.css';
+import '../../styles/chapter.css';
+
+export async function getStaticPaths() {
+  const chapters = (await getProgChapters()).filter((c) => c.public);
+  return chapters.map((ch, i) => ({ params: { slug: ch.meta.slug }, props: { ch, prev: chapters[i - 1], nextOpen: chapters[i + 1] } }));
+}
+const { ch, prev, nextOpen } = Astro.props;
+const m = ch.meta;
+const toc = ch.headings.filter((h) => h.depth === 2 && !/^references/i.test(h.text));
+const next = plan.chapters.find((c) => c.n === m.chapter_number + 1);
+const tierShort = { P1: 'first steps', P2: 'school and college exams', P3: 'interviews and contests', P4: 'olympiad', P5: 'systems and professional' };
+const levelText = `${m.level_text} up to ${tierShort[m.ceiling] ?? m.ceiling} level`;
+const timeText = m.practice_hours ? `About ${m.estimated_minutes} minutes to read, plus about ${m.practice_hours} hours of practice` : `About ${m.estimated_minutes} minutes`;
+const body = ch.html
+  .replace(/<p><strong>((?:Definition|Rule|Theorem)[^<]*)<\/strong>/g, '<p class="mth-thm"><strong>$1</strong>')
+  .replace(/<p><strong>((?:P\d|M)\d*\.?\d*)<\/strong>/g, '<p class="mprob"><strong>$1</strong>');
+---
+<Base title={`Course 3, Chapter ${m.chapter_number}: ${m.short_title}`} description={m.subtitle} lang="en">
+  <article class="article mch prog" data-pagefind-body>
+    <div class="narrow">
+      <header>
+        <p class="eyebrow"><a href="/programming/">{course.course}</a>, Chapter {m.chapter_number} of {plan.chapters.length - 1}</p>
+        <h1>{m.title}</h1>
+        <p class="desc">{m.subtitle}</p>
+        <dl class="mch-facts">
+          <div><dt>Time</dt><dd>{timeText}</dd></div>
+          <div><dt>Level</dt><dd>{levelText}</dd></div>
+          <div><dt>You need</dt><dd>{m.prerequisite_note}</dd></div>
+        </dl>
+      </header>
+
+      <nav class="lesson-toc glass" aria-label="In this chapter">
+        <strong>In this chapter</strong>
+        <ol>{toc.map((h) => <li><a href={`#${h.id}`}>{h.text.replace(/^\d+(\.\d+)*\s*·\s*/, '')}</a></li>)}</ol>
+      </nav>
+
+      <div class="mch-body"><Fragment set:html={body} /></div>
+      <nav class="lesson-nav mch-nav" aria-label="Course 3">
+        {prev ? <a href={`/programming/${prev.meta.slug}/`}><small>Previous: Chapter {prev.meta.chapter_number}</small><strong>{prev.meta.title}</strong></a> : <a href="/programming/"><small>Back to</small><strong>Course 3 overview</strong></a>}
+        {nextOpen ? <a class="next" href={`/programming/${nextOpen.meta.slug}/`}><small>Next: Chapter {nextOpen.meta.chapter_number}</small><strong>{nextOpen.meta.title}</strong></a>
+          : next && <div class="next soon"><small>Next: Chapter {next.n}, in preparation</small><strong>{next.title}</strong></div>}
+      </nav>
+    </div>
+  </article>
+</Base>

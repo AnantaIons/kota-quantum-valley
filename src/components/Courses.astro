@@ -1,0 +1,94 @@
+---
+// The Courses page: every course on one page, so the "Courses" menu item lets visitors choose.
+import Solid from './Solid.astro';
+import { courses, statusText } from '../data/courses.js';
+import { getPosts } from '../lib/posts.js';
+import { syllabus, course1 } from '../data/course.js';
+import { getChapters } from '../lib/maths.js';
+import { getProgChapters } from '../lib/programming.js';
+const { lang = 'en' } = Astro.props;
+const hi = lang === 'hi';
+const S = statusText[lang];
+const lessons = getPosts('lesson', lang).length;
+const mathsOpen = (await getChapters()).filter((c) => c.public).length;
+const progOpen = (await getProgChapters()).filter((c) => c.public).length;
+const live = {
+  1: hi ? `${syllabus.length} पाठ, ${course1.parts.length} भाग, ${lessons} प्रकाशित` : `${syllabus.length} lessons in ${course1.parts.length} parts, ${lessons} published`,
+  2: hi ? `${mathsOpen} अध्याय खुले` : `${mathsOpen} chapters open`,
+  3: progOpen ? (hi ? `${progOpen} अध्याय खुले` : `${progOpen} chapters open`) : (hi ? 'योजना तैयार, पहले अध्याय आ रहे हैं' : 'Plan ready, first chapters coming'),
+  4: hi ? 'कोर्स 3 के बाद' : 'Starts after Course 3',
+};
+const status = (c) => (c.n === 3 && progOpen ? 'started' : c.status);
+const T = hi ? {
+  eyebrow: 'सभी कोर्स, मुफ़्त', title: 'एक कोर्स चुनें',
+  lead: 'हर कोर्स शून्य से शुरू होता है और एक-एक क़दम आगे बढ़ता है। कोर्स 1 क्वांटम कंप्यूटिंग की पूरी तस्वीर देता है; कोर्स 2 और 3 उसके नीचे की नींव, गणित और प्रोग्रामिंग, गहराई से सिखाते हैं।',
+  order: 'किस क्रम में पढ़ें?', orderP: 'कोर्स 1 से शुरू करें। साथ-साथ कोर्स 2 (गणित) और कोर्स 3 (प्रोग्रामिंग) अपनी रफ़्तार से चलाएँ। कोर्स 4 असली IBM हार्डवेयर पर इन सबको जोड़ता है।',
+  level: 'स्तर', language: 'भाषा', soon: 'जल्द',
+} : {
+  eyebrow: 'All courses, free', title: 'Choose a course',
+  lead: 'Every course starts from zero and climbs one step at a time. Course 1 gives the whole picture of quantum computing; Courses 2 and 3 build the foundations underneath it, mathematics and programming, in depth.',
+  order: 'In what order?', orderP: 'Start with Course 1. Run Course 2 (mathematics) and Course 3 (programming) alongside it at your own pace. Course 4 brings everything together on real IBM hardware.',
+  level: 'Level', language: 'Language', soon: 'Soon',
+};
+---
+<section class="article courses-page">
+  <div class="wrap">
+    <p class="eyebrow">{T.eyebrow}</p>
+    <h1>{T.title}</h1>
+    <p class="desc" style="max-width: 64ch">{T.lead}</p>
+
+    <ol class="clist">
+      {courses.map((c) => {
+        const t = c[lang];
+        const href = hi ? c.hiHref : c.href;
+        const st = status(c);
+        return (
+          <li class={`citem glass${href ? '' : ' citem-soon'}`}>
+            <div class="v3host citem-art" data-3d={c.art} aria-hidden="true"><Solid shape={c.shape[0]} tone={c.shape[1]} size={110} /></div>
+            <div class="citem-copy">
+              <span class={`status ${st === 'prep' ? 'research' : 'now'}`}>{S[st]}</span>
+              <h2>{href ? <a href={href}>{t.name}</a> : t.name}</h2>
+              <p>{t.text}</p>
+              <ul class="chips">{t.chips.map((x) => <li>{x}</li>)}</ul>
+              <dl class="citem-facts">
+                <div><dt>{T.level}</dt><dd>{t.level}</dd></div>
+                <div><dt>{T.language}</dt><dd>{t.lang}</dd></div>
+              </dl>
+              <p class="citem-live">{live[c.n]}</p>
+              {href && t.cta ? <a class="btn btn-primary" href={href}>{t.cta}</a> : <span class="btn btn-ghost" aria-disabled="true">{T.soon}</span>}
+            </div>
+          </li>
+        );
+      })}
+    </ol>
+
+    <div class="callout" style="margin-top: 28px">
+      <strong>{T.order}</strong> {T.orderP}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { boot3d } from '../scripts/three/boot.js';
+  boot3d();
+</script>
+
+<style is:global>
+  .clist { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 18px; }
+  .citem { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 26px; padding: 26px 28px; border-radius: var(--r-lg, 24px); align-items: start; }
+  .citem-art { width: 150px; aspect-ratio: 1; --bleed: 14%; }
+  .citem-art > svg { width: 100%; height: 100%; }
+  .citem h2 { margin: 12px 0 8px; font-size: clamp(1.35rem, 2.6vw, 1.75rem); }
+  .citem h2 a { color: inherit; text-decoration: none; }
+  .citem h2 a:hover { color: var(--cyan); }
+  .citem-copy > p { color: var(--text-2); margin: 0 0 14px; max-width: 70ch; }
+  .citem-facts { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 14px 0 6px; }
+  .citem-facts dt { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-3); }
+  .citem-facts dd { margin: 2px 0 0; font-size: 0.92rem; }
+  .citem-live { font-family: var(--font-mono); font-size: 0.8rem; color: var(--cobalt-text); margin: 6px 0 16px; }
+  .citem-soon { opacity: 0.86; }
+  @media (max-width: 700px) {
+    .citem { grid-template-columns: 1fr; gap: 10px; padding: 22px; }
+    .citem-art { width: 96px; }
+  }
+</style>

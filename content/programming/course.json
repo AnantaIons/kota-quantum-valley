@@ -1,0 +1,94 @@
+{
+  "course": "Course 3: Programming in C and Python",
+  "short": "Course 3",
+  "slug": "programming",
+  "audience": "Complete beginners (Class 9 onwards) through college students and working engineers.",
+  "approach": "Every topic is taught in C and Python side by side. C shows what the machine really does; Python shows how to get real work done quickly. Every program on every page is compiled or run by the test suite before publication, and its printed output is checked.",
+  "languages": [
+    "en"
+  ],
+  "language_note": "English only for now.",
+  "statuses": [
+    "proposed",
+    "outlined",
+    "drafted",
+    "code_checked",
+    "reviewed",
+    "approved",
+    "published",
+    "revised"
+  ],
+  "public_statuses": [
+    "code_checked",
+    "reviewed",
+    "approved",
+    "published",
+    "revised"
+  ],
+  "tiers": {
+    "P1": "First steps: check the idea with short, direct exercises",
+    "P2": "School and college exams: Class 11-12 Computer Science and first-year programming courses",
+    "P3": "Interviews and contests: coding-interview and contest problems",
+    "P4": "Olympiad: Indian Computing Olympiad and IOI / ICPC style",
+    "P5": "Systems and professional: university systems courses and industry practice"
+  },
+  "depth_standard": [
+    "Every chapter shows each idea in C and in Python, and says exactly where the two languages differ and why.",
+    "Every program is complete, compiles without warnings (gcc -Wall -Wextra) or runs under Python 3, and its output on the page is the real output.",
+    "Every chapter explains what happens underneath: memory, the compiler or interpreter, the operating system, wherever it matters.",
+    "A problem ladder with full solutions climbs through the tiers the topic supports.",
+    "Quantum connections appear only where the programming genuinely leads there."
+  ],
+  "parts": [
+    {
+      "n": 0,
+      "name": "Start here",
+      "question": "Why two languages, and how do I set up?"
+    },
+    {
+      "n": 1,
+      "name": "How a program runs",
+      "question": "What happens between typing code and seeing output?"
+    },
+    {
+      "n": 2,
+      "name": "Control flow and functions",
+      "question": "How does a program decide, repeat and organise itself?"
+    },
+    {
+      "n": 3,
+      "name": "Data and memory",
+      "question": "Where does data live, and who owns it?"
+    },
+    {
+      "n": 4,
+      "name": "Algorithms and data structures",
+      "question": "How do we solve problems fast and prove it?"
+    },
+    {
+      "n": 5,
+      "name": "Building real software",
+      "question": "How do professionals build, test and share code?"
+    },
+    {
+      "n": 6,
+      "name": "Numerical and scientific computing",
+      "question": "How do we compute with real numbers, vectors and matrices correctly?"
+    },
+    {
+      "n": 7,
+      "name": "Systems and performance",
+      "question": "How does code meet the hardware, and how do we make it fast?"
+    },
+    {
+      "n": 8,
+      "name": "Programming for quantum",
+      "question": "How do we simulate and control qubits in code?"
+    },
+    {
+      "n": 9,
+      "name": "Capstone and beyond",
+      "question": "Can you build something real, end to end?"
+    }
+  ]
+}

@@ -14,7 +14,9 @@ const lang = Astro.props.lang ?? langOf(Astro.url.pathname);
 const L = t[lang];
 const nav = L.nav.map(([href, label]) => ({ href, label }));
 const lessonsHref = lang === 'hi' ? '/hi/lessons/' : '/lessons/';
-const isCurrent = (href) => path === href.replace(/\/$/, '') || (href === lessonsHref && (path.startsWith('/posts/lesson') || path.startsWith('/hi/lessons/')));
+const coursesHref = lang === 'hi' ? '/hi/courses/' : '/courses/';
+const inCourse = /^\/(hi\/)?(lessons|courses)(\/|$)|^\/(mathematics|programming)(\/|$)|^\/hi\/lessons\/|^\/posts\/lesson/.test(path);
+const isCurrent = (href) => path === href.replace(/\/$/, '') || (href === coursesHref && inCourse);
 const alt = altPath(Astro.url.pathname);
 const isHome = path === '/' || path === '/hi';
 const announcement = isHome ? '' : (lang === 'hi' ? site.announcementHindi : site.announcement);
@@ -51,7 +53,7 @@ const year = new Date().getFullYear();
   </head>
   <body>
     {announcement && (
-      <div class="announce"><a href={lessonsHref}><span>{L.newLabel}</span>{announcement.replace(/^(New|नया):\s*/, '')}</a></div>
+      <div class="announce"><a href={(lang === 'hi' ? site.announcementHrefHindi : site.announcementHref) ?? lessonsHref}><span>{L.newLabel}</span>{announcement.replace(/^(New|नया):\s*/, '')}</a></div>
     )}
     <header class="site-header">
       <div class="wrap">
@@ -101,8 +103,10 @@ const year = new Date().getFullYear();
             <h4>{L.footLearn}</h4>
             <ul>
               <li><a href={L.startHref}>{L.roadmap}</a></li>
+              <li><a href={coursesHref}>{L.allCourses}</a></li>
               <li><a href={lessonsHref}>{L.allLessons}</a></li>
               <li><a href="/mathematics/">{L.maths}</a></li>
+              <li><a href="/programming/">{L.prog}</a></li>
               <li><a href={`${pre}/explainers/`}>{L.explainers}</a></li>
               <li><a href={`${pre}/glossary/`}>{L.glossary}</a></li>
               <li><a href={`${pre}/learn/`}>{L.learningLog}</a></li>

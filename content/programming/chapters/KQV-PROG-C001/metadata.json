@@ -1,0 +1,43 @@
+{
+  "course": "Course 3: Programming in C and Python",
+  "language": "en",
+  "version": "0.1.0",
+  "status": "code_checked",
+  "reviewed_at": "2026-11-06",
+  "reviewer_type": "AI review with every program compiled and run by tools/run_chapter.py; no human review yet",
+  "unresolved_issues": [],
+  "id": "KQV-PROG-C001",
+  "slug": "first-program",
+  "chapter_number": 1,
+  "part": 1,
+  "title": "Your First Program, and What Really Happens When It Runs",
+  "short_title": "Your first program",
+  "subtitle": "One line of text, followed from your editor through the compiler or the interpreter, down to the single request both programs make to the operating system.",
+  "level_text": "Complete beginner",
+  "ceiling": "P5",
+  "tiers": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5"
+  ],
+  "estimated_minutes": 75,
+  "practice_hours": 4,
+  "prerequisite_note": "Chapter 0's setup: gcc (or clang) and Python 3 working in a terminal.",
+  "objectives": [
+    "Write, compile and run programs that print text and numbers in both languages.",
+    "Tell compile-time errors from run-time errors in each language.",
+    "Run each stage of a C build and inspect its output.",
+    "Read Python bytecode for a small program.",
+    "Use exit statuses and command-line arguments.",
+    "Explain the speed difference between the two languages on a loop."
+  ],
+  "prev": {
+    "id": "KQV-PROG-C000"
+  },
+  "next": {
+    "id": "KQV-PROG-C002",
+    "title": "Bits, Bytes and Number Systems"
+  }
+}

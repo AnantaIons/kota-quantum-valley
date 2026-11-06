@@ -6,7 +6,9 @@
   "instagramHandle": "@kota_quantum_valley",
   "linkedin": "",
   "youtube": "",
-  "announcement": "New: Course 1 is complete. 50 in-depth lessons, from bits to real hardware, free in English and Hindi.",
-  "announcementHindi": "नया: कोर्स 1 पूरा हुआ। 50 विस्तृत पाठ, bits से असली हार्डवेयर तक, मुफ़्त, हिन्दी और अंग्रेज़ी में।",
-  "instagramDM": "https://ig.me/m/kota_quantum_valley"
+  "announcement": "New: Course 3 has started. Programming in C and Python, side by side, from your first program to a quantum simulator.",
+  "announcementHindi": "नया: कोर्स 3 शुरू हो गया है। C और Python में प्रोग्रामिंग, साथ-साथ, पहले प्रोग्राम से quantum simulator तक।",
+  "instagramDM": "https://ig.me/m/kota_quantum_valley",
+  "announcementHref": "/programming/",
+  "announcementHrefHindi": "/hi/courses/"
 }

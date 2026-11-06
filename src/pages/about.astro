@@ -1,21 +1,68 @@
 ---
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
+import { getPosts } from '../lib/posts.js';
+import { getChapters } from '../lib/maths.js';
+import { getProgChapters } from '../lib/programming.js';
+const lessons = getPosts('lesson', 'en').length;
+const maths = (await getChapters()).filter((c) => c.public).length;
+const prog = (await getProgChapters()).filter((c) => c.public).length;
 ---
-<Base title="About" description="Who is behind Kota Quantum Valley, and why.">
-  <section class="article">
+<Base title="About" description="Who is behind Kota Quantum Valley, what the initiative is building, and how you can help.">
+  <section class="article about">
     <div class="narrow">
       <p class="eyebrow">About</p>
       <h1>Who's behind this?</h1>
       <p class="desc">Kota Quantum Valley is started by {site.founderName}, {site.founderRole.charAt(0).toLowerCase() + site.founderRole.slice(1)}.</p>
-      <p>By day I write firmware for real-world electronics. Quantum computers need exactly that kind of engineering — electronics and firmware that control qubits — so I'm learning quantum from zero and sharing every step here.</p>
-      <p>This site has two jobs:</p>
+
+      <h2>The founder</h2>
+      <p>I'm {site.founderName}. I studied Electronics and Communication Engineering (B.Tech) at Government Engineering College Ajmer, and for more than three and a half years I have written embedded firmware: the software that runs inside electronic devices. My work is in research and development for smart energy-metering firmware, written in C, close to the hardware.</p>
+      <p>Quantum computers need exactly that kind of engineering. Every qubit is controlled by classical electronics and firmware that generate precisely timed pulses and read out the results. So I'm learning quantum computing from zero, and sharing every step here, so that any student who wants to can follow the same path.</p>
+
+      <h2>The initiative</h2>
+      <p>Kota Quantum Valley has two jobs.</p>
       <ol>
-        <li><strong>Learn in public.</strong> If I can learn it, so can any Kota student — and the notes are free.</li>
-        <li><strong>Make the case.</strong> Kota should be on India's quantum map, not just a place people leave.</li>
+        <li><strong>Teach, for free, in depth.</strong> If I can learn it, so can any Kota student, and the notes should be free. Every lesson starts from zero and goes all the way to the hardest problems, in plain language, with code that runs and output that is real.</li>
+        <li><strong>Make the case for Kota.</strong> Kota should be on India's quantum map, not only a place students leave. <a href="/why-kota/">Why Kota</a> sets out the argument with sources.</li>
       </ol>
+
+      <h2>What we have built so far</h2>
+      <div class="grid about-grid">
+        <a class="card" href="/lessons/"><h3>Course 1: Quantum Basics</h3><p>{lessons} lessons from bits to real quantum hardware, in English and Hindi, with code, exercises and a quiz in each.</p></a>
+        <a class="card" href="/mathematics/"><h3>Course 2: Mathematics</h3><p>Mathematics for quantum science, from Class 10 to PhD level. {maths} chapters open, every calculation checked in code.</p></a>
+        <a class="card" href="/programming/"><h3>Course 3: C and Python</h3><p>Programming in two languages side by side, from a first program to a quantum simulator.{prog ? ` ${prog} chapters open.` : ''}</p></a>
+        <a class="card" href="/lab/"><h3>Quantum Lab</h3><p>Four experiments in the browser: Bloch sphere, superposition, Bell states and a circuit builder.</p></a>
+        <a class="card" href="/careers/"><h3>Careers and resume maker</h3><p>Which quantum jobs exist, what they need, and a free resume maker.</p></a>
+        <a class="card" href={site.instagram} rel="noopener" target="_blank"><h3>Instagram</h3><p>Detailed carousels for students new to quantum, at {site.instagramHandle}.</p></a>
+      </div>
+
+      <h2>How we work</h2>
+      <ul>
+        <li><strong>Free.</strong> No paywalls and no sign-ups. Lessons are licensed under Creative Commons; share them with credit.</li>
+        <li><strong>Honest.</strong> We say clearly what is in use today and what is still research, and we link our sources.</li>
+        <li><strong>Checked.</strong> Calculations are re-run in code and programs are compiled and run before a page is published.</li>
+        <li><strong>In your language.</strong> Course 1 and the main pages are in English and Hindi; Courses 2 and 3 are in English for now.</li>
+      </ul>
+
+      <h2>What comes next</h2>
+      <p>Courses 2 and 3 grow chapter by chapter, Course 4 follows the IBM Quantum Learning syllabus on real IBM hardware, and the case for a Rajasthan quantum mission continues on Instagram.</p>
+
+      <h2>How you can help</h2>
+      <ul>
+        <li>Share a lesson with one student who would enjoy it.</li>
+        <li>Found a mistake, or something unclear? Tell us; every correction makes the course better.</li>
+        <li>Teachers, institutes and companies in Kota: if you want to run a quantum skilling programme or host students, get in touch.</li>
+      </ul>
+
       <h2>Get in touch</h2>
-      <p>Follow along on <a href={site.instagram} rel="noopener" target="_blank">Instagram {site.instagramHandle}</a>{site.email ? <>, or email <a href={`mailto:${site.email}`}>{site.email}</a></> : null}.</p>
+      <p>Follow along on <a href={site.instagram} rel="noopener" target="_blank">Instagram {site.instagramHandle}</a>{site.instagramDM ? <>, or <a href={site.instagramDM} rel="noopener" target="_blank">send us a message</a></> : null}{site.email ? <>, or email <a href={`mailto:${site.email}`}>{site.email}</a></> : null}.</p>
     </div>
   </section>
 </Base>
+
+<style is:global>
+  .about-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .about-grid a.card { text-decoration: none; color: inherit; }
+  .about-grid a.card:hover h3 { color: var(--cyan); }
+  .about-grid .card p { margin: 6px 0 0; }
+</style>

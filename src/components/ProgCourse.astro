@@ -1,0 +1,127 @@
+---
+// Course 3 overview page (English only for now). Course data comes from content/programming.
+import Solid from './Solid.astro';
+import { getProgChapters, course, plan } from '../lib/programming.js';
+const chapters = (await getProgChapters()).filter((c) => c.public);
+const open = new Set(chapters.map((c) => c.meta.chapter_number));
+const slugOf = Object.fromEntries(chapters.map((c) => [c.meta.chapter_number, c.meta.slug]));
+const ch0 = chapters.find((c) => c.meta.chapter_number === 0);
+const startHref = ch0 ? `/programming/${ch0.meta.slug}/` : '#plan';
+const parts = course.parts.map((p) => ({ ...p, chapters: plan.chapters.filter((c) => c.part === p.n) }));
+const tierRows = Object.entries(course.tiers);
+const opened = chapters.length;
+---
+<section class="hero mhero phero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap mhero-grid">
+    <div>
+      <p class="eyebrow">Course 3, free, starting now</p>
+      <h1>Programming in C and Python</h1>
+      <p class="lead">Two languages, side by side, in every chapter. C shows you what the machine really does: memory, the compiler, the operating system. Python shows you how to get real work done quickly. From your first program to writing your own quantum simulator in both.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-lg" href={startHref}>Start Chapter 0</a>
+        <a class="btn btn-ghost btn-lg" href="#plan">See all {plan.chapters.length} chapters</a>
+      </div>
+      <p class="mhero-status">{opened ? `${opened === 1 ? 'Chapter 0 is' : `Chapters 0 to ${opened - 1} are`} open. Every program on every page is compiled and run by our tests before it is published.` : 'Chapters are being written.'}</p>
+    </div>
+    <div class="v3host mhero-art" data-3d="gem" aria-hidden="true"><Solid shape="octa" tone="gold" size={240} /></div>
+  </div>
+</section>
+
+<section class="block" style="padding-top: 0">
+  <div class="wrap">
+    <div class="pc-sample glass">
+      <div class="pc-sample-copy">
+        <h2>The same idea, twice</h2>
+        <p>Every concept appears in C and in Python next to each other. The differences are the lesson: why C declares types, why Python needs no compile step, why one runs twenty times faster than the other on a loop.</p>
+      </div>
+      <div class="pc-code">
+        <figure><figcaption class="pc-c">C</figcaption><pre><code>{`#include <stdio.h>
+
+int main(void)
+{
+    printf("Hello, Kota!\\n");
+    return 0;
+}`}</code></pre></figure>
+        <figure><figcaption class="pc-py">Python</figcaption><pre><code>{`print("Hello, Kota!")`}</code></pre></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block tint">
+  <div class="wrap">
+    <div class="section-head"><h2>How every chapter is built</h2><p>{course.approach}</p></div>
+    <ol class="how-steps">
+      {course.depth_standard.map((d, i) => <li><strong>{['Side by side', 'Real output', 'Underneath', 'A ladder of problems', 'Quantum where it fits'][i]}</strong><span>{d}</span></li>)}
+    </ol>
+    <div class="table-wrap pc-tiers"><table>
+      <thead><tr><th>Tier</th><th>Level</th></tr></thead>
+      <tbody>{tierRows.map(([k, v]) => <tr><td><strong>{k}</strong></td><td>{v}</td></tr>)}</tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="block" id="plan">
+  <div class="wrap">
+    <div class="section-head"><h2>The full plan</h2><p>Ten parts, {plan.chapters.length} chapters. Open chapters are linked; the rest are planned and will open in order.</p></div>
+    <div class="pc-parts">
+      {parts.map((p) => (
+        <details class="pc-part glass" open={p.n <= 1}>
+          <summary><span class="pc-pn">Part {p.n}</span><strong>{p.name}</strong><small>{p.question}</small></summary>
+          <ol class="pc-chs">
+            {p.chapters.map((c) => (
+              <li class={open.has(c.n) ? 'is-open' : ''}>
+                <span class="pc-n">{c.n}</span>
+                <div>
+                  {open.has(c.n) ? <a href={`/programming/${slugOf[c.n]}/`}>{c.title}</a> : <span class="pc-t">{c.title}</span>}
+                  <p>{c.objective}</p>
+                  <p class="pc-langs"><span class="pc-c">C</span> {c.c_focus} <span class="pc-py">Python</span> {c.python_focus}</p>
+                </div>
+                <span class={`status ${open.has(c.n) ? 'now' : 'research'}`}>{open.has(c.n) ? 'Open' : 'Planned'}</span>
+              </li>
+            ))}
+          </ol>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { boot3d } from '../scripts/three/boot.js';
+  boot3d();
+</script>
+
+<style is:global>
+  .phero h1 { max-width: 14ch; }
+  .pc-sample { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 30px; padding: 30px; border-radius: var(--r-lg, 24px); align-items: center; }
+  .pc-sample h2 { margin: 0 0 10px; }
+  .pc-sample p { color: var(--text-2); margin: 0; }
+  .pc-code { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 12px; }
+  .pc-code figure { margin: 0; min-width: 0; display: flex; flex-direction: column; }
+  .pc-code pre { margin: 0; flex: 1; font-size: 0.82rem; }
+  .pc-code figcaption { font-family: var(--font-mono); font-size: 0.74rem; margin: 0 0 6px 2px; }
+  .pc-c { color: #7AAEFF; font-family: var(--font-mono); }
+  .pc-py { color: #E6C36A; font-family: var(--font-mono); }
+  .pc-tiers { margin-top: 26px; max-width: 760px; }
+  .pc-parts { display: grid; gap: 14px; }
+  .pc-part { border-radius: var(--r-md); padding: 0 22px; }
+  .pc-part > summary { cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 14px; padding: 18px 0; list-style: none; }
+  .pc-part > summary::-webkit-details-marker { display: none; }
+  .pc-pn { grid-row: span 2; font-family: var(--font-mono); font-size: 0.78rem; color: var(--cyan); padding-top: 3px; }
+  .pc-part > summary strong { font-family: var(--font-head); font-size: 1.08rem; }
+  .pc-part > summary small { color: var(--text-3); }
+  .pc-chs { list-style: none; padding: 0 0 16px; margin: 0; display: grid; gap: 4px; border-top: 1px solid var(--border); padding-top: 12px; }
+  .pc-chs li { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 12px; align-items: start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .pc-chs li:last-child { border-bottom: 0; }
+  .pc-n { font-family: var(--font-mono); color: var(--text-3); font-size: 0.85rem; padding-top: 2px; }
+  .pc-chs a, .pc-t { font-weight: 600; }
+  .pc-chs .pc-t { color: var(--text); }
+  .pc-chs p { margin: 4px 0 0; font-size: 0.88rem; color: var(--text-2); }
+  .pc-chs p.pc-langs { font-size: 0.82rem; color: var(--text-3); }
+  .pc-langs .pc-py { margin-left: 8px; }
+  .pc-chs .status { font-size: 0.7rem; }
+  @media (max-width: 900px) { .pc-sample, .pc-code { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 600px) { .pc-chs li { grid-template-columns: 28px minmax(0, 1fr); } .pc-chs .status { display: none; } .pc-part { padding: 0 16px; } }
+</style>

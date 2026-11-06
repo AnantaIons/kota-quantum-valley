@@ -1,0 +1,32 @@
+{
+  "id": "KQV-PROG-C001",
+  "version": "0.1.0",
+  "date": "2026-11-06",
+  "reviewer": "Claude (AI). AI self-check is not a guarantee; no human review yet.",
+  "checks": [
+    {
+      "check": "Code pass",
+      "tool": "tools/run_chapter.py",
+      "result": "PASS",
+      "detail": "90 of 90 checks: every program compiled with gcc 13.3 (-std=c17 -Wall -Wextra -Werror) or parsed by Python 3.13, and every terminal session on the page replayed with its output compared line by line (deliberately broken examples are compiled and their real error messages compared)."
+    },
+    {
+      "check": "Fact pass",
+      "tool": "manual and measured",
+      "result": "PASS",
+      "detail": "printf-to-puts replacement, constant-folded loop at -O2, symbol tables, dynamic and static linking, bytecode (Python 3.13), write system calls and system-call counts all observed on the test machine (x86-64 Linux, gcc 13.3, Python 3.13). Timings (C about 0.2 s, Python about 4.5 s, -O2 about 0.003 s) measured there and labelled as such."
+    },
+    {
+      "check": "Errors caught",
+      "tool": "tools/run_chapter.py",
+      "result": "FIXED",
+      "detail": "Preprocessed line count corrected from 820 to 821; the C/Python polyglot's first line could not be a C comment, so its file name is now given in the text instead."
+    }
+  ],
+  "changes": [],
+  "publication": {
+    "status": "not_published",
+    "approved_by": null,
+    "approved_at": null
+  }
+}

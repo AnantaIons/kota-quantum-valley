@@ -1,0 +1,931 @@
+{
+  "course": "Course 3: Programming in C and Python",
+  "status": "proposed",
+  "approved": null,
+  "chapters": [
+    {
+      "id": "KQV-PROG-C000",
+      "n": 0,
+      "part": 0,
+      "title": "How This Course Works, and Setting Up",
+      "objective": "Explain why C and Python are taught side by side, what the course builds, and get a working C compiler and Python on any computer or phone.",
+      "c_focus": "Install gcc or clang; compile and run a file.",
+      "python_focus": "Install Python 3; run a file and the interactive prompt.",
+      "toughest": "Diagnose a broken setup from its error messages.",
+      "tiers": [
+        "P1"
+      ],
+      "ceiling": "P1",
+      "status": "code_checked"
+    },
+    {
+      "id": "KQV-PROG-C001",
+      "n": 1,
+      "part": 1,
+      "title": "Your First Program, and What Really Happens When It Runs",
+      "objective": "Write, run and modify a first program in both languages, and follow it through the compiler and the interpreter down to the operating system.",
+      "c_focus": "Preprocess, compile, assemble, link; main, return codes, argc and argv.",
+      "python_focus": "Bytecode and the interpreter loop; sys.argv and exit codes.",
+      "toughest": "Trace hello world from source text to a write system call.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "code_checked"
+    },
+    {
+      "id": "KQV-PROG-C002",
+      "n": 2,
+      "part": 1,
+      "title": "Bits, Bytes and Number Systems",
+      "objective": "Represent numbers and text in binary and hexadecimal, including negative numbers and characters.",
+      "c_focus": "Fixed-width integers, two's complement, char and ASCII.",
+      "python_focus": "Arbitrary-size int, bin/hex/int(), bytes and str encoding.",
+      "toughest": "Prove two's complement arithmetic correct modulo 2^n; decode UTF-8 by hand.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C003",
+      "n": 3,
+      "part": 1,
+      "title": "Variables, Types and Memory",
+      "objective": "Understand what a variable is in each language: a typed box in C, a name bound to an object in Python.",
+      "c_focus": "Declarations, sizeof, integer overflow and limits.h.",
+      "python_focus": "Names, objects, id() and dynamic typing.",
+      "toughest": "Predict overflow behaviour; explain aliasing bugs in Python lists.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C004",
+      "n": 4,
+      "part": 1,
+      "title": "Expressions and Operators",
+      "objective": "Evaluate any expression correctly in both languages, including the cases where they disagree.",
+      "c_focus": "Precedence, integer division truncation, %, bitwise and logical operators, sequence points.",
+      "python_focus": "Floor division, % with negatives, operator chaining, short-circuit values.",
+      "toughest": "Explain -7 / 2 and -7 % 2 in both languages and prove each rule's invariant.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "ceiling": "P4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C005",
+      "n": 5,
+      "part": 1,
+      "title": "Input and Output",
+      "objective": "Read and print data robustly, including fast input for contests.",
+      "c_focus": "printf and scanf formats, return values, buffering.",
+      "python_focus": "input(), print(), f-strings, sys.stdin for speed.",
+      "toughest": "Read a million numbers within a contest time limit in both languages.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "ceiling": "P4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C006",
+      "n": 6,
+      "part": 1,
+      "title": "Floating Point: Why 0.1 + 0.2 Is Not 0.3",
+      "objective": "Understand IEEE 754 numbers, rounding and their consequences.",
+      "c_focus": "float, double, printf precision, FLT_EPSILON.",
+      "python_focus": "float, decimal, fractions, math.isclose.",
+      "toughest": "Bound rounding error in a sum; find inputs where floating-point addition is not associative.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C007",
+      "n": 7,
+      "part": 2,
+      "title": "Decisions",
+      "objective": "Write correct branching logic and know what each language treats as true.",
+      "c_focus": "if, else, switch, the ternary operator.",
+      "python_focus": "if, elif, match, truthiness.",
+      "toughest": "Simplify complex conditions with Boolean algebra and prove equivalence.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "ceiling": "P3",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C008",
+      "n": 8,
+      "part": 2,
+      "title": "Loops",
+      "objective": "Repeat work correctly and reason about loops with invariants.",
+      "c_focus": "while, for, do-while, break, continue.",
+      "python_focus": "while, for-in, range, enumerate, else on loops.",
+      "toughest": "Prove loop correctness with invariants; avoid off-by-one errors systematically.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "ceiling": "P4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C009",
+      "n": 9,
+      "part": 2,
+      "title": "Functions",
+      "objective": "Organise programs into functions and understand how arguments are passed.",
+      "c_focus": "Prototypes, pass by value, returning values, the stack frame.",
+      "python_focus": "def, default and keyword arguments, passing object references.",
+      "toughest": "Predict the effect of mutating arguments in each language.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C010",
+      "n": 10,
+      "part": 2,
+      "title": "Recursion",
+      "objective": "Think recursively, and know what recursion costs.",
+      "c_focus": "The call stack, stack overflow, tail calls.",
+      "python_focus": "Recursion limit, functools.lru_cache.",
+      "toughest": "Convert recursion to iteration with an explicit stack; solve classic recursive puzzles.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "ceiling": "P4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C011",
+      "n": 11,
+      "part": 2,
+      "title": "Debugging and Testing Basics",
+      "objective": "Find and fix bugs methodically.",
+      "c_focus": "Compiler warnings, assert, gdb basics.",
+      "python_focus": "Tracebacks, assert, pdb basics, doctest.",
+      "toughest": "Locate a bug by bisection; write tests that would have caught it.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C012",
+      "n": 12,
+      "part": 3,
+      "title": "Arrays and Lists",
+      "objective": "Store and process sequences of values.",
+      "c_focus": "Fixed-size arrays, indexing, bounds, arrays and functions.",
+      "python_focus": "Lists, slicing, comprehensions, how lists grow.",
+      "toughest": "Analyse amortised cost of list append; prefix sums and two-pointer techniques.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "ceiling": "P4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C013",
+      "n": 13,
+      "part": 3,
+      "title": "Strings and Text",
+      "objective": "Work with text correctly, including Unicode.",
+      "c_focus": "char arrays, the terminating zero, string.h.",
+      "python_focus": "Immutable str, methods, Unicode and encodings.",
+      "toughest": "Implement string matching (KMP) in both languages.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "ceiling": "P4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C014",
+      "n": 14,
+      "part": 3,
+      "title": "Grouping Data: Structs, Tuples, Dictionaries and Classes",
+      "objective": "Model real things with compound data.",
+      "c_focus": "struct, typedef, arrays of structs.",
+      "python_focus": "tuple, dict, dataclass, class basics.",
+      "toughest": "Design data layouts and compare memory use.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "ceiling": "P3",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C015",
+      "n": 15,
+      "part": 3,
+      "title": "Files",
+      "objective": "Read and write text and binary files safely.",
+      "c_focus": "fopen, fgets, fread, fwrite, errors.",
+      "python_focus": "open, with, text and binary modes, csv.",
+      "toughest": "Write and read a binary file format in both languages and check they agree byte for byte.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C016",
+      "n": 16,
+      "part": 3,
+      "title": "Pointers and References",
+      "objective": "Understand addresses, pointers in C and references in Python.",
+      "c_focus": "&, *, pointer arithmetic, arrays and pointers.",
+      "python_focus": "References, mutability, copy and deepcopy.",
+      "toughest": "Implement swap, linked structures and in-place algorithms with pointers.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C017",
+      "n": 17,
+      "part": 3,
+      "title": "Dynamic Memory",
+      "objective": "Allocate memory at run time and release it correctly.",
+      "c_focus": "malloc, calloc, realloc, free, leaks, valgrind.",
+      "python_focus": "Reference counting and the garbage collector.",
+      "toughest": "Build a growable array in C and compare it with Python's list growth.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C018",
+      "n": 18,
+      "part": 3,
+      "title": "Undefined Behaviour and Memory Safety",
+      "objective": "Recognise the bugs that crash programs or open security holes.",
+      "c_focus": "Buffer overflows, use after free, sanitizers.",
+      "python_focus": "Why Python is memory-safe, and what it costs.",
+      "toughest": "Find and fix memory bugs with AddressSanitizer; explain a classic exploit pattern conceptually.",
+      "tiers": [
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C019",
+      "n": 19,
+      "part": 4,
+      "title": "Measuring Cost: Big-O and Timing",
+      "objective": "Predict and measure how running time grows with input size.",
+      "c_focus": "clock, timing loops.",
+      "python_focus": "time.perf_counter, timeit.",
+      "toughest": "Prove asymptotic bounds; design experiments that confirm them.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "ceiling": "P4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C020",
+      "n": 20,
+      "part": 4,
+      "title": "Searching and Sorting",
+      "objective": "Implement and analyse the core searching and sorting algorithms.",
+      "c_focus": "Binary search, merge sort, quicksort, qsort.",
+      "python_focus": "bisect, sorted, key functions, Timsort.",
+      "toughest": "Prove the comparison-sort lower bound; contest problems built on binary search.",
+      "tiers": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "ceiling": "P4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C021",
+      "n": 21,
+      "part": 4,
+      "title": "Linked Lists, Stacks and Queues",
+      "objective": "Build linear data structures from scratch.",
+      "c_focus": "Nodes and pointers, malloc per node.",
+      "python_focus": "Classes, collections.deque.",
+      "toughest": "Reverse, merge and detect cycles in linked lists; monotonic stacks.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "ceiling": "P4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C022",
+      "n": 22,
+      "part": 4,
+      "title": "Hash Tables",
+      "objective": "Build a hash table and understand Python's dict.",
+      "c_focus": "Open addressing and chaining in C.",
+      "python_focus": "dict and set internals, hashing.",
+      "toughest": "Analyse expected cost under random hashing; anti-hash tests.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C023",
+      "n": 23,
+      "part": 4,
+      "title": "Trees and Heaps",
+      "objective": "Represent hierarchical data and priority queues.",
+      "c_focus": "Binary search trees, heaps with arrays.",
+      "python_focus": "Classes, heapq.",
+      "toughest": "Balanced-tree ideas; heap proofs; segment trees.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "ceiling": "P4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C024",
+      "n": 24,
+      "part": 4,
+      "title": "Graphs",
+      "objective": "Model networks and search them.",
+      "c_focus": "Adjacency lists in arrays, BFS, DFS.",
+      "python_focus": "Dictionaries of lists, BFS, DFS, Dijkstra with heapq.",
+      "toughest": "Shortest paths, topological sort and their correctness proofs.",
+      "tiers": [
+        "P3",
+        "P4"
+      ],
+      "ceiling": "P4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C025",
+      "n": 25,
+      "part": 4,
+      "title": "Dynamic Programming",
+      "objective": "Solve optimisation problems by reusing sub-results.",
+      "c_focus": "Tables in arrays.",
+      "python_focus": "Memoisation and tabulation.",
+      "toughest": "Olympiad DP problems with proofs of correctness.",
+      "tiers": [
+        "P3",
+        "P4"
+      ],
+      "ceiling": "P4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C026",
+      "n": 26,
+      "part": 4,
+      "title": "Problem Solving for Contests",
+      "objective": "A method for attacking unseen problems, from easy to olympiad.",
+      "c_focus": "Fast C templates.",
+      "python_focus": "Fast Python techniques and their limits.",
+      "toughest": "Full worked solutions to olympiad-style problems.",
+      "tiers": [
+        "P3",
+        "P4"
+      ],
+      "ceiling": "P4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C027",
+      "n": 27,
+      "part": 5,
+      "title": "Modules, Headers and Packages",
+      "objective": "Split programs across files and use libraries.",
+      "c_focus": "Headers, multiple .c files, make.",
+      "python_focus": "Modules, packages, pip, virtual environments.",
+      "toughest": "Design a small library with a clean interface in both languages.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C028",
+      "n": 28,
+      "part": 5,
+      "title": "Version Control with Git",
+      "objective": "Track and share code professionally.",
+      "c_focus": "Git with a C project.",
+      "python_focus": "Git with a Python project.",
+      "toughest": "Branching, merging and resolving conflicts.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C029",
+      "n": 29,
+      "part": 5,
+      "title": "Testing Properly",
+      "objective": "Write tests that catch bugs before users do.",
+      "c_focus": "A minimal C test harness.",
+      "python_focus": "pytest, fixtures, property-based testing.",
+      "toughest": "Design a test plan for a numerical library.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C030",
+      "n": 30,
+      "part": 5,
+      "title": "Debuggers and Profilers",
+      "objective": "Use professional tools to find bugs and slow spots.",
+      "c_focus": "gdb, valgrind, perf.",
+      "python_focus": "pdb, cProfile.",
+      "toughest": "Find a performance bottleneck in a real program.",
+      "tiers": [
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C031",
+      "n": 31,
+      "part": 5,
+      "title": "Reading and Writing Clean Code",
+      "objective": "Write code others can read, and read code others wrote.",
+      "c_focus": "Style, naming, comments in C.",
+      "python_focus": "PEP 8, docstrings, type hints.",
+      "toughest": "Refactor a messy program safely.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C032",
+      "n": 32,
+      "part": 5,
+      "title": "Objects and Design",
+      "objective": "Use object-oriented design where it helps.",
+      "c_focus": "Objects in C with structs and function pointers.",
+      "python_focus": "Classes, inheritance, protocols.",
+      "toughest": "Design a plugin system in both languages.",
+      "tiers": [
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C033",
+      "n": 33,
+      "part": 6,
+      "title": "Complex Numbers in Code",
+      "objective": "Compute with complex numbers in both languages.",
+      "c_focus": "complex.h.",
+      "python_focus": "complex type, cmath, NumPy complex arrays.",
+      "toughest": "Implement complex arithmetic and check it against Course 2's definitions.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C034",
+      "n": 34,
+      "part": 6,
+      "title": "Arrays at Scale: NumPy and C Arrays",
+      "objective": "Work with large arrays efficiently.",
+      "c_focus": "Row-major layout, 2D arrays.",
+      "python_focus": "NumPy arrays, broadcasting, vectorisation.",
+      "toughest": "Explain why vectorised NumPy is fast, in terms of C loops.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C035",
+      "n": 35,
+      "part": 6,
+      "title": "Linear Algebra in Code",
+      "objective": "Multiply, solve and decompose matrices in code.",
+      "c_focus": "Matrix multiply, cache-friendly loops.",
+      "python_focus": "numpy.linalg.",
+      "toughest": "Implement Gaussian elimination and measure its error.",
+      "tiers": [
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C036",
+      "n": 36,
+      "part": 6,
+      "title": "Random Numbers and Monte Carlo",
+      "objective": "Simulate randomness correctly.",
+      "c_focus": "rand and its limits, a simple generator.",
+      "python_focus": "random, numpy.random.",
+      "toughest": "Estimate pi and quantum measurement statistics; analyse Monte Carlo error.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C037",
+      "n": 37,
+      "part": 6,
+      "title": "Numerical Accuracy and Stability",
+      "objective": "Keep numerical results trustworthy.",
+      "c_focus": "Compensated summation in C.",
+      "python_focus": "math.fsum, condition numbers.",
+      "toughest": "Choose stable formulas; analyse catastrophic cancellation.",
+      "tiers": [
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C038",
+      "n": 38,
+      "part": 6,
+      "title": "Data and Plots",
+      "objective": "Turn results into tables and charts.",
+      "c_focus": "Writing CSV from C.",
+      "python_focus": "csv, matplotlib.",
+      "toughest": "Produce publication-quality plots from simulation data.",
+      "tiers": [
+        "P2",
+        "P3"
+      ],
+      "ceiling": "P3",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C039",
+      "n": 39,
+      "part": 7,
+      "title": "Bit Manipulation in Depth",
+      "objective": "Use bitwise operations as a precise tool.",
+      "c_focus": "Masks, shifts, bit fields.",
+      "python_focus": "int bit methods.",
+      "toughest": "Bit tricks for subsets and Gray codes; olympiad bitmask problems.",
+      "tiers": [
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C040",
+      "n": 40,
+      "part": 7,
+      "title": "How Memory Really Works",
+      "objective": "Understand caches, alignment, stack and heap.",
+      "c_focus": "Measuring cache effects in C.",
+      "python_focus": "What Python objects cost in memory.",
+      "toughest": "Explain performance differences with the memory hierarchy.",
+      "tiers": [
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C041",
+      "n": 41,
+      "part": 7,
+      "title": "Performance Engineering",
+      "objective": "Make programs faster, with evidence.",
+      "c_focus": "Compiler optimisation levels, profiling.",
+      "python_focus": "Profiling, algorithmic and library speedups.",
+      "toughest": "Speed up a real program tenfold and explain each step.",
+      "tiers": [
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C042",
+      "n": 42,
+      "part": 7,
+      "title": "Calling C from Python",
+      "objective": "Combine Python's ease with C's speed.",
+      "c_focus": "Writing a shared library.",
+      "python_focus": "ctypes and C extensions.",
+      "toughest": "Wrap a C library for Python safely.",
+      "tiers": [
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C043",
+      "n": 43,
+      "part": 7,
+      "title": "Concurrency",
+      "objective": "Do several things at once, safely.",
+      "c_focus": "Threads with pthreads, race conditions.",
+      "python_focus": "threading, multiprocessing, the GIL.",
+      "toughest": "Find and fix a race condition; parallelise a simulation.",
+      "tiers": [
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C044",
+      "n": 44,
+      "part": 7,
+      "title": "Programming the Hardware",
+      "objective": "See how C controls real electronics.",
+      "c_focus": "Registers, bit masks, interrupts, embedded C.",
+      "python_focus": "Python on microcontrollers and as a host tool.",
+      "toughest": "Design firmware for a sensor with timing constraints.",
+      "tiers": [
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C045",
+      "n": 45,
+      "part": 8,
+      "title": "A Qubit in Code",
+      "objective": "Represent a qubit's state in both languages.",
+      "c_focus": "Arrays of double complex.",
+      "python_focus": "Lists and NumPy arrays of complex numbers.",
+      "toughest": "Check normalisation and measurement probabilities exactly.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C046",
+      "n": 46,
+      "part": 8,
+      "title": "Gates as Matrices: A One-Qubit Simulator",
+      "objective": "Apply quantum gates in code.",
+      "c_focus": "2x2 complex matrix times vector.",
+      "python_focus": "NumPy matrices.",
+      "toughest": "Verify gate identities numerically and exactly.",
+      "tiers": [
+        "P2",
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C047",
+      "n": 47,
+      "part": 8,
+      "title": "Many Qubits: A State-Vector Simulator",
+      "objective": "Simulate n qubits with tensor products and bit tricks.",
+      "c_focus": "Index arithmetic with bit masks.",
+      "python_focus": "NumPy kron and reshaping.",
+      "toughest": "Apply a gate to qubit k without building a 2^n x 2^n matrix.",
+      "tiers": [
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C048",
+      "n": 48,
+      "part": 8,
+      "title": "Measurement and Sampling",
+      "objective": "Sample measurement outcomes correctly.",
+      "c_focus": "Cumulative sums and random numbers.",
+      "python_focus": "numpy.random.choice.",
+      "toughest": "Prove the sampler is correct and test it statistically.",
+      "tiers": [
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C049",
+      "n": 49,
+      "part": 8,
+      "title": "A Fast Simulator: C Core, Python Front End",
+      "objective": "Combine both languages into one fast simulator.",
+      "c_focus": "The C engine.",
+      "python_focus": "A Python interface with ctypes.",
+      "toughest": "Benchmark against pure Python and NumPy.",
+      "tiers": [
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C050",
+      "n": 50,
+      "part": 8,
+      "title": "From Your Simulator to Qiskit and Real Hardware",
+      "objective": "Run the same circuits on Qiskit and IBM hardware.",
+      "c_focus": "Exporting circuits from C.",
+      "python_focus": "Qiskit.",
+      "toughest": "Compare simulator, Qiskit and hardware results statistically.",
+      "tiers": [
+        "P3",
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C051",
+      "n": 51,
+      "part": 8,
+      "title": "Control Electronics and Firmware for Qubits",
+      "objective": "See how classical code controls quantum hardware.",
+      "c_focus": "Timing-critical embedded C.",
+      "python_focus": "Python control stacks.",
+      "toughest": "Design the control loop for a pulse sequence.",
+      "tiers": [
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C052",
+      "n": 52,
+      "part": 9,
+      "title": "Capstone I: A Quantum Simulator Library",
+      "objective": "Build, test and document a complete library in C with Python bindings.",
+      "c_focus": "Library core.",
+      "python_focus": "Bindings, tests, packaging.",
+      "toughest": "A full project with tests and benchmarks.",
+      "tiers": [
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C053",
+      "n": 53,
+      "part": 9,
+      "title": "Capstone II: Contributing to Open Source",
+      "objective": "Make a real contribution to an open-source project.",
+      "c_focus": "Reading a C codebase.",
+      "python_focus": "Reading a Python codebase.",
+      "toughest": "A merged contribution.",
+      "tiers": [
+        "P5"
+      ],
+      "ceiling": "P5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-PROG-C054",
+      "n": 54,
+      "part": 9,
+      "title": "Where to Go Next",
+      "objective": "Careers, interviews and research software.",
+      "c_focus": "Systems and embedded careers.",
+      "python_focus": "Data, research and quantum software careers.",
+      "toughest": "Plan your next year of learning.",
+      "tiers": [
+        "P1"
+      ],
+      "ceiling": "P1",
+      "status": "proposed"
+    }
+  ]
+}

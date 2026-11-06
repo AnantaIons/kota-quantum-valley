@@ -8,18 +8,23 @@ const ui = hi ? {
   eyebrow: 'रिज़्यूमे मेकर',
   h1: 'दस मिनट में अपना रिज़्यूमे बनाइए।',
   sub: 'ख़ाने भरिए और रिज़्यूमे साथ-साथ बनता देखिए। फिर PDF डाउनलोड कीजिए। मुफ़्त, कोई sign-up नहीं, और सब कुछ आपके फ़ोन या कंप्यूटर पर ही रहता है।',
-  privacy: 'आप जो लिखते हैं वह कहीं upload नहीं होता। वह सिर्फ़ इसी browser में सेव रहता है, ताकि आप बाद में लौटकर बदल सकें।',
+  privacy: 'आप जो लिखते या लाते हैं वह कहीं upload नहीं होता। वह सिर्फ़ इसी browser में सेव रहता है, ताकि आप बाद में लौटकर बदल सकें।',
+  importNote: 'पहले से रिज़्यूमे है? "मेरा रिज़्यूमे लाएँ" दबाकर PDF, Word (.docx) या text फ़ाइल चुनें, ख़ाने अपने-आप भर जाएँगे। फ़ाइल आपके browser के अंदर ही पढ़ी जाती है।',
   contentNote: 'ज़्यादातर नौकरियों के लिए रिज़्यूमे अंग्रेज़ी में लिखा जाता है, इसलिए उदाहरण अंग्रेज़ी में है। आप चाहें तो हिन्दी में भी लिख सकते हैं।',
 } : {
   eyebrow: 'Resume maker',
   h1: 'Make your resume in ten minutes.',
   sub: 'Fill in the boxes and watch your resume take shape. Then download it as a PDF. Free, no sign-up, and everything stays on your phone or computer.',
-  privacy: "Nothing you type is uploaded anywhere. It's saved only in this browser, so you can come back and edit it later.",
+  privacy: "Nothing you type or import is uploaded anywhere. It's saved only in this browser, so you can come back and edit it later.",
+  importNote: 'Already have a resume? Press "Import my resume" and choose a PDF, Word (.docx) or text file to fill the boxes automatically. The file is read inside your browser.',
   contentNote: '',
 };
 
 // Text the script needs (must be plain JSON).
 const S = hi ? {
+  importBtn: 'मेरा रिज़्यूमे लाएँ', reading: 'आपकी फ़ाइल पढ़ी जा रही है…', imported: 'आपके रिज़्यूमे से भर दिया गया। हर ख़ाना एक बार जाँच लें: अपने-आप पढ़ना कभी पूरी तरह सही नहीं होता, ख़ासकर दो कॉलम वाले रिज़्यूमे में।', undo: 'वापस पहले जैसा करें',
+  importError: 'यह फ़ाइल पढ़ी नहीं जा सकी। PDF, Word .docx या .txt फ़ाइल चुनें। पुरानी .doc फ़ाइल को पहले .docx या PDF में सेव करें।', importEmpty: 'इस फ़ाइल में कोई text नहीं मिला। स्कैन किए गए PDF (काग़ज़ की फ़ोटो) में पढ़ने लायक text नहीं होता; Word या text वाला रूप आज़माएँ।',
+  template: 'डिज़ाइन', templates: { classic: 'क्लासिक', modern: 'मॉडर्न', elegant: 'एलिगेंट' },
   edit: 'भरें', preview: 'देखें', download: 'PDF डाउनलोड करें', example: 'उदाहरण से भरें', save: 'फ़ाइल में सेव करें', open: 'सेव की फ़ाइल खोलें',
   clear: 'नए सिरे से शुरू करें', clearConfirm: 'सब मिटाने के लिए फिर दबाएँ', size: 'अक्षरों का आकार', normal: 'सामान्य', compact: 'छोटा',
   headLang: 'शीर्षक', credit: 'नीचे छोटी-सी पंक्ति जोड़ें: "Made with kotaquantumvalley.in"',
@@ -44,6 +49,9 @@ const S = hi ? {
     group: 'समूह (जैसे Programming)', items: 'कौशल, comma से अलग',
   },
 } : {
+  importBtn: 'Import my resume', reading: 'Reading your file…', imported: 'Filled in from your resume. Check every box: automatic reading is never perfect, especially for two-column layouts.', undo: 'Undo',
+  importError: "That file couldn't be read. Choose a PDF, a Word .docx or a .txt file. Save an old .doc file as .docx or PDF first.", importEmpty: 'No text was found in that file. A scanned PDF (a photo of paper) has no text to read; try the Word or text version.',
+  template: 'Design', templates: { classic: 'Classic', modern: 'Modern', elegant: 'Elegant' },
   edit: 'Edit', preview: 'Preview', download: 'Download PDF', example: 'Fill with an example', save: 'Save to a file', open: 'Open a saved file',
   clear: 'Start over', clearConfirm: 'Tap again to clear everything', size: 'Text size', normal: 'Normal', compact: 'Compact',
   headLang: 'Headings', credit: 'Add a small line at the bottom: "Made with kotaquantumvalley.in"',
@@ -77,18 +85,22 @@ const fitWord = hi ? 'hi' : 'en';
       <h1>{ui.h1}</h1>
       <p class="desc">{ui.sub}</p>
       <p class="rm-privacy"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 10 0v3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/></svg>{ui.privacy}</p>
+      <p class="rm-note">{ui.importNote}</p>
       {ui.contentNote && <p class="rm-note">{ui.contentNote}</p>}
     </div>
 
     <div class="rm" id="rm" data-view="edit" data-lang={fitWord}>
       <div class="rm-toolbar">
         <button type="button" class="btn btn-primary btn-sm" data-act="print">{S.download}</button>
+        <button type="button" class="btn btn-ghost btn-sm rm-import" data-act="import">{S.importBtn}</button>
         <button type="button" class="btn btn-ghost btn-sm" data-act="example">{S.example}</button>
         <button type="button" class="btn btn-ghost btn-sm" data-act="save">{S.save}</button>
         <button type="button" class="btn btn-ghost btn-sm" data-act="open">{S.open}</button>
         <button type="button" class="btn btn-ghost btn-sm rm-danger" data-act="clear">{S.clear}</button>
         <input type="file" accept=".json,application/json" hidden data-file />
+        <input type="file" accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain" hidden data-import />
       </div>
+      <div class="rm-notice" data-notice hidden><span data-notice-text></span><button type="button" class="btn btn-ghost btn-sm" data-undo hidden>{S.undo}</button></div>
 
       <div class="rm-tabs" role="tablist">
         <button type="button" role="tab" aria-selected="true" data-tab="edit">{S.edit}</button>
@@ -99,6 +111,9 @@ const fitWord = hi ? 'hi' : 'en';
         <form class="rm-form" data-form autocomplete="on" onsubmit="return false"></form>
 
         <div class="rm-preview">
+          <div class="rm-tpl" role="group" aria-label={S.template}>
+            {Object.entries(S.templates).map(([k, label]) => <button type="button" data-tpl={k} aria-pressed={k === 'classic' ? 'true' : 'false'}><span class={`tpl-ic tpl-${k}`} aria-hidden="true"><i></i><i></i><i></i></span>{label}</button>)}
+          </div>
           <div class="rm-status">
             <span class="rm-fit" data-fit></span>
             <label class="rm-inline">{S.size}
@@ -134,8 +149,8 @@ const fitWord = hi ? 'hi' : 'en';
     : `${n} pages. For freshers, one page is best: choose "Compact" or cut a few lines.`;
 
   const HEAD = {
-    en: { summary: 'Summary', education: 'Education', experience: 'Experience', projects: 'Projects', skills: 'Skills', achievements: 'Achievements and certifications' },
-    hi: { summary: 'सारांश', education: 'शिक्षा', experience: 'अनुभव', projects: 'प्रोजेक्ट', skills: 'कौशल', achievements: 'उपलब्धियाँ और प्रमाणपत्र' },
+    en: { contact: 'Contact', summary: 'Summary', education: 'Education', experience: 'Experience', projects: 'Projects', skills: 'Skills', achievements: 'Achievements and certifications' },
+    hi: { contact: 'संपर्क', summary: 'सारांश', education: 'शिक्षा', experience: 'अनुभव', projects: 'प्रोजेक्ट', skills: 'कौशल', achievements: 'उपलब्धियाँ और प्रमाणपत्र' },
   };
   const LISTS = {
     education: ['degree', 'school', 'start', 'end', 'score', 'points'],
@@ -155,7 +170,7 @@ const fitWord = hi ? 'hi' : 'en';
     summary: '',
     education: [{ degree: '', school: '', start: '', end: '', score: '', points: '' }],
     experience: [], projects: [], skills: [], achievements: '',
-    settings: { size: 'normal', headLang: 'en', credit: true },
+    settings: { size: 'normal', headLang: 'en', credit: true, template: 'classic' },
   });
 
   const example = () => ({
@@ -186,7 +201,7 @@ const fitWord = hi ? 'hi' : 'en';
       { group: 'Tools', items: 'Git, Linux, VS Code, Jupyter' },
     ],
     achievements: 'Completed Kota Quantum Valley Course 1: 50 lessons, from bits to real quantum hardware\nRunner-up, college hardware hackathon (2024), out of 40 teams\nTechnical lead, college electronics club (2024–25)',
-    settings: { size: 'normal', headLang: 'en', credit: true },
+    settings: { size: 'normal', headLang: 'en', credit: true, template: 'classic' },
   });
 
   // ---------- state and storage ----------
@@ -281,6 +296,7 @@ const fitWord = hi ? 'hi' : 'en';
   // ---------- the resume ----------
   const renderPaper = () => {
     const H = HEAD[state.settings.headLang] || HEAD.en;
+    const T = ['classic', 'modern', 'elegant'].includes(state.settings.template) ? state.settings.template : 'classic';
     const b = state.basics;
     const contact = [];
     if (b.email.trim()) contact.push(`<a href="mailto:${esc(b.email.trim())}">${esc(b.email.trim())}</a>`);
@@ -292,34 +308,48 @@ const fitWord = hi ? 'hi' : 'en';
     const dates = (s, e) => [s, e].map((x) => String(x || '').trim()).filter(Boolean).join(' – ');
     const sec = (title, body) => (body.trim() ? `<section class="r-sec"><h2>${esc(title)}</h2>${body}</section>` : '');
     const filled = (o) => Object.values(o).some((v) => String(v).trim());
+    // One entry: the date sits at the right of the title row (Classic, Modern) or in a left column (Elegant)
+    const entry = (title, d, rest) => T === 'elegant'
+      ? `<div class="r-entry r-tl"><div class="r-when">${esc(d)}</div><div class="r-what"><div class="r-row">${title}</div>${rest}</div></div>`
+      : `<div class="r-entry"><div class="r-row">${title}${d ? `<span class="r-date">${esc(d)}</span>` : ''}</div>${rest}</div>`;
 
-    let h = '';
-    if (b.name.trim() || b.headline.trim() || contact.length) {
-      h += `<div class="r-head">${b.name.trim() ? `<h1>${esc(b.name.trim())}</h1>` : ''}${b.headline.trim() ? `<p class="r-headline">${esc(b.headline.trim())}</p>` : ''}${contact.length ? `<p class="r-contact">${contact.join('<span class="r-sep"> | </span>')}</p>` : ''}</div>`;
-    }
-    h += sec(H.summary, state.summary.trim() ? `<p>${esc(state.summary.trim())}</p>` : '');
-    h += sec(H.education, state.education.filter(filled).map((e) => {
-      const d = dates(e.start, e.end);
-      return `<div class="r-entry"><div class="r-row"><strong>${esc(e.degree)}</strong>${d ? `<span class="r-date">${esc(d)}</span>` : ''}</div>
-        ${e.school.trim() || e.score.trim() ? `<div class="r-row r-sub"><span>${esc(e.school)}</span>${e.score.trim() ? `<span>${esc(e.score)}</span>` : ''}</div>` : ''}${ul(e.points)}</div>`;
-    }).join(''));
-    h += sec(H.experience, state.experience.filter(filled).map((e) => {
-      const d = dates(e.start, e.end);
+    const parts = {};
+    parts.summary = sec(H.summary, state.summary.trim() ? `<p>${esc(state.summary.trim())}</p>` : '');
+    parts.education = sec(H.education, state.education.filter(filled).map((e) => entry(`<strong>${esc(e.degree)}</strong>`, dates(e.start, e.end),
+      `${e.school.trim() || e.score.trim() ? `<div class="r-row r-sub"><span>${esc(e.school)}</span>${e.score.trim() ? `<span>${esc(e.score)}</span>` : ''}</div>` : ''}${ul(e.points)}`)).join(''));
+    parts.experience = sec(H.experience, state.experience.filter(filled).map((e) => {
       const who = [e.role, e.org].map((x) => x.trim()).filter(Boolean);
-      return `<div class="r-entry"><div class="r-row"><span><strong>${esc(who[0] || '')}</strong>${who[1] ? `, ${esc(who[1])}` : ''}${e.location.trim() ? `<span class="r-muted">, ${esc(e.location)}</span>` : ''}</span>${d ? `<span class="r-date">${esc(d)}</span>` : ''}</div>${ul(e.points)}</div>`;
+      return entry(`<span><strong>${esc(who[0] || '')}</strong>${who[1] ? `, ${esc(who[1])}` : ''}${e.location.trim() ? `<span class="r-muted">, ${esc(e.location)}</span>` : ''}</span>`, dates(e.start, e.end), ul(e.points));
     }).join(''));
-    h += sec(H.projects, state.projects.filter(filled).map((p) => {
+    parts.projects = sec(H.projects, state.projects.filter(filled).map((p) => {
       const link = p.link.trim() ? `<a class="r-date" href="${esc(href(p.link))}">${esc(bare(p.link))}</a>` : '';
-      return `<div class="r-entry"><div class="r-row"><span><strong>${esc(p.name)}</strong>${p.tools.trim() ? `<span class="r-muted"> | ${esc(p.tools)}</span>` : ''}</span>${link}</div>${ul(p.points)}</div>`;
+      const title = `<span><strong>${esc(p.name)}</strong>${p.tools.trim() ? `<span class="r-muted"> | ${esc(p.tools)}</span>` : ''}</span>`;
+      return T === 'elegant' ? entry(title, '', (link ? `<p class="r-link">${link}</p>` : '') + ul(p.points)) : `<div class="r-entry"><div class="r-row">${title}${link}</div>${ul(p.points)}</div>`;
     }).join(''));
-    h += sec(H.skills, state.skills.filter((s) => s.items.trim()).map((s) =>
-      `<p class="r-skill">${s.group.trim() ? `<strong>${esc(s.group.trim())}:</strong> ` : ''}${esc(s.items.split(',').map((x) => x.trim()).filter(Boolean).join(', '))}</p>`).join(''));
-    h += sec(H.achievements, ul(state.achievements));
+    const skillRows = state.skills.filter((x) => x.items.trim());
+    parts.skills = sec(H.skills, skillRows.map((x) => T === 'modern'
+      ? `<div class="r-skill">${x.group.trim() ? `<strong>${esc(x.group.trim())}</strong>` : ''}<p>${esc(x.items.split(',').map((y) => y.trim()).filter(Boolean).join(' · '))}</p></div>`
+      : `<p class="r-skill">${x.group.trim() ? `<strong>${esc(x.group.trim())}:</strong> ` : ''}${esc(x.items.split(',').map((y) => y.trim()).filter(Boolean).join(', '))}</p>`).join(''));
+    parts.achievements = sec(H.achievements, ul(state.achievements));
+
+    const name = b.name.trim() ? `<h1>${esc(b.name.trim())}</h1>` : '';
+    const headline = b.headline.trim() ? `<p class="r-headline">${esc(b.headline.trim())}</p>` : '';
+    let h = '';
+    if (T === 'modern') {
+      const side = (contact.length ? `<section class="r-sec"><h2>${esc(H.contact)}</h2><ul class="r-clist">${contact.map((c) => `<li>${c}</li>`).join('')}</ul></section>` : '') + parts.skills + parts.achievements;
+      const main = parts.summary + parts.experience + parts.projects + parts.education;
+      if (name || headline) h += `<div class="r-head r-mhead">${name}${headline}</div>`;
+      if (side || main) h += `<div class="r-mgrid">${side ? `<aside class="r-side">${side}</aside>` : ''}<div class="r-main">${main}</div></div>`;
+    } else {
+      if (name || headline || contact.length) h += `<div class="r-head">${name}${headline}${contact.length ? `<p class="r-contact">${contact.join('<span class="r-sep"> | </span>')}</p>` : ''}</div>`;
+      h += parts.summary + parts.education + parts.experience + parts.projects + parts.skills + parts.achievements;
+    }
     if (!h) h = `<p class="r-empty">${LANG === 'hi' ? 'बाईं ओर के ख़ाने भरिए। आपका रिज़्यूमे यहाँ दिखेगा।' : 'Start filling in the boxes. Your resume appears here.'}</p>`;
     if (state.settings.credit) h += `<p class="r-credit">Made with kotaquantumvalley.in</p>`;
 
-    paper.className = 'rm-paper' + (state.settings.size === 'compact' ? ' r-compact' : '');
+    paper.className = `rm-paper t-${T}` + (state.settings.size === 'compact' ? ' r-compact' : '');
     paper.innerHTML = `<div class="r-body">${h}</div>`;
+    root.querySelectorAll('[data-tpl]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.tpl === T)));
     fit();
   };
 
@@ -428,9 +458,61 @@ const fitWord = hi ? 'hi' : 'en';
     fileIn.value = '';
   });
 
+  root.querySelectorAll('[data-tpl]').forEach((btn) => btn.addEventListener('click', () => {
+    state.settings.template = btn.dataset.tpl; renderPaper(); persist();
+  }));
+
+  // ---------- importing an existing resume (parsed by the module script below) ----------
+  const notice = root.querySelector('[data-notice]');
+  const noticeText = root.querySelector('[data-notice-text]');
+  const undoBtn = root.querySelector('[data-undo]');
+  let before = null;
+  const say = (msg, undo = false) => { noticeText.textContent = msg; notice.hidden = false; undoBtn.hidden = !undo; };
+  root.addEventListener('rm-import-start', () => say(S.reading));
+  root.addEventListener('rm-import-error', () => say(S.importError));
+  root.addEventListener('rm-import', (e) => {
+    const d = e.detail.data;
+    const got = merge({ ...d, settings: state.settings });
+    const any = Object.values(got.basics).some((v) => v.trim()) || got.summary || got.achievements
+      || ['education', 'experience', 'projects', 'skills'].some((k) => got[k].some((it) => Object.values(it).some((v) => v.trim())));
+    if (!any) { say(S.importEmpty); return; }
+    if (!got.education.length) got.education = blank().education;
+    before = JSON.stringify(state);
+    state = got;
+    for (const k of ['experience', 'projects', 'skills']) openState[k] = state[k].length > 0;
+    renderForm(); renderPaper(); persist();
+    say(S.imported, true);
+  });
+  undoBtn.addEventListener('click', () => {
+    if (!before) return;
+    state = merge(JSON.parse(before)); before = null;
+    renderForm(); renderPaper(); persist();
+    notice.hidden = true;
+  });
+
   renderForm();
   renderPaper();
 })();
+</script>
+
+<script>
+  // Reads an imported resume (PDF, .docx, .txt) in the browser and hands the fields to the form above.
+  import { readResumeFile, parseResume } from '../scripts/resume-import.js';
+  const root = document.getElementById('rm');
+  const input = root?.querySelector('[data-import]') as HTMLInputElement | null;
+  root?.querySelector('[data-act="import"]')?.addEventListener('click', () => input?.click());
+  input?.addEventListener('change', async () => {
+    const f = input.files?.[0];
+    if (!f || !root) return;
+    root.dispatchEvent(new CustomEvent('rm-import-start'));
+    try {
+      const text = await readResumeFile(f);
+      root.dispatchEvent(new CustomEvent('rm-import', { detail: { data: parseResume(text) } }));
+    } catch (err) {
+      root.dispatchEvent(new CustomEvent('rm-import-error', { detail: String(err) }));
+    }
+    input.value = '';
+  });
 </script>
 
 <style is:global>
@@ -520,6 +602,54 @@ const fitWord = hi ? 'hi' : 'en';
   .r-credit { margin-top: 1.4em !important; font-size: 0.78em; color: #9aa3b8 !important; text-align: right; }
   .r-break { position: absolute; left: 0; right: 0; border-top: 2px dashed #e0a43a; pointer-events: none; }
 
+  /* Import notice and template picker */
+  .rm-notice { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 12px; padding: 12px 16px; border: 1px solid rgba(230, 195, 106, 0.4); border-radius: var(--r-md); background: rgba(230, 195, 106, 0.08); color: var(--text); font-size: 0.92rem; }
+  .rm-notice[hidden] { display: none; }
+  .rm-notice span { flex: 1 1 260px; }
+  .rm-toolbar .rm-import { border-color: rgba(230, 195, 106, 0.55); }
+  .rm-tpl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
+  .rm-tpl button { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 6px 8px; border: 1px solid var(--border-strong); border-radius: 12px; background: rgba(14, 21, 51, 0.6); color: var(--text-2); font: 600 0.85rem/1.2 var(--font-body); cursor: pointer; }
+  .rm-tpl button[aria-pressed='true'] { border-color: var(--cyan); color: var(--text); background: rgba(230, 195, 106, 0.1); }
+  .tpl-ic { width: 44px; height: 56px; border-radius: 3px; background: #fff; position: relative; display: block; overflow: hidden; }
+  .tpl-ic i { position: absolute; display: block; background: #c7cede; border-radius: 1px; }
+  .tpl-classic i:nth-child(1) { left: 6px; top: 6px; width: 24px; height: 5px; background: #1d2433; }
+  .tpl-classic i:nth-child(2) { left: 6px; right: 6px; top: 16px; height: 1px; background: #1d2433; box-shadow: 0 13px 0 #1d2433; }
+  .tpl-classic i:nth-child(3) { left: 6px; right: 10px; top: 20px; height: 3px; box-shadow: 0 5px 0 #c7cede, 0 18px 0 #c7cede, 0 23px 0 #c7cede; }
+  .tpl-modern i:nth-child(1) { left: 3px; right: 3px; top: 3px; height: 11px; background: #18306e; border-radius: 2px; }
+  .tpl-modern i:nth-child(2) { left: 3px; top: 17px; width: 13px; bottom: 3px; background: #e6ebf7; }
+  .tpl-modern i:nth-child(3) { left: 19px; right: 4px; top: 18px; height: 3px; box-shadow: 0 6px 0 #c7cede, 0 12px 0 #c7cede, 0 18px 0 #c7cede, 0 24px 0 #c7cede; }
+  .tpl-elegant i:nth-child(1) { left: 12px; right: 12px; top: 6px; height: 4px; background: #1a1f36; }
+  .tpl-elegant i:nth-child(2) { left: 6px; right: 6px; top: 15px; height: 1px; background: #c9a227; box-shadow: 0 14px 0 #c9a227; }
+  .tpl-elegant i:nth-child(3) { left: 6px; width: 8px; top: 19px; height: 3px; box-shadow: 13px 0 0 #c7cede, 22px 0 0 #c7cede, 0 6px 0 #c7cede, 13px 6px 0 #c7cede, 0 20px 0 #c7cede, 13px 20px 0 #c7cede; }
+
+  /* Template: Modern (dark header band, side column) */
+  .rm-paper { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .rm-paper.t-modern .r-mhead { background: #18306e; border-radius: 2.5mm; padding: 6mm 7mm; margin: 0 0 5mm; }
+  .rm-paper.t-modern .r-mhead h1 { color: #fff; }
+  .rm-paper.t-modern .r-mhead .r-headline { color: #d6def5 !important; margin: 0 !important; }
+  .rm-paper.t-modern .r-mgrid { display: grid; grid-template-columns: 33% minmax(0, 1fr); gap: 6mm; align-items: start; }
+  .rm-paper.t-modern .r-side { background: #eef2fb; border-radius: 2.5mm; padding: 4mm 4.5mm; }
+  .rm-paper.t-modern .r-side .r-sec:first-child, .rm-paper.t-modern .r-main .r-sec:first-child { margin-top: 0; }
+  .rm-paper.t-modern .r-sec h2 { color: #2457d6; border-bottom: 1px solid #b9c6e8; letter-spacing: 0.08em; }
+  .rm-paper.t-modern .r-clist { list-style: none; margin: 0; padding: 0; }
+  .rm-paper.t-modern .r-clist li { margin: 0 0 0.35em; overflow-wrap: anywhere; font-size: 0.92em; }
+  .rm-paper.t-modern .r-side .r-skill { margin: 0 0 0.55em; }
+  .rm-paper.t-modern .r-side .r-skill p { font-size: 0.92em; }
+  .rm-paper.t-modern .r-side ul { padding-left: 1em; font-size: 0.92em; }
+  .rm-paper.t-modern .r-side .r-row { flex-direction: column; gap: 0; }
+
+  /* Template: Elegant (serif, centred heading, dates in a left column) */
+  .rm-paper.t-elegant { font-family: Georgia, 'Times New Roman', 'Noto Serif Devanagari', serif; }
+  .rm-paper.t-elegant .r-head { text-align: center; margin-bottom: 1em; }
+  .rm-paper.t-elegant .r-head h1 { font: 400 2.25em/1.1 Georgia, 'Times New Roman', 'Noto Serif Devanagari', serif; letter-spacing: 0.03em; color: #1a1f36; }
+  .rm-paper.t-elegant .r-headline { font-style: italic; }
+  .rm-paper.t-elegant .r-sec h2 { font: 400 0.82em/1.2 Georgia, 'Times New Roman', 'Noto Serif Devanagari', serif; text-transform: uppercase; letter-spacing: 0.18em; color: #1a1f36; border-bottom: 0; display: flex; align-items: center; gap: 3mm; }
+  .rm-paper.t-elegant .r-sec h2::after { content: ''; flex: 1; border-top: 0.8px solid #c9a227; }
+  .rm-paper.t-elegant .r-tl { display: grid; grid-template-columns: 25mm minmax(0, 1fr); gap: 4mm; }
+  .rm-paper.t-elegant .r-when { color: #6b7287; font-size: 0.9em; padding-top: 0.12em; }
+  .rm-paper.t-elegant .r-link { font-size: 0.92em; }
+  .rm-paper.t-elegant .r-link .r-date { white-space: normal; }
+
   @media (max-width: 900px) {
     .rm-toolbar { position: static; padding: 10px; gap: 8px; }
     .rm-tabs { display: grid; grid-template-columns: 1fr 1fr; margin-top: 14px; border: 1px solid var(--border-strong); border-radius: var(--r-sm); overflow: hidden; position: sticky; top: 74px; z-index: 5; background: rgba(14, 21, 51, 0.96); }
@@ -541,7 +671,7 @@ const fitWord = hi ? 'hi' : 'en';
   @media print {
     @page { size: A4; margin: 14mm 15mm; }
     html, body { background: #fff !important; }
-    body > :not(main), main > :not(.rm-page), .rm-page .rm-intro, .rm-toolbar, .rm-tabs, .rm-form, .rm-status, .rm-check, .rm-hint, .r-break { display: none !important; }
+    body > :not(main), main > :not(.rm-page), .rm-page .rm-intro, .rm-toolbar, .rm-notice, .rm-tpl, .rm-tabs, .rm-form, .rm-status, .rm-check, .rm-hint, .r-break { display: none !important; }
     .rm-page { padding: 0 !important; background: #fff !important; }
     .rm-page .wrap { padding: 0; max-width: none; }
     .rm, .rm-cols, .rm-preview { display: block !important; margin: 0; position: static; max-height: none !important; overflow: visible !important; padding: 0 !important; }
