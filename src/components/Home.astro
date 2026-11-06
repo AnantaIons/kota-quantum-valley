@@ -4,6 +4,7 @@ import QubitHero from './QubitHero.astro';
 import Particles from './Particles.astro';
 import Fridge from './Fridge.astro';
 import Mobius from './Mobius.astro';
+import GoldInfinity from './GoldInfinity.astro';
 import site from '../data/site.json';
 import { getPosts } from '../lib/posts.js';
 import { course1, syllabus, lessonNumber, partOf } from '../data/course.js';
@@ -38,7 +39,7 @@ const c = hi ? {
   paths: [
     { c: '#39E6A0', lvl: 'रास्ता 1', name: 'Quantum Explorer', who: 'कक्षा 8–10', topics: ['Bits और logic gates', 'Qubit से परिचय', 'Superposition', 'Measurement', 'Entanglement की बुनियाद', 'आज की क्वांटम तकनीक'], cta: 'पाठ 1 से शुरू करें', href: lessonUrl('bits-and-classical-computing') },
     { c: '#E6C36A', lvl: 'रास्ता 2', name: 'Quantum Scientist', who: 'कक्षा 11–12 और JEE छात्र', topics: ['Complex numbers', 'Vectors और matrices', 'Bloch sphere', 'Quantum gates', 'Circuits', 'Interference'], cta: 'रोडमैप से शुरू करें', href: lessonUrl('roadmap-what-to-learn-first'), note: 'यह JEE सिलेबस का हिस्सा नहीं है, लेकिन उसी फ़िज़िक्स और मैथ्स पर बना है।' },
-    { c: '#8957FF', lvl: 'रास्ता 3', name: 'Quantum Architect', who: 'कॉलेज और एडवांस्ड छात्र', topics: ['Tensor products', 'Bell tests', 'Deutsch–Jozsa', 'Grover', 'QFT और Shor', 'Error correction', 'Hardware', 'QKD'], cta: 'पाठ 12 से शुरू करें', href: lessonUrl('many-qubits-and-the-tensor-product') },
+    { c: '#2979FF', lvl: 'रास्ता 3', name: 'Quantum Architect', who: 'कॉलेज और एडवांस्ड छात्र', topics: ['Tensor products', 'Bell tests', 'Deutsch–Jozsa', 'Grover', 'QFT और Shor', 'Error correction', 'Hardware', 'QKD'], cta: 'पाठ 12 से शुरू करें', href: lessonUrl('many-qubits-and-the-tensor-product') },
   ],
   labT: 'क्वांटम फ़िज़िक्स सिर्फ़ पढ़ें नहीं। उसके साथ प्रयोग करें।', labP: 'हमारी क्वांटम लैब आपके ब्राउज़र में एक असली state-vector simulator चलाती है।',
   labList: ['Bloch sphere पर X, Y, Z, H, S, T gates लगाएँ', 'Qubit को 1,000 बार measure करें और histogram देखें', 'H + CNOT से Bell state बनाएँ और correlation देखें', 'अपना circuit बनाएँ (4 qubits तक) और Qiskit code निकालें'],
@@ -81,7 +82,7 @@ const c = hi ? {
   paths: [
     { c: '#39E6A0', lvl: 'Path 1', name: 'Quantum Explorer', who: 'Class 8–10', topics: ['Bits and logic gates', 'Introduction to qubits', 'Superposition', 'Measurement', 'Entanglement basics', 'Quantum tech today'], cta: 'Start with Lesson 1', href: lessonUrl('bits-and-classical-computing') },
     { c: '#E6C36A', lvl: 'Path 2', name: 'Quantum Scientist', who: 'Class 11–12 and JEE students', topics: ['Complex numbers', 'Vectors and matrices', 'Bloch sphere', 'Quantum gates', 'Circuits', 'Interference'], cta: 'Start with the roadmap', href: lessonUrl('roadmap-what-to-learn-first'), note: 'Not part of the JEE syllabus, but built on the same physics and maths.' },
-    { c: '#8957FF', lvl: 'Path 3', name: 'Quantum Architect', who: 'College and advanced students', topics: ['Tensor products', 'Bell tests', 'Deutsch–Jozsa', 'Grover', 'QFT and Shor', 'Error correction', 'Hardware', 'QKD'], cta: 'Start with Lesson 12', href: lessonUrl('many-qubits-and-the-tensor-product') },
+    { c: '#2979FF', lvl: 'Path 3', name: 'Quantum Architect', who: 'College and advanced students', topics: ['Tensor products', 'Bell tests', 'Deutsch–Jozsa', 'Grover', 'QFT and Shor', 'Error correction', 'Hardware', 'QKD'], cta: 'Start with Lesson 12', href: lessonUrl('many-qubits-and-the-tensor-product') },
   ],
   labT: "Don't just learn quantum physics. Experiment with it.", labP: 'Our Quantum Lab runs a real state-vector simulator right in your browser.',
   labList: ['Apply X, Y, Z, H, S and T gates on a 3D Bloch sphere', 'Measure a qubit 1,000 times and watch the histogram', 'Build a Bell state with H + CNOT and see the correlations', 'Drag and drop your own circuit (up to 4 qubits) and export Qiskit code'],
@@ -301,6 +302,7 @@ const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" 
 <section class="quote-section">
   <div class="wrap">
     <figure class="quote">
+      <GoldInfinity />
       <blockquote>{c.quote}</blockquote>
       <figcaption>{c.quoteBy}</figcaption>
     </figure>

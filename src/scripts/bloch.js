@@ -17,10 +17,10 @@ export function createBloch(svg, opts = {}) {
 
   const defs = el('defs', {});
   const g1 = el('radialGradient', { id: svg.id + '-g', cx: '38%', cy: '30%', r: '78%' }, defs);
-  el('stop', { offset: '0', 'stop-color': '#8957FF', 'stop-opacity': '0.35' }, g1);
+  el('stop', { offset: '0', 'stop-color': '#0047AB', 'stop-opacity': '0.55' }, g1);
   el('stop', { offset: '0.7', 'stop-color': '#0B1026', 'stop-opacity': '0.15' }, g1);
   el('stop', { offset: '1', 'stop-color': '#E6C36A', 'stop-opacity': '0.08' }, g1);
-  el('circle', { cx, cy, r: R, fill: `url(#${svg.id}-g)`, stroke: 'rgba(140,160,255,0.55)', 'stroke-width': 1.4 });
+  el('circle', { cx, cy, r: R, fill: `url(#${svg.id}-g)`, stroke: 'rgba(41,121,255,0.6)', 'stroke-width': 1.4 });
   const layer = el('g', {});
 
   function circlePts(fn, n = 96) { const pts = []; for (let i = 0; i <= n; i++) pts.push(proj(fn((i / n) * Math.PI * 2))); return pts; }
@@ -37,11 +37,11 @@ export function createBloch(svg, opts = {}) {
   }
   function draw() {
     layer.innerHTML = '';
-    drawCurve(circlePts((t) => [Math.cos(t), Math.sin(t), 0]), '#8C9CFF', 1.2);
-    drawCurve(circlePts((t) => [Math.cos(t), 0, Math.sin(t)]), '#8C9CFF', 0.9);
-    drawCurve(circlePts((t) => [0, Math.cos(t), Math.sin(t)]), '#8C9CFF', 0.9);
+    drawCurve(circlePts((t) => [Math.cos(t), Math.sin(t), 0]), '#5E95FF', 1.2);
+    drawCurve(circlePts((t) => [Math.cos(t), 0, Math.sin(t)]), '#5E95FF', 0.9);
+    drawCurve(circlePts((t) => [0, Math.cos(t), Math.sin(t)]), '#5E95FF', 0.9);
     if (trace != null) { const z = trace, r = Math.sqrt(Math.max(0, 1 - z * z)); drawCurve(circlePts((t) => [r * Math.cos(t), r * Math.sin(t), z]), '#E6C36A', 1, true); }
-    axis([1, 0, 0], 'x', '#A9B4D0'); axis([0, 1, 0], 'y', '#A9B4D0'); axis([0, 0, 1], '', '#A9B4D0');
+    axis([1, 0, 0], 'x', '#00D4FF'); axis([0, 1, 0], 'y', '#00D4FF'); axis([0, 0, 1], '', '#00D4FF');
     const top = proj([0, 0, 1.12]), bot = proj([0, 0, -1.12]);
     el('text', { x: top.sx + 10, y: top.sy - 4, class: 'ket' }, layer).textContent = '|0⟩';
     el('text', { x: bot.sx + 10, y: bot.sy + 16, class: 'ket' }, layer).textContent = '|1⟩';

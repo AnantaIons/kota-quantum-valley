@@ -25,7 +25,7 @@ const c = hi ? {
       <svg viewBox="-200 -150 400 300" role="img" aria-label={c.aria} data-mobius-svg>
         <defs>
           <radialGradient id="mb-glow" cx="0.5" cy="0.5" r="0.5">
-            <stop offset="0" stop-color="#8957ff" stop-opacity="0.35" /><stop offset="1" stop-color="#8957ff" stop-opacity="0" />
+            <stop offset="0" stop-color="#0047AB" stop-opacity="0.55" /><stop offset="1" stop-color="#0047AB" stop-opacity="0" />
           </radialGradient>
         </defs>
         <ellipse cx="0" cy="10" rx="190" ry="120" fill="url(#mb-glow)" />
@@ -74,11 +74,11 @@ const c = hi ? {
     const pool = (g) => Array.from({ length: N }, () => { const p = document.createElementNS(NS, 'path'); g.appendChild(p); return p; });
     const backPaths = pool(back), frontPaths = pool(front);
 
-    // Colours run gold → violet → gold around the loop
-    const gold = [230, 195, 106], violet = [137, 87, 255];
+    // Colours run gold → cobalt → gold around the loop
+    const gold = [230, 195, 106], cobalt = [41, 121, 255];
     const colour = (u, shade) => {
       const t = (1 - Math.cos(u)) / 2;
-      const c = gold.map((g, i) => g + (violet[i] - g) * t);
+      const c = gold.map((g, i) => g + (cobalt[i] - g) * t);
       const k = 0.38 + 0.62 * shade;
       return `rgb(${c.map((v) => Math.round(v * k)).join(',')})`;
     };
@@ -160,7 +160,7 @@ const c = hi ? {
   .mobius-copy > p { color: #d5dbef; max-width: 52ch; }
   .mb-track { margin: 26px 0 10px; max-width: 420px; }
   .mb-rail { position: relative; height: 4px; border-radius: 4px; background: rgba(140, 160, 255, 0.18); }
-  .mb-rail i { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: linear-gradient(90deg, var(--cyan), var(--violet), var(--cyan)); background-size: 420px 100%; }
+  .mb-rail i { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: linear-gradient(90deg, var(--cyan), var(--cobalt-hi), var(--cyan)); background-size: 420px 100%; }
   .mb-rail b { position: absolute; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: #f4f7ff; box-shadow: 0 0 12px rgba(230, 195, 106, 0.8); }
   .mb-ticks { display: flex; justify-content: space-between; margin-top: 10px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-3); }
   .mb-ticks span { display: flex; flex-direction: column; align-items: center; gap: 2px; }

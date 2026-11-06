@@ -129,7 +129,7 @@ const can = { x: cx - 36, y: mxc.y + mxc.t + 6, w: 72, h: 84 };
               <stop offset="0" stop-color="#2a2f45" /><stop offset="0.45" stop-color="#7c86a6" /><stop offset="1" stop-color="#1e2236" />
             </linearGradient>
             <radialGradient id="fg-cold" cx="0.5" cy="0.5" r="0.5">
-              <stop offset="0" stop-color="#bfe6ff" stop-opacity="0.9" /><stop offset="1" stop-color="#bfe6ff" stop-opacity="0" />
+              <stop offset="0" stop-color="#2979FF" stop-opacity="0.95" /><stop offset="1" stop-color="#0047AB" stop-opacity="0" />
             </radialGradient>
             <filter id="fg-blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" /></filter>
           </defs>
@@ -238,11 +238,11 @@ const can = { x: cx - 36, y: mxc.y + mxc.t + 6, w: 72, h: 84 };
   .fridge-copy .lead { color: var(--text-2); max-width: 52ch; }
   .fridge-temp { position: absolute; left: 0; top: 4px; z-index: 2; display: flex; flex-direction: column; gap: 2px; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--r-md); background: rgba(3, 5, 16, 0.75); backdrop-filter: blur(8px); min-width: 150px; }
   .fridge-temp span { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-3); }
-  .fridge-temp strong { font-family: var(--font-head); font-size: 2.2rem; line-height: 1.05; letter-spacing: -0.02em; color: #cfeaff; font-variant-numeric: tabular-nums; }
-  .fridge-stages { list-style: none; margin: 18px 0 28px; padding: 0; }
+  .fridge-temp strong { font-family: var(--font-head); font-size: 2.2rem; line-height: 1.05; letter-spacing: -0.02em; color: var(--cobalt-text); font-variant-numeric: tabular-nums; }
+  .fridge-stages { list-style: none; margin: 18px 0 28px; padding: 0 0 22vh; }
   .fridge-stages li { min-height: 34vh; padding: 22px 0 22px 22px; border-left: 2px solid var(--border); transition: border-color 0.3s, opacity 0.3s; opacity: 0.45; display: flex; flex-direction: column; justify-content: center; }
-  .fridge-stages li.on { border-left-color: #9fd8ff; opacity: 1; }
-  .fridge-stages .fs-t { font-family: var(--font-mono); font-size: 0.8rem; color: #9fd8ff; }
+  .fridge-stages li.on { border-left-color: var(--cobalt-hi); opacity: 1; }
+  .fridge-stages .fs-t { font-family: var(--font-mono); font-size: 0.8rem; color: var(--cobalt-text); }
   .fridge-stages h3 { margin: 4px 0 6px; font-size: 1.25rem; }
   .fridge-stages p { margin: 0; color: var(--text-2); max-width: 48ch; }
   .fridge-visual { margin: 0; position: sticky; top: 84px; }
@@ -252,22 +252,22 @@ const can = { x: cx - 36, y: mxc.y + mxc.t + 6, w: 72, h: 84 };
   .fr-rods-back line { stroke: #6b5a33; stroke-width: 3; opacity: 0.55; }
   .fr-rods-front line { stroke: url(#fg-side); stroke: #b98d3c; stroke-width: 4; }
   .fr-cables path { fill: none; stroke: #8b7448; stroke-width: 2; opacity: 0.9; }
-  .fr-cables path.up { stroke: #7e6fae; }
+  .fr-cables path.up { stroke: #17738a; }
   .fr-pulses path { fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 3 97; stroke-dashoffset: 0; opacity: 0; }
   .fr-pulses path.down { stroke: #fff1c2; }
-  .fr-pulses path.up { stroke: #c9b5ff; }
+  .fr-pulses path.up { stroke: var(--sci); }
   .live .fr-pulses path { opacity: 1; animation: fr-pulse 2.8s linear infinite; }
   .live .fr-pulses path.up { animation-direction: reverse; animation-duration: 3.4s; }
   @keyframes fr-pulse { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -100; } }
   .fr-atten rect { fill: #4b5170; stroke: #1b1f33; }
   .fr-halo { opacity: 0; transition: opacity 0.5s; }
   .fr-plate.here .fr-halo { opacity: 0.55; }
-  .fr-frost { fill: none; stroke: #bfe6ff; stroke-width: 2; opacity: 0; transition: opacity 0.5s; }
+  .fr-frost { fill: none; stroke: #8DB4FF; stroke-width: 2; opacity: 0; transition: opacity 0.5s; }
   .fr-plate.cold .fr-frost { opacity: 0.55; }
   .fr-plate.here .fr-frost { opacity: 1; }
   .fr-lead { stroke: var(--text-3); stroke-width: 1; }
   .fr-label { font-family: var(--font-mono); font-size: 15px; fill: var(--text-2); transition: fill 0.3s; }
-  .fr-plate.here .fr-label { fill: #cfeaff; font-weight: 600; }
+  .fr-plate.here .fr-label { fill: var(--cobalt-text); font-weight: 600; }
   .fr-window { fill: #05070f; stroke: #8b93b3; }
   .fr-chip rect { fill: #1d2b4f; stroke: #e6c36a; stroke-width: 1; }
   .fr-chip circle { fill: #e6c36a; opacity: 0.5; transition: opacity 0.4s, filter 0.4s; }
@@ -279,7 +279,7 @@ const can = { x: cx - 36, y: mxc.y + mxc.t + 6, w: 72, h: 84 };
   @keyframes fr-qubit { 50% { opacity: 0.35; } }
   .fr-key line { stroke-width: 3; stroke-linecap: round; }
   .fr-key line.down { stroke: #fff1c2; }
-  .fr-key line.up { stroke: #c9b5ff; }
+  .fr-key line.up { stroke: var(--sci); }
   .fr-key text { font-family: var(--font-mono); font-size: 13px; fill: var(--text-3); }
 
   @media (max-width: 900px) {
@@ -289,6 +289,7 @@ const can = { x: cx - 36, y: mxc.y + mxc.t + 6, w: 72, h: 84 };
     .fridge-visual figcaption { display: none; }
     .fridge-temp { top: 8px; padding: 8px 12px; min-width: 0; }
     .fridge-temp strong { font-size: 1.6rem; }
+    .fridge-stages { padding-bottom: 8vh; }
     .fridge-stages li { min-height: 26vh; }
   }
 </style>

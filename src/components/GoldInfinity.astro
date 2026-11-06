@@ -1,0 +1,55 @@
+---
+// Golden infinity: the brand's "learning without boundaries" mark, drawn as a metallic lemniscate.
+// A small highlight travels along it while it is on screen.
+const W = 240, H = 100, cx = W / 2, cy = H / 2, a = 104;
+const pt = (t) => {
+  const d = 1 + Math.sin(t) ** 2;
+  return [cx + (a * Math.cos(t)) / d, cy + (a * Math.sin(t) * Math.cos(t)) / d * 1.15];
+};
+const path = (t0, t1, n = 120) => {
+  let s = '';
+  for (let i = 0; i <= n; i++) {
+    const [x, y] = pt(t0 + ((t1 - t0) * i) / n);
+    s += `${i ? 'L' : 'M'}${x.toFixed(2)} ${y.toFixed(2)}`;
+  }
+  return s;
+};
+const full = path(0, Math.PI * 2, 240);
+// The strand that passes over the crossing: a short stretch around t = 3π/2 (through the centre)
+const over = path(Math.PI * 1.5 - 0.42, Math.PI * 1.5 + 0.42, 30);
+const gap = path(Math.PI * 1.5 - 0.24, Math.PI * 1.5 + 0.24, 20);
+---
+<svg class="kqv-infinity" viewBox={`0 0 ${W} ${H}`} aria-hidden="true" data-infinity>
+  <defs>
+    <linearGradient id="inf-gold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2={W} y2={H * 0.6}>
+      <stop offset="0" stop-color="#7a5620" /><stop offset="0.18" stop-color="#F6DC93" /><stop offset="0.38" stop-color="#D4AF37" />
+      <stop offset="0.55" stop-color="#8a6526" /><stop offset="0.72" stop-color="#F1D58A" /><stop offset="0.9" stop-color="#D4AF37" /><stop offset="1" stop-color="#7a5620" />
+    </linearGradient>
+  </defs>
+  <path class="inf-base" d={full} />
+  <path class="inf-gold" d={full} />
+  <path class="inf-gap" d={gap} />
+  <path class="inf-base inf-over" d={over} />
+  <path class="inf-gold inf-over" d={over} />
+  <path class="inf-shine" d={full} transform="translate(0 -1.6)" />
+  <path class="inf-glint" d={full} pathLength="100" />
+</svg>
+
+<script>
+  document.querySelectorAll('[data-infinity]').forEach((svg) => {
+    new IntersectionObserver(([e]) => svg.classList.toggle('live', e.isIntersecting)).observe(svg);
+  });
+</script>
+
+<style is:global>
+  .kqv-infinity { display: block; width: min(220px, 60vw); height: auto; margin: 0 0 26px; overflow: visible; }
+  .kqv-infinity path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .kqv-infinity .inf-base { stroke: #4a3410; stroke-width: 10; }
+  .kqv-infinity .inf-gold { stroke: url(#inf-gold); stroke-width: 7.5; }
+  .kqv-infinity .inf-gap { stroke: var(--space); stroke-width: 15; stroke-linecap: butt; }
+  .kqv-infinity .inf-over { stroke-linecap: butt; }
+  .kqv-infinity .inf-shine { stroke: #fff3c4; stroke-width: 1.4; opacity: 0.55; }
+  .kqv-infinity .inf-glint { stroke: #fffbe6; stroke-width: 3.5; stroke-dasharray: 5 95; opacity: 0; filter: drop-shadow(0 0 5px #F6DC93); }
+  .kqv-infinity.live .inf-glint { opacity: 0.9; animation: inf-glint 6s linear infinite; }
+  @keyframes inf-glint { to { stroke-dashoffset: -100; } }
+</style>
