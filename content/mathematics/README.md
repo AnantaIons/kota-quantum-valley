@@ -19,6 +19,24 @@ content/mathematics/
 Chapter IDs never change once given: `KQV-MATH-CH000` for Chapter 0, then
 `KQV-MATH-D##-C###` (for example `KQV-MATH-D06-C001`).
 
+## Depth standard
+
+Every topic chapter goes from its entry level to the ceiling of its topic, so that a learner who
+finishes it can solve the toughest questions on that topic. Each chapter therefore has:
+
+1. **Toolkit**: every standard technique for the topic, when to use it, why it works, and a
+   worked example.
+2. **Problem ladder** through each tier listed for the chapter in its ledger row, at least five
+   problems per tier, each with a full solution, the key idea named and common wrong approaches:
+   T1 foundation, T2 board and JEE Main, T3 JEE Advanced, T4 olympiad, T5 university,
+   T6 graduate and PhD qualifying, R research note.
+3. **Proofs** of every theorem used, or a link to the chapter that proves it; graduate results
+   with complete hypotheses.
+4. **Mastery check**: a final mixed set across all its tiers.
+
+Past exam problems are used only with a verified source (exam, year, paper, question number);
+everything else is original. Chapter 0 is an orientation chapter and has no problem ladder.
+
 ## Writing a chapter
 
 - Front matter in `chapter.md` must match `metadata.json` (id, status, version).
@@ -39,8 +57,8 @@ approved → published → revised`
 - A chapter gets a web page only from `mathematically_checked` onwards, and only goes live after
   the founder approves the branch.
 - Chapters flagged `expert-review` in a ledger need a qualified human reviewer before publication.
-- Hindi versions are written separately and reviewed before publishing; they are never
-  machine-published.
+- Course 2 is English-only for now. If Hindi versions are added later, they are written
+  separately and reviewed before publishing, never machine-published.
 
 ## Checks
 

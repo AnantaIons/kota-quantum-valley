@@ -2,9 +2,10 @@
   "domain": "D06",
   "domain_name": "Complex numbers and complex analysis",
   "planned": 75,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "proposed — awaiting founder approval before Chapter 1 is drafted",
   "notes": [
+    "Depth standard (founder, 6 November 2026): every chapter climbs from its entry level to its ceiling, the hardest problems its topic produces, with a full problem ladder through the listed tiers (see course.json, depth_standard and tiers).",
     "Prerequisites inside D06 use chapter IDs. Prerequisites in other domains are listed as text until those domains have ledgers.",
     "Flags: mandatory-pilot-a/b/c and mandatory-quantum mark the chapters the master specification requires; expert-review marks chapters that need a qualified human reviewer before publication; bridge marks short catch-up lessons; history-needs-sources means every historical statement must be sourced."
   ],
@@ -53,8 +54,17 @@
       "group": 1,
       "group_name": "Foundations and ordered-pair construction",
       "title": "Why Complex Numbers Are Needed",
-      "level": "L1",
+      "entry_level": "L1",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T2",
+        "T5",
+        "T6",
+        "R"
+      ],
       "objective": "See exactly where the real numbers run out (x^2 + 1 = 0) and what it means to extend a number system consistently.",
+      "toughest": "Cardano's formula on cubics with three real roots (Bombelli's example) and the casus irreducibilis; Frobenius's theorem: R, C and the quaternions are the only finite-dimensional associative real division algebras.",
       "prerequisites": [
         "KQV-MATH-CH000"
       ],
@@ -62,7 +72,7 @@
       "proofs": "Proof that x^2 >= 0 for every real x.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 5.0,
       "flags": [
         "history-needs-sources"
       ],
@@ -74,8 +84,17 @@
       "group": 1,
       "group_name": "Foundations and ordered-pair construction",
       "title": "Meeting i: Arithmetic with a + bi",
-      "level": "L1",
+      "entry_level": "L1",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
       "objective": "Add, subtract and multiply numbers of the form a + bi using i^2 = -1.",
+      "toughest": "Powers like (1+i)^n and binomial sums via i; Gaussian integers, norms and which primes are sums of two squares.",
       "prerequisites": [
         "KQV-MATH-D06-C001"
       ],
@@ -85,7 +104,7 @@
       "proofs": "Derive the product rule (a+bi)(c+di).",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.5,
       "flags": [],
       "status": "proposed"
     },
@@ -95,8 +114,16 @@
       "group": 1,
       "group_name": "Foundations and ordered-pair construction",
       "title": "Real and Imaginary Parts, and Equality",
-      "level": "L1",
+      "entry_level": "L1",
+      "ceiling": "T4",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
       "objective": "Use Re and Im; solve equations by equating real and imaginary parts.",
+      "toughest": "Equations mixing z, conj(z) and |z| (JEE Advanced style); functional equations over C.",
       "prerequisites": [
         "KQV-MATH-D06-C002"
       ],
@@ -104,7 +131,7 @@
       "proofs": "Equality of complex numbers from the definition.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1,
+      "estimated_hours": 2.5,
       "flags": [],
       "status": "proposed"
     },
@@ -114,8 +141,15 @@
       "group": 1,
       "group_name": "Foundations and ordered-pair construction",
       "title": "Complex Numbers as Ordered Pairs",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T3",
+        "T5"
+      ],
       "objective": "Build C as pairs (a, b) with defined addition and multiplication, and recover i as (0, 1).",
+      "toughest": "Build C as R[x]/(x^2+1) and prove it isomorphic to the ordered-pair construction.",
       "prerequisites": [
         "KQV-MATH-D06-C003"
       ],
@@ -125,7 +159,7 @@
       "proofs": "Show (0,1)(0,1) = (-1,0) from the definitions.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.5,
       "flags": [
         "mandatory-pilot-a"
       ],
@@ -137,8 +171,15 @@
       "group": 1,
       "group_name": "Foundations and ordered-pair construction",
       "title": "Checking the Field Laws",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Prove that the ordered-pair construction satisfies every field axiom.",
+      "toughest": "Prove C is the unique degree-2 field extension of R up to isomorphism; why R^3 admits no field structure extending R (Frobenius context).",
       "prerequisites": [
         "KQV-MATH-D06-C004"
       ],
@@ -148,7 +189,7 @@
       "proofs": "Complete proofs of commutativity, associativity, distributivity, identities and inverses.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 7.0,
       "flags": [
         "mandatory-pilot-a"
       ],
@@ -160,8 +201,17 @@
       "group": 1,
       "group_name": "Foundations and ordered-pair construction",
       "title": "The Conjugate and Its Rules",
-      "level": "L1",
+      "entry_level": "L1",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
       "objective": "Define the conjugate and prove its rules for sums and products.",
+      "toughest": "Olympiad problems using z conj(z) = |z|^2; prove the only automorphisms of C fixing R are the identity and conjugation.",
       "prerequisites": [
         "KQV-MATH-D06-C003"
       ],
@@ -169,7 +219,7 @@
       "proofs": "Proofs of conj(z+w) and conj(zw).",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1,
+      "estimated_hours": 3.0,
       "flags": [],
       "status": "proposed"
     },
@@ -179,8 +229,16 @@
       "group": 1,
       "group_name": "Foundations and ordered-pair construction",
       "title": "Division and Reciprocals",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T4",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
       "objective": "Divide complex numbers by multiplying by the conjugate; find 1/z.",
+      "toughest": "JEE Advanced and olympiad problems on rational expressions in z and conditions for real or purely imaginary quotients.",
       "prerequisites": [
         "KQV-MATH-D06-C005",
         "KQV-MATH-D06-C006"
@@ -189,7 +247,7 @@
       "proofs": "Derive the reciprocal formula and show it is the field inverse.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1,
+      "estimated_hours": 2.5,
       "flags": [],
       "status": "proposed"
     },
@@ -199,8 +257,15 @@
       "group": 1,
       "group_name": "Foundations and ordered-pair construction",
       "title": "Why C Cannot Be Ordered",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Prove there is no ordering of C compatible with addition and multiplication.",
+      "toughest": "Prove no field containing a square root of -1 can be ordered; Artin–Schreier: a field is orderable exactly when -1 is not a sum of squares.",
       "prerequisites": [
         "KQV-MATH-D06-C005"
       ],
@@ -210,7 +275,7 @@
       "proofs": "Complete proof by contradiction using i.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 5.0,
       "flags": [],
       "status": "proposed"
     },
@@ -220,8 +285,16 @@
       "group": 1,
       "group_name": "Foundations and ordered-pair construction",
       "title": "R Inside C: A Consistent Extension",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6",
+        "R"
+      ],
       "objective": "Show the map a -> (a, 0) preserves the operations, so C genuinely extends R.",
+      "toughest": "R is real closed and C = R(i) is algebraically closed; uniqueness of C up to isomorphism as an extension of R.",
       "prerequisites": [
         "KQV-MATH-D06-C005",
         "KQV-MATH-D06-C008"
@@ -232,7 +305,7 @@
       "proofs": "Embedding proof; R[x]/(x^2+1) remark marked advanced.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 7.0,
       "flags": [
         "mandatory-pilot-a"
       ],
@@ -244,8 +317,15 @@
       "group": 2,
       "group_name": "Algebra and geometry of complex numbers",
       "title": "The Complex Plane",
-      "level": "L1",
+      "entry_level": "L1",
+      "ceiling": "T3",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3"
+      ],
       "objective": "Picture complex numbers as points and arrows in the Argand plane.",
+      "toughest": "JEE Advanced locus and region problems in the Argand plane.",
       "prerequisites": [
         "KQV-MATH-D06-C003"
       ],
@@ -255,7 +335,7 @@
       "proofs": null,
       "lab": "Plot points and read off Re and Im.",
       "quantum": null,
-      "estimated_hours": 1,
+      "estimated_hours": 2.0,
       "flags": [],
       "status": "proposed"
     },
@@ -265,8 +345,16 @@
       "group": 2,
       "group_name": "Algebra and geometry of complex numbers",
       "title": "Addition as Vector Addition",
-      "level": "L1",
+      "entry_level": "L1",
+      "ceiling": "T4",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
       "objective": "See addition and subtraction as the parallelogram rule and displacement.",
+      "toughest": "Olympiad vector geometry: centroids, parallelograms and concurrency via complex coordinates.",
       "prerequisites": [
         "KQV-MATH-D06-C010"
       ],
@@ -274,7 +362,7 @@
       "proofs": "Geometric interpretation of z + w.",
       "lab": "Drag two points; watch the sum.",
       "quantum": null,
-      "estimated_hours": 1,
+      "estimated_hours": 2.5,
       "flags": [],
       "status": "proposed"
     },
@@ -284,8 +372,16 @@
       "group": 2,
       "group_name": "Algebra and geometry of complex numbers",
       "title": "Modulus: Distance from Zero",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T4",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
       "objective": "Define |z| and prove |z|^2 = z times its conjugate.",
+      "toughest": "Extremal problems for |z| under constraints (JEE Advanced and olympiad).",
       "prerequisites": [
         "KQV-MATH-D06-C006",
         "KQV-MATH-D06-C010"
@@ -296,7 +392,7 @@
       "proofs": "Proof of |z|^2 = z conj(z).",
       "lab": null,
       "quantum": "Probabilities are squared moduli of amplitudes.",
-      "estimated_hours": 1,
+      "estimated_hours": 2.5,
       "flags": [],
       "status": "proposed"
     },
@@ -306,8 +402,16 @@
       "group": 2,
       "group_name": "Algebra and geometry of complex numbers",
       "title": "Properties of the Modulus",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T4",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
       "objective": "Prove |zw| = |z||w| and |z/w| = |z|/|w|.",
+      "toughest": "Modulus identities such as the parallelogram law and their olympiad applications.",
       "prerequisites": [
         "KQV-MATH-D06-C007",
         "KQV-MATH-D06-C012"
@@ -316,7 +420,7 @@
       "proofs": "Complete proofs.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1,
+      "estimated_hours": 2.5,
       "flags": [],
       "status": "proposed"
     },
@@ -326,8 +430,17 @@
       "group": 2,
       "group_name": "Algebra and geometry of complex numbers",
       "title": "The Triangle Inequality",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
       "objective": "Prove the triangle inequality, its equality cases and the reverse inequality.",
+      "toughest": "Ptolemy's inequality and Hlawka's inequality via complex numbers; olympiad inequalities with equality cases.",
       "prerequisites": [
         "KQV-MATH-D06-C013"
       ],
@@ -335,7 +448,7 @@
       "proofs": "Complete proof with equality case.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.5,
       "flags": [],
       "status": "proposed"
     },
@@ -345,8 +458,16 @@
       "group": 2,
       "group_name": "Algebra and geometry of complex numbers",
       "title": "Distances, Circles and Regions",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T4",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
       "objective": "Describe circles, discs and half-planes with equations in z.",
+      "toughest": "Apollonius circles |z-a| = k|z-b|, regions and their intersections (JEE Advanced and olympiad).",
       "prerequisites": [
         "KQV-MATH-D06-C014"
       ],
@@ -354,7 +475,7 @@
       "proofs": "Locus derivations.",
       "lab": "Shade the set |z - c| < r.",
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.0,
       "flags": [],
       "status": "proposed"
     },
@@ -364,8 +485,16 @@
       "group": 2,
       "group_name": "Algebra and geometry of complex numbers",
       "title": "Quadratic Equations with Complex Roots",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T4",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
       "objective": "Solve any real quadratic over C; prove non-real roots of real polynomials come in conjugate pairs.",
+      "toughest": "Location of roots, Vieta's relations and olympiad polynomial problems with complex roots.",
       "prerequisites": [
         "KQV-MATH-D06-C007"
       ],
@@ -375,7 +504,7 @@
       "proofs": "Conjugate-root proof for real coefficients.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.0,
       "flags": [],
       "status": "proposed"
     },
@@ -385,8 +514,15 @@
       "group": 2,
       "group_name": "Algebra and geometry of complex numbers",
       "title": "Square Roots of a Complex Number",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T3",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3"
+      ],
       "objective": "Find both square roots of a + bi algebraically.",
+      "toughest": "Square roots of complex numbers inside harder equations and quadratic systems.",
       "prerequisites": [
         "KQV-MATH-D06-C016"
       ],
@@ -394,7 +530,7 @@
       "proofs": "Derivation by equating parts; there are exactly two roots for nonzero z.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 3.0,
       "flags": [],
       "status": "proposed"
     },
@@ -404,8 +540,17 @@
       "group": 2,
       "group_name": "Algebra and geometry of complex numbers",
       "title": "Polynomials and the Fundamental Theorem of Algebra",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T3",
+        "T4",
+        "T5",
+        "T6"
+      ],
       "objective": "State the Fundamental Theorem of Algebra precisely and use it to factor polynomials.",
+      "toughest": "Compare proofs of the Fundamental Theorem of Algebra (winding, Liouville, Galois); Gauss–Lucas theorem; bounds on root location.",
       "prerequisites": [
         "KQV-MATH-D06-C016",
         "KQV-MATH-D06-C017"
@@ -416,7 +561,7 @@
       "proofs": "Statement with hypotheses; proof deferred to C045.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 7.0,
       "flags": [],
       "status": "proposed"
     },
@@ -426,8 +571,16 @@
       "group": 2,
       "group_name": "Algebra and geometry of complex numbers",
       "title": "Geometry with Complex Numbers",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T4",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
       "objective": "Use complex numbers for midpoints, rotation by i and similar triangles.",
+      "toughest": "Olympiad geometry by complex coordinates: Napoleon's theorem, the nine-point circle, Simson lines.",
       "prerequisites": [
         "KQV-MATH-D06-C011",
         "KQV-MATH-D06-C013"
@@ -436,7 +589,7 @@
       "proofs": "Multiplication by i rotates by 90 degrees (algebraic proof).",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.0,
       "flags": [],
       "status": "proposed"
     },
@@ -446,8 +599,15 @@
       "group": 3,
       "group_name": "Polar form and Euler's formula",
       "title": "Angles, Radians and the Unit Circle",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T3",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3"
+      ],
       "objective": "Bridge lesson: radians, sine and cosine on the unit circle.",
+      "toughest": "Bridge: trigonometric identities and equations at JEE Advanced level.",
       "prerequisites": [
         "KQV-MATH-D06-C010"
       ],
@@ -457,7 +617,7 @@
       "proofs": null,
       "lab": "Unit-circle explorer.",
       "quantum": null,
-      "estimated_hours": 1,
+      "estimated_hours": 2.0,
       "flags": [
         "bridge"
       ],
@@ -469,8 +629,15 @@
       "group": 3,
       "group_name": "Polar form and Euler's formula",
       "title": "Polar Form and the Argument",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T3",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3"
+      ],
       "objective": "Write z = r(cos t + i sin t); define arg and the principal value; avoid atan pitfalls.",
+      "toughest": "Arguments of products and quotients, principal-value traps, arg-based loci (JEE Advanced).",
       "prerequisites": [
         "KQV-MATH-D06-C012",
         "KQV-MATH-D06-C020"
@@ -479,7 +646,7 @@
       "proofs": "Existence and uniqueness of polar form for nonzero z (argument up to 2 pi).",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 3.0,
       "flags": [],
       "status": "proposed"
     },
@@ -489,8 +656,16 @@
       "group": 3,
       "group_name": "Polar form and Euler's formula",
       "title": "Multiplication Rotates and Scales",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T4",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
       "objective": "Prove that moduli multiply and arguments add.",
+      "toughest": "Olympiad geometry by rotation: equilateral and square constructions, spiral similarities.",
       "prerequisites": [
         "KQV-MATH-D06-C021"
       ],
@@ -500,7 +675,7 @@
       "proofs": "Complete proof from the angle-addition formulas.",
       "lab": "Interactive rotation model: multiply by w and watch the plane turn and stretch.",
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.0,
       "flags": [],
       "status": "proposed"
     },
@@ -510,8 +685,17 @@
       "group": 3,
       "group_name": "Polar form and Euler's formula",
       "title": "De Moivre's Theorem",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5"
+      ],
       "objective": "Prove De Moivre's theorem for integer powers and derive trig identities.",
+      "toughest": "Trigonometric sums and products via De Moivre; Chebyshev polynomials and their extremal property.",
       "prerequisites": [
         "KQV-MATH-D06-C022"
       ],
@@ -521,7 +705,7 @@
       "proofs": "Proof by induction, including negative powers.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.5,
       "flags": [],
       "status": "proposed"
     },
@@ -531,8 +715,18 @@
       "group": 3,
       "group_name": "Polar form and Euler's formula",
       "title": "Roots of Unity and nth Roots",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6"
+      ],
       "objective": "Find all nth roots; prove the nth roots of unity sum to zero.",
+      "toughest": "Roots-of-unity filters for binomial sums; cyclotomic polynomials and their irreducibility over Q.",
       "prerequisites": [
         "KQV-MATH-D06-C023"
       ],
@@ -540,7 +734,7 @@
       "proofs": "Geometric-series proof of the zero sum.",
       "lab": "Regular polygons of roots.",
       "quantum": "Used again in the quantum Fourier transform (C069).",
-      "estimated_hours": 1.5,
+      "estimated_hours": 5.0,
       "flags": [],
       "status": "proposed"
     },
@@ -550,8 +744,14 @@
       "group": 3,
       "group_name": "Polar form and Euler's formula",
       "title": "The Exponential Series",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Bridge: define exp by its power series and prove absolute convergence.",
+      "toughest": "Convergence, rearrangement and the Cauchy product for complex series.",
       "prerequisites": [
         "KQV-MATH-D06-C014"
       ],
@@ -561,7 +761,7 @@
       "proofs": "Ratio-test convergence proof.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 6.0,
       "flags": [
         "bridge"
       ],
@@ -573,8 +773,16 @@
       "group": 3,
       "group_name": "Polar form and Euler's formula",
       "title": "Euler's Formula, Derived Rigorously",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T3",
+        "T5",
+        "T6"
+      ],
       "objective": "Derive e^(it) = cos t + i sin t from the series definitions; prove exp(z + w) = exp(z) exp(w).",
+      "toughest": "The exponential as the unique continuous homomorphism from (R, +) onto the circle group with derivative i at 0; the Lie-group view of rotations.",
       "prerequisites": [
         "KQV-MATH-D06-C022",
         "KQV-MATH-D06-C025"
@@ -585,7 +793,7 @@
       "proofs": "Complete derivation; second proof via the differential equation f' = i f with uniqueness.",
       "lab": "Interactive rotation model: e^(it) traced on the unit circle with live checks of |e^(it)| = 1.",
       "quantum": "Phases e^(i phi) on amplitudes.",
-      "estimated_hours": 2.5,
+      "estimated_hours": 9.0,
       "flags": [
         "mandatory-pilot-b"
       ],
@@ -597,8 +805,16 @@
       "group": 3,
       "group_name": "Polar form and Euler's formula",
       "title": "Computing with r e^(it)",
-      "level": "L2",
+      "entry_level": "L2",
+      "ceiling": "T4",
+      "tiers": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
       "objective": "Multiply, divide and take powers in exponential form; meet e^(i pi) + 1 = 0.",
+      "toughest": "JEE Advanced and olympiad problems in exponential form: products of sines, sums of cosines, polygon problems.",
       "prerequisites": [
         "KQV-MATH-D06-C026"
       ],
@@ -606,7 +822,7 @@
       "proofs": "Derivations from C026.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.0,
       "flags": [],
       "status": "proposed"
     },
@@ -616,8 +832,15 @@
       "group": 3,
       "group_name": "Polar form and Euler's formula",
       "title": "The Complex Logarithm and Complex Powers",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T3",
+        "T5"
+      ],
       "objective": "Define log z and z^w; understand why they are multivalued.",
+      "toughest": "Branches of log and z^w; identities that fail and why; evaluating i^i and similar quantities exactly.",
       "prerequisites": [
         "KQV-MATH-D06-C027"
       ],
@@ -625,7 +848,7 @@
       "proofs": "Counterexample: log(zw) = log z + log w fails for principal values.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 6.0,
       "flags": [],
       "status": "proposed"
     },
@@ -635,8 +858,14 @@
       "group": 4,
       "group_name": "Complex functions and holomorphy",
       "title": "Functions as Maps of the Plane",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Visualise w = z^2, 1/z and e^z as transformations.",
+      "toughest": "Describe images of lines, circles and regions under standard maps exactly.",
       "prerequisites": [
         "KQV-MATH-D06-C027"
       ],
@@ -646,7 +875,7 @@
       "proofs": null,
       "lab": "Domain-colouring and grid-mapping explorer with a text description fallback.",
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.5,
       "flags": [],
       "status": "proposed"
     },
@@ -656,8 +885,14 @@
       "group": 4,
       "group_name": "Complex functions and holomorphy",
       "title": "Limits and Continuity in C",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Use epsilon-delta limits in the plane.",
+      "toughest": "Epsilon-delta proofs for limits in the plane; continuity of branches and where it fails.",
       "prerequisites": [
         "KQV-MATH-D06-C029",
         "KQV-MATH-D06-C014"
@@ -668,7 +903,7 @@
       "proofs": "Proofs of limit laws.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 6.0,
       "flags": [],
       "status": "proposed"
     },
@@ -678,8 +913,14 @@
       "group": 4,
       "group_name": "Complex functions and holomorphy",
       "title": "Complex Differentiability",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Define the complex derivative; prove conj(z) is nowhere complex-differentiable.",
+      "toughest": "Decide complex differentiability of functions defined by formulas in x, y, z and conj(z).",
       "prerequisites": [
         "KQV-MATH-D06-C030"
       ],
@@ -687,7 +928,7 @@
       "proofs": "Complete counterexample proof.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 6.0,
       "flags": [],
       "status": "proposed"
     },
@@ -697,8 +938,15 @@
       "group": 4,
       "group_name": "Complex functions and holomorphy",
       "title": "The Cauchy–Riemann Equations",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Derive the Cauchy–Riemann equations; state the sufficient condition with exact hypotheses.",
+      "toughest": "Cauchy–Riemann with minimal hypotheses (Looman–Menchoff stated); counterexamples at a point.",
       "prerequisites": [
         "KQV-MATH-D06-C031"
       ],
@@ -708,7 +956,7 @@
       "proofs": "Necessity proof; sufficiency with continuous partials.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2.5,
+      "estimated_hours": 9.0,
       "flags": [],
       "status": "proposed"
     },
@@ -718,8 +966,15 @@
       "group": 4,
       "group_name": "Complex functions and holomorphy",
       "title": "Holomorphic Functions",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Define holomorphic and entire functions on open sets, with first examples and non-examples.",
+      "toughest": "Qualifying-exam problems on holomorphic functions: rigidity, closure properties, open mapping.",
       "prerequisites": [
         "KQV-MATH-D06-C032"
       ],
@@ -729,7 +984,7 @@
       "proofs": "Closure properties with full hypotheses.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 7.0,
       "flags": [
         "mandatory-pilot-c",
         "expert-review"
@@ -742,8 +997,15 @@
       "group": 4,
       "group_name": "Complex functions and holomorphy",
       "title": "Harmonic Functions and Conjugates",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Show real and imaginary parts of holomorphic functions are harmonic; find harmonic conjugates.",
+      "toughest": "Harmonic conjugates on non-simply-connected domains; mean-value property and the Dirichlet problem on a disc.",
       "prerequisites": [
         "KQV-MATH-D06-C032"
       ],
@@ -753,7 +1015,7 @@
       "proofs": "Proof assuming C^2 regularity (justified later by C044).",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 5.0,
       "flags": [],
       "status": "proposed"
     },
@@ -763,8 +1025,14 @@
       "group": 4,
       "group_name": "Complex functions and holomorphy",
       "title": "Power Series and the Radius of Convergence",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Find radii of convergence; state and prove the Cauchy–Hadamard formula.",
+      "toughest": "Radii of convergence for hard series; behaviour on the boundary circle.",
       "prerequisites": [
         "KQV-MATH-D06-C025",
         "KQV-MATH-D06-C030"
@@ -775,7 +1043,7 @@
       "proofs": "Complete proof.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 6.0,
       "flags": [],
       "status": "proposed"
     },
@@ -785,8 +1053,15 @@
       "group": 4,
       "group_name": "Complex functions and holomorphy",
       "title": "Power Series Are Holomorphic",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Prove power series can be differentiated term by term inside their disc.",
+      "toughest": "Term-by-term differentiation proofs; zeros of power series and uniqueness.",
       "prerequisites": [
         "KQV-MATH-D06-C035",
         "KQV-MATH-D06-C033"
@@ -795,7 +1070,7 @@
       "proofs": "Complete proof.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 7.0,
       "flags": [],
       "status": "proposed"
     },
@@ -805,8 +1080,14 @@
       "group": 4,
       "group_name": "Complex functions and holomorphy",
       "title": "Exponential and Trigonometric Functions in C",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Study exp, sin, cos, sinh and cosh on C: periods, zeros and unboundedness.",
+      "toughest": "Zeros, periods and growth of exp, sin and cos; solving equations such as sin z = 2.",
       "prerequisites": [
         "KQV-MATH-D06-C036",
         "KQV-MATH-D06-C026"
@@ -815,7 +1096,7 @@
       "proofs": "Proofs of periodicity and zero sets.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.5,
       "flags": [],
       "status": "proposed"
     },
@@ -825,8 +1106,15 @@
       "group": 4,
       "group_name": "Complex functions and holomorphy",
       "title": "Conformal Maps and Möbius Transformations",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Show holomorphic maps preserve angles where f' is nonzero; study Möbius maps.",
+      "toughest": "Find conformal maps between given regions; automorphisms of the disc and the upper half-plane.",
       "prerequisites": [
         "KQV-MATH-D06-C033",
         "KQV-MATH-D06-C015"
@@ -835,7 +1123,7 @@
       "proofs": "Angle preservation proof; Möbius maps send circles and lines to circles and lines.",
       "lab": "Möbius map explorer.",
       "quantum": null,
-      "estimated_hours": 2.5,
+      "estimated_hours": 9.0,
       "flags": [],
       "status": "proposed"
     },
@@ -845,8 +1133,14 @@
       "group": 5,
       "group_name": "Contour integration and Cauchy theory",
       "title": "Paths and Contour Integrals",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Define integrals of complex functions along parametrised curves.",
+      "toughest": "Contour integrals along standard and piecewise paths.",
       "prerequisites": [
         "KQV-MATH-D06-C030"
       ],
@@ -856,7 +1150,7 @@
       "proofs": "Reparametrisation invariance.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 6.0,
       "flags": [],
       "status": "proposed"
     },
@@ -866,8 +1160,14 @@
       "group": 5,
       "group_name": "Contour integration and Cauchy theory",
       "title": "The ML Estimate",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Bound contour integrals by length times maximum.",
+      "toughest": "Estimate integrals sharply enough to make them vanish in the limit.",
       "prerequisites": [
         "KQV-MATH-D06-C039",
         "KQV-MATH-D06-C014"
@@ -876,7 +1176,7 @@
       "proofs": "Complete proof.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1,
+      "estimated_hours": 3.0,
       "flags": [],
       "status": "proposed"
     },
@@ -886,8 +1186,14 @@
       "group": 5,
       "group_name": "Contour integration and Cauchy theory",
       "title": "Antiderivatives and Path Independence",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Use antiderivatives to evaluate contour integrals; see why 1/z has none on C minus 0.",
+      "toughest": "Existence of antiderivatives and logarithms on given domains.",
       "prerequisites": [
         "KQV-MATH-D06-C040"
       ],
@@ -895,7 +1201,7 @@
       "proofs": "Fundamental theorem for contour integrals; integral of 1/z round the unit circle is 2 pi i.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.5,
       "flags": [],
       "status": "proposed"
     },
@@ -905,8 +1211,15 @@
       "group": 5,
       "group_name": "Contour integration and Cauchy theory",
       "title": "Cauchy's Theorem",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "State Cauchy's theorem with exact hypotheses and prove it via Goursat's theorem.",
+      "toughest": "Qualifying-exam problems built on Cauchy's theorem; homotopy and homology versions with hypotheses.",
       "prerequisites": [
         "KQV-MATH-D06-C041",
         "KQV-MATH-D06-C033"
@@ -917,7 +1230,7 @@
       "proofs": "Goursat for triangles; star-shaped domains in full; general version scoped with exact missing steps.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 3,
+      "estimated_hours": 10.5,
       "flags": [
         "expert-review"
       ],
@@ -929,8 +1242,15 @@
       "group": 5,
       "group_name": "Contour integration and Cauchy theory",
       "title": "Cauchy's Integral Formula",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Prove the integral formula and the formula for derivatives.",
+      "toughest": "Cauchy estimates and qualifying-exam problems on derivatives of holomorphic functions.",
       "prerequisites": [
         "KQV-MATH-D06-C042"
       ],
@@ -938,7 +1258,7 @@
       "proofs": "Complete proof.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2.5,
+      "estimated_hours": 9.0,
       "flags": [],
       "status": "proposed"
     },
@@ -948,8 +1268,15 @@
       "group": 5,
       "group_name": "Contour integration and Cauchy theory",
       "title": "Holomorphic Implies Analytic",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Prove every holomorphic function has a convergent Taylor series locally.",
+      "toughest": "Taylor expansions and radii from singularities; analyticity arguments in proofs.",
       "prerequisites": [
         "KQV-MATH-D06-C043",
         "KQV-MATH-D06-C036"
@@ -958,7 +1285,7 @@
       "proofs": "Complete proof.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 7.0,
       "flags": [],
       "status": "proposed"
     },
@@ -968,8 +1295,15 @@
       "group": 5,
       "group_name": "Contour integration and Cauchy theory",
       "title": "Liouville's Theorem and a Proof of the Fundamental Theorem of Algebra",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Prove Liouville's theorem and use it to prove the Fundamental Theorem of Algebra.",
+      "toughest": "Liouville-type qualifying problems (entire functions with growth bounds are polynomials).",
       "prerequisites": [
         "KQV-MATH-D06-C044",
         "KQV-MATH-D06-C018"
@@ -978,7 +1312,7 @@
       "proofs": "Complete proofs.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 7.0,
       "flags": [],
       "status": "proposed"
     },
@@ -988,8 +1322,15 @@
       "group": 5,
       "group_name": "Contour integration and Cauchy theory",
       "title": "Maximum Modulus and the Identity Theorem",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Prove the maximum modulus principle and the identity theorem.",
+      "toughest": "Maximum modulus, Schwarz's lemma and identity-theorem problems at qualifying level.",
       "prerequisites": [
         "KQV-MATH-D06-C044"
       ],
@@ -999,7 +1340,7 @@
       "proofs": "Complete proofs.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2.5,
+      "estimated_hours": 9.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1009,8 +1350,15 @@
       "group": 5,
       "group_name": "Contour integration and Cauchy theory",
       "title": "Morera's Theorem and Uniform Limits",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Prove Morera's theorem; show uniform limits of holomorphic functions are holomorphic.",
+      "toughest": "Morera and Weierstrass convergence in qualifying problems; Hurwitz's theorem.",
       "prerequisites": [
         "KQV-MATH-D06-C043"
       ],
@@ -1020,7 +1368,7 @@
       "proofs": "Complete proofs.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 7.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1030,8 +1378,15 @@
       "group": 6,
       "group_name": "Laurent series, residues and analytic continuation",
       "title": "Laurent Series",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Expand functions in annuli; prove uniqueness of Laurent coefficients.",
+      "toughest": "Laurent expansions in several annuli; coefficient formulas and uniqueness.",
       "prerequisites": [
         "KQV-MATH-D06-C044"
       ],
@@ -1039,7 +1394,7 @@
       "proofs": "Existence and uniqueness proofs.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2.5,
+      "estimated_hours": 9.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1049,8 +1404,15 @@
       "group": 6,
       "group_name": "Laurent series, residues and analytic continuation",
       "title": "Isolated Singularities",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Classify removable singularities, poles and essential singularities.",
+      "toughest": "Classify singularities, including at infinity; Casorati–Weierstrass and Picard (stated).",
       "prerequisites": [
         "KQV-MATH-D06-C048"
       ],
@@ -1058,7 +1420,7 @@
       "proofs": "Riemann's removable singularity theorem; Casorati–Weierstrass.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2.5,
+      "estimated_hours": 9.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1068,8 +1430,15 @@
       "group": 6,
       "group_name": "Laurent series, residues and analytic continuation",
       "title": "Residues and the Residue Theorem",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Prove the residue theorem for finitely many isolated singularities.",
+      "toughest": "Residue-theorem problems at qualifying level.",
       "prerequisites": [
         "KQV-MATH-D06-C049",
         "KQV-MATH-D06-C042"
@@ -1078,7 +1447,7 @@
       "proofs": "Complete proof under stated hypotheses.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2.5,
+      "estimated_hours": 9.0,
       "flags": [
         "expert-review"
       ],
@@ -1090,8 +1459,14 @@
       "group": 6,
       "group_name": "Laurent series, residues and analytic continuation",
       "title": "Computing Residues",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Use practical rules for simple and higher-order poles.",
+      "toughest": "Residues at higher-order poles and at infinity, quickly and correctly.",
       "prerequisites": [
         "KQV-MATH-D06-C050"
       ],
@@ -1099,7 +1474,7 @@
       "proofs": "Derivations of each rule.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.5,
       "flags": [],
       "status": "proposed"
     },
@@ -1109,8 +1484,15 @@
       "group": 6,
       "group_name": "Laurent series, residues and analytic continuation",
       "title": "Real Integrals by Residues I",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Evaluate rational and trigonometric integrals with residues.",
+      "toughest": "Hard rational and trigonometric integrals by residues.",
       "prerequisites": [
         "KQV-MATH-D06-C051",
         "KQV-MATH-D06-C040"
@@ -1119,7 +1501,7 @@
       "proofs": "Each estimate justified.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2.5,
+      "estimated_hours": 9.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1129,8 +1511,15 @@
       "group": 6,
       "group_name": "Laurent series, residues and analytic continuation",
       "title": "Real Integrals by Residues II: Jordan's Lemma",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Evaluate Fourier-type integrals using Jordan's lemma.",
+      "toughest": "Fourier-type and indented-contour integrals; principal values.",
       "prerequisites": [
         "KQV-MATH-D06-C052"
       ],
@@ -1138,7 +1527,7 @@
       "proofs": "Proof of Jordan's lemma.",
       "lab": null,
       "quantum": "Fourier transform of a Lorentzian line shape.",
-      "estimated_hours": 2.5,
+      "estimated_hours": 9.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1148,8 +1537,15 @@
       "group": 6,
       "group_name": "Laurent series, residues and analytic continuation",
       "title": "The Argument Principle and Rouché's Theorem",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Count zeros and poles with contour integrals.",
+      "toughest": "Count zeros in regions with Rouché; qualifying-exam root-counting problems.",
       "prerequisites": [
         "KQV-MATH-D06-C050"
       ],
@@ -1157,7 +1553,7 @@
       "proofs": "Complete proofs.",
       "lab": "Winding-number visualiser.",
       "quantum": null,
-      "estimated_hours": 2.5,
+      "estimated_hours": 9.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1167,8 +1563,16 @@
       "group": 6,
       "group_name": "Laurent series, residues and analytic continuation",
       "title": "Analytic Continuation",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6",
+        "R"
+      ],
       "objective": "Extend functions beyond their first domain; uniqueness from the identity theorem.",
+      "toughest": "Continue functions defined by series and integrals; natural boundaries.",
       "prerequisites": [
         "KQV-MATH-D06-C046",
         "KQV-MATH-D06-C048"
@@ -1177,7 +1581,7 @@
       "proofs": "Uniqueness proof; examples.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2.5,
+      "estimated_hours": 9.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1187,8 +1591,15 @@
       "group": 6,
       "group_name": "Laurent series, residues and analytic continuation",
       "title": "Branch Points and Branch Cuts",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Handle log and roots with explicit branch cuts.",
+      "toughest": "Integrals and identities across branch cuts (keyhole contours).",
       "prerequisites": [
         "KQV-MATH-D06-C055",
         "KQV-MATH-D06-C028"
@@ -1197,7 +1608,7 @@
       "proofs": "Continuity of a chosen branch on the cut plane.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 7.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1207,8 +1618,15 @@
       "group": 7,
       "group_name": "Riemann surfaces and advanced connections",
       "title": "The Riemann Sphere",
-      "level": "L4",
+      "entry_level": "L4",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Add a point at infinity via stereographic projection; Möbius maps as automorphisms.",
+      "toughest": "Möbius maps as rotations of the sphere; cross-ratio problems.",
       "prerequisites": [
         "KQV-MATH-D06-C038"
       ],
@@ -1216,7 +1634,7 @@
       "proofs": "Stereographic projection formulas.",
       "lab": "Rotating Riemann sphere.",
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 7.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1226,8 +1644,16 @@
       "group": 7,
       "group_name": "Riemann surfaces and advanced connections",
       "title": "Riemann Surfaces of sqrt(z) and log z",
-      "level": "L5",
+      "entry_level": "L5",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6",
+        "R"
+      ],
       "objective": "Build the surfaces on which sqrt(z) and log z become single-valued.",
+      "toughest": "Riemann surfaces of algebraic functions; genus by Riemann–Hurwitz (stated).",
       "prerequisites": [
         "KQV-MATH-D06-C056",
         "KQV-MATH-D06-C057"
@@ -1238,7 +1664,7 @@
       "proofs": "Constructions with precise gluing; topology prerequisites declared.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 3,
+      "estimated_hours": 10.5,
       "flags": [
         "expert-review"
       ],
@@ -1250,8 +1676,15 @@
       "group": 7,
       "group_name": "Riemann surfaces and advanced connections",
       "title": "The Riemann Mapping Theorem",
-      "level": "L5",
+      "entry_level": "L5",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T6",
+        "R"
+      ],
       "objective": "State the theorem with exact hypotheses and understand its meaning.",
+      "toughest": "Normal-families arguments and the proof structure of the Riemann mapping theorem.",
       "prerequisites": [
         "KQV-MATH-D06-C046",
         "KQV-MATH-D06-C038"
@@ -1262,7 +1695,7 @@
       "proofs": "Proof sketch with each missing step named.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 3,
+      "estimated_hours": 10.5,
       "flags": [
         "expert-review"
       ],
@@ -1274,8 +1707,15 @@
       "group": 7,
       "group_name": "Riemann surfaces and advanced connections",
       "title": "Infinite Products and the Gamma Function",
-      "level": "L5",
+      "entry_level": "L5",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Define Gamma by products and continuation; prove the reflection formula.",
+      "toughest": "Gamma-function identities: reflection, duplication, Stirling's formula (proved).",
       "prerequisites": [
         "KQV-MATH-D06-C055"
       ],
@@ -1283,7 +1723,7 @@
       "proofs": "Proofs with convergence hypotheses.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 3,
+      "estimated_hours": 10.5,
       "flags": [
         "expert-review"
       ],
@@ -1295,8 +1735,15 @@
       "group": 7,
       "group_name": "Riemann surfaces and advanced connections",
       "title": "The Riemann Zeta Function",
-      "level": "L6",
+      "entry_level": "L6",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T6",
+        "R"
+      ],
       "objective": "Continue zeta(s) and state the Riemann hypothesis precisely as an open problem.",
+      "toughest": "Continuation and functional equation of zeta; trivial zeros; the Riemann hypothesis stated precisely as open.",
       "prerequisites": [
         "KQV-MATH-D06-C060"
       ],
@@ -1304,7 +1751,7 @@
       "proofs": "Continuation sketch; open problem stated with a verified source.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 3,
+      "estimated_hours": 10.5,
       "flags": [
         "expert-review",
         "research-ladder"
@@ -1317,8 +1764,15 @@
       "group": 7,
       "group_name": "Riemann surfaces and advanced connections",
       "title": "Dispersion Relations and Causality",
-      "level": "L5",
+      "entry_level": "L5",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Derive Kramers–Kronig relations with their hypotheses.",
+      "toughest": "Derive Kramers–Kronig relations and apply them to a response function.",
       "prerequisites": [
         "KQV-MATH-D06-C053",
         "KQV-MATH-D06-C055"
@@ -1327,7 +1781,7 @@
       "proofs": "Derivation with stated decay and analyticity assumptions.",
       "lab": null,
       "quantum": "Response functions in physics; causality to analyticity.",
-      "estimated_hours": 3,
+      "estimated_hours": 10.5,
       "flags": [
         "expert-review"
       ],
@@ -1339,8 +1793,15 @@
       "group": 8,
       "group_name": "Quantum amplitudes, phase and interference",
       "title": "Amplitudes: Complex Numbers That Give Probabilities",
-      "level": "Q",
+      "entry_level": "Q",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T2",
+        "T5"
+      ],
       "objective": "Use the Born rule for a qubit with complex amplitudes; normalise a state.",
+      "toughest": "Normalise states and compute measurement probabilities for complex amplitudes, including in rotated bases.",
       "prerequisites": [
         "KQV-MATH-D06-C012",
         "KQV-MATH-CH000"
@@ -1351,7 +1812,7 @@
       "proofs": "Normalisation proof.",
       "lab": null,
       "quantum": "Core: measurement probabilities from amplitudes.",
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.5,
       "flags": [],
       "status": "proposed"
     },
@@ -1361,8 +1822,14 @@
       "group": 8,
       "group_name": "Quantum amplitudes, phase and interference",
       "title": "Global Phase and Relative Phase",
-      "level": "Q",
+      "entry_level": "Q",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Prove a global phase changes no measurement probability; show a relative phase can.",
+      "toughest": "Prove global phase is unobservable for every measurement; construct states differing only in relative phase.",
       "prerequisites": [
         "KQV-MATH-D06-C063",
         "KQV-MATH-D06-C027"
@@ -1371,7 +1838,7 @@
       "proofs": "Proof for any measurement basis; counterexample: |+> and |-> have equal standard-basis probabilities but differ in the X basis.",
       "lab": "Phase dial: global vs relative phase with live probabilities.",
       "quantum": "Mandatory global-phase counterexample.",
-      "estimated_hours": 2,
+      "estimated_hours": 6.0,
       "flags": [
         "mandatory-quantum"
       ],
@@ -1383,8 +1850,14 @@
       "group": 8,
       "group_name": "Quantum amplitudes, phase and interference",
       "title": "Interference: Add Amplitudes, Not Probabilities",
-      "level": "Q",
+      "entry_level": "Q",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Derive |a + b|^2 = |a|^2 + |b|^2 + 2 Re(a conj(b)) and read it as interference.",
+      "toughest": "Multi-path interference sums and their probabilities.",
       "prerequisites": [
         "KQV-MATH-D06-C064",
         "KQV-MATH-D06-C013"
@@ -1393,7 +1866,7 @@
       "proofs": "Complete derivation.",
       "lab": null,
       "quantum": "Two-path interference.",
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.5,
       "flags": [
         "mandatory-quantum"
       ],
@@ -1405,8 +1878,14 @@
       "group": 8,
       "group_name": "Quantum amplitudes, phase and interference",
       "title": "The Mach–Zehnder Interferometer",
-      "level": "Q",
+      "entry_level": "Q",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Model beam splitters and phase shifters as 2x2 complex matrices; derive cos^2 and sin^2 output probabilities.",
+      "toughest": "Full Mach–Zehnder analysis with unbalanced splitters and losses.",
       "prerequisites": [
         "KQV-MATH-D06-C065"
       ],
@@ -1416,7 +1895,7 @@
       "proofs": "Derivation; unitarity check.",
       "lab": "Interferometer lab with phase slider, probabilities and simulated counts; test oracle P0 + P1 = 1.",
       "quantum": "Mathematically honest quantum interference application.",
-      "estimated_hours": 2.5,
+      "estimated_hours": 7.5,
       "flags": [
         "mandatory-quantum"
       ],
@@ -1428,8 +1907,14 @@
       "group": 8,
       "group_name": "Quantum amplitudes, phase and interference",
       "title": "Phase on the Bloch Sphere",
-      "level": "Q",
+      "entry_level": "Q",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "See why the relative phase phi is a longitude on the Bloch sphere.",
+      "toughest": "Map between amplitudes and Bloch angles; rotations as SU(2) acting on states.",
       "prerequisites": [
         "KQV-MATH-D06-C064",
         "KQV-MATH-D06-C021"
@@ -1438,7 +1923,7 @@
       "proofs": "Derivation of the Bloch parametrisation; global phase removed.",
       "lab": null,
       "quantum": "Bloch sphere.",
-      "estimated_hours": 1.5,
+      "estimated_hours": 4.5,
       "flags": [],
       "status": "proposed"
     },
@@ -1448,8 +1933,15 @@
       "group": 8,
       "group_name": "Quantum amplitudes, phase and interference",
       "title": "Phase Kickback and the Hadamard Test",
-      "level": "Q",
+      "entry_level": "Q",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Estimate Re<psi|U|psi> from measurement probabilities.",
+      "toughest": "Hadamard test and phase-estimation analysis with error bounds.",
       "prerequisites": [
         "KQV-MATH-D06-C066"
       ],
@@ -1459,7 +1951,7 @@
       "proofs": "Derivation of the outcome probabilities.",
       "lab": null,
       "quantum": "Phase estimation building block.",
-      "estimated_hours": 2,
+      "estimated_hours": 7.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1469,8 +1961,15 @@
       "group": 8,
       "group_name": "Quantum amplitudes, phase and interference",
       "title": "Roots of Unity in the Quantum Fourier Transform",
-      "level": "Q",
+      "entry_level": "Q",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Build the DFT matrix and prove its columns are orthonormal.",
+      "toughest": "Prove the QFT is unitary; analyse its action on periodic states.",
       "prerequisites": [
         "KQV-MATH-D06-C024",
         "KQV-MATH-D06-C066"
@@ -1481,7 +1980,7 @@
       "proofs": "Orthogonality proof from the roots-of-unity sum.",
       "lab": null,
       "quantum": "QFT.",
-      "estimated_hours": 2.5,
+      "estimated_hours": 9.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1491,8 +1990,15 @@
       "group": 8,
       "group_name": "Quantum amplitudes, phase and interference",
       "title": "Unitary Evolution as Rotation",
-      "level": "Q",
+      "entry_level": "Q",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T5",
+        "T6"
+      ],
       "objective": "Understand e^(-iEt/hbar) phases on energy eigenstates and the beats they create.",
+      "toughest": "Time evolution of superpositions; beat frequencies; revival times.",
       "prerequisites": [
         "KQV-MATH-D06-C026",
         "KQV-MATH-D06-C064"
@@ -1501,7 +2007,7 @@
       "proofs": "Derivation of beat probabilities.",
       "lab": null,
       "quantum": "Time evolution; relative phases between energy levels.",
-      "estimated_hours": 2,
+      "estimated_hours": 7.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1511,8 +2017,14 @@
       "group": 9,
       "group_name": "Research reading and capstone",
       "title": "Reading a Complex Analysis Proof",
-      "level": "L5",
+      "entry_level": "L5",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T6"
+      ],
       "objective": "Read a full proof closely: hypotheses, quantifiers and each implication.",
+      "toughest": "Reconstruct a classical proof unaided and find the step each hypothesis is used.",
       "prerequisites": [
         "KQV-MATH-D06-C045",
         "KQV-MATH-D06-C046"
@@ -1521,7 +2033,7 @@
       "proofs": "Guided reconstruction of a classical proof.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 7.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1531,8 +2043,14 @@
       "group": 9,
       "group_name": "Research reading and capstone",
       "title": "Complex Numbers in Software",
-      "level": "L3",
+      "entry_level": "L3",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Handle floating point, atan2, branch cuts and cancellation in code.",
+      "toughest": "Write numerically stable complex code: branch cuts, atan2, cancellation, tested to tolerance.",
       "prerequisites": [
         "KQV-MATH-D06-C028"
       ],
@@ -1542,7 +2060,7 @@
       "proofs": null,
       "lab": "Notebook with tolerance-aware tests.",
       "quantum": null,
-      "estimated_hours": 2,
+      "estimated_hours": 6.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1552,8 +2070,15 @@
       "group": 9,
       "group_name": "Research reading and capstone",
       "title": "Research Ladder: Complex Analysis in Quantum Science",
-      "level": "L6",
+      "entry_level": "L6",
+      "ceiling": "R",
+      "tiers": [
+        "T1",
+        "T6",
+        "R"
+      ],
       "objective": "Follow verified references from classical results to current research directions.",
+      "toughest": "Read a current research paper's complex-analytic argument and state its assumptions.",
       "prerequisites": [
         "KQV-MATH-D06-C062",
         "KQV-MATH-D06-C070"
@@ -1562,7 +2087,7 @@
       "proofs": "Research ladder; only independently verified sources.",
       "lab": null,
       "quantum": "Green's functions and analytic structure (scoped).",
-      "estimated_hours": 3,
+      "estimated_hours": 10.5,
       "flags": [
         "expert-review",
         "research-ladder"
@@ -1575,8 +2100,14 @@
       "group": 9,
       "group_name": "Research reading and capstone",
       "title": "Capstone I: An Interference Experiment End to End",
-      "level": "Q",
+      "entry_level": "Q",
+      "ceiling": "T5",
+      "tiers": [
+        "T1",
+        "T5"
+      ],
       "objective": "Simulate an interferometer, compare counts with theory and report uncertainty.",
+      "toughest": "Design, simulate and statistically test an interference experiment.",
       "prerequisites": [
         "KQV-MATH-D06-C066",
         "KQV-MATH-D06-C072"
@@ -1587,7 +2118,7 @@
       "proofs": null,
       "lab": "Full simulation with test oracle.",
       "quantum": "Interference with data.",
-      "estimated_hours": 3,
+      "estimated_hours": 9.0,
       "flags": [],
       "status": "proposed"
     },
@@ -1597,8 +2128,14 @@
       "group": 9,
       "group_name": "Research reading and capstone",
       "title": "Capstone II: Prove and Present",
-      "level": "L5",
+      "entry_level": "L5",
+      "ceiling": "T6",
+      "tiers": [
+        "T1",
+        "T6"
+      ],
       "objective": "Write and present a complete proof of a major theorem from this domain.",
+      "toughest": "Write and defend a complete proof of a major theorem from this domain.",
       "prerequisites": [
         "KQV-MATH-D06-C045",
         "KQV-MATH-D06-C054"
@@ -1607,7 +2144,7 @@
       "proofs": "Student-written proof assessed with a rubric.",
       "lab": null,
       "quantum": null,
-      "estimated_hours": 4,
+      "estimated_hours": 14.0,
       "flags": [],
       "status": "proposed"
     }

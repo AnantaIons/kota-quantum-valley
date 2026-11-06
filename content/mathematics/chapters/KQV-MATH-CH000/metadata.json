@@ -18,26 +18,49 @@
     "Explain why x^2 + 1 = 0 has no real solution and why that motivates complex numbers.",
     "Choose a sensible starting route through the course."
   ],
-  "definitions": ["function notation C(n)", "model", "proof", "counterexample"],
+  "definitions": [
+    "function notation C(n)",
+    "model",
+    "proof",
+    "counterexample"
+  ],
   "theorems": [
-    { "statement": "Among rectangles with perimeter 20 m, the 5 m by 5 m square has the greatest area.", "proof": "complete (completing the square)", "scope": "rectangles only" }
+    {
+      "statement": "Among rectangles with perimeter 20 m, the 5 m by 5 m square has the greatest area.",
+      "proof": "complete (completing the square)",
+      "scope": "rectangles only"
+    }
   ],
   "quantum_links": [
-    { "section": "0.6", "kind": "worked example", "summary": "Measurement probabilities |α|² and |β|² for real amplitudes 3/5 and 4/5; normalisation check." }
+    {
+      "section": "0.6",
+      "kind": "worked example",
+      "summary": "Measurement probabilities |α|² and |β|² for real amplitudes 3/5 and 4/5; normalisation check."
+    }
   ],
-  "exercises": ["0.11-Q1", "0.11-Q2", "0.11-Q3", "0.11-Q4", "0.11-Q5", "0.11-Q6"],
-  "sources": ["F1", "Q1"],
-  "next": { "id": "KQV-MATH-D06-C001", "title": "Why Complex Numbers Are Needed" },
+  "exercises": [
+    "0.11-Q1",
+    "0.11-Q2",
+    "0.11-Q3",
+    "0.11-Q4",
+    "0.11-Q5",
+    "0.11-Q6"
+  ],
+  "sources": [
+    "F1",
+    "Q1"
+  ],
+  "next": {
+    "id": "KQV-MATH-D06-C001",
+    "title": "Why Complex Numbers Are Needed"
+  },
   "estimated_minutes": 35,
   "language": "en",
-  "translations": { "hi": null },
   "status": "mathematically_checked",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "reviewed_at": "2026-11-06",
   "reviewer_type": "AI review with automated symbolic checks; no human mathematician review yet",
   "unresolved_issues": [
-    "F1: the English OpenStax page could not be opened from the review environment; the section title was confirmed through the Spanish edition and a mirror. Open the link once to confirm.",
-    "Stage 9 is named 'Independent mathematical work' here but 'Quantum mathematics and research preparation' in the course plan. Founder to choose one name.",
-    "Hindi version not yet written; it needs an independent review before publishing."
+    "F1: the English OpenStax page could not be opened from the review environment; the section title was confirmed through the Spanish edition and a mirror. Open the link once to confirm."
   ]
 }

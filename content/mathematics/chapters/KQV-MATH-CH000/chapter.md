@@ -8,7 +8,7 @@ language: en
 level: orientation
 prerequisites: "Basic arithmetic; unfamiliar algebra is explained as it appears."
 estimated_minutes: 35
-version: 0.1.1
+version: 0.1.2
 status: mathematically_checked
 publication_status: not_published
 ---
@@ -219,7 +219,7 @@ The course has a common foundation and several connected branches. The table bel
 | 6. Evolving systems and computation | Differential equations, Fourier analysis, numerical methods, and optimization | How does a system evolve? What frequencies are present? How can we compute or approximate a solution? |
 | 7. Structure and connection | Number theory, abstract algebra, discrete mathematics, graph theory, and symmetry | Which patterns persist? How do operations and networks fit together? |
 | 8. Deeper mathematical frameworks | Real and complex analysis, measure theory, topology, differential geometry, tensors, Hilbert spaces, and operators | When do our methods work? How do we reason about more general spaces and transformations? |
-| 9. Independent mathematical work | Proof design, counterexamples, mathematical information theory, reading papers, and reproducible computation | Can we assess an unfamiliar claim, explain its assumptions, and investigate it responsibly? |
+| 9. Quantum mathematics and research preparation | Quantum information mathematics, operator methods, quantum algorithms, error correction, and selected research-level connections | How does the mathematics come together in quantum theory? Can we read current research, check its assumptions, and investigate a claim responsibly? |
 
 You are not expected to recognize all these names today.
 

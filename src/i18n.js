@@ -29,7 +29,7 @@ export const t = {
     menu: 'मेनू', explainers: 'आसान व्याख्या', newLabel: 'नया',
     footAbout: 'शून्य से क्वांटम कंप्यूटिंग के मुफ़्त पाठ, और भारत की क्वांटम वर्कफ़ोर्स कोटा में तैयार करने का प्रस्ताव।',
     footLearn: 'पढ़ें', footInit: 'पहल', footFollow: 'जुड़ें',
-    glossary: 'शब्दकोश', roadmap: 'रोडमैप', journeyTag: 'लर्निंग लॉग', explainerTag: 'आसान व्याख्या', allExplainers: 'सभी व्याख्याएँ', theLog: 'लर्निंग लॉग', soon: 'पहली पोस्ट जल्द आ रही है।', day: (n) => `दिन ${n}`, allLessons: 'सभी पाठ', learningLog: 'लर्निंग लॉग', whyKota: 'कोटा क्यों', careers: 'क्वांटम में करियर', resume: 'मुफ़्त रिज़्यूमे मेकर', maths: 'कोर्स 2: गणित', about: 'हमारे बारे में',
+    glossary: 'शब्दकोश', roadmap: 'रोडमैप', journeyTag: 'लर्निंग लॉग', explainerTag: 'आसान व्याख्या', allExplainers: 'सभी व्याख्याएँ', theLog: 'लर्निंग लॉग', soon: 'पहली पोस्ट जल्द आ रही है।', day: (n) => `दिन ${n}`, allLessons: 'सभी पाठ', learningLog: 'लर्निंग लॉग', whyKota: 'कोटा क्यों', careers: 'क्वांटम में करियर', resume: 'मुफ़्त रिज़्यूमे मेकर', maths: 'कोर्स 2: गणित (English)', about: 'हमारे बारे में',
     license: 'पाठ {cc} लाइसेंस के तहत हैं। क्रेडिट देकर शेयर करें, बेचें नहीं।',
     switchLabel: 'EN', switchAria: 'Read in English',
     lesson: (n) => `पाठ ${n}`, roadmapLabel: 'रोडमैप', startHere: 'यहाँ से शुरू करें', comingSoon: 'जल्द आ रहा है',
@@ -53,7 +53,7 @@ export function altPath(path) {
   if (m && isLessonSlug(m[1])) return `/hi/lessons/${m[1]}/`;
   const post = p.match(/^\/posts\/([^/]+)\/$/);
   if (post) return `/hi/posts/${post[1]}/`;
-  if (['/', '/lessons/', '/lab/', '/glossary/', '/why-kota/', '/about/', '/learn/', '/explainers/', '/careers/', '/resume/', '/mathematics/'].includes(p)) return '/hi' + p;
-  if (p.startsWith('/mathematics/')) return '/hi/mathematics/';   // chapters are English-only for now
+  if (['/', '/lessons/', '/lab/', '/glossary/', '/why-kota/', '/about/', '/learn/', '/explainers/', '/careers/', '/resume/'].includes(p)) return '/hi' + p;
+  if (p.startsWith('/mathematics/')) return '/hi/';   // Course 2 is English-only for now
   return '/hi/';
 }

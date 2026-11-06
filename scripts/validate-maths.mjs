@@ -27,7 +27,12 @@ for (const d of course.domains.filter((x) => x.ledger)) {
   rows.forEach((r, i) => {
     const want = `KQV-MATH-${d.id}-C${String(i + 1).padStart(3, '0')}`;
     if (r.id !== want) err(`${d.ledger}: row ${i + 1} has id ${r.id}, expected ${want}`);
-    for (const k of ['title', 'level', 'objective', 'status']) if (!r[k]) err(`${r.id}: empty ${k}`);
+    for (const k of ['title', 'entry_level', 'ceiling', 'objective', 'toughest', 'status']) if (!r[k]) err(`${r.id}: empty ${k}`);
+    if (!Array.isArray(r.tiers) || !r.tiers.length) err(`${r.id}: no problem tiers`);
+    else {
+      r.tiers.forEach((t) => { if (!course.tiers[t]) err(`${r.id}: unknown tier ${t}`); });
+      if (!r.tiers.includes(r.ceiling)) err(`${r.id}: ceiling ${r.ceiling} is not one of its tiers`);
+    }
     if (!course.statuses.includes(r.status)) err(`${r.id}: unknown status ${r.status}`);
     if (known.has(r.id)) err(`duplicate chapter id ${r.id}`);
     known.set(r.id, r.prerequisites);

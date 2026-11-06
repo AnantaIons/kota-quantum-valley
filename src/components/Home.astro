@@ -46,7 +46,7 @@ const c = hi ? {
   labT: 'क्वांटम फ़िज़िक्स सिर्फ़ पढ़ें नहीं। उसके साथ प्रयोग करें।', labP: 'हमारी क्वांटम लैब आपके ब्राउज़र में एक असली state-vector simulator चलाती है।',
   labList: ['Bloch sphere पर X, Y, Z, H, S, T gates लगाएँ', 'Qubit को 1,000 बार measure करें और histogram देखें', 'H + CNOT से Bell state बनाएँ और correlation देखें', 'अपना circuit बनाएँ (4 qubits तक) और Qiskit code निकालें'],
   labCta: 'क्वांटम लैब खोलें', labScreen: ['प्रयोग 2 · superposition', 'स्टेट', 'measure', 'सिद्धांत'],
-  coursesT: 'हमारे कोर्स', coursesP: 'शून्य से शुरू होकर एक-एक क़दम आगे। कोर्स 1 पूरा खुला है, कोर्स 2 शुरू हो गया है, और कोर्स 3 तैयार हो रहा है।', c2open: 'अध्याय 0 खुला', c2cta: 'कोर्स 2 देखें',
+  coursesT: 'हमारे कोर्स', coursesP: 'शून्य से शुरू होकर एक-एक क़दम आगे। कोर्स 1 पूरा खुला है, कोर्स 2 शुरू हो गया है, और कोर्स 3 तैयार हो रहा है।', c2open: 'अध्याय 0 खुला', c2cta: 'कोर्स 2 देखें (English)',
   open: 'अभी खुला', prep: 'तैयार हो रहा है', c1p: 'Bits और complex numbers से शुरू करके qubits, gates, entanglement, algorithms, error correction, हार्डवेयर और आपके करियर के रास्ते तक। 9 भाग, हर पाठ में कोड और quiz।',
   orbCap: 'हाइड्रोजन का 3d orbital, |ψ|² से लिए गए बिंदु', facts1: [['पाठ', syllabus.length], ['भाग', course1.parts.length], ['प्रकाशित', lessons.length]], seeAll: 'सभी पाठ देखें', partOfN: (d, n) => `${n} में से ${d}`,
   c2: ['कोर्स 2: Mathematics for Quantum Science', 'कक्षा 10 की नींव से quantum theory के गणित तक, एक-एक क़दम। हर विचार पहले सहज रूप में, फिर पूरे derivation और हल किए अभ्यासों के साथ।', ['Algebra', 'Complex numbers', 'Linear algebra', 'Calculus', 'Probability']],
@@ -247,7 +247,7 @@ const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" 
           <h3>{name}</h3>
           <p>{text}</p>
           <ul class="chips">{chips.map((x) => <li>{x}</li>)}</ul>
-          {i === 0 && <a class="btn btn-primary course-go" href={`${pre}/mathematics/`}>{c.c2cta}</a>}
+          {i === 0 && <a class="btn btn-primary course-go" href="/mathematics/">{c.c2cta}</a>}
         </article>
       ))}
     </div>
