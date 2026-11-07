@@ -6,9 +6,9 @@
   "instagramHandle": "@kota_quantum_valley",
   "linkedin": "",
   "youtube": "",
-  "announcement": "New: Course 3 has started. Programming in C and Python, side by side, from your first program to a quantum simulator.",
-  "announcementHindi": "नया: कोर्स 3 शुरू हो गया है। C और Python में प्रोग्रामिंग, साथ-साथ, पहले प्रोग्राम से quantum simulator तक।",
+  "announcement": "New: Course 4 has started. Operating Systems and Embedded Linux, with every lab on your laptop, from your first system call to your own kernel driver.",
+  "announcementHindi": "नया: कोर्स 4 शुरू हो गया है। ऑपरेटिंग सिस्टम और Embedded Linux, हर लैब आपके लैपटॉप पर, पहले system call से अपने kernel driver तक।",
   "instagramDM": "https://ig.me/m/kota_quantum_valley",
-  "announcementHref": "/programming/",
+  "announcementHref": "/operating-systems/",
   "announcementHrefHindi": "/hi/courses/"
 }

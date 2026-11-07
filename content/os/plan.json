@@ -1,0 +1,871 @@
+{
+  "course": "Course 4: Operating Systems and Embedded Linux",
+  "status": "proposed",
+  "approved": null,
+  "chapters": [
+    {
+      "id": "KQV-OS-C000",
+      "n": 0,
+      "part": 0,
+      "title": "How This Course Works, and Setting Up a Linux Lab",
+      "objective": "Get a Linux system on any laptop, install gcc, QEMU and an ARM cross-compiler, and run one C program on two different processors.",
+      "lab": "Cross-compile for ARM64 and run the result on an x86 laptop with qemu-aarch64.",
+      "board": "Run the same binary on a Raspberry Pi over SSH.",
+      "toughest": "Diagnose a broken toolchain from its error messages.",
+      "tiers": [
+        "E1"
+      ],
+      "ceiling": "E1",
+      "status": "code_checked"
+    },
+    {
+      "id": "KQV-OS-C001",
+      "n": 1,
+      "part": 1,
+      "title": "What an Operating System Does",
+      "objective": "Explain the three jobs of an operating system (abstraction, isolation and sharing) by watching the Linux kernel do each one.",
+      "lab": "strace a program, fork two processes with one address, crash safely, and share one CPU between two programs.",
+      "board": null,
+      "toughest": "Explain, step by step, what happens when a program calls write().",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "code_checked"
+    },
+    {
+      "id": "KQV-OS-C002",
+      "n": 2,
+      "part": 1,
+      "title": "Kernel Mode, User Mode and System Calls",
+      "objective": "Understand privilege levels on x86 and ARM, and make system calls directly, without the C library.",
+      "lab": "Write a program with no C library for x86-64 and for ARM64, and run both.",
+      "board": null,
+      "toughest": "Write a static ARM64 program that prints and exits using only svc instructions.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C003",
+      "n": 3,
+      "part": 1,
+      "title": "Firmware, RTOS or Linux?",
+      "objective": "Compare a superloop, a real-time operating system and Linux by memory protection, scheduling, footprint and boot time, and choose correctly.",
+      "lab": "Build a tiny cooperative scheduler in C and measure its timing on the laptop.",
+      "board": null,
+      "toughest": "Choose the operating system for a smart meter, a drone and a camera, and defend each choice with numbers.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "ceiling": "E3",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C004",
+      "n": 4,
+      "part": 2,
+      "title": "The Shell and the Filesystem Tree",
+      "objective": "Move around a Linux system confidently and know what lives where, including /proc, /sys and /dev.",
+      "lab": "Explore /proc and /sys on the laptop and inside a QEMU guest.",
+      "board": "Explore the Pi's /sys/class/gpio and /proc/device-tree.",
+      "toughest": "Find any running process's open files and memory map from /proc alone.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "ceiling": "E3",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C005",
+      "n": 5,
+      "part": 2,
+      "title": "Users, Permissions and Capabilities",
+      "objective": "Control who may read, write and run every file, and give programs only the privileges they need.",
+      "lab": "Create users and groups, set modes and capabilities, and write a udev-style rule.",
+      "board": "Give a normal user access to the Pi's I2C bus.",
+      "toughest": "Explain why a setuid program is dangerous and replace it with a capability.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C006",
+      "n": 6,
+      "part": 2,
+      "title": "Pipes, Redirection and Text Tools",
+      "objective": "Combine small programs into pipelines that search, filter and summarise logs and data.",
+      "lab": "Analyse a large device log with grep, sed, awk, sort and uniq.",
+      "board": null,
+      "toughest": "Write a one-line pipeline that finds the five most frequent error codes per hour.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3"
+      ],
+      "ceiling": "E3",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C007",
+      "n": 7,
+      "part": 2,
+      "title": "Shell Scripting for Engineers",
+      "objective": "Write robust shell scripts that automate builds, tests and device setup.",
+      "lab": "Write a script that builds, tests and packages a C project, and fails loudly.",
+      "board": null,
+      "toughest": "Make a script safe against spaces, missing files and partial failures.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C008",
+      "n": 8,
+      "part": 2,
+      "title": "Building Software: Compilers, Make and Cross-Compilation",
+      "objective": "Build C programs for the laptop and for ARM with gcc, Make and a sysroot, and inspect the results.",
+      "lab": "Write a Makefile that builds for x86 and ARM64 from the same sources.",
+      "board": "Deploy the ARM build to a Pi.",
+      "toughest": "Explain every stage of a cross build and fix a wrong-architecture link error.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C009",
+      "n": 9,
+      "part": 2,
+      "title": "Libraries and the Dynamic Linker",
+      "objective": "Create static and shared libraries and understand how the dynamic linker finds and loads them.",
+      "lab": "Build a shared library, then trace the dynamic linker with LD_DEBUG.",
+      "board": null,
+      "toughest": "Resolve a symbol-version conflict and explain lazy binding through the PLT.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C010",
+      "n": 10,
+      "part": 3,
+      "title": "Processes: fork, exec and wait",
+      "objective": "Create, replace and reap processes, and understand the process life cycle.",
+      "lab": "Write a tiny shell that runs commands and reports their exit status.",
+      "board": null,
+      "toughest": "Explain zombie and orphan processes and prevent both.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C011",
+      "n": 11,
+      "part": 3,
+      "title": "Signals",
+      "objective": "Send, catch and handle signals safely.",
+      "lab": "Handle SIGINT and SIGTERM correctly in a long-running daemon.",
+      "board": null,
+      "toughest": "Write an async-signal-safe handler and explain why printf is not allowed in one.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C012",
+      "n": 12,
+      "part": 3,
+      "title": "Threads",
+      "objective": "Create and join POSIX threads and know what threads share and what they do not.",
+      "lab": "Speed up a computation with threads and measure the gain.",
+      "board": "Measure the same program on the Pi's four cores.",
+      "toughest": "Explain exactly what a thread shares with its process and what it owns.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C013",
+      "n": 13,
+      "part": 3,
+      "title": "Scheduling",
+      "objective": "Understand how Linux decides who runs next: time slices, priorities, nice values and CPU affinity.",
+      "lab": "Measure how nice values and CPU pinning change running times.",
+      "board": null,
+      "toughest": "Predict CPU shares under the Completely Fair Scheduler and the newer EEVDF scheduler for a given set of nice values.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C014",
+      "n": 14,
+      "part": 3,
+      "title": "Real-Time Scheduling",
+      "objective": "Use SCHED_FIFO, SCHED_RR and SCHED_DEADLINE, and measure scheduling latency.",
+      "lab": "Measure wake-up latency with and without a real-time priority.",
+      "board": "Measure it on the Pi under load.",
+      "toughest": "Explain priority inversion and how priority inheritance fixes it.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C015",
+      "n": 15,
+      "part": 4,
+      "title": "Virtual Memory and the MMU",
+      "objective": "Explain pages, page tables, the TLB and address translation, on x86-64 and ARM64.",
+      "lab": "Translate addresses by hand and check them against /proc/self/pagemap.",
+      "board": null,
+      "toughest": "Walk a four-level ARM64 page table for a given virtual address.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C016",
+      "n": 16,
+      "part": 4,
+      "title": "A Process's Address Space",
+      "objective": "Read a process's memory map and know where the code, data, heap, stack and libraries live.",
+      "lab": "Watch a program's map change as it allocates and maps memory.",
+      "board": null,
+      "toughest": "Explain copy-on-write after fork, with measurements.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C017",
+      "n": 17,
+      "part": 4,
+      "title": "Dynamic Memory in Embedded Systems",
+      "objective": "Understand malloc, fragmentation and memory limits, and when embedded code should avoid the heap.",
+      "lab": "Fragment a heap on purpose and measure the damage.",
+      "board": null,
+      "toughest": "Design a fixed-block allocator with constant-time allocation.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C018",
+      "n": 18,
+      "part": 4,
+      "title": "Caches, DMA and Memory-Mapped I/O",
+      "objective": "Access device registers from Linux, and use volatile, barriers and cache control correctly.",
+      "lab": "Map a QEMU device's registers and drive it from user space.",
+      "board": "Blink an LED by writing GPIO registers directly on the Pi.",
+      "toughest": "Explain why a DMA buffer needs cache maintenance and what goes wrong without it.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C019",
+      "n": 19,
+      "part": 5,
+      "title": "Files and the Virtual File System",
+      "objective": "Use open, read, write and close well, and understand inodes, file descriptors and buffering.",
+      "lab": "Measure the cost of unbuffered and buffered I/O.",
+      "board": null,
+      "toughest": "Explain what happens to data between write() and the flash chip, and how to make it durable.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C020",
+      "n": 20,
+      "part": 5,
+      "title": "Filesystems for Flash",
+      "objective": "Choose and configure filesystems for eMMC, SD cards and raw NAND, including read-only roots.",
+      "lab": "Build and mount ext4, SquashFS and an overlay in QEMU.",
+      "board": "Make the Pi's root filesystem read-only.",
+      "toughest": "Design a root filesystem that survives sudden power loss.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C021",
+      "n": 21,
+      "part": 5,
+      "title": "Device Files, /sys and udev",
+      "objective": "Understand character and block devices, major and minor numbers, sysfs and udev.",
+      "lab": "Follow a device from /dev to its driver through /sys.",
+      "board": "Follow the Pi's I2C controller the same way.",
+      "toughest": "Write a udev rule that gives a USB serial adapter a stable name.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C022",
+      "n": 22,
+      "part": 5,
+      "title": "Talking to Hardware from User Space",
+      "objective": "Drive GPIO, I2C, SPI and serial ports from Linux programs.",
+      "lab": "Use QEMU's emulated serial ports and a simulated I2C sensor.",
+      "board": "Read a real I2C temperature sensor and toggle GPIO with libgpiod.",
+      "toughest": "Write a robust serial-port protocol handler with timeouts.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C023",
+      "n": 23,
+      "part": 5,
+      "title": "ioctl, poll and epoll",
+      "objective": "Handle many devices and sockets in one program with event-driven I/O.",
+      "lab": "Build an event loop that serves a serial port, a timer and a socket.",
+      "board": null,
+      "toughest": "Compare select, poll and epoll for 10,000 connections and explain the difference.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C024",
+      "n": 24,
+      "part": 6,
+      "title": "Race Conditions and Mutexes",
+      "objective": "Recognise data races and protect shared data with mutexes.",
+      "lab": "Make a race visible, then fix it, with ThreadSanitizer.",
+      "board": null,
+      "toughest": "Prove that a given locking scheme is free of races.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C025",
+      "n": 25,
+      "part": 6,
+      "title": "Semaphores, Condition Variables and Deadlock",
+      "objective": "Coordinate threads with semaphores and condition variables, and avoid deadlock.",
+      "lab": "Build a bounded producer-consumer queue.",
+      "board": null,
+      "toughest": "Find and break a deadlock using lock ordering.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C026",
+      "n": 26,
+      "part": 6,
+      "title": "Atomics and Memory Ordering",
+      "objective": "Use C11 atomics and understand acquire, release and the ARM memory model.",
+      "lab": "Build a lock-free single-producer single-consumer ring buffer and test it on ARM in QEMU.",
+      "board": "Test it on the Pi's real ARM cores.",
+      "toughest": "Show an ordering bug that appears on ARM but not on x86, and fix it.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C027",
+      "n": 27,
+      "part": 6,
+      "title": "Inter-Process Communication",
+      "objective": "Pass data between processes with pipes, FIFOs, message queues and shared memory.",
+      "lab": "Compare the speed of four IPC methods.",
+      "board": null,
+      "toughest": "Design a crash-safe shared-memory channel between two processes.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C028",
+      "n": 28,
+      "part": 6,
+      "title": "Sockets and Networking for Devices",
+      "objective": "Write TCP and UDP clients and servers, and connect devices with MQTT.",
+      "lab": "Build a sensor server and client and capture the traffic.",
+      "board": "Publish the Pi's sensor readings over MQTT.",
+      "toughest": "Handle partial reads, reconnects and back-pressure correctly.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C029",
+      "n": 29,
+      "part": 7,
+      "title": "From Power-On to Shell Prompt",
+      "objective": "Follow the boot sequence: boot ROM, bootloader, kernel, init and the first program.",
+      "lab": "Boot an ARM64 Linux kernel in QEMU and read every line of its boot log.",
+      "board": "Read the Pi's boot log.",
+      "toughest": "Explain what the kernel needs before it can run init, and what happens if it is missing.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C030",
+      "n": 30,
+      "part": 7,
+      "title": "Booting ARM Linux in QEMU",
+      "objective": "Boot a kernel with an initramfs on QEMU's virt machine, and share files and networking with it.",
+      "lab": "Build an initramfs by hand and boot it.",
+      "board": null,
+      "toughest": "Boot a kernel with only one statically linked program and make it do useful work.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C031",
+      "n": 31,
+      "part": 7,
+      "title": "U-Boot",
+      "objective": "Build and use U-Boot: environment, boot scripts, and loading a kernel over the network.",
+      "lab": "Boot QEMU through U-Boot and load the kernel with TFTP.",
+      "board": "Boot the Pi through U-Boot.",
+      "toughest": "Design a boot script that falls back to a known-good kernel.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C032",
+      "n": 32,
+      "part": 7,
+      "title": "The Device Tree",
+      "objective": "Read and write device tree source, and understand how the kernel matches drivers to hardware.",
+      "lab": "Decompile QEMU's device tree and add a node.",
+      "board": "Write an overlay for a sensor on the Pi.",
+      "toughest": "Describe a new board's peripherals completely in device tree source.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C033",
+      "n": 33,
+      "part": 7,
+      "title": "The Root Filesystem: BusyBox and init",
+      "objective": "Build a minimal root filesystem with BusyBox and write the init process.",
+      "lab": "Build a 2 MB root filesystem that boots in QEMU.",
+      "board": null,
+      "toughest": "Write an init that mounts filesystems, starts services and reaps orphans.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C034",
+      "n": 34,
+      "part": 7,
+      "title": "Buildroot",
+      "objective": "Build a complete embedded Linux system from source with Buildroot.",
+      "lab": "Build and boot a Buildroot image for QEMU.",
+      "board": "Build a Buildroot image for the Pi.",
+      "toughest": "Add your own package and a custom kernel configuration.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C035",
+      "n": 35,
+      "part": 7,
+      "title": "The Yocto Project",
+      "objective": "Understand Yocto layers, recipes and images, and when to choose Yocto over Buildroot.",
+      "lab": "Build a minimal Yocto image for QEMU.",
+      "board": null,
+      "toughest": "Write a recipe and a layer for your own application.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C036",
+      "n": 36,
+      "part": 8,
+      "title": "Your First Kernel Module",
+      "objective": "Build, load and unload a kernel module, and read its messages.",
+      "lab": "Build a module for the laptop and one for the QEMU ARM kernel.",
+      "board": "Load it on the Pi.",
+      "toughest": "Explain what can and cannot be done in kernel context.",
+      "tiers": [
+        "E1",
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C037",
+      "n": 37,
+      "part": 8,
+      "title": "Character Device Drivers",
+      "objective": "Write a character driver with open, read, write and ioctl.",
+      "lab": "Write a driver for a virtual device and test it from user space.",
+      "board": null,
+      "toughest": "Make the driver safe against concurrent readers and writers.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C038",
+      "n": 38,
+      "part": 8,
+      "title": "Platform Drivers and the Device Model",
+      "objective": "Bind a driver to a device described in the device tree.",
+      "lab": "Write a platform driver for a QEMU device.",
+      "board": "Write one for a device on the Pi.",
+      "toughest": "Trace the probe path from device tree node to driver probe().",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C039",
+      "n": 39,
+      "part": 8,
+      "title": "Interrupts, Bottom Halves and Workqueues",
+      "objective": "Handle interrupts in a driver and defer work correctly.",
+      "lab": "Write a driver that handles an interrupt from a QEMU device.",
+      "board": "Handle a GPIO interrupt on the Pi.",
+      "toughest": "Choose between threaded IRQs, tasklets and workqueues for a given device, and justify it.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C040",
+      "n": 40,
+      "part": 8,
+      "title": "GPIO, I2C and SPI Drivers",
+      "objective": "Write drivers on top of the kernel's GPIO, I2C and SPI subsystems.",
+      "lab": "Write an I2C client driver for an emulated sensor.",
+      "board": "Write it for a real sensor on the Pi.",
+      "toughest": "Expose the sensor through the IIO subsystem.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C041",
+      "n": 41,
+      "part": 8,
+      "title": "Kernel Debugging",
+      "objective": "Debug the kernel with printk, dynamic debug, ftrace and gdb through QEMU.",
+      "lab": "Single-step the kernel in QEMU with gdb.",
+      "board": null,
+      "toughest": "Find the cause of a kernel oops from its log alone.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C042",
+      "n": 42,
+      "part": 9,
+      "title": "PREEMPT_RT and Latency",
+      "objective": "Build a real-time kernel and measure worst-case latency.",
+      "lab": "Run cyclictest on a normal and a PREEMPT_RT kernel in QEMU.",
+      "board": "Measure on the Pi under heavy load.",
+      "toughest": "Find and remove a latency source with ftrace.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C043",
+      "n": 43,
+      "part": 9,
+      "title": "Profiling and Tracing",
+      "objective": "Find where time goes with perf, ftrace and eBPF.",
+      "lab": "Profile a slow program with perf and fix it.",
+      "board": null,
+      "toughest": "Write an eBPF tool that measures a kernel function's latency.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C044",
+      "n": 44,
+      "part": 9,
+      "title": "Reliable Updates",
+      "objective": "Update devices in the field safely with A/B partitions and rollback.",
+      "lab": "Implement A/B updates with U-Boot and a QEMU disk image.",
+      "board": null,
+      "toughest": "Design an update that survives power loss at any instant.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C045",
+      "n": 45,
+      "part": 9,
+      "title": "Secure Boot and the Chain of Trust",
+      "objective": "Verify every stage from boot ROM to application, and know what TrustZone adds.",
+      "lab": "Sign a FIT image and boot it with U-Boot verified boot in QEMU.",
+      "board": null,
+      "toughest": "Find the weak link in a given chain of trust.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C046",
+      "n": 46,
+      "part": 9,
+      "title": "Power Management",
+      "objective": "Use CPU frequency scaling, idle states and suspend, and measure their effect.",
+      "lab": "Observe cpufreq and cpuidle behaviour on the laptop.",
+      "board": "Measure the Pi's power draw in each state.",
+      "toughest": "Design the power policy for a battery-powered device.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "ceiling": "E4",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C047",
+      "n": 47,
+      "part": 10,
+      "title": "Capstone: An Embedded Linux Sensor Gateway",
+      "objective": "Build a complete device: custom image, driver, service, network protocol and safe updates.",
+      "lab": "Build and run the whole gateway in QEMU.",
+      "board": "Build it on a Raspberry Pi with a real sensor.",
+      "toughest": "Ship it: a reproducible image, a test suite and an update you can roll back.",
+      "tiers": [
+        "E4",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    },
+    {
+      "id": "KQV-OS-C048",
+      "n": 48,
+      "part": 10,
+      "title": "Where Quantum Meets Embedded Linux",
+      "objective": "See how quantum computers are controlled by FPGA boards running embedded Linux, and what an engineer does there.",
+      "lab": "Run a pulse-sequencer simulation and talk to it the way control software talks to real hardware.",
+      "board": null,
+      "toughest": "Explain the full path from a Qiskit circuit to microwave pulses on a qubit.",
+      "tiers": [
+        "E2",
+        "E3",
+        "E5"
+      ],
+      "ceiling": "E5",
+      "status": "proposed"
+    }
+  ]
+}

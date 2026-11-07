@@ -14,8 +14,10 @@ import { course1, syllabus, lessonNumber, partOf } from '../data/course.js';
 import { courses, statusText } from '../data/courses.js';
 import { getChapters } from '../lib/maths.js';
 import { getProgChapters } from '../lib/programming.js';
+import { getOsChapters } from '../lib/os.js';
 const mathsOpenN = (await getChapters()).filter((x) => x.public).length;
 const progOpenN = (await getProgChapters()).filter((x) => x.public).length;
+const osOpenN = (await getOsChapters()).filter((x) => x.public).length;
 import { quizzes } from '../data/quizzes.js';
 
 const { lang = 'en' } = Astro.props;
@@ -52,7 +54,7 @@ const c = hi ? {
   labT: 'क्वांटम फ़िज़िक्स सिर्फ़ पढ़ें नहीं। उसके साथ प्रयोग करें।', labP: 'हमारी क्वांटम लैब आपके ब्राउज़र में एक असली state-vector simulator चलाती है।',
   labList: ['Bloch sphere पर X, Y, Z, H, S, T gates लगाएँ', 'Qubit को 1,000 बार measure करें और histogram देखें', 'H + CNOT से Bell state बनाएँ और correlation देखें', 'अपना circuit बनाएँ (4 qubits तक) और Qiskit code निकालें'],
   labCta: 'क्वांटम लैब खोलें', labScreen: ['प्रयोग 2 · superposition', 'स्टेट', 'measure', 'सिद्धांत'],
-  coursesT: 'हमारे कोर्स', coursesP: `शून्य से शुरू होकर एक-एक क़दम आगे। कोर्स 1 पूरा खुला है, कोर्स 2${progOpenN ? ' और 3 शुरू हो गए हैं' : ' शुरू हो गया है'}, और आगे के कोर्स तैयार हो रहे हैं।`, c2open: `${mathsOpenN} अध्याय खुले`, allC: 'सभी कोर्स देखें', c2cta: 'कोर्स 2 देखें (English)',
+  coursesT: 'हमारे कोर्स', coursesP: `शून्य से शुरू होकर एक-एक क़दम आगे। कोर्स 1 पूरा खुला है, कोर्स 2${progOpenN ? (osOpenN ? ', 3 और 4 शुरू हो गए हैं' : ' और 3 शुरू हो गए हैं') : ' शुरू हो गया है'}, और आगे के कोर्स तैयार हो रहे हैं।`, c2open: `${mathsOpenN} अध्याय खुले`, allC: 'सभी कोर्स देखें', c2cta: 'कोर्स 2 देखें (English)',
   open: 'अभी खुला', prep: 'तैयार हो रहा है', c1p: 'Bits और complex numbers से शुरू करके qubits, gates, entanglement, algorithms, error correction, हार्डवेयर और आपके करियर के रास्ते तक। 9 भाग, हर पाठ में कोड और quiz।',
   orbCap: 'हाइड्रोजन का 3d orbital, |ψ|² से लिए गए बिंदु', facts1: [['पाठ', syllabus.length], ['भाग', course1.parts.length], ['प्रकाशित', lessons.length]], seeAll: 'सभी पाठ देखें', partOfN: (d, n) => `${n} में से ${d}`,
   c2: ['कोर्स 2: Mathematics for Quantum Science', 'कक्षा 10 की नींव से quantum theory के गणित तक, एक-एक क़दम। हर विचार पहले सहज रूप में, फिर पूरे derivation और हल किए अभ्यासों के साथ।', ['Algebra', 'Complex numbers', 'Linear algebra', 'Calculus', 'Probability']],
@@ -95,7 +97,7 @@ const c = hi ? {
   labT: "Don't just learn quantum physics. Experiment with it.", labP: 'Our Quantum Lab runs a real state-vector simulator right in your browser.',
   labList: ['Apply X, Y, Z, H, S and T gates on a 3D Bloch sphere', 'Measure a qubit 1,000 times and watch the histogram', 'Build a Bell state with H + CNOT and see the correlations', 'Drag and drop your own circuit (up to 4 qubits) and export Qiskit code'],
   labCta: 'Open the Quantum Lab', labScreen: ['Experiment 2 · superposition', 'state', 'measure', 'theory'],
-  coursesT: 'Our courses', coursesP: `Start from zero and go one step at a time. Course 1 is fully open, Course 2${progOpenN ? ' and Course 3 have' : ' has'} begun, and more courses are being prepared.`, c2open: `${mathsOpenN} chapters open`, allC: 'See all courses', c2cta: 'Start Course 2',
+  coursesT: 'Our courses', coursesP: `Start from zero and go one step at a time. Course 1 is fully open, Course 2${progOpenN ? (osOpenN ? ', Course 3 and Course 4 have' : ' and Course 3 have') : ' has'} begun, and more courses are being prepared.`, c2open: `${mathsOpenN} chapters open`, allC: 'See all courses', c2cta: 'Start Course 2',
   open: 'Open now', prep: 'In preparation', c1p: 'From bits and complex numbers to qubits, gates, entanglement, algorithms, error correction, hardware and your career path. 9 parts, with code and a quiz in every lesson.',
   orbCap: 'Hydrogen 3d orbital, points drawn from |ψ|²', facts1: [['lessons', syllabus.length], ['parts', course1.parts.length], ['published', lessons.length]], seeAll: 'See all lessons', partOfN: (d, n) => `${d} of ${n}`,
   c2: ['Course 2: Mathematics for Quantum Science', 'From Class 10 foundations to the mathematics of quantum theory, one step at a time. Every idea comes with intuition first, then full derivations and worked exercises.', ['Algebra', 'Complex numbers', 'Linear algebra', 'Calculus', 'Probability']],
@@ -248,7 +250,7 @@ const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" 
       {courses.filter((x) => x.n > 1).map((x, i) => {
         const t = x[lang];
         const href = hi ? x.hiHref : x.href;
-        const st = x.n === 2 ? 'started' : x.n === 3 && progOpenN ? 'started' : x.status;
+        const st = x.n === 2 ? 'started' : (x.n === 3 && progOpenN) || (x.n === 4 && osOpenN) ? 'started' : x.status;
         const label = x.n === 2 ? c.c2open : statusText[lang][st];
         return (
           <article class={`course-soon glass${i === 0 ? ' course-maths' : ''}`}>

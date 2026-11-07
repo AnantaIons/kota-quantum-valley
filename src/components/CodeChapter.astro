@@ -1,0 +1,40 @@
+---
+// A chapter page for the code courses (Course 3 and Course 4). The text comes from content/<course>/chapters/<id>/chapter.md.
+import 'katex/dist/katex.min.css';
+import '../styles/chapter.css';
+const { ch, prev, nextOpen, plan, course, base, tierShort } = Astro.props;
+const m = ch.meta;
+const toc = ch.headings.filter((h) => h.depth === 2 && !/^references/i.test(h.text));
+const next = plan.chapters.find((c) => c.n === m.chapter_number + 1);
+const levelText = `${m.level_text} up to ${tierShort[m.ceiling] ?? m.ceiling} level`;
+const timeText = m.practice_hours ? `About ${m.estimated_minutes} minutes to read, plus about ${m.practice_hours} hours of practice` : `About ${m.estimated_minutes} minutes`;
+const body = ch.html
+  .replace(/<p><strong>((?:Definition|Rule|Theorem)[^<]*)<\/strong>/g, '<p class="mth-thm"><strong>$1</strong>')
+  .replace(/<p><strong>((?:[PE]\d|M)\d*\.?\d*)<\/strong>/g, '<p class="mprob"><strong>$1</strong>');
+---
+<article class="article mch prog" data-pagefind-body>
+  <div class="narrow">
+    <header>
+      <p class="eyebrow"><a href={base}>{course.course}</a>, Chapter {m.chapter_number} of {plan.chapters.length - 1}</p>
+      <h1>{m.title}</h1>
+      <p class="desc">{m.subtitle}</p>
+      <dl class="mch-facts">
+        <div><dt>Time</dt><dd>{timeText}</dd></div>
+        <div><dt>Level</dt><dd>{levelText}</dd></div>
+        <div><dt>You need</dt><dd>{m.prerequisite_note}</dd></div>
+      </dl>
+    </header>
+
+    <nav class="lesson-toc glass" aria-label="In this chapter">
+      <strong>In this chapter</strong>
+      <ol>{toc.map((h) => <li><a href={`#${h.id}`}>{h.text.replace(/^\d+(\.\d+)*\s*·\s*/, '')}</a></li>)}</ol>
+    </nav>
+
+    <div class="mch-body"><Fragment set:html={body} /></div>
+    <nav class="lesson-nav mch-nav" aria-label={course.short}>
+      {prev ? <a href={`${base}${prev.meta.slug}/`}><small>Previous: Chapter {prev.meta.chapter_number}</small><strong>{prev.meta.title}</strong></a> : <a href={base}><small>Back to</small><strong>{course.short} overview</strong></a>}
+      {nextOpen ? <a class="next" href={`${base}${nextOpen.meta.slug}/`}><small>Next: Chapter {nextOpen.meta.chapter_number}</small><strong>{nextOpen.meta.title}</strong></a>
+        : next && <div class="next soon"><small>Next: Chapter {next.n}, in preparation</small><strong>{next.title}</strong></div>}
+    </nav>
+  </div>
+</article>

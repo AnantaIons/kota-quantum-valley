@@ -48,15 +48,30 @@ export const courses = [
     },
   },
   {
-    n: 4, status: 'prep', href: null, hiHref: null, art: 'nested', shape: ['dodeca', 'gold'],
+    n: 4, status: 'prep', href: '/operating-systems/', hiHref: '/operating-systems/', art: 'nested', shape: ['icosa', 'cobalt'],
     en: {
-      name: 'Course 4: IBM Quantum series',
+      name: 'Course 4: Operating Systems and Embedded Linux',
+      text: 'How an operating system really works, and how to build, boot and program Linux on embedded hardware. Every lab runs on your laptop with QEMU; a Raspberry Pi is optional. From your first system call to your own kernel driver and Linux image.',
+      chips: ['Processes and threads', 'Memory and the MMU', 'Device drivers', 'Booting Linux', 'Real time', 'QEMU and Raspberry Pi'],
+      level: 'Some C to kernel developer', lang: 'English', cta: 'Open Course 4',
+    },
+    hi: {
+      name: 'कोर्स 4: ऑपरेटिंग सिस्टम और Embedded Linux',
+      text: 'ऑपरेटिंग सिस्टम असल में कैसे काम करता है, और embedded हार्डवेयर पर Linux को कैसे बनाएँ, बूट करें और प्रोग्राम करें। हर लैब आपके लैपटॉप पर QEMU में चलती है; Raspberry Pi वैकल्पिक है। पहले system call से अपने kernel driver और Linux image तक।',
+      chips: ['Processes और threads', 'Memory और MMU', 'Device drivers', 'Linux बूट करना', 'Real time', 'QEMU और Raspberry Pi'],
+      level: 'थोड़ी C से kernel developer तक', lang: 'अभी सिर्फ़ English में', cta: 'कोर्स 4 खोलें (English)',
+    },
+  },
+  {
+    n: 5, status: 'prep', href: null, hiHref: null, art: 'static', shape: ['dodeca', 'gold'],   // 'static': no 3D scene, the drawn solid stays
+    en: {
+      name: 'Course 5: IBM Quantum series',
       text: 'Following the IBM Quantum Learning syllabus in order, explained in our own words, with experiments on real IBM hardware.',
       chips: ['Basics of quantum information', 'Algorithms', 'Error correction', 'Utility-scale'],
       level: 'After Courses 1 to 3', lang: 'English and Hindi', cta: null,
     },
     hi: {
-      name: 'कोर्स 4: IBM Quantum सीरीज़',
+      name: 'कोर्स 5: IBM Quantum सीरीज़',
       text: 'IBM Quantum Learning के सिलेबस के क्रम में, हमारी अपनी व्याख्या के साथ, और असली IBM हार्डवेयर पर प्रयोग।',
       chips: ['Basics of quantum information', 'Algorithms', 'Error correction', 'Utility-scale'],
       level: 'कोर्स 1 से 3 के बाद', lang: 'हिन्दी और English', cta: null,

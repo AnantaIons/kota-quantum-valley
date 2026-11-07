@@ -4,7 +4,9 @@ import { getPosts } from '../lib/posts.js';
 import { course1, syllabus } from '../data/course.js';
 import { courses, statusText } from '../data/courses.js';
 import { getProgChapters } from '../lib/programming.js';
+import { getOsChapters } from '../lib/os.js';
 const progOpenN = (await getProgChapters()).filter((x) => x.public).length;
+const osOpenN = (await getOsChapters()).filter((x) => x.public).length;
 const { lang = 'en' } = Astro.props;
 const hi = lang === 'hi';
 const pre = hi ? '/hi' : '';
@@ -94,7 +96,7 @@ const startHref = hi ? '/hi/lessons/roadmap-what-to-learn-first/' : '/posts/road
         {courses.filter((x) => x.n > 1).map((x) => {
           const t = x[lang];
           const href = hi ? x.hiHref : x.href;
-          const st = x.n === 3 && progOpenN ? 'started' : x.status;
+          const st = (x.n === 3 && progOpenN) || (x.n === 4 && osOpenN) ? 'started' : x.status;
           const inner = <><span class="tech-top"><span /><span class={`status ${st === 'prep' ? 'research' : 'now'}`}>{statusText[lang][st]}</span></span><h3>{t.name}</h3><p>{t.text}</p></>;
           return href && st !== 'prep' ? <a class="tech-card glass" href={href}>{inner}</a> : <div class="tech-card glass">{inner}</div>;
         })}

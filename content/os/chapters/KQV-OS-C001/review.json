@@ -1,0 +1,25 @@
+{
+  "id": "KQV-OS-C001",
+  "version": "0.1.0",
+  "date": "2026-11-07",
+  "reviewer": "Claude (AI). AI self-check is not a guarantee; no human review yet.",
+  "checks": [
+    {
+      "check": "Code pass",
+      "tool": "content/programming/tools/run_chapter.py",
+      "result": "PASS",
+      "detail": "21 of 21 checks: every C program compiled with gcc 13.3 (-std=c17 -Wall -Wextra -Werror), and every terminal session replayed on Ubuntu 24.04 x86-64 with QEMU 8.2 and the aarch64-linux-gnu toolchain, output compared line by line. Machine-dependent values (times, addresses, process numbers, build IDs, buffer sizes) are shown as ... ."
+    },
+    {
+      "check": "Fact pass",
+      "tool": "manual and measured",
+      "result": "PASS",
+      "detail": "Timings, system call numbers and counts, file sizes and disassembly observed on the test machine and labelled as such. Installation steps for WSL 2, a macOS virtual machine, Chromebooks and the Raspberry Pi are described from the official procedures and are not replayed (no Pi on the test machine)."
+    }
+  ],
+  "changes": [],
+  "publication": {
+    "status": "not_published",
+    "note": "Waiting for the founder's approval of the course and plan after the private preview."
+  }
+}

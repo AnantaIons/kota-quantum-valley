@@ -1,0 +1,16 @@
+---
+// A Course 4 chapter. The text comes from content/os/chapters/<id>/chapter.md.
+import Base from '../../layouts/Base.astro';
+import CodeChapter from '../../components/CodeChapter.astro';
+import { getOsChapters, plan, course } from '../../lib/os.js';
+
+export async function getStaticPaths() {
+  const chapters = (await getOsChapters()).filter((c) => c.public);
+  return chapters.map((ch, i) => ({ params: { slug: ch.meta.slug }, props: { ch, prev: chapters[i - 1], nextOpen: chapters[i + 1] } }));
+}
+const { ch, prev, nextOpen } = Astro.props;
+const tierShort = { E1: 'first steps', E2: 'university exams', E3: 'interviews', E4: 'labs and projects', E5: 'kernel and professional' };
+---
+<Base title={`Course 4, Chapter ${ch.meta.chapter_number}: ${ch.meta.short_title}`} description={ch.meta.subtitle} lang="en">
+  <CodeChapter ch={ch} prev={prev} nextOpen={nextOpen} plan={plan} course={course} base="/operating-systems/" tierShort={tierShort} />
+</Base>

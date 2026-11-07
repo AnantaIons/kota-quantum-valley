@@ -6,28 +6,31 @@ import { getPosts } from '../lib/posts.js';
 import { syllabus, course1 } from '../data/course.js';
 import { getChapters } from '../lib/maths.js';
 import { getProgChapters } from '../lib/programming.js';
+import { getOsChapters } from '../lib/os.js';
 const { lang = 'en' } = Astro.props;
 const hi = lang === 'hi';
 const S = statusText[lang];
 const lessons = getPosts('lesson', lang).length;
 const mathsOpen = (await getChapters()).filter((c) => c.public).length;
 const progOpen = (await getProgChapters()).filter((c) => c.public).length;
+const osOpen = (await getOsChapters()).filter((c) => c.public).length;
 const live = {
   1: hi ? `${syllabus.length} पाठ, ${course1.parts.length} भाग, ${lessons} प्रकाशित` : `${syllabus.length} lessons in ${course1.parts.length} parts, ${lessons} published`,
   2: hi ? `${mathsOpen} अध्याय खुले` : `${mathsOpen} chapters open`,
   3: progOpen ? (hi ? `${progOpen} अध्याय खुले` : `${progOpen} chapters open`) : (hi ? 'योजना तैयार, पहले अध्याय आ रहे हैं' : 'Plan ready, first chapters coming'),
-  4: hi ? 'कोर्स 3 के बाद' : 'Starts after Course 3',
+  4: osOpen ? (hi ? `${osOpen} अध्याय खुले` : `${osOpen} chapters open`) : (hi ? 'योजना तैयार, पहले अध्याय आ रहे हैं' : 'Plan ready, first chapters coming'),
+  5: hi ? 'कोर्स 3 के बाद' : 'Starts after Course 3',
 };
-const status = (c) => (c.n === 3 && progOpen ? 'started' : c.status);
+const status = (c) => ((c.n === 3 && progOpen) || (c.n === 4 && osOpen) ? 'started' : c.status);
 const T = hi ? {
   eyebrow: 'सभी कोर्स, मुफ़्त', title: 'एक कोर्स चुनें',
-  lead: 'हर कोर्स शून्य से शुरू होता है और एक-एक क़दम आगे बढ़ता है। कोर्स 1 क्वांटम कंप्यूटिंग की पूरी तस्वीर देता है; कोर्स 2 और 3 उसके नीचे की नींव, गणित और प्रोग्रामिंग, गहराई से सिखाते हैं।',
-  order: 'किस क्रम में पढ़ें?', orderP: 'कोर्स 1 से शुरू करें। साथ-साथ कोर्स 2 (गणित) और कोर्स 3 (प्रोग्रामिंग) अपनी रफ़्तार से चलाएँ। कोर्स 4 असली IBM हार्डवेयर पर इन सबको जोड़ता है।',
+  lead: 'हर कोर्स शून्य से शुरू होता है और एक-एक क़दम आगे बढ़ता है। कोर्स 1 क्वांटम कंप्यूटिंग की पूरी तस्वीर देता है; कोर्स 2, 3 और 4 उसके नीचे की नींव, गणित, प्रोग्रामिंग और ऑपरेटिंग सिस्टम, गहराई से सिखाते हैं।',
+  order: 'किस क्रम में पढ़ें?', orderP: 'कोर्स 1 से शुरू करें। साथ-साथ कोर्स 2 (गणित) और कोर्स 3 (प्रोग्रामिंग) अपनी रफ़्तार से चलाएँ। थोड़ी C आने के बाद कोर्स 4 (ऑपरेटिंग सिस्टम और Embedded Linux) शुरू करें। कोर्स 5 असली IBM हार्डवेयर पर इन सबको जोड़ता है।',
   level: 'स्तर', language: 'भाषा', soon: 'जल्द',
 } : {
   eyebrow: 'All courses, free', title: 'Choose a course',
-  lead: 'Every course starts from zero and climbs one step at a time. Course 1 gives the whole picture of quantum computing; Courses 2 and 3 build the foundations underneath it, mathematics and programming, in depth.',
-  order: 'In what order?', orderP: 'Start with Course 1. Run Course 2 (mathematics) and Course 3 (programming) alongside it at your own pace. Course 4 brings everything together on real IBM hardware.',
+  lead: 'Every course starts from zero and climbs one step at a time. Course 1 gives the whole picture of quantum computing; Courses 2, 3 and 4 build the foundations underneath it, mathematics, programming and operating systems, in depth.',
+  order: 'In what order?', orderP: 'Start with Course 1. Run Course 2 (mathematics) and Course 3 (programming) alongside it at your own pace. Course 4 (operating systems and embedded Linux) follows once you can write some C. Course 5 brings everything together on real IBM hardware.',
   level: 'Level', language: 'Language', soon: 'Soon',
 };
 ---

@@ -1,0 +1,31 @@
+/* Shared styles for the code-course overview pages (Course 3 and Course 4). */
+.phero h1 { max-width: 14ch; }
+.pc-sample { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 30px; padding: 30px; border-radius: var(--r-lg, 24px); align-items: center; }
+.pc-sample h2 { margin: 0 0 10px; }
+.pc-sample p { color: var(--text-2); margin: 0; }
+.pc-code { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 12px; }
+.pc-code figure { margin: 0; min-width: 0; display: flex; flex-direction: column; }
+.pc-code pre { margin: 0; flex: 1; font-size: 0.82rem; }
+.pc-code figcaption { font-family: var(--font-mono); font-size: 0.74rem; margin: 0 0 6px 2px; }
+.pc-c { color: #7AAEFF; font-family: var(--font-mono); }
+.pc-py { color: #E6C36A; font-family: var(--font-mono); }
+.pc-tiers { margin-top: 26px; max-width: 760px; }
+.pc-parts { display: grid; gap: 14px; }
+.pc-part { border-radius: var(--r-md); padding: 0 22px; }
+.pc-part > summary { cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 14px; padding: 18px 0; list-style: none; }
+.pc-part > summary::-webkit-details-marker { display: none; }
+.pc-pn { grid-row: span 2; font-family: var(--font-mono); font-size: 0.78rem; color: var(--cyan); padding-top: 3px; }
+.pc-part > summary strong { font-family: var(--font-head); font-size: 1.08rem; }
+.pc-part > summary small { color: var(--text-3); }
+.pc-chs { list-style: none; padding: 0 0 16px; margin: 0; display: grid; gap: 4px; border-top: 1px solid var(--border); padding-top: 12px; }
+.pc-chs li { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 12px; align-items: start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.pc-chs li:last-child { border-bottom: 0; }
+.pc-n { font-family: var(--font-mono); color: var(--text-3); font-size: 0.85rem; padding-top: 2px; }
+.pc-chs a, .pc-t { font-weight: 600; }
+.pc-chs .pc-t { color: var(--text); }
+.pc-chs p { margin: 4px 0 0; font-size: 0.88rem; color: var(--text-2); }
+.pc-chs p.pc-langs { font-size: 0.82rem; color: var(--text-3); }
+.pc-langs .pc-py { margin-left: 8px; }
+.pc-chs .status { font-size: 0.7rem; }
+@media (max-width: 900px) { .pc-sample, .pc-code { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 600px) { .pc-chs li { grid-template-columns: 28px minmax(0, 1fr); } .pc-chs .status { display: none; } .pc-part { padding: 0 16px; } }

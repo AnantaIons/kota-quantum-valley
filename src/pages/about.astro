@@ -4,9 +4,11 @@ import site from '../data/site.json';
 import { getPosts } from '../lib/posts.js';
 import { getChapters } from '../lib/maths.js';
 import { getProgChapters } from '../lib/programming.js';
+import { getOsChapters } from '../lib/os.js';
 const lessons = getPosts('lesson', 'en').length;
 const maths = (await getChapters()).filter((c) => c.public).length;
 const prog = (await getProgChapters()).filter((c) => c.public).length;
+const osN = (await getOsChapters()).filter((c) => c.public).length;
 ---
 <Base title="About" description="Who is behind Kota Quantum Valley, what the initiative is building, and how you can help.">
   <section class="article about">
@@ -61,6 +63,7 @@ const prog = (await getProgChapters()).filter((c) => c.public).length;
         <a class="card" href="/lessons/"><h3>Course 1: Quantum Basics</h3><p>{lessons} lessons from bits to real quantum hardware, in English and Hindi, with code, exercises and a quiz in each.</p></a>
         <a class="card" href="/mathematics/"><h3>Course 2: Mathematics</h3><p>Mathematics for quantum science, from Class 10 to PhD level. {maths} chapters open, every calculation checked in code.</p></a>
         <a class="card" href="/programming/"><h3>Course 3: C and Python</h3><p>Programming in two languages side by side, from a first program to a quantum simulator.{prog ? ` ${prog} chapters open.` : ''}</p></a>
+        <a class="card" href="/operating-systems/"><h3>Course 4: Operating Systems and Embedded Linux</h3><p>How Linux really works, and how to build, boot and program it on embedded boards, with every lab on your laptop.{osN ? ` ${osN} chapters open.` : ''}</p></a>
         <a class="card" href="/lab/"><h3>Quantum Lab</h3><p>Four experiments in the browser: Bloch sphere, superposition, Bell states and a circuit builder.</p></a>
         <a class="card" href="/great-minds/"><h3>Great minds</h3><p>Sixteen scientists and mathematicians, half from India, and the habits a student can copy from each.</p></a>
         <a class="card" href="/careers/"><h3>Careers and resume maker</h3><p>Which quantum jobs exist, what they need, and a free resume maker.</p></a>
@@ -72,11 +75,11 @@ const prog = (await getProgChapters()).filter((c) => c.public).length;
         <li><strong>Free.</strong> No paywalls and no sign-ups. Lessons are licensed under Creative Commons; share them with credit.</li>
         <li><strong>Honest.</strong> We say clearly what is in use today and what is still research, and we link our sources.</li>
         <li><strong>Checked.</strong> Calculations are re-run in code and programs are compiled and run before a page is published.</li>
-        <li><strong>In your language.</strong> Course 1 and the main pages are in English and Hindi; Courses 2 and 3 are in English for now.</li>
+        <li><strong>In your language.</strong> Course 1 and the main pages are in English and Hindi; Courses 2, 3 and 4 are in English for now.</li>
       </ul>
 
       <h2>What comes next</h2>
-      <p>Courses 2 and 3 grow chapter by chapter, Course 4 follows the IBM Quantum Learning syllabus on real IBM hardware, and the case for a Rajasthan quantum mission continues on Instagram.</p>
+      <p>Courses 2, 3 and 4 grow chapter by chapter, Course 5 follows the IBM Quantum Learning syllabus on real IBM hardware, and the case for a Rajasthan quantum mission continues on Instagram.</p>
 
       <h2>How you can help</h2>
       <ul>

@@ -4,9 +4,11 @@ import site from '../../data/site.json';
 import { getPosts } from '../../lib/posts.js';
 import { getChapters } from '../../lib/maths.js';
 import { getProgChapters } from '../../lib/programming.js';
+import { getOsChapters } from '../../lib/os.js';
 const lessons = getPosts('lesson', 'hi').length;
 const maths = (await getChapters()).filter((c) => c.public).length;
 const prog = (await getProgChapters()).filter((c) => c.public).length;
+const osN = (await getOsChapters()).filter((c) => c.public).length;
 ---
 <Base lang="hi" title="हमारे बारे में" description="Kota Quantum Valley के पीछे कौन है, यह पहल क्या बना रही है, और आप कैसे मदद कर सकते हैं।">
   <section class="article about">
@@ -61,6 +63,7 @@ const prog = (await getProgChapters()).filter((c) => c.public).length;
         <a class="card" href="/hi/lessons/"><h3>कोर्स 1: क्वांटम की बुनियाद</h3><p>bits से असली क्वांटम हार्डवेयर तक {lessons} पाठ, हिन्दी और English में, हर पाठ में कोड, अभ्यास और quiz।</p></a>
         <a class="card" href="/mathematics/"><h3>कोर्स 2: गणित</h3><p>क्वांटम विज्ञान के लिए गणित, कक्षा 10 से PhD स्तर तक। {maths} अध्याय खुले, हर गणना कोड में जाँची गई। (English)</p></a>
         <a class="card" href="/programming/"><h3>कोर्स 3: C और Python</h3><p>दो भाषाओं में साथ-साथ प्रोग्रामिंग, पहले प्रोग्राम से quantum simulator तक।{prog ? ` ${prog} अध्याय खुले।` : ''} (English)</p></a>
+        <a class="card" href="/operating-systems/"><h3>कोर्स 4: ऑपरेटिंग सिस्टम और Embedded Linux</h3><p>Linux असल में कैसे काम करता है, और embedded बोर्ड पर उसे कैसे बनाएँ, बूट करें और प्रोग्राम करें, हर लैब आपके लैपटॉप पर।{osN ? ` ${osN} अध्याय खुले।` : ''} (English)</p></a>
         <a class="card" href="/hi/lab/"><h3>क्वांटम लैब</h3><p>ब्राउज़र में चार प्रयोग: Bloch sphere, superposition, Bell states और circuit builder।</p></a>
         <a class="card" href="/hi/great-minds/"><h3>महान विचारक</h3><p>सोलह वैज्ञानिक और गणितज्ञ, आधे भारत से, और हर एक से छात्र कौन-सी आदत सीख सकते हैं।</p></a>
         <a class="card" href="/hi/careers/"><h3>करियर और रिज़्यूमे मेकर</h3><p>कौन-सी क्वांटम नौकरियाँ हैं, उनके लिए क्या चाहिए, और एक मुफ़्त रिज़्यूमे मेकर।</p></a>
@@ -72,11 +75,11 @@ const prog = (await getProgChapters()).filter((c) => c.public).length;
         <li><strong>मुफ़्त।</strong> कोई पेवॉल नहीं, कोई साइन-अप नहीं। पाठ Creative Commons लाइसेंस के तहत हैं; क्रेडिट देकर शेयर करें।</li>
         <li><strong>ईमानदार।</strong> हम साफ़ बताते हैं कि क्या आज इस्तेमाल में है और क्या अभी research है, और अपने स्रोत देते हैं।</li>
         <li><strong>जाँचा हुआ।</strong> पेज प्रकाशित होने से पहले हर गणना कोड में दोबारा चलाई जाती है और हर प्रोग्राम compile करके चलाया जाता है।</li>
-        <li><strong>आपकी भाषा में।</strong> कोर्स 1 और मुख्य पेज हिन्दी और English में हैं; कोर्स 2 और 3 अभी English में हैं।</li>
+        <li><strong>आपकी भाषा में।</strong> कोर्स 1 और मुख्य पेज हिन्दी और English में हैं; कोर्स 2, 3 और 4 अभी English में हैं।</li>
       </ul>
 
       <h2>आगे क्या</h2>
-      <p>कोर्स 2 और 3 अध्याय-दर-अध्याय बढ़ेंगे, कोर्स 4 असली IBM हार्डवेयर पर IBM Quantum Learning के सिलेबस को फ़ॉलो करेगा, और राजस्थान क्वांटम मिशन की बात इंस्टाग्राम पर जारी रहेगी।</p>
+      <p>कोर्स 2, 3 और 4 अध्याय-दर-अध्याय बढ़ेंगे, कोर्स 5 असली IBM हार्डवेयर पर IBM Quantum Learning के सिलेबस को फ़ॉलो करेगा, और राजस्थान क्वांटम मिशन की बात इंस्टाग्राम पर जारी रहेगी।</p>
 
       <h2>आप कैसे मदद कर सकते हैं</h2>
       <ul>

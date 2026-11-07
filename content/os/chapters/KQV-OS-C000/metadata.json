@@ -1,0 +1,35 @@
+{
+  "course": "Course 4: Operating Systems and Embedded Linux",
+  "language": "en",
+  "version": "0.1.0",
+  "status": "code_checked",
+  "reviewed_at": "2026-11-07",
+  "reviewer_type": "AI review with every command and program run by content/programming/tools/run_chapter.py; no human review yet",
+  "unresolved_issues": [],
+  "id": "KQV-OS-C000",
+  "slug": "chapter-0",
+  "chapter_number": 0,
+  "part": 0,
+  "title": "How This Course Works, and Setting Up a Linux Lab",
+  "short_title": "Setting up a Linux lab",
+  "subtitle": "What this course builds, how every chapter is checked, and a working Linux lab on any laptop: by the end, one C program running on two different processors.",
+  "level_text": "Beginner",
+  "ceiling": "E1",
+  "tiers": [
+    "E1"
+  ],
+  "estimated_minutes": 45,
+  "practice_hours": 2,
+  "prerequisite_note": "A laptop with any operating system, and C as far as Course 3, Chapters 0 to 10.",
+  "objectives": [
+    "Get a Linux system on Windows, macOS, Linux or a Chromebook.",
+    "Install gcc, QEMU and an ARM64 cross-compiler.",
+    "Cross-compile a C program for ARM64 and run it on an x86 laptop with qemu-aarch64.",
+    "Explain dynamic and static linking well enough to fix the commonest QEMU error.",
+    "Compare x86-64 and ARM64 machine code for the same function."
+  ],
+  "next": {
+    "id": "KQV-OS-C001",
+    "title": "What an Operating System Does"
+  }
+}

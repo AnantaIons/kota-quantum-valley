@@ -1,0 +1,99 @@
+---
+// Course 4 overview page (English only for now). Course data comes from content/os.
+import Solid from './Solid.astro';
+import '../styles/course-overview.css';
+import { getOsChapters, course, plan } from '../lib/os.js';
+const chapters = (await getOsChapters()).filter((c) => c.public);
+const open = new Set(chapters.map((c) => c.meta.chapter_number));
+const slugOf = Object.fromEntries(chapters.map((c) => [c.meta.chapter_number, c.meta.slug]));
+const ch0 = chapters.find((c) => c.meta.chapter_number === 0);
+const startHref = ch0 ? `/operating-systems/${ch0.meta.slug}/` : '#plan';
+const parts = course.parts.map((p) => ({ ...p, chapters: plan.chapters.filter((c) => c.part === p.n) }));
+const tierRows = Object.entries(course.tiers);
+const opened = chapters.length;
+---
+<section class="hero mhero phero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap mhero-grid">
+    <div>
+      <p class="eyebrow">Course 4, free, starting now</p>
+      <h1>Operating Systems and Embedded Linux</h1>
+      <p class="lead">How an operating system really works, and how to build, boot and program Linux on embedded hardware. Every lab runs on your laptop with QEMU, the emulator; a Raspberry Pi is optional. From your first system call to your own kernel driver, a custom Linux image and a real-time device.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-lg" href={startHref}>Start Chapter 0</a>
+        <a class="btn btn-ghost btn-lg" href="#plan">See all {plan.chapters.length} chapters</a>
+      </div>
+      <p class="mhero-status">{opened ? `${opened === 1 ? 'Chapter 0 is' : opened === 2 ? 'Chapters 0 and 1 are' : `Chapters 0 to ${opened - 1} are`} open. Every command and program on every page is run by our tests before it is published.` : 'Chapters are being written.'}</p>
+    </div>
+    <div class="v3host mhero-art" data-3d="nested" aria-hidden="true"><Solid shape="icosa" tone="cobalt" size={240} /></div>
+  </div>
+</section>
+
+<section class="block" style="padding-top: 0">
+  <div class="wrap">
+    <div class="pc-sample glass">
+      <div class="pc-sample-copy">
+        <h2>One program, two processors</h2>
+        <p>Chapter 0 ends like this. The same C file is compiled for your laptop's x86 processor and for the ARM64 processor inside phones and Raspberry Pis, and QEMU runs the ARM version on the laptop. By Part 7 you boot a whole ARM Linux system the same way.</p>
+      </div>
+      <div class="pc-code os-term">
+        <figure><figcaption class="pc-c">Terminal</figcaption><pre><code>{`$ gcc -o where where.c && ./where
+Hello from x86_64 (Linux)
+$ aarch64-linux-gnu-gcc -o where-arm where.c
+$ qemu-aarch64 -L /usr/aarch64-linux-gnu ./where-arm
+Hello from aarch64 (Linux)`}</code></pre></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block tint">
+  <div class="wrap">
+    <div class="section-head"><h2>How every chapter is built</h2><p>{course.approach}</p></div>
+    <ol class="how-steps">
+      {course.depth_standard.map((d, i) => <li><strong>{['Running, not described', 'Underneath', 'Laptop first', 'A ladder of problems', 'Quantum where it is real'][i]}</strong><span>{d}</span></li>)}
+    </ol>
+    <div class="table-wrap pc-tiers"><table>
+      <thead><tr><th>Tier</th><th>Level</th></tr></thead>
+      <tbody>{tierRows.map(([k, v]) => <tr><td><strong>{k}</strong></td><td>{v}</td></tr>)}</tbody>
+    </table></div>
+    <p class="os-tested">Tested on {course.tested_on}</p>
+  </div>
+</section>
+
+<section class="block" id="plan">
+  <div class="wrap">
+    <div class="section-head"><h2>The full plan</h2><p>{course.parts.length} parts, {plan.chapters.length} chapters. Open chapters are linked; the rest are planned and will open in order.</p></div>
+    <div class="pc-parts">
+      {parts.map((p) => (
+        <details class="pc-part glass" open={p.n <= 1}>
+          <summary><span class="pc-pn">Part {p.n}</span><strong>{p.name}</strong><small>{p.question}</small></summary>
+          <ol class="pc-chs">
+            {p.chapters.map((c) => (
+              <li class={open.has(c.n) ? 'is-open' : ''}>
+                <span class="pc-n">{c.n}</span>
+                <div>
+                  {open.has(c.n) ? <a href={`/operating-systems/${slugOf[c.n]}/`}>{c.title}</a> : <span class="pc-t">{c.title}</span>}
+                  <p>{c.objective}</p>
+                  <p class="pc-langs"><span class="pc-c">Laptop lab</span> {c.lab}{c.board && <> <span class="pc-py">Raspberry Pi</span> {c.board}</>}</p>
+                </div>
+                <span class={`status ${open.has(c.n) ? 'now' : 'research'}`}>{open.has(c.n) ? 'Open' : 'Planned'}</span>
+              </li>
+            ))}
+          </ol>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { boot3d } from '../scripts/three/boot.js';
+  boot3d();
+</script>
+
+<style is:global>
+  .os-term { grid-template-columns: minmax(0, 1fr); }
+  .os-term pre { white-space: pre; overflow-x: auto; }
+  .os-tested { margin: 18px 0 0; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-3); }
+</style>

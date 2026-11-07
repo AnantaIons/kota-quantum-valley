@@ -1,0 +1,42 @@
+{
+  "course": "Course 4: Operating Systems and Embedded Linux",
+  "language": "en",
+  "version": "0.1.0",
+  "status": "code_checked",
+  "reviewed_at": "2026-11-07",
+  "reviewer_type": "AI review with every command and program run by content/programming/tools/run_chapter.py; no human review yet",
+  "unresolved_issues": [],
+  "id": "KQV-OS-C001",
+  "slug": "what-an-os-does",
+  "chapter_number": 1,
+  "part": 1,
+  "title": "What an Operating System Does",
+  "short_title": "What an OS does",
+  "subtitle": "From firmware that runs alone to a kernel that hides the hardware, keeps programs apart and shares the processor, watched step by step on a real Linux system.",
+  "level_text": "Beginner",
+  "ceiling": "E5",
+  "tiers": [
+    "E1",
+    "E2",
+    "E3",
+    "E5"
+  ],
+  "estimated_minutes": 70,
+  "practice_hours": 3,
+  "prerequisite_note": "Chapter 0's lab, and C up to functions and pointers.",
+  "objectives": [
+    "Describe superloop firmware and where it breaks down.",
+    "Name and demonstrate abstraction, isolation and sharing.",
+    "Trace system calls with strace.",
+    "Show separate address spaces with fork and a contained crash.",
+    "Measure time sharing on one core.",
+    "Explain user mode, kernel mode, system calls and ARM64 exception levels."
+  ],
+  "prev": {
+    "id": "KQV-OS-C000"
+  },
+  "next": {
+    "id": "KQV-OS-C002",
+    "title": "Kernel Mode, User Mode and System Calls"
+  }
+}

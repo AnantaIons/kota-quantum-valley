@@ -15,7 +15,7 @@ const L = t[lang];
 const nav = L.nav.map(([href, label]) => ({ href, label }));
 const lessonsHref = lang === 'hi' ? '/hi/lessons/' : '/lessons/';
 const coursesHref = lang === 'hi' ? '/hi/courses/' : '/courses/';
-const inCourse = /^\/(hi\/)?(lessons|courses)(\/|$)|^\/(mathematics|programming)(\/|$)|^\/hi\/lessons\/|^\/posts\/lesson/.test(path);
+const inCourse = /^\/(hi\/)?(lessons|courses)(\/|$)|^\/(mathematics|programming|operating-systems)(\/|$)|^\/hi\/lessons\/|^\/posts\/lesson/.test(path);
 const isCurrent = (href) => path === href.replace(/\/$/, '') || (href === coursesHref && inCourse);
 const alt = altPath(Astro.url.pathname);
 const isHome = path === '/' || path === '/hi';
@@ -107,6 +107,7 @@ const year = new Date().getFullYear();
               <li><a href={lessonsHref}>{L.allLessons}</a></li>
               <li><a href="/mathematics/">{L.maths}</a></li>
               <li><a href="/programming/">{L.prog}</a></li>
+              <li><a href="/operating-systems/">{L.os}</a></li>
               <li><a href={`${pre}/explainers/`}>{L.explainers}</a></li>
               <li><a href={`${pre}/glossary/`}>{L.glossary}</a></li>
               <li><a href={`${pre}/great-minds/`}>{L.greatMinds}</a></li>

@@ -1,0 +1,101 @@
+{
+  "course": "Course 4: Operating Systems and Embedded Linux",
+  "short": "Course 4",
+  "slug": "operating-systems",
+  "audience": "Anyone who can write a little C (Course 3, Chapters 0 to 10, is enough to start), through college students and working embedded engineers.",
+  "approach": "Every idea is shown running on a real Linux system on your own laptop: commands you type, C programs you compile, and from Part 7 a complete ARM Linux system booted in QEMU, the emulator. A Raspberry Pi is optional; every lab has a laptop version. Every command and program on every page is run by our test suite before publication, and its output is checked.",
+  "languages": [
+    "en"
+  ],
+  "language_note": "English only for now.",
+  "tested_on": "Ubuntu 24.04 LTS on x86-64, gcc 13.3, QEMU 8.2 (user mode and system mode), aarch64-linux-gnu cross toolchain.",
+  "checker": "content/programming/tools/run_chapter.py",
+  "statuses": [
+    "proposed",
+    "outlined",
+    "drafted",
+    "code_checked",
+    "reviewed",
+    "approved",
+    "published",
+    "revised"
+  ],
+  "public_statuses": [
+    "code_checked",
+    "reviewed",
+    "approved",
+    "published",
+    "revised"
+  ],
+  "tiers": {
+    "E1": "First steps: check the idea with short, direct exercises",
+    "E2": "University exams: operating systems and embedded systems courses",
+    "E3": "Interviews: embedded, firmware and systems engineering interviews",
+    "E4": "Labs and projects: build, measure and debug on Linux, QEMU and a Raspberry Pi",
+    "E5": "Kernel and professional: kernel source, real drivers and production practice"
+  },
+  "depth_standard": [
+    "Every idea is shown running: a command, a C program or a QEMU lab, with its real output.",
+    "Every chapter goes underneath: what the kernel, the C library and the hardware actually do, on x86 and on ARM.",
+    "Every lab works on a laptop. Where real hardware adds something, a Raspberry Pi version is given as an option.",
+    "A problem ladder with full solutions climbs through the tiers the topic supports.",
+    "Quantum connections appear only where they are real: the controllers of today's quantum computers are FPGA boards running embedded Linux."
+  ],
+  "parts": [
+    {
+      "n": 0,
+      "name": "Start here",
+      "question": "What is this course, and how do I set up a Linux lab?"
+    },
+    {
+      "n": 1,
+      "name": "What an operating system is",
+      "question": "What does an operating system do that firmware does not?"
+    },
+    {
+      "n": 2,
+      "name": "Working in Linux",
+      "question": "How do engineers drive and build on a Linux system?"
+    },
+    {
+      "n": 3,
+      "name": "Processes and threads",
+      "question": "How does one processor run many programs?"
+    },
+    {
+      "n": 4,
+      "name": "Memory",
+      "question": "How does every program get memory of its own?"
+    },
+    {
+      "n": 5,
+      "name": "Files, devices and the kernel interface",
+      "question": "How do programs reach hardware through the kernel?"
+    },
+    {
+      "n": 6,
+      "name": "Concurrency and communication",
+      "question": "How do processes and threads cooperate safely?"
+    },
+    {
+      "n": 7,
+      "name": "Booting embedded Linux",
+      "question": "What happens between power-on and a shell prompt?"
+    },
+    {
+      "n": 8,
+      "name": "Kernel modules and device drivers",
+      "question": "How do you write code that runs inside the kernel?"
+    },
+    {
+      "n": 9,
+      "name": "Real time, debugging and production",
+      "question": "How do you make an embedded Linux device fast, reliable and secure?"
+    },
+    {
+      "n": 10,
+      "name": "Capstone",
+      "question": "Can you build a complete embedded Linux device?"
+    }
+  ]
+}
