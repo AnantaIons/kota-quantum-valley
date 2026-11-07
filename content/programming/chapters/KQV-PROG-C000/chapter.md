@@ -7,7 +7,7 @@ subtitle: "Why we learn C and Python side by side, what you will be able to buil
 language: en
 version: 0.1.0
 status: code_checked
-publication_status: not_published
+publication_status: published
 ---
 
 # Chapter 0 · How This Course Works, and Setting Up

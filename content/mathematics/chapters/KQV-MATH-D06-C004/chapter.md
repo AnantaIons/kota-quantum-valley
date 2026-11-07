@@ -12,7 +12,7 @@ prerequisites: "Chapters 1 to 3; ordered pairs; dividing one polynomial by anoth
 estimated_minutes: 110
 version: 0.1.0
 status: mathematically_checked
-publication_status: not_published
+publication_status: published
 ---
 
 # Chapter 4 · Complex Numbers as Ordered Pairs

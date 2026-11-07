@@ -1,7 +1,11 @@
 {
   "course": "Course 3: Programming in C and Python",
-  "status": "proposed",
-  "approved": null,
+  "status": "approved",
+  "approved": {
+    "by": "founder",
+    "at": "2026-11-07",
+    "note": "Plan published with Course 3 at the founder's request."
+  },
   "chapters": [
     {
       "id": "KQV-PROG-C000",

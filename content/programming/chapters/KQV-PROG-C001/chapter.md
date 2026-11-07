@@ -7,7 +7,7 @@ subtitle: "One line of text, followed from your editor through the compiler or t
 language: en
 version: 0.1.0
 status: code_checked
-publication_status: not_published
+publication_status: published
 ---
 
 # Chapter 1 · Your First Program, and What Really Happens When It Runs
