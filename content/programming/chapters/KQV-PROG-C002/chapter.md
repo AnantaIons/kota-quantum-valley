@@ -7,7 +7,7 @@ subtitle: "How a computer stores every number and every letter as a pattern of b
 language: en
 version: 0.1.0
 status: code_checked
-publication_status: not_published
+publication_status: published
 ---
 
 # Chapter 2 · Bits, Bytes and Number Systems

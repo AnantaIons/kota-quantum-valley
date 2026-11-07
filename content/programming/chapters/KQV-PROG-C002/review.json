@@ -25,7 +25,9 @@
   ],
   "changes": [],
   "publication": {
-    "status": "not_published",
-    "note": "Waiting for the founder's approval after the private preview."
+    "status": "published",
+    "approved_by": "founder",
+    "approved_at": "2026-11-07",
+    "note": "Published at the founder's request after the private preview."
   }
 }

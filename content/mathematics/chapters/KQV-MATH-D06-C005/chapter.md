@@ -12,7 +12,7 @@ prerequisites: "Chapter 4. Sections 5.8 to 5.10 use determinants and eigenvalues
 estimated_minutes: 130
 version: 0.1.0
 status: mathematically_checked
-publication_status: not_published
+publication_status: published
 ---
 
 # Chapter 5 · Checking the Field Laws

@@ -7,7 +7,7 @@ subtitle: "From firmware that runs alone to a kernel that hides the hardware, ke
 language: en
 version: 0.1.0
 status: code_checked
-publication_status: not_published
+publication_status: published
 ---
 
 # Chapter 1 · What an Operating System Does

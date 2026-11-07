@@ -7,7 +7,7 @@ subtitle: "What this course builds, how every chapter is checked, and a working 
 language: en
 version: 0.1.0
 status: code_checked
-publication_status: not_published
+publication_status: published
 ---
 
 # Chapter 0 · How This Course Works, and Setting Up a Linux Lab
