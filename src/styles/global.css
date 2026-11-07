@@ -126,6 +126,8 @@ th { font-family: var(--font-mono); font-weight: 500; font-size: 0.82rem; color:
 .nav a { color: var(--text-2); text-decoration: none; font-family: var(--font-head); font-weight: 500; font-size: 0.96rem; padding: 8px 12px; border-radius: var(--r-sm); transition: color 0.15s, background 0.15s; }
 .nav a:hover { color: var(--text); background: rgba(140, 160, 255, 0.08); }
 .nav a[aria-current='page'] { color: var(--cyan); }
+.nav a { white-space: nowrap; }
+@media (max-width: 1320px) { .nav a { padding: 8px 8px; font-size: 0.93rem; } }
 .nav a.btn, .nav a.btn:hover { color: var(--space); padding: 0 16px; }
 .menu { display: none; position: relative; }
 .menu summary { list-style: none; cursor: pointer; font-family: var(--font-head); font-weight: 600; padding: 9px 14px; border: 1px solid var(--border-strong); border-radius: var(--r-sm); color: var(--text); }

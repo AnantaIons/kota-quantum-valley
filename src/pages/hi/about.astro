@@ -19,6 +19,36 @@ const prog = (await getProgChapters()).filter((c) => c.public).length;
       <p>मैं {site.founderName} हूँ। मैंने गवर्नमेंट इंजीनियरिंग कॉलेज अजमेर से इलेक्ट्रॉनिक्स और कम्युनिकेशन इंजीनियरिंग (B.Tech) की पढ़ाई की, और साढ़े तीन साल से ज़्यादा समय से एम्बेडेड फ़र्मवेयर लिख रहा हूँ: वह सॉफ़्टवेयर जो इलेक्ट्रॉनिक डिवाइस के अंदर चलता है। मेरा काम स्मार्ट एनर्जी मीटरिंग फ़र्मवेयर के रिसर्च और डेवलपमेंट में है, C में, हार्डवेयर के बिल्कुल पास।</p>
       <p>क्वांटम कंप्यूटरों को ठीक इसी तरह की इंजीनियरिंग चाहिए। हर qubit को क्लासिकल इलेक्ट्रॉनिक्स और फ़र्मवेयर नियंत्रित करते हैं, जो बिल्कुल सही समय पर pulse भेजते हैं और नतीजे पढ़ते हैं। इसलिए मैं क्वांटम कंप्यूटिंग शून्य से सीख रहा हूँ, और हर क़दम यहाँ साझा कर रहा हूँ, ताकि जो भी छात्र चाहे, वही रास्ता अपना सके।</p>
 
+      <h2>मैं किन चीज़ों के साथ काम करता हूँ</h2>
+      <dl class="stack">
+        <div><dt>माइक्रोकंट्रोलर</dt><dd>काम पर Renesas RL78। मेरी डेस्क पर STM32 (Arm Cortex-M), ESP32 और एक Raspberry Pi 4।</dd></div>
+        <div><dt>भाषाएँ</dt><dd>Bare-metal एम्बेडेड C, जिसके नीचे कोई ऑपरेटिंग सिस्टम नहीं होता। टेस्ट स्क्रिप्ट और गणनाएँ जाँचने के लिए Python।</dd></div>
+        <div><dt>प्रोटोकॉल</dt><dd>DLMS/COSEM (IEC 62056), वह मानक जिससे बिजली मीटर बिजली कंपनी के सिस्टम से बात करते हैं, उसकी सुरक्षा परत के साथ: encryption, authentication और key management।</dd></div>
+        <div><dt>ऑपरेटिंग सिस्टम</dt><dd>FreeRTOS, माइक्रोकंट्रोलर के लिए एक छोटा real-time ऑपरेटिंग सिस्टम।</dd></div>
+        <div><dt>अभी सीख रहा हूँ</dt><dd>CAN bus, Embedded Linux और C++।</dd></div>
+      </dl>
+      <p>इसीलिए प्रोग्रामिंग कोर्स C को Python के साथ पढ़ाता है, और इस साइट का हर प्रोग्राम प्रकाशित होने से पहले compile करके चलाया जाता है: फ़र्मवेयर में जो कोड असली हार्डवेयर पर नहीं चला, वह गिना नहीं जाता।</p>
+
+      <h2>मैं क्वांटम कैसे सीख रहा हूँ</h2>
+      <ul class="path-list">
+        <li><strong>शुरुआत।</strong> इलेक्ट्रॉनिक्स की डिग्री क्वांटम हार्डवेयर की ज़रूरतों का अच्छा-ख़ासा हिस्सा पहले ही पढ़ा देती है: linear algebra, electromagnetic theory, semiconductor physics और फ़र्मवेयर। मेरे हिसाब से लगभग 40 प्रतिशत। बाक़ी है quantum mechanics, microwave engineering और algorithms।</li>
+        <li><strong>मैं क्या पढ़ रहा हूँ।</strong> Nielsen और Chuang की <em>Quantum Computation and Quantum Information</em>, पहले अध्याय 1 और 2। हार्डवेयर के लिए मुख्य किताब: Krantz और साथियों का <em>A quantum engineer's guide to superconducting qubits</em> (Applied Physics Reviews, 2019)। जब radio-frequency वाला हिस्सा आए, तब Pozar की <em>Microwave Engineering</em>।</li>
+        <li><strong>मैं किस ओर जा रहा हूँ।</strong> मेरी पृष्ठभूमि से दो रास्ते मेल खाते हैं: quantum hardware engineering, यानी qubits के आसपास के control electronics और फ़र्मवेयर; और quantum cryptography, जो उस security काम पर बनती है जो मैं पहले से करता हूँ।</li>
+        <li><strong>जिस प्रोजेक्ट का लक्ष्य है।</strong> QICK, यानी Quantum Instrumentation Control Kit: Fermilab का एक open-source qubit controller जो FPGA बोर्ड पर चलता है। ठीक यही वह जगह है जहाँ फ़र्मवेयर qubits से मिलता है।</li>
+        <li><strong>अभी क्यों।</strong> मेरा अनुमान है कि क्वांटम इंजीनियरों की भर्ती 2028 से 2031 के आसपास तेज़ी से बढ़ेगी। हुनर बनने में सालों लगते हैं, इसलिए मैं अभी से, सबके सामने, बना रहा हूँ।</li>
+      </ul>
+
+      <h2>मैं किन बातों में विश्वास करता हूँ</h2>
+      <ol class="beliefs">
+        <li><strong>गहराई, शॉर्टकट नहीं।</strong> महान किताबों से सीखो, सारांश के सारांश से नहीं, और सबसे कठिन सवाल तक जाओ। कोई विषय तब सीखा जाता है जब आप उसके कठिन सवाल हल कर सकें, तब नहीं जब आपने उस पर एक वीडियो देख लिया।</li>
+        <li><strong>कोई दिखावा नहीं।</strong> "30 दिन में क्वांटम सीखो" जैसा कुछ नहीं। साफ़ बताओ कि क्या कठिन है, क्या पता है और क्या अभी research है।</li>
+        <li><strong>सब कुछ जाँचो।</strong> हर दावे का स्रोत, हर गणना दोबारा चलाई हुई, हर प्रोग्राम compile करके चलाया हुआ। जो जाँचा नहीं गया, वह प्रकाशित नहीं होता।</li>
+        <li><strong>कम चीज़ें, पूरी तरह।</strong> छोटी योजना जिस पर आप चलते हैं, उस लंबी योजना से बेहतर है जिसे आप छोड़ देते हैं। कठिन हिस्से पर तीन बार लौटना, सब कुछ एक बार पढ़ने से बेहतर है।</li>
+        <li><strong>अपने हाथों से बनाओ।</strong> नोट्स हार्डवेयर की जगह नहीं ले सकते। समझ तब आती है जब कोई चीज़ आप चला कर दिखाएँ।</li>
+        <li><strong>लिखो, सबके सामने।</strong> अगर मैं किसी बात को आसान शब्दों में नहीं समझा सकता, तो मैंने उसे अभी समझा नहीं है।</li>
+        <li><strong>ज्ञान मुफ़्त होना चाहिए, और प्रतिभा को जाना नहीं पड़ना चाहिए।</strong> कोटा का कोई छात्र यह सब मुफ़्त सीख सके, और एक दिन यह काम राजस्थान छोड़े बिना कर सके।</li>
+      </ol>
+
       <h2>यह पहल</h2>
       <p>Kota Quantum Valley के दो काम हैं।</p>
       <ol>
@@ -32,6 +62,7 @@ const prog = (await getProgChapters()).filter((c) => c.public).length;
         <a class="card" href="/mathematics/"><h3>कोर्स 2: गणित</h3><p>क्वांटम विज्ञान के लिए गणित, कक्षा 10 से PhD स्तर तक। {maths} अध्याय खुले, हर गणना कोड में जाँची गई। (English)</p></a>
         <a class="card" href="/programming/"><h3>कोर्स 3: C और Python</h3><p>दो भाषाओं में साथ-साथ प्रोग्रामिंग, पहले प्रोग्राम से quantum simulator तक।{prog ? ` ${prog} अध्याय खुले।` : ''} (English)</p></a>
         <a class="card" href="/hi/lab/"><h3>क्वांटम लैब</h3><p>ब्राउज़र में चार प्रयोग: Bloch sphere, superposition, Bell states और circuit builder।</p></a>
+        <a class="card" href="/hi/great-minds/"><h3>महान विचारक</h3><p>सोलह वैज्ञानिक और गणितज्ञ, आधे भारत से, और हर एक से छात्र कौन-सी आदत सीख सकते हैं।</p></a>
         <a class="card" href="/hi/careers/"><h3>करियर और रिज़्यूमे मेकर</h3><p>कौन-सी क्वांटम नौकरियाँ हैं, उनके लिए क्या चाहिए, और एक मुफ़्त रिज़्यूमे मेकर।</p></a>
         <a class="card" href={site.instagram} rel="noopener" target="_blank"><h3>इंस्टाग्राम</h3><p>क्वांटम में नए छात्रों के लिए विस्तृत carousels, {site.instagramHandle} पर।</p></a>
       </div>
@@ -65,4 +96,10 @@ const prog = (await getProgChapters()).filter((c) => c.public).length;
   .about-grid a.card { text-decoration: none; color: inherit; }
   .about-grid a.card:hover h3 { color: var(--cyan); }
   .about-grid .card p { margin: 6px 0 0; }
+  .stack { display: grid; gap: 10px; margin: 18px 0; }
+  .stack > div { display: grid; grid-template-columns: 170px 1fr; gap: 14px; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--r-md); background: var(--panel); }
+  .stack dt { font-family: var(--font-head); font-weight: 600; color: var(--cyan); }
+  .stack dd { margin: 0; min-width: 0; }
+  @media (max-width: 560px) { .stack > div { grid-template-columns: 1fr; gap: 4px; } }
+  .path-list li, .beliefs li { margin-bottom: 10px; }
 </style>

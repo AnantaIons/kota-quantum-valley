@@ -19,6 +19,36 @@ const prog = (await getProgChapters()).filter((c) => c.public).length;
       <p>I'm {site.founderName}. I studied Electronics and Communication Engineering (B.Tech) at Government Engineering College Ajmer, and for more than three and a half years I have written embedded firmware: the software that runs inside electronic devices. My work is in research and development for smart energy-metering firmware, written in C, close to the hardware.</p>
       <p>Quantum computers need exactly that kind of engineering. Every qubit is controlled by classical electronics and firmware that generate precisely timed pulses and read out the results. So I'm learning quantum computing from zero, and sharing every step here, so that any student who wants to can follow the same path.</p>
 
+      <h2>What I work with</h2>
+      <dl class="stack">
+        <div><dt>Microcontrollers</dt><dd>Renesas RL78 at work. STM32 (Arm Cortex-M), ESP32 and a Raspberry Pi 4 on my desk.</dd></div>
+        <div><dt>Languages</dt><dd>Bare-metal embedded C, with no operating system underneath. Python for test scripts and for checking calculations.</dd></div>
+        <div><dt>Protocols</dt><dd>DLMS/COSEM (IEC 62056), the standard that electricity meters use to talk to utility systems, including its security layer: encryption, authentication and key management.</dd></div>
+        <div><dt>Operating systems</dt><dd>FreeRTOS, a small real-time operating system for microcontrollers.</dd></div>
+        <div><dt>Learning now</dt><dd>CAN bus, Embedded Linux and C++.</dd></div>
+      </dl>
+      <p>This is why the programming course teaches C next to Python, and why every program on this site is compiled and run before it is published: in firmware, code that has not run on the real thing does not count.</p>
+
+      <h2>How I'm learning quantum</h2>
+      <ul class="path-list">
+        <li><strong>Starting point.</strong> An electronics degree already covers a good part of what quantum hardware needs: linear algebra, electromagnetic theory, semiconductor physics and firmware. By my own count, about 40 per cent. The rest is quantum mechanics, microwave engineering and the algorithms.</li>
+        <li><strong>What I'm reading.</strong> Nielsen and Chuang, <em>Quantum Computation and Quantum Information</em>, Chapters 1 and 2 first. Krantz and others, <em>A quantum engineer's guide to superconducting qubits</em> (Applied Physics Reviews, 2019), as the core for hardware. Pozar, <em>Microwave Engineering</em>, whenever the radio-frequency side needs it.</li>
+        <li><strong>Where I'm heading.</strong> Two lanes fit my background: quantum hardware engineering, meaning the control electronics and firmware around the qubits, and quantum cryptography, which builds on the security work I already do.</li>
+        <li><strong>The project I'm aiming at.</strong> QICK, the Quantum Instrumentation Control Kit: an open-source qubit controller from Fermilab that runs on FPGA boards. It is exactly the place where firmware meets qubits.</li>
+        <li><strong>Why now.</strong> My bet is that hiring for quantum engineers grows sharply around 2028 to 2031. Skills take years, so I'm building them now, in public.</li>
+      </ul>
+
+      <h2>What I believe</h2>
+      <ol class="beliefs">
+        <li><strong>Depth over shortcuts.</strong> Learn from the great books, not from summaries of summaries, and go all the way to the hardest problem. A topic is learned when you can solve the tough questions on it, not when you have watched a video about it.</li>
+        <li><strong>No fluff.</strong> No "master quantum in 30 days". Say clearly what is hard, what is known and what is still research.</li>
+        <li><strong>Check everything.</strong> Every claim gets a source, every calculation is re-run, every program is compiled and run. If it has not been checked, it is not published.</li>
+        <li><strong>Fewer things, done properly.</strong> A short plan you follow beats a long one you abandon. Three passes over the hard material beat one pass over everything.</li>
+        <li><strong>Build with your hands.</strong> Notes do not replace hardware. Understanding comes from making something work.</li>
+        <li><strong>Write it down, in public.</strong> If I cannot explain something simply, I have not understood it yet.</li>
+        <li><strong>Knowledge should be free, and talent should not have to leave.</strong> A Kota student should be able to learn all of this for free, and one day do this work without leaving Rajasthan.</li>
+      </ol>
+
       <h2>The initiative</h2>
       <p>Kota Quantum Valley has two jobs.</p>
       <ol>
@@ -32,6 +62,7 @@ const prog = (await getProgChapters()).filter((c) => c.public).length;
         <a class="card" href="/mathematics/"><h3>Course 2: Mathematics</h3><p>Mathematics for quantum science, from Class 10 to PhD level. {maths} chapters open, every calculation checked in code.</p></a>
         <a class="card" href="/programming/"><h3>Course 3: C and Python</h3><p>Programming in two languages side by side, from a first program to a quantum simulator.{prog ? ` ${prog} chapters open.` : ''}</p></a>
         <a class="card" href="/lab/"><h3>Quantum Lab</h3><p>Four experiments in the browser: Bloch sphere, superposition, Bell states and a circuit builder.</p></a>
+        <a class="card" href="/great-minds/"><h3>Great minds</h3><p>Sixteen scientists and mathematicians, half from India, and the habits a student can copy from each.</p></a>
         <a class="card" href="/careers/"><h3>Careers and resume maker</h3><p>Which quantum jobs exist, what they need, and a free resume maker.</p></a>
         <a class="card" href={site.instagram} rel="noopener" target="_blank"><h3>Instagram</h3><p>Detailed carousels for students new to quantum, at {site.instagramHandle}.</p></a>
       </div>
@@ -65,4 +96,10 @@ const prog = (await getProgChapters()).filter((c) => c.public).length;
   .about-grid a.card { text-decoration: none; color: inherit; }
   .about-grid a.card:hover h3 { color: var(--cyan); }
   .about-grid .card p { margin: 6px 0 0; }
+  .stack { display: grid; gap: 10px; margin: 18px 0; }
+  .stack > div { display: grid; grid-template-columns: 170px 1fr; gap: 14px; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--r-md); background: var(--panel); }
+  .stack dt { font-family: var(--font-head); font-weight: 600; color: var(--cyan); }
+  .stack dd { margin: 0; min-width: 0; }
+  @media (max-width: 560px) { .stack > div { grid-template-columns: 1fr; gap: 4px; } }
+  .path-list li, .beliefs li { margin-bottom: 10px; }
 </style>

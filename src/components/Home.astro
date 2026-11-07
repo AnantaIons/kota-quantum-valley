@@ -7,6 +7,7 @@ import Mobius from './Mobius.astro';
 import GoldInfinity from './GoldInfinity.astro';
 import Solid from './Solid.astro';
 import GoldenSpiral from './GoldenSpiral.astro';
+import MindsStrip from './MindsStrip.astro';
 import site from '../data/site.json';
 import { getPosts } from '../lib/posts.js';
 import { course1, syllabus, lessonNumber, partOf } from '../data/course.js';
@@ -265,6 +266,8 @@ const svg = (k, s = 26) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" 
     <p class="courses-all"><a class="btn btn-ghost" href={`${pre}/courses/`}>{c.allC}</a></p>
   </div>
 </section>
+
+<MindsStrip lang={lang} />
 
 <section class="block">
   <div class="wrap">
