@@ -1,0 +1,43 @@
+{
+  "id": "KQV-MATH-D06-C005",
+  "version": "0.1.0",
+  "date": "2026-11-07",
+  "reviewer": "Claude (AI). AI self-check is not a guarantee; no qualified human review yet.",
+  "checks": [
+    {
+      "check": "Computation pass",
+      "tool": "tests/check_c005.py",
+      "result": "PASS",
+      "detail": "94 of 94 checks. Pair arithmetic from Definition 4.1 alone; every field law symbolically; the matrix model M(z); the inverse formula by solving the linear system and by elimination; Theorem 5.4 by exhaustive search over all primes below 60, with the zero divisors (c,1)(c,-1); completed square of Theorem 5.6; real eigenvalues of 300 random 3x3 and 60 random 5x5 matrices; quaternions both in the 2x2 matrix model and from a multiplication table built only from Hamilton's rule, including symbolic associativity and |pq| = |p||q|; Euler's four-square coordinates; Pauli relations and the rotation gate; every worked example, answer and mastery item; the numbers in the diagrams."
+    },
+    {
+      "check": "Errors caught by the computation pass",
+      "tool": "tests/check_c005.py",
+      "result": "NONE",
+      "detail": "No chapter answer changed. Two test-side issues fixed: integer division produced floats instead of exact fractions, and SymPy could not simplify a symbolic matrix exponential, which is now compared numerically at five angles."
+    },
+    {
+      "check": "Proof pass A/B",
+      "tool": "manual reconstruction",
+      "result": "PASS",
+      "detail": "Theorems 5.1-5.10 and all T4-T6 answers rechecked step by step. During drafting, Problem T4.5 was rewritten (its first version asked for a field that cannot exist), the derivation in T5.4 was rewritten to avoid swapping factors, and Theorem 5.9 now proves that the span of 1 and x is a field before applying Theorem 5.6."
+    },
+    {
+      "check": "Source pass",
+      "tool": "web",
+      "result": "PASS",
+      "detail": "[H2] letter to J. T. Graves dated 17 October 1843 (Wilkins edition) and [H3] date, Royal Canal and Broome Bridge (Trinity College Dublin page) checked. [F1] Frobenius, J. reine angew. Math. 84 (1878) 1-63, and [B1] Bull. AMS 64 (1958) 87-89 checked; [H4] located on EuDML. [H5] and [K1] given from standard bibliographies."
+    },
+    {
+      "check": "Plan change",
+      "tool": "manual",
+      "result": "NOTED",
+      "detail": "The approved plan listed tiers T1, T5, T6; T2, T3 and T4 were added for depth, as for Chapter 4. Ceiling unchanged (T6)."
+    }
+  ],
+  "changes": [],
+  "publication": {
+    "status": "not_published",
+    "note": "Waiting for the founder's approval after the private preview."
+  }
+}

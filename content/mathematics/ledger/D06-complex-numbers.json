@@ -177,6 +177,9 @@
       "ceiling": "T6",
       "tiers": [
         "T1",
+        "T2",
+        "T3",
+        "T4",
         "T5",
         "T6"
       ],
@@ -195,7 +198,7 @@
       "flags": [
         "mandatory-pilot-a"
       ],
-      "status": "proposed"
+      "status": "mathematically_checked"
     },
     {
       "id": "KQV-MATH-D06-C006",
