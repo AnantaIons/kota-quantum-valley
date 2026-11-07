@@ -1,0 +1,42 @@
+{
+  "course": "Course 3: Programming in C and Python",
+  "language": "en",
+  "version": "0.1.0",
+  "status": "code_checked",
+  "reviewed_at": "2026-11-07",
+  "reviewer_type": "AI review with every program compiled and run by tools/run_chapter.py; no human review yet",
+  "unresolved_issues": [],
+  "id": "KQV-PROG-C002",
+  "slug": "bits-and-bytes",
+  "chapter_number": 2,
+  "part": 1,
+  "title": "Bits, Bytes and Number Systems",
+  "short_title": "Bits and bytes",
+  "subtitle": "How a computer stores every number and every letter as a pattern of bits, why C's integers wrap around and Python's never do, and how to decode the bytes of a Hindi word by hand.",
+  "level_text": "Beginner",
+  "ceiling": "P5",
+  "tiers": [
+    "P1",
+    "P2",
+    "P3",
+    "P5"
+  ],
+  "estimated_minutes": 80,
+  "practice_hours": 4,
+  "prerequisite_note": "Chapter 1: compiling and running a program in both languages.",
+  "objectives": [
+    "Convert between decimal, binary, hexadecimal and octal, by hand and in code.",
+    "Find the sizes and limits of C's integer types, and explain why Python integers never overflow.",
+    "Represent negative numbers in two's complement and prove the same adder works for them.",
+    "Detect signed overflow in C with the undefined behaviour sanitizer.",
+    "Read the bytes of a number in memory and explain byte order.",
+    "Encode and decode ASCII and UTF-8 text by hand and in both languages."
+  ],
+  "prev": {
+    "id": "KQV-PROG-C001"
+  },
+  "next": {
+    "id": "KQV-PROG-C003",
+    "title": "Variables, Types and Memory"
+  }
+}

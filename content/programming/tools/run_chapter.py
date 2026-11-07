@@ -95,8 +95,9 @@ def main(chdir):
             for cmd, expected in parse_session(code):
                 if cmd.startswith('sudo ') or cmd.startswith('pkg ') or cmd.startswith('pacman ') or cmd.startswith('wsl '):
                     continue   # installation commands are not replayed
-                r = subprocess.run(['bash', '-c', cmd], cwd=work, capture_output=True, text=True, env=env, timeout=120)
-                out = (r.stdout + r.stderr).rstrip('\n')
+                # one stream, as a terminal shows it: error messages appear where they happen
+                r = subprocess.run(['bash', '-c', cmd], cwd=work, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, env=env, timeout=120)
+                out = r.stdout.rstrip('\n')
                 actual = [l.rstrip() for l in out.split('\n')] if out else []
                 ok = lines_match([l.rstrip() for l in expected], actual)
                 results.append((f'$ {cmd}', ok))

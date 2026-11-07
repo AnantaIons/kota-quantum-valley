@@ -1,0 +1,31 @@
+{
+  "id": "KQV-PROG-C002",
+  "version": "0.1.0",
+  "date": "2026-11-07",
+  "reviewer": "Claude (AI). AI self-check is not a guarantee; no human review yet.",
+  "checks": [
+    {
+      "check": "Code pass",
+      "tool": "tools/run_chapter.py",
+      "result": "PASS",
+      "detail": "52 of 52 checks: every program compiled with gcc 13.3 (-std=c17 -Wall -Wextra -Werror) or parsed by Python 3.13, and every terminal session on the page replayed with its output compared line by line."
+    },
+    {
+      "check": "Fact pass",
+      "tool": "manual and measured",
+      "result": "PASS",
+      "detail": "Type sizes and limits, uint8_t wrap-around, sanitizer report for INT_MAX + 1, little-endian byte order, Python integer sizes (28 and 160 bytes on Python 3.13) and UTF-8 bytes of ₹, € and क all observed on the test machine (x86-64 Linux, gcc 13.3, Python 3.13). Theorem 2.1 proved in full in the text."
+    },
+    {
+      "check": "Errors caught",
+      "tool": "tools/run_chapter.py",
+      "result": "FIXED",
+      "detail": "Sanitizer line number corrected to 8 (the file-name comment is line 1). The checker now reads a program's output and error messages as one stream, in the order a terminal shows them."
+    }
+  ],
+  "changes": [],
+  "publication": {
+    "status": "not_published",
+    "note": "Waiting for the founder's approval after the private preview."
+  }
+}
