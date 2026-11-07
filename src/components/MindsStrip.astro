@@ -7,7 +7,7 @@ import art from '../data/minds-art.json';
 const { lang = 'en' } = Astro.props;
 const hi = lang === 'hi';
 const href = hi ? '/hi/great-minds/' : '/great-minds/';
-const pick = ['ramanujan', 'einstein', 'raman', 'curie', 'kalam', 'feynman', 'sn-bose', 'newton'].map((s) => minds.find((m) => m.slug === s));
+const pick = ['ramanujan', 'einstein', 'curie', 'raman', 'turing', 'chawla', 'noether', 'kalam'].map((s) => minds.find((m) => m.slug === s));
 ---
 <MindsArt />
 <section class="block minds-strip">
@@ -15,8 +15,8 @@ const pick = ['ramanujan', 'einstein', 'raman', 'curie', 'kalam', 'feynman', 'sn
     <div class="section-head">
       <h2>{hi ? 'महान विचारक' : 'Great minds'}</h2>
       <p>{hi
-        ? 'आर्यभट से कलाम तक सोलह लोग: उन्होंने क्या दिया, वे कैसे सोचते थे, और एक आदत जो आप आज अपना सकते हैं।'
-        : 'Sixteen people from Aryabhata to Kalam: what they gave us, how they thought, and one habit you can copy today.'}</p>
+        ? `अरस्तू और पिंगल से कल्पना चावला और हॉकिंग तक ${minds.length} लोग: उन्होंने क्या दिया, वे कैसे सोचते थे, और एक आदत जो आप आज अपना सकते हैं।`
+        : `${minds.length} people, from Aristotle and Pingala to Kalpana Chawla and Hawking: what they gave us, how they thought, and one habit you can copy today.`}</p>
     </div>
     <ul class="ms-row">
       {pick.map((m) => (
@@ -29,7 +29,7 @@ const pick = ['ramanujan', 'einstein', 'raman', 'curie', 'kalam', 'feynman', 'sn
         </li>
       ))}
     </ul>
-    <p class="ms-all"><a class="btn btn-ghost" href={href}>{hi ? 'सभी सोलह देखें' : 'Meet all sixteen'}</a></p>
+    <p class="ms-all"><a class="btn btn-ghost" href={href}>{hi ? `सभी ${minds.length} देखें` : `Meet all ${minds.length}`}</a></p>
   </div>
 </section>
 

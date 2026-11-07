@@ -32,4 +32,11 @@
   .mind-art .mhead { fill: #A98BFF; }
   .mind-art .mtxt { fill: #F6DE9A; font: 600 13px var(--font-body); }
   .mind-art .mtick { fill: #8f9bbd; font: 11px var(--font-mono); }
+  .mind-art .mlab { fill: #dfe5f5; font: 11.5px var(--font-body); }
+  .mind-art .mbig { fill: #F6DE9A; font: 600 22px var(--font-head); }
+  .mind-art .mtxt { font-size: 12.5px; }
+  /* A founder-supplied photo, tinted into the site's palette so it sits with the drawings */
+  .mind-photo { position: relative; margin: 0; border-radius: var(--r-md); overflow: hidden; aspect-ratio: 200 / 220; background: #0b1026; }
+  .mind-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.08) brightness(0.92); }
+  .mind-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(41, 121, 255, 0.55), rgba(137, 87, 255, 0.35) 55%, rgba(230, 195, 106, 0.5)); mix-blend-mode: color; pointer-events: none; }
 </style>

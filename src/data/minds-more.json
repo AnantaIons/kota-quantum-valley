@@ -1,0 +1,1806 @@
+[
+ {
+  "slug": "aristotle",
+  "region": "world",
+  "years": "384–322 BCE",
+  "born": -384,
+  "tags": [
+   "maths",
+   "chembio"
+  ],
+  "en": {
+   "name": "Aristotle",
+   "place": "Stagira, Greece; taught in Athens",
+   "field": "Logic, biology, philosophy of science",
+   "gave": "The first system of formal logic, and the first careful classification of animals from observation. His books shaped science for almost two thousand years.",
+   "ideas": [
+    "Reason in steps that can be checked. His syllogisms, such as “all A are B, all B are C, so all A are C”, were the first rules for telling a valid argument from an invalid one.",
+    "Observe before you classify. He described and compared hundreds of kinds of animals, grouping them by their parts and their ways of life.",
+    "Great minds can be wrong. He taught that heavier objects fall faster; careful experiments, centuries later, showed otherwise. Authority is not evidence."
+   ],
+   "copy": "When you read an argument or a proof, rewrite it as a chain of small steps and check each step on its own.",
+   "sketch": "A chain of reasoning: all A are B, all B are C, so all A are C."
+  },
+  "hi": {
+   "name": "अरस्तू",
+   "place": "स्टैगिरा, यूनान; एथेंस में पढ़ाया",
+   "field": "तर्कशास्त्र, जीवविज्ञान, विज्ञान का दर्शन",
+   "gave": "औपचारिक तर्क की पहली व्यवस्था, और अवलोकन से जानवरों का पहला सावधान वर्गीकरण। उनकी किताबों ने लगभग दो हज़ार साल तक विज्ञान को दिशा दी।",
+   "ideas": [
+    "ऐसे क़दमों में तर्क करो जिन्हें जाँचा जा सके। उनके न्याय-वाक्य, जैसे “सभी A, B हैं; सभी B, C हैं; इसलिए सभी A, C हैं”, सही और ग़लत तर्क को अलग करने के पहले नियम थे।",
+    "वर्गीकरण से पहले अवलोकन करो। उन्होंने सैकड़ों तरह के जानवरों का वर्णन और तुलना की, और उन्हें उनके अंगों और जीने के ढंग से समूहों में बाँटा।",
+    "महान लोग भी ग़लत हो सकते हैं। उन्होंने सिखाया कि भारी चीज़ें तेज़ी से गिरती हैं; सदियों बाद सावधान प्रयोगों ने दिखाया कि ऐसा नहीं है। अधिकार, प्रमाण नहीं होता।"
+   ],
+   "copy": "जब कोई तर्क या उपपत्ति पढ़ो, तो उसे छोटे क़दमों की श्रृंखला के रूप में दोबारा लिखो और हर क़दम को अलग से जाँचो।",
+   "sketch": "तर्क की एक श्रृंखला: सभी A, B हैं; सभी B, C हैं; इसलिए सभी A, C हैं।"
+  }
+ },
+ {
+  "slug": "euclid",
+  "region": "world",
+  "years": "active c. 300 BCE",
+  "born": -330,
+  "tags": [
+   "maths"
+  ],
+  "en": {
+   "name": "Euclid",
+   "place": "Alexandria, Egypt",
+   "field": "Mathematics",
+   "gave": "The Elements, which built geometry from a handful of definitions and five postulates. For more than two thousand years it was the model of how to write mathematics, and it contains the proof that the prime numbers never run out.",
+   "ideas": [
+    "Start from as little as possible. A few definitions, five postulates and some common notions; everything else is proved.",
+    "Prove even what looks obvious. Every theorem rests only on earlier ones, so a mistake has nowhere to hide.",
+    "A good proof lasts forever. His proof that there are infinitely many primes is still taught almost exactly as he wrote it."
+   ],
+   "copy": "Take one theorem you know and trace it back: which earlier facts does its proof use, and which facts do those use?",
+   "sketch": "The first construction of the Elements: an equilateral triangle drawn with two circles."
+  },
+  "hi": {
+   "name": "यूक्लिड",
+   "place": "अलेक्ज़ेंड्रिया, मिस्र",
+   "field": "गणित",
+   "gave": "Elements, जिसने कुछ परिभाषाओं और पाँच अभिधारणाओं से पूरी ज्यामिति खड़ी की। दो हज़ार से ज़्यादा साल तक यह गणित लिखने का आदर्श रहा, और इसमें यह उपपत्ति है कि अभाज्य संख्याएँ कभी ख़त्म नहीं होतीं।",
+   "ideas": [
+    "जितना कम हो सके, उतने से शुरू करो। कुछ परिभाषाएँ, पाँच अभिधारणाएँ और कुछ सामान्य धारणाएँ; बाक़ी सब सिद्ध किया जाता है।",
+    "जो स्पष्ट लगे, उसे भी सिद्ध करो। हर प्रमेय सिर्फ़ पिछले प्रमेयों पर टिका है, इसलिए ग़लती को छिपने की जगह नहीं मिलती।",
+    "अच्छी उपपत्ति हमेशा रहती है। अनंत अभाज्य संख्याओं वाली उनकी उपपत्ति आज भी लगभग वैसी ही पढ़ाई जाती है जैसी उन्होंने लिखी थी।"
+   ],
+   "copy": "कोई एक प्रमेय लो और उसे पीछे की ओर खोजो: उसकी उपपत्ति किन पुराने तथ्यों का इस्तेमाल करती है, और वे तथ्य किनका?",
+   "sketch": "Elements की पहली रचना: दो वृत्तों से बना समबाहु त्रिभुज।"
+  }
+ },
+ {
+  "slug": "al-khwarizmi",
+  "region": "world",
+  "years": "c. 780–c. 850",
+  "born": 780,
+  "tags": [
+   "maths",
+   "tech"
+  ],
+  "en": {
+   "name": "Muhammad ibn Musa al-Khwarizmi",
+   "place": "Worked in Baghdad",
+   "field": "Mathematics, astronomy",
+   "gave": "The book whose title gave algebra its name (al-jabr), with systematic methods for solving quadratic equations, and a book on the Indian numerals that carried India's place-value system to the Arab world and then to Europe. The word “algorithm” comes from his name.",
+   "ideas": [
+    "Turn problems into procedures. His methods are recipes that work for every equation of a given type, not tricks for one example.",
+    "Learn from other cultures. He wrote down the Indian way of writing and calculating with numbers, and it spread west through his work.",
+    "Show why, with a picture. He justified completing the square by drawing it as an actual square."
+   ],
+   "copy": "Write the method for one type of problem as numbered steps that someone else could follow exactly, then test it on a new case.",
+   "sketch": "Completing the square for his own example, x² + 10x = 39: the square and its strips make 64, so x = 3."
+  },
+  "hi": {
+   "name": "मुहम्मद इब्न मूसा अल-ख़्वारिज़्मी",
+   "place": "बग़दाद में काम किया",
+   "field": "गणित, खगोलशास्त्र",
+   "gave": "वह किताब जिसके शीर्षक (अल-जब्र) से algebra को उसका नाम मिला, जिसमें द्विघात समीकरण हल करने के व्यवस्थित तरीक़े हैं; और भारतीय अंकों पर एक किताब, जिसने भारत की स्थानीय-मान पद्धति को अरब दुनिया और फिर यूरोप तक पहुँचाया। “Algorithm” शब्द उन्हीं के नाम से आया है।",
+   "ideas": [
+    "सवालों को विधियों में बदलो। उनके तरीक़े एक तरह के हर समीकरण पर काम करने वाली विधियाँ हैं, किसी एक उदाहरण की तरकीब नहीं।",
+    "दूसरी संस्कृतियों से सीखो। उन्होंने संख्याएँ लिखने और गिनने का भारतीय तरीक़ा लिखा, और उनके काम से वह पश्चिम तक फैला।",
+    "चित्र से कारण दिखाओ। उन्होंने वर्ग पूरा करने की विधि को सचमुच एक वर्ग बनाकर समझाया।"
+   ],
+   "copy": "किसी एक तरह के सवाल की विधि को क्रमांकित क़दमों में लिखो जिन्हें कोई और ठीक-ठीक अपना सके, फिर उसे नए उदाहरण पर जाँचो।",
+   "sketch": "उनके अपने उदाहरण x² + 10x = 39 के लिए वर्ग पूरा करना: वर्ग और उसकी पट्टियाँ मिलकर 64 बनाती हैं, इसलिए x = 3।"
+  }
+ },
+ {
+  "slug": "ibn-al-haytham",
+  "region": "world",
+  "years": "c. 965–c. 1040",
+  "born": 965,
+  "tags": [
+   "physics"
+  ],
+  "en": {
+   "name": "Ibn al-Haytham",
+   "place": "Born in Basra, worked in Cairo",
+   "field": "Optics, mathematics",
+   "gave": "The Book of Optics, which showed that we see because light travels from objects into the eye, not because the eye sends out rays, and which tested its claims by experiment, including with the camera obscura.",
+   "ideas": [
+    "Doubt the books. He wrote that a seeker of truth should question what he reads, the great authors included, and test it.",
+    "Design the experiment. Dark rooms, small holes and straight tubes let him show that light travels in straight lines.",
+    "Join mathematics to experiment. Geometry predicted, experiment checked."
+   ],
+   "copy": "Before you believe a claim from a book or a video, think of one small experiment or calculation that could prove it wrong, and try it.",
+   "sketch": "A camera obscura: light from an object passes through a small hole and forms an upside-down image."
+  },
+  "hi": {
+   "name": "इब्न अल-हैथम",
+   "place": "बसरा में जन्म, काहिरा में काम",
+   "field": "प्रकाशिकी, गणित",
+   "gave": "Book of Optics, जिसने दिखाया कि हम इसलिए देखते हैं क्योंकि रोशनी वस्तुओं से आँख तक आती है, इसलिए नहीं कि आँख किरणें भेजती है; और जिसने अपने दावों को प्रयोगों से जाँचा, camera obscura के साथ भी।",
+   "ideas": [
+    "किताबों पर भी सवाल करो। उन्होंने लिखा कि सत्य खोजने वाले को जो पढ़ता है उस पर सवाल करना चाहिए, महान लेखकों पर भी, और उसे जाँचना चाहिए।",
+    "प्रयोग की रचना करो। अँधेरे कमरों, छोटे छेदों और सीधी नलियों से उन्होंने दिखाया कि रोशनी सीधी रेखा में चलती है।",
+    "गणित को प्रयोग से जोड़ो। ज्यामिति ने भविष्यवाणी की, प्रयोग ने जाँचा।"
+   ],
+   "copy": "किसी किताब या वीडियो के दावे पर भरोसा करने से पहले, कोई एक छोटा प्रयोग या गणना सोचो जो उसे ग़लत साबित कर सके, और उसे करके देखो।",
+   "sketch": "Camera obscura: किसी वस्तु की रोशनी एक छोटे छेद से गुज़रकर उल्टी छवि बनाती है।"
+  }
+ },
+ {
+  "slug": "madhava",
+  "region": "india",
+  "years": "c. 1340–c. 1425",
+  "born": 1340,
+  "tags": [
+   "maths",
+   "india"
+  ],
+  "en": {
+   "name": "Madhava of Sangamagrama",
+   "place": "Kerala",
+   "field": "Mathematics, astronomy",
+   "gave": "Infinite series for π, sine and cosine, about 250 years before they appeared in Europe, and the Kerala school of mathematics that carried his work forward.",
+   "ideas": [
+    "Go all the way to infinity. His series π/4 = 1 − 1/3 + 1/5 − 1/7 + … is exact, though it never ends.",
+    "Fix the error, not only the answer. That series approaches π very slowly, so he found correction terms that make a few terms give many correct digits; his value of π is right to 11 decimal places.",
+    "Pass it on with proofs. His students and their students, such as Nilakantha and Jyeshthadeva, wrote the results down with explanations, in Sanskrit and in Malayalam."
+   ],
+   "copy": "Add 1 − 1/3 + 1/5 − … for ten terms and multiply by 4. See how slowly it approaches π, then look for a way to speed it up.",
+   "sketch": "His series π/4 = 1 − 1/3 + 1/5 − 1/7 + …, zig-zagging closer and closer to π/4."
+  },
+  "hi": {
+   "name": "संगमग्राम के माधव",
+   "place": "केरल",
+   "field": "गणित, खगोलशास्त्र",
+   "gave": "π, sine और cosine की अनंत श्रेणियाँ, यूरोप से लगभग 250 साल पहले; और केरल गणित परंपरा, जिसने उनके काम को आगे बढ़ाया।",
+   "ideas": [
+    "अनंत तक जाओ। उनकी श्रेणी π/4 = 1 − 1/3 + 1/5 − 1/7 + … बिल्कुल सटीक है, भले ही वह कभी ख़त्म नहीं होती।",
+    "सिर्फ़ जवाब नहीं, ग़लती भी सुधारो। यह श्रेणी π तक बहुत धीरे पहुँचती है, इसलिए उन्होंने ऐसे संशोधन पद खोजे जिनसे थोड़े पदों में ही कई सही अंक मिलें; उनका π का मान दशमलव के 11 अंकों तक सही है।",
+    "उपपत्ति के साथ आगे बढ़ाओ। उनके शिष्यों और उनके शिष्यों, जैसे नीलकंठ और ज्येष्ठदेव, ने नतीजे व्याख्या के साथ संस्कृत और मलयालम में लिखे।"
+   ],
+   "copy": "1 − 1/3 + 1/5 − … के दस पद जोड़ो और 4 से गुणा करो। देखो यह π तक कितनी धीरे पहुँचता है, फिर इसे तेज़ करने का तरीक़ा खोजो।",
+   "sketch": "उनकी श्रेणी π/4 = 1 − 1/3 + 1/5 − 1/7 + …, जो टेढ़ी-मेढ़ी चलती हुई π/4 के और पास आती जाती है।"
+  }
+ },
+ {
+  "slug": "copernicus",
+  "region": "world",
+  "years": "1473–1543",
+  "born": 1473,
+  "tags": [
+   "physics"
+  ],
+  "en": {
+   "name": "Nicolaus Copernicus",
+   "place": "Toruń, Poland",
+   "field": "Astronomy",
+   "gave": "A model of the heavens with the Sun near the centre and the Earth as one planet among others, published in 1543.",
+   "ideas": [
+    "A simpler explanation can beat an established one. Planets that seem to loop backwards are explained naturally when the Earth overtakes them in its own orbit.",
+    "Change your point of view. The same motions look complicated from the Earth and simple from the Sun.",
+    "Big ideas take time. He worked on his model for decades and published it in the year he died."
+   ],
+   "copy": "When a problem looks messy, describe it from a different point of view: another origin, another variable, another frame.",
+   "sketch": "The Sun at the centre, with the Earth and other planets circling it."
+  },
+  "hi": {
+   "name": "निकोलस कॉपरनिकस",
+   "place": "तोरुन, पोलैंड",
+   "field": "खगोलशास्त्र",
+   "gave": "आकाश का ऐसा मॉडल जिसमें सूर्य केंद्र के पास है और पृथ्वी बाक़ी ग्रहों में से एक ग्रह है, 1543 में प्रकाशित।",
+   "ideas": [
+    "सरल व्याख्या पुरानी मान्यता को हरा सकती है। जो ग्रह पीछे की ओर लूप बनाते दिखते हैं, वे तब सहज रूप से समझ आते हैं जब पृथ्वी अपनी कक्षा में उन्हें पीछे छोड़ती है।",
+    "देखने का स्थान बदलो। वही गतियाँ पृथ्वी से जटिल और सूर्य से सरल दिखती हैं।",
+    "बड़े विचारों में समय लगता है। उन्होंने दशकों तक अपने मॉडल पर काम किया और उसे अपनी मृत्यु के वर्ष में प्रकाशित किया।"
+   ],
+   "copy": "जब कोई सवाल उलझा लगे, तो उसे किसी और नज़रिए से लिखो: दूसरा मूल बिंदु, दूसरा चर, दूसरा फ़्रेम।",
+   "sketch": "केंद्र में सूर्य, और उसके चारों ओर घूमती पृथ्वी और दूसरे ग्रह।"
+  }
+ },
+ {
+  "slug": "galileo",
+  "region": "world",
+  "years": "1564–1642",
+  "born": 1564,
+  "tags": [
+   "physics"
+  ],
+  "en": {
+   "name": "Galileo Galilei",
+   "place": "Pisa, Italy",
+   "field": "Physics, astronomy",
+   "gave": "Experiments showing that falling bodies speed up at the same steady rate whatever their weight (when air does not interfere), the idea of inertia, and, with a telescope he improved himself, Jupiter's four large moons and the phases of Venus (1610).",
+   "ideas": [
+    "Measure, and write the answer as mathematics. He timed balls rolling down slopes and found that the distance grows as the square of the time.",
+    "Build a better instrument. He made his own telescopes and was among the first to point one at the sky and record what he saw.",
+    "Stand by the evidence. His observations supported the Sun-centred model, and he defended them even when they brought him to trial in 1633."
+   ],
+   "copy": "Turn a “why” into a “how much”: time a pendulum or a ball rolling down a slope, and look for the formula in your numbers.",
+   "sketch": "A ball rolling down a slope covers distances in the ratio 1 : 3 : 5 : 7 in equal times."
+  },
+  "hi": {
+   "name": "गैलीलियो गैलिली",
+   "place": "पीसा, इटली",
+   "field": "भौतिकी, खगोलशास्त्र",
+   "gave": "प्रयोग जिन्होंने दिखाया कि गिरती चीज़ें, भार कुछ भी हो, एक ही स्थिर दर से तेज़ होती हैं (जब हवा बाधा न बने); जड़त्व का विचार; और अपनी बेहतर की हुई दूरबीन से बृहस्पति के चार बड़े चंद्रमा और शुक्र की कलाएँ (1610)।",
+   "ideas": [
+    "मापो, और जवाब गणित में लिखो। उन्होंने ढलान पर लुढ़कती गेंदों का समय नापा और पाया कि दूरी समय के वर्ग के अनुपात में बढ़ती है।",
+    "बेहतर उपकरण बनाओ। उन्होंने अपनी दूरबीनें ख़ुद बनाईं और आकाश की ओर दूरबीन घुमाकर देखी चीज़ें दर्ज करने वाले शुरुआती लोगों में थे।",
+    "प्रमाण पर टिके रहो। उनके अवलोकनों ने सूर्य-केंद्रित मॉडल का समर्थन किया, और 1633 में मुक़दमा चलने पर भी उन्होंने उनका बचाव किया।"
+   ],
+   "copy": "“क्यों” को “कितना” में बदलो: किसी लोलक या ढलान पर लुढ़कती गेंद का समय नापो, और अपनी संख्याओं में सूत्र खोजो।",
+   "sketch": "ढलान पर लुढ़कती गेंद बराबर समय में 1 : 3 : 5 : 7 के अनुपात में दूरी तय करती है।"
+  }
+ },
+ {
+  "slug": "kepler",
+  "region": "world",
+  "years": "1571–1630",
+  "born": 1571,
+  "tags": [
+   "physics",
+   "maths"
+  ],
+  "en": {
+   "name": "Johannes Kepler",
+   "place": "Weil der Stadt, Germany",
+   "field": "Astronomy, mathematics",
+   "gave": "The three laws of planetary motion: orbits are ellipses with the Sun at one focus; a planet sweeps out equal areas in equal times; and the square of its year is proportional to the cube of its orbit's size.",
+   "ideas": [
+    "Trust the data over your favourite theory. Tycho Brahe's observations of Mars disagreed with a circular orbit by only 8 minutes of arc. Kepler refused to ignore them, and gave up circles.",
+    "Keep going. He found his laws after years of calculations done by hand.",
+    "Look for the law in the numbers. The third law came from searching for a relationship between the planets' periods and distances."
+   ],
+   "copy": "When your model disagrees with the data by a small amount, don't round the difference away. It may be the discovery.",
+   "sketch": "An ellipse with the Sun at one focus, and two shaded sectors of equal area swept in equal times."
+  },
+  "hi": {
+   "name": "योहानेस केप्लर",
+   "place": "वाइल डेर श्टाट, जर्मनी",
+   "field": "खगोलशास्त्र, गणित",
+   "gave": "ग्रहों की गति के तीन नियम: कक्षाएँ दीर्घवृत्त हैं जिनके एक फ़ोकस पर सूर्य है; ग्रह बराबर समय में बराबर क्षेत्रफल तय करता है; और उसके वर्ष का वर्ग, उसकी कक्षा के आकार के घन के अनुपात में होता है।",
+   "ideas": [
+    "अपने पसंदीदा सिद्धांत से ज़्यादा आँकड़ों पर भरोसा करो। ब्राहे के मंगल के अवलोकन वृत्ताकार कक्षा से सिर्फ़ 8 कला-मिनट अलग थे। केप्लर ने उन्हें अनदेखा करने से इनकार किया और वृत्त छोड़ दिए।",
+    "लगे रहो। उन्होंने सालों तक हाथ से गणनाएँ करके अपने नियम खोजे।",
+    "संख्याओं में नियम खोजो। तीसरा नियम ग्रहों के आवर्तकाल और दूरियों के बीच संबंध खोजते हुए मिला।"
+   ],
+   "copy": "जब तुम्हारा मॉडल आँकड़ों से थोड़ा-सा अलग हो, तो उस अंतर को गोल करके मत हटाओ। हो सकता है वही खोज हो।",
+   "sketch": "एक दीर्घवृत्त जिसके एक फ़ोकस पर सूर्य है, और बराबर समय में तय किए गए बराबर क्षेत्रफल वाले दो छायांकित भाग।"
+  }
+ },
+ {
+  "slug": "descartes",
+  "region": "world",
+  "years": "1596–1650",
+  "born": 1596,
+  "tags": [
+   "maths"
+  ],
+  "en": {
+   "name": "René Descartes",
+   "place": "La Haye, France",
+   "field": "Mathematics, philosophy",
+   "gave": "Coordinate geometry: points as pairs of numbers and curves as equations, which joined algebra and geometry into one subject. The x and y on every graph come from him.",
+   "ideas": [
+    "Doubt systematically. Accept nothing as true until you can see clearly that it is.",
+    "Divide a difficult problem into as many parts as needed, and solve them in order from simplest to hardest.",
+    "Translate between languages of mathematics. A geometry problem becomes algebra, and algebra can be drawn."
+   ],
+   "copy": "Draw every equation you meet, such as y = x² or x² + y² = 25, on graph paper. Seeing it changes how you think about it.",
+   "sketch": "The circle x² + y² = 25 on coordinate axes, passing through the point (3, 4)."
+  },
+  "hi": {
+   "name": "रेने देकार्त",
+   "place": "ला हाये, फ़्रांस",
+   "field": "गणित, दर्शन",
+   "gave": "निर्देशांक ज्यामिति: बिंदु संख्याओं के जोड़े और वक्र समीकरण, जिसने बीजगणित और ज्यामिति को एक विषय बना दिया। हर ग्राफ़ के x और y उन्हीं से आए हैं।",
+   "ideas": [
+    "व्यवस्थित ढंग से संदेह करो। किसी बात को तब तक सच मत मानो जब तक साफ़ न दिखे कि वह सच है।",
+    "कठिन सवाल को जितने भागों में ज़रूरी हो, बाँटो, और उन्हें सबसे आसान से सबसे कठिन के क्रम में हल करो।",
+    "गणित की भाषाओं के बीच अनुवाद करो। ज्यामिति का सवाल बीजगणित बन जाता है, और बीजगणित का चित्र बनाया जा सकता है।"
+   ],
+   "copy": "जो भी समीकरण मिले, जैसे y = x² या x² + y² = 25, उसे ग्राफ़ पेपर पर बनाओ। देखने से उसके बारे में सोचने का ढंग बदल जाता है।",
+   "sketch": "निर्देशांक अक्षों पर वृत्त x² + y² = 25, जो बिंदु (3, 4) से गुज़रता है।"
+  }
+ },
+ {
+  "slug": "leibniz",
+  "region": "world",
+  "years": "1646–1716",
+  "born": 1646,
+  "tags": [
+   "maths",
+   "tech"
+  ],
+  "en": {
+   "name": "Gottfried Wilhelm Leibniz",
+   "place": "Leipzig, Germany",
+   "field": "Mathematics, philosophy, computing",
+   "gave": "Calculus, discovered independently of Newton, with the notation dy/dx and ∫ that everyone still uses; binary arithmetic with only 0 and 1; and one of the first calculating machines that could multiply.",
+   "ideas": [
+    "Good notation thinks for you. With dy/dx, the chain rule looks like cancelling fractions, and that makes it easy to remember and use.",
+    "Reasoning can be calculated. He dreamed of a language in which arguments could be settled by computing.",
+    "Everything from two symbols. He showed how all numbers can be written with 0 and 1, the basis of every digital computer."
+   ],
+   "copy": "When a calculation feels clumsy, try inventing a better notation for it, then see whether the problem becomes easier.",
+   "sketch": "Counting in binary, 1, 10, 11, 100, 101, beside the integral sign he invented."
+  },
+  "hi": {
+   "name": "गॉटफ़्रीड विल्हेम लाइबनिज़",
+   "place": "लाइपज़िग, जर्मनी",
+   "field": "गणित, दर्शन, कंप्यूटिंग",
+   "gave": "कैलकुलस, न्यूटन से स्वतंत्र रूप से खोजा गया, dy/dx और ∫ जैसे चिह्नों के साथ जो आज भी सब इस्तेमाल करते हैं; सिर्फ़ 0 और 1 वाला द्विआधारी अंकगणित; और गुणा कर सकने वाली शुरुआती गणना मशीनों में से एक।",
+   "ideas": [
+    "अच्छे चिह्न तुम्हारे लिए सोचते हैं। dy/dx में chain rule भिन्नों को काटने जैसा दिखता है, इसलिए उसे याद रखना और इस्तेमाल करना आसान है।",
+    "तर्क की गणना हो सकती है। उन्होंने ऐसी भाषा का सपना देखा जिसमें बहसें गणना से सुलझ जाएँ।",
+    "दो चिह्नों से सब कुछ। उन्होंने दिखाया कि हर संख्या 0 और 1 से लिखी जा सकती है, जो हर डिजिटल कंप्यूटर का आधार है।"
+   ],
+   "copy": "जब कोई गणना भद्दी लगे, तो उसके लिए बेहतर चिह्न बनाने की कोशिश करो, फिर देखो कि सवाल आसान होता है या नहीं।",
+   "sketch": "द्विआधारी गिनती 1, 10, 11, 100, 101, और उनका बनाया integral चिह्न।"
+  }
+ },
+ {
+  "slug": "lavoisier",
+  "region": "world",
+  "years": "1743–1794",
+  "born": 1743,
+  "tags": [
+   "chembio"
+  ],
+  "en": {
+   "name": "Antoine Lavoisier",
+   "place": "Paris, France",
+   "field": "Chemistry",
+   "gave": "The law that mass is conserved in chemical reactions, the true role of oxygen in burning and breathing, and, with colleagues, the system of names for chemical substances that chemistry still uses.",
+   "ideas": [
+    "Weigh everything. He did reactions in sealed vessels and weighed them before and after, so nothing could escape unnoticed.",
+    "A theory must survive the balance. His measurements overturned the old idea that burning releases a substance called phlogiston.",
+    "Name things clearly. Clear names for substances made chemistry easier to learn and to reason about."
+   ],
+   "copy": "In any experiment, write down what goes in and what comes out. If the two don't balance, something is missing, and finding it is the experiment.",
+   "sketch": "A balance: the mass before a reaction equals the mass after."
+  },
+  "hi": {
+   "name": "आंत्वान लावोज़िए",
+   "place": "पेरिस, फ़्रांस",
+   "field": "रसायन",
+   "gave": "यह नियम कि रासायनिक अभिक्रियाओं में द्रव्यमान संरक्षित रहता है, जलने और साँस लेने में ऑक्सीजन की असली भूमिका, और साथियों के साथ रासायनिक पदार्थों के नामों की वह व्यवस्था जो रसायन आज भी इस्तेमाल करता है।",
+   "ideas": [
+    "सब कुछ तौलो। उन्होंने बंद पात्रों में अभिक्रियाएँ कीं और पहले और बाद में तौला, ताकि कुछ भी चुपचाप बाहर न जाए।",
+    "सिद्धांत को तराज़ू पर टिकना होगा। उनके मापों ने यह पुराना विचार उलट दिया कि जलने पर phlogiston नाम का पदार्थ निकलता है।",
+    "चीज़ों के नाम साफ़ रखो। पदार्थों के साफ़ नामों ने रसायन को सीखना और उस पर तर्क करना आसान बना दिया।"
+   ],
+   "copy": "किसी भी प्रयोग में लिखो कि क्या अंदर गया और क्या बाहर आया। अगर दोनों का हिसाब न मिले, तो कुछ छूट रहा है, और उसे खोजना ही प्रयोग है।",
+   "sketch": "एक तराज़ू: अभिक्रिया से पहले का द्रव्यमान बाद के द्रव्यमान के बराबर।"
+  }
+ },
+ {
+  "slug": "gauss",
+  "region": "world",
+  "years": "1777–1855",
+  "born": 1777,
+  "tags": [
+   "maths",
+   "physics"
+  ],
+  "en": {
+   "name": "Carl Friedrich Gauss",
+   "place": "Brunswick, Germany",
+   "field": "Mathematics, physics",
+   "gave": "Foundational work in number theory (1801), the method of least squares and the normal distribution, a proof of the Fundamental Theorem of Algebra, and, at 18, the discovery that a regular 17-sided polygon can be drawn with ruler and compass.",
+   "ideas": [
+    "Few, but ripe. He published only work he had polished to completion.",
+    "Let mathematics serve measurement. He used least squares to predict where the lost asteroid Ceres would reappear, and it was found there.",
+    "Look for structure in whole numbers. His book on number theory organised the subject for the next century."
+   ],
+   "copy": "Before moving on from a problem, polish your solution until it is short, clear and complete.",
+   "sketch": "The bell-shaped normal curve, and a regular 17-sided polygon."
+  },
+  "hi": {
+   "name": "कार्ल फ़्रेडरिक गाउस",
+   "place": "ब्राउनश्वाइग, जर्मनी",
+   "field": "गणित, भौतिकी",
+   "gave": "संख्या सिद्धांत में आधारभूत काम (1801), least squares विधि और प्रसामान्य बंटन, बीजगणित के मूल प्रमेय की उपपत्ति, और 18 साल की उम्र में यह खोज कि नियमित 17 भुजाओं वाला बहुभुज रूलर और परकार से बनाया जा सकता है।",
+   "ideas": [
+    "कम, पर पका हुआ। उन्होंने सिर्फ़ वही काम प्रकाशित किया जिसे पूरी तरह निखार लिया था।",
+    "गणित को माप के काम में लगाओ। उन्होंने least squares से भविष्यवाणी की कि खोया हुआ क्षुद्रग्रह सेरेस कहाँ फिर दिखेगा, और वह वहीं मिला।",
+    "पूर्ण संख्याओं में संरचना खोजो। संख्या सिद्धांत पर उनकी किताब ने अगली सदी के लिए इस विषय को व्यवस्थित किया।"
+   ],
+   "copy": "किसी सवाल से आगे बढ़ने से पहले, अपने हल को तब तक निखारो जब तक वह छोटा, साफ़ और पूरा न हो जाए।",
+   "sketch": "घंटी के आकार का प्रसामान्य वक्र, और नियमित 17 भुजाओं वाला बहुभुज।"
+  }
+ },
+ {
+  "slug": "darwin",
+  "region": "world",
+  "years": "1809–1882",
+  "born": 1809,
+  "tags": [
+   "chembio"
+  ],
+  "en": {
+   "name": "Charles Darwin",
+   "place": "Shrewsbury, England",
+   "field": "Biology",
+   "gave": "Evolution by natural selection, set out in On the Origin of Species (1859) and backed by evidence collected over decades, including on the five-year voyage of HMS Beagle.",
+   "ideas": [
+    "Collect evidence before publishing. He gathered facts for about twenty years before he presented the theory.",
+    "Answer the strongest objections yourself. The Origin has a whole chapter on the difficulties facing his own theory.",
+    "Small changes add up. Tiny variations, selected over very long times, explain the variety of living things."
+   ],
+   "copy": "For an idea you believe, write down the best argument against it and answer that argument honestly.",
+   "sketch": "A branching tree of life, like the sketch in his 1837 notebook headed “I think”."
+  },
+  "hi": {
+   "name": "चार्ल्स डार्विन",
+   "place": "श्रूज़बरी, इंग्लैंड",
+   "field": "जीवविज्ञान",
+   "gave": "प्राकृतिक चयन द्वारा विकास, On the Origin of Species (1859) में रखा गया, और दशकों में जुटाए प्रमाणों पर टिका, HMS Beagle की पाँच साल की यात्रा समेत।",
+   "ideas": [
+    "प्रकाशित करने से पहले प्रमाण जुटाओ। सिद्धांत रखने से पहले उन्होंने लगभग बीस साल तक तथ्य इकट्ठे किए।",
+    "सबसे मज़बूत आपत्तियों का जवाब ख़ुद दो। Origin में उनके अपने सिद्धांत की कठिनाइयों पर पूरा एक अध्याय है।",
+    "छोटे बदलाव जुड़ते जाते हैं। बहुत लंबे समय में चुने गए छोटे-छोटे अंतर जीवों की विविधता समझाते हैं।"
+   ],
+   "copy": "जिस विचार पर तुम्हें भरोसा है, उसके ख़िलाफ़ सबसे अच्छा तर्क लिखो और उसका ईमानदारी से जवाब दो।",
+   "sketch": "जीवन का शाखाओं वाला पेड़, उनकी 1837 की नोटबुक के “I think” शीर्षक वाले स्केच जैसा।"
+  }
+ },
+ {
+  "slug": "lovelace",
+  "region": "world",
+  "years": "1815–1852",
+  "born": 1815,
+  "tags": [
+   "maths",
+   "tech"
+  ],
+  "en": {
+   "name": "Ada Lovelace",
+   "place": "London, England",
+   "field": "Mathematics, computing",
+   "gave": "Notes (1843) on Charles Babbage's Analytical Engine, including a step-by-step method for the machine to compute Bernoulli numbers, often called the first published computer program, and the insight that such a machine could work with any symbols, such as music, not only numbers.",
+   "ideas": [
+    "See past what a machine was built for. Babbage designed a calculator; she saw a general-purpose machine for symbols.",
+    "Write the procedure out completely. Her table lists every operation, every variable and every step.",
+    "Join imagination and precision. She called her approach “poetical science”."
+   ],
+   "copy": "Pick a calculation you do by hand and write it as a table of steps a machine could follow, with every intermediate value named.",
+   "sketch": "A table of operations driving the columns of gear wheels in Babbage's engine."
+  },
+  "hi": {
+   "name": "एडा लवलेस",
+   "place": "लंदन, इंग्लैंड",
+   "field": "गणित, कंप्यूटिंग",
+   "gave": "चार्ल्स बैबेज के Analytical Engine पर नोट्स (1843), जिनमें मशीन से बर्नूली संख्याएँ निकालने की क़दम-दर-क़दम विधि है, जिसे अक्सर पहला प्रकाशित कंप्यूटर प्रोग्राम कहा जाता है; और यह समझ कि ऐसी मशीन सिर्फ़ संख्याओं से नहीं, किसी भी चिह्न से काम कर सकती है, जैसे संगीत।",
+   "ideas": [
+    "मशीन जिस काम के लिए बनी है, उससे आगे देखो। बैबेज ने एक कैलकुलेटर बनाया; उन्होंने चिह्नों के लिए एक सामान्य मशीन देखी।",
+    "विधि पूरी लिखो। उनकी तालिका में हर संक्रिया, हर चर और हर क़दम है।",
+    "कल्पना और सटीकता को जोड़ो। उन्होंने अपने तरीक़े को “poetical science” कहा।"
+   ],
+   "copy": "कोई गणना जो तुम हाथ से करते हो, उसे ऐसी तालिका में लिखो जिसके क़दम एक मशीन अपना सके, और हर बीच का मान नाम के साथ हो।",
+   "sketch": "संक्रियाओं की एक तालिका, जो बैबेज के इंजन के गियर-पहियों के स्तंभों को चलाती है।"
+  }
+ },
+ {
+  "slug": "boole",
+  "region": "world",
+  "years": "1815–1864",
+  "born": 1815,
+  "tags": [
+   "maths",
+   "tech"
+  ],
+  "en": {
+   "name": "George Boole",
+   "place": "Lincoln, England; worked in Cork, Ireland",
+   "field": "Mathematics, logic",
+   "gave": "Boolean algebra (1847 and 1854): logic written as algebra, with 1 for true and 0 for false. Every digital circuit and every if-statement in every program runs on it.",
+   "ideas": [
+    "Teach yourself. He left school early, taught himself languages and mathematics, and became a professor without a university degree.",
+    "Turn reasoning into calculation. “And”, “or” and “not” became operations with rules, like + and ×.",
+    "Simple rules can carry huge weight. In 1937 Claude Shannon showed that switching circuits obey Boole's algebra, and digital electronics followed."
+   ],
+   "copy": "Write the truth table for “the alarm rings if the door is open and the system is armed”, then build it from AND, OR and NOT.",
+   "sketch": "The AND, OR and NOT gates with their truth tables of 0s and 1s."
+  },
+  "hi": {
+   "name": "जॉर्ज बूल",
+   "place": "लिंकन, इंग्लैंड; कॉर्क, आयरलैंड में काम",
+   "field": "गणित, तर्कशास्त्र",
+   "gave": "बूलियन बीजगणित (1847 और 1854): तर्क को बीजगणित की तरह लिखना, सच के लिए 1 और झूठ के लिए 0। हर डिजिटल सर्किट और हर प्रोग्राम का हर if इसी पर चलता है।",
+   "ideas": [
+    "ख़ुद सीखो। उन्होंने जल्दी स्कूल छोड़ा, भाषाएँ और गणित ख़ुद सीखे, और बिना विश्वविद्यालय डिग्री के प्रोफ़ेसर बने।",
+    "तर्क को गणना में बदलो। “और”, “या” और “नहीं” नियमों वाली संक्रियाएँ बन गए, + और × की तरह।",
+    "सरल नियम बहुत बड़ा भार उठा सकते हैं। 1937 में क्लॉड शैनन ने दिखाया कि switching सर्किट बूल के बीजगणित पर चलते हैं, और फिर डिजिटल इलेक्ट्रॉनिक्स आया।"
+   ],
+   "copy": "“अलार्म तब बजता है जब दरवाज़ा खुला हो और सिस्टम चालू हो” की सत्य-तालिका लिखो, फिर उसे AND, OR और NOT से बनाओ।",
+   "sketch": "AND, OR और NOT गेट, 0 और 1 वाली उनकी सत्य-तालिकाओं के साथ।"
+  }
+ },
+ {
+  "slug": "mendel",
+  "region": "world",
+  "years": "1822–1884",
+  "born": 1822,
+  "tags": [
+   "chembio"
+  ],
+  "en": {
+   "name": "Gregor Mendel",
+   "place": "Born in Silesia, worked in Brno",
+   "field": "Biology",
+   "gave": "The laws of inheritance, found by crossing tens of thousands of pea plants (1856–1863): traits pass from parents to offspring in separate units, which we now call genes. His work was ignored until 1900.",
+   "ideas": [
+    "Count, don't just look. Ratios such as 3 : 1 appeared only when he counted thousands of plants.",
+    "Choose a simple system. Peas have traits that are clearly one way or the other: round or wrinkled, yellow or green.",
+    "Being ignored is not being wrong. His results were rediscovered 16 years after his death and became the base of genetics."
+   ],
+   "copy": "Repeat a simple experiment many times, such as tossing two coins, and count the outcomes. Patterns appear only in large numbers.",
+   "sketch": "A Punnett square: Aa crossed with Aa gives AA, Aa, Aa and aa, a ratio of 3 : 1."
+  },
+  "hi": {
+   "name": "ग्रेगर मेंडल",
+   "place": "सिलेसिया में जन्म, ब्रनो में काम",
+   "field": "जीवविज्ञान",
+   "gave": "वंशागति के नियम, दसियों हज़ार मटर के पौधों के संकरण से खोजे गए (1856–1863): गुण माता-पिता से संतान तक अलग-अलग इकाइयों में जाते हैं, जिन्हें आज हम genes कहते हैं। 1900 तक उनके काम को अनदेखा किया गया।",
+   "ideas": [
+    "सिर्फ़ देखो नहीं, गिनो। 3 : 1 जैसे अनुपात तभी दिखे जब उन्होंने हज़ारों पौधे गिने।",
+    "सरल व्यवस्था चुनो। मटर के गुण साफ़ तौर पर एक या दूसरे होते हैं: गोल या झुर्रीदार, पीला या हरा।",
+    "अनदेखा होना ग़लत होना नहीं है। उनकी मृत्यु के 16 साल बाद उनके नतीजे फिर खोजे गए और आनुवंशिकी की नींव बने।"
+   ],
+   "copy": "कोई सरल प्रयोग कई बार दोहराओ, जैसे दो सिक्के उछालना, और नतीजे गिनो। पैटर्न बड़ी संख्याओं में ही दिखते हैं।",
+   "sketch": "Punnett वर्ग: Aa और Aa के संकरण से AA, Aa, Aa और aa, यानी 3 : 1 का अनुपात।"
+  }
+ },
+ {
+  "slug": "pasteur",
+  "region": "world",
+  "years": "1822–1895",
+  "born": 1822,
+  "tags": [
+   "chembio"
+  ],
+  "en": {
+   "name": "Louis Pasteur",
+   "place": "Dole, France",
+   "field": "Chemistry, microbiology",
+   "gave": "Proof that microbes cause fermentation and spoilage, pasteurisation, and vaccines against anthrax and rabies. As a young chemist he discovered that some molecules come in left- and right-handed forms.",
+   "ideas": [
+    "Chance favours the prepared mind. He said that in observation, luck helps only those who are ready to notice it.",
+    "Design the decisive experiment. His swan-necked flasks let air in but trapped dust, and the broth inside stayed fresh, showing that life does not appear from nothing.",
+    "Put science to work for people. His research went straight into food safety and medicine."
+   ],
+   "copy": "Keep a notebook of surprises. A surprise is useful only to someone prepared to notice it and ask why.",
+   "sketch": "A swan-necked flask: the bend traps dust and microbes, so the broth stays clear."
+  },
+  "hi": {
+   "name": "लुई पाश्चर",
+   "place": "दोल, फ़्रांस",
+   "field": "रसायन, सूक्ष्मजीव विज्ञान",
+   "gave": "यह प्रमाण कि सूक्ष्मजीव किण्वन और सड़न का कारण हैं, pasteurisation, और anthrax व रेबीज़ के टीके। युवा रसायनज्ञ के रूप में उन्होंने खोजा कि कुछ अणु बाएँ और दाएँ हाथ वाले रूपों में आते हैं।",
+   "ideas": [
+    "संयोग तैयार दिमाग़ का साथ देता है। उन्होंने कहा कि अवलोकन में किस्मत सिर्फ़ उनकी मदद करती है जो उसे पहचानने के लिए तैयार हों।",
+    "निर्णायक प्रयोग की रचना करो। उनके हंस-गर्दन वाले फ़्लास्कों में हवा जाती थी पर धूल फँस जाती थी, और अंदर का शोरबा ताज़ा रहा; इससे दिखा कि जीवन शून्य से पैदा नहीं होता।",
+    "विज्ञान को लोगों के काम में लगाओ। उनका शोध सीधे खाद्य सुरक्षा और चिकित्सा में गया।"
+   ],
+   "copy": "अचरजों की एक नोटबुक रखो। अचरज उसी के काम आता है जो उसे पहचानने और “क्यों” पूछने के लिए तैयार हो।",
+   "sketch": "हंस-गर्दन वाला फ़्लास्क: मोड़ धूल और सूक्ष्मजीवों को रोक लेता है, इसलिए शोरबा साफ़ रहता है।"
+  }
+ },
+ {
+  "slug": "riemann",
+  "region": "world",
+  "years": "1826–1866",
+  "born": 1826,
+  "tags": [
+   "maths"
+  ],
+  "en": {
+   "name": "Bernhard Riemann",
+   "place": "Breselenz, Germany",
+   "field": "Mathematics",
+   "gave": "The geometry of curved spaces (1854), which Einstein later needed for general relativity; the Riemann integral; and the Riemann hypothesis about the prime numbers (1859), still unsolved and one of the most famous open problems in mathematics.",
+   "ideas": [
+    "Generalise boldly. He asked what geometry looks like when space itself may be curved, in any number of dimensions.",
+    "Connect distant fields. His 1859 paper linked the prime numbers to a function of a complex variable.",
+    "A short paper can change everything. That paper on the primes is only about ten pages long."
+   ],
+   "copy": "Take a familiar idea, such as distance or the angles of a triangle, and ask what it would mean on the surface of a ball.",
+   "sketch": "A triangle drawn on a sphere, whose angles add up to more than 180°."
+  },
+  "hi": {
+   "name": "बर्नहार्ड रीमान",
+   "place": "ब्रेसेलेंत्स, जर्मनी",
+   "field": "गणित",
+   "gave": "वक्र स्थानों की ज्यामिति (1854), जिसकी बाद में आइंस्टाइन को सामान्य सापेक्षता के लिए ज़रूरत पड़ी; रीमान समाकल; और अभाज्य संख्याओं के बारे में रीमान परिकल्पना (1859), जो आज भी अनसुलझी है और गणित के सबसे प्रसिद्ध खुले सवालों में है।",
+   "ideas": [
+    "साहस से व्यापक बनाओ। उन्होंने पूछा कि जब ख़ुद स्थान वक्र हो सकता है, किसी भी संख्या की विमाओं में, तब ज्यामिति कैसी दिखती है।",
+    "दूर के क्षेत्रों को जोड़ो। उनके 1859 के शोधपत्र ने अभाज्य संख्याओं को complex चर के एक फलन से जोड़ा।",
+    "छोटा शोधपत्र सब बदल सकता है। अभाज्य संख्याओं वाला वह शोधपत्र सिर्फ़ लगभग दस पन्नों का है।"
+   ],
+   "copy": "कोई परिचित विचार लो, जैसे दूरी या त्रिभुज के कोण, और पूछो कि एक गेंद की सतह पर उसका क्या अर्थ होगा।",
+   "sketch": "गोले पर बना एक त्रिभुज, जिसके कोणों का योग 180° से ज़्यादा है।"
+  }
+ },
+ {
+  "slug": "maxwell",
+  "region": "world",
+  "years": "1831–1879",
+  "born": 1831,
+  "tags": [
+   "physics"
+  ],
+  "en": {
+   "name": "James Clerk Maxwell",
+   "place": "Edinburgh, Scotland",
+   "field": "Physics",
+   "gave": "Maxwell's equations, which unite electricity, magnetism and light, and predict electromagnetic waves travelling at the speed of light: radio, Wi-Fi, and the microwaves that control superconducting qubits. Also the first colour photograph (1861) and the statistical theory of gases.",
+   "ideas": [
+    "Turn pictures into equations. He took Faraday's lines of force and wrote them as mathematics.",
+    "Follow the mathematics where it leads. His equations gave waves whose speed matched the measured speed of light, so he concluded that light itself is an electromagnetic wave.",
+    "Unify. Electricity, magnetism and light had been three subjects; he made them one."
+   ],
+   "copy": "When two topics share a pattern, write both in the same notation and see what the comparison predicts.",
+   "sketch": "An electromagnetic wave: electric and magnetic fields at right angles, moving at the speed of light."
+  },
+  "hi": {
+   "name": "जेम्स क्लर्क मैक्सवेल",
+   "place": "एडिनबर्ग, स्कॉटलैंड",
+   "field": "भौतिकी",
+   "gave": "मैक्सवेल के समीकरण, जो विद्युत, चुंबकत्व और प्रकाश को एक करते हैं और प्रकाश की गति से चलने वाली विद्युत-चुंबकीय तरंगों की भविष्यवाणी करते हैं: रेडियो, Wi-Fi, और वे microwaves जो superconducting qubits को नियंत्रित करती हैं। साथ ही पहली रंगीन तस्वीर (1861) और गैसों का सांख्यिकीय सिद्धांत।",
+   "ideas": [
+    "चित्रों को समीकरणों में बदलो। उन्होंने फ़ैराडे की बल-रेखाओं को गणित में लिखा।",
+    "गणित जहाँ ले जाए, वहाँ जाओ। उनके समीकरणों से ऐसी तरंगें निकलीं जिनकी गति प्रकाश की मापी गई गति के बराबर थी, इसलिए उन्होंने निष्कर्ष निकाला कि प्रकाश ख़ुद विद्युत-चुंबकीय तरंग है।",
+    "एकीकृत करो। विद्युत, चुंबकत्व और प्रकाश तीन विषय थे; उन्होंने उन्हें एक बना दिया।"
+   ],
+   "copy": "जब दो विषयों में एक जैसा पैटर्न दिखे, तो दोनों को एक ही चिह्नों में लिखो और देखो कि तुलना क्या भविष्यवाणी करती है।",
+   "sketch": "एक विद्युत-चुंबकीय तरंग: एक-दूसरे के लंबवत विद्युत और चुंबकीय क्षेत्र, प्रकाश की गति से चलते हुए।"
+  }
+ },
+ {
+  "slug": "mendeleev",
+  "region": "world",
+  "years": "1834–1907",
+  "born": 1834,
+  "tags": [
+   "chembio"
+  ],
+  "en": {
+   "name": "Dmitri Mendeleev",
+   "place": "Tobolsk, Russia",
+   "field": "Chemistry",
+   "gave": "The periodic table (1869), with gaps left for elements nobody had found. He predicted their properties, and gallium (1875), scandium (1879) and germanium (1886) were discovered to match.",
+   "ideas": [
+    "Arrange the data so the pattern shows. Ordering the elements by atomic weight and grouping them by behaviour revealed a repeating pattern.",
+    "Trust a strong pattern enough to predict. He left blank spaces and described what would fill them.",
+    "Question the data when the pattern is strong. He argued that some measured atomic weights were wrong, and several were."
+   ],
+   "copy": "Put a set of facts into a table, sort it by different properties, and look for repeating patterns and for gaps.",
+   "sketch": "A grid of elements with a gap marked “?”, waiting for an element he predicted."
+  },
+  "hi": {
+   "name": "दिमित्री मेंडेलीफ़",
+   "place": "तोबोल्स्क, रूस",
+   "field": "रसायन",
+   "gave": "आवर्त सारणी (1869), उन तत्वों के लिए ख़ाली जगहों के साथ जिन्हें तब तक किसी ने नहीं खोजा था। उन्होंने उनके गुणों की भविष्यवाणी की, और गैलियम (1875), स्कैंडियम (1879) और जर्मेनियम (1886) वैसे ही मिले।",
+   "ideas": [
+    "आँकड़ों को ऐसे सजाओ कि पैटर्न दिखे। तत्वों को परमाणु भार के क्रम में रखकर और व्यवहार से समूहित करके एक दोहराता पैटर्न दिखा।",
+    "मज़बूत पैटर्न पर इतना भरोसा करो कि भविष्यवाणी कर सको। उन्होंने ख़ाली जगहें छोड़ीं और बताया कि उन्हें क्या भरेगा।",
+    "जब पैटर्न मज़बूत हो, तो आँकड़ों पर सवाल करो। उन्होंने तर्क दिया कि कुछ मापे गए परमाणु भार ग़लत हैं, और कई सचमुच ग़लत निकले।"
+   ],
+   "copy": "तथ्यों को एक तालिका में रखो, उसे अलग-अलग गुणों से क्रमबद्ध करो, और दोहराते पैटर्न और ख़ाली जगहें खोजो।",
+   "sketch": "तत्वों की एक जाली जिसमें “?” लिखी ख़ाली जगह है, उनके बताए तत्व के इंतज़ार में।"
+  }
+ },
+ {
+  "slug": "tesla",
+  "region": "world",
+  "years": "1856–1943",
+  "born": 1856,
+  "tags": [
+   "tech",
+   "physics"
+  ],
+  "en": {
+   "name": "Nikola Tesla",
+   "place": "Born in Smiljan (in today's Croatia), worked in the USA",
+   "field": "Electrical engineering",
+   "gave": "The induction motor and the alternating-current systems built on rotating magnetic fields, the basis of today's power grids, and the Tesla coil.",
+   "ideas": [
+    "Build it in your mind first. He described designing and running machines in his imagination before building them.",
+    "Engineering changes daily life. Alternating current made it practical to send electric power over long distances.",
+    "Test your visions. Some of his grand projects, such as wireless power from a tower, never worked; ideas still need experiments."
+   ],
+   "copy": "Before you build anything, sketch it and simulate it, then build the smallest prototype that tests the riskiest part.",
+   "sketch": "Three currents, each a third of a cycle apart, adding up to a rotating magnetic field."
+  },
+  "hi": {
+   "name": "निकोला टेस्ला",
+   "place": "स्मिलियान (आज के क्रोएशिया) में जन्म, अमेरिका में काम",
+   "field": "विद्युत इंजीनियरिंग",
+   "gave": "Induction motor और घूमते चुंबकीय क्षेत्र पर बनी प्रत्यावर्ती धारा (AC) व्यवस्थाएँ, जो आज के बिजली ग्रिड का आधार हैं; और Tesla coil।",
+   "ideas": [
+    "पहले मन में बनाओ। उन्होंने बताया कि वे मशीनें बनाने से पहले उन्हें अपनी कल्पना में डिज़ाइन करके चलाते थे।",
+    "इंजीनियरिंग रोज़ की ज़िंदगी बदलती है। प्रत्यावर्ती धारा ने बिजली को लंबी दूरी तक भेजना व्यावहारिक बनाया।",
+    "अपनी कल्पनाओं को जाँचो। उनकी कुछ बड़ी परियोजनाएँ, जैसे एक मीनार से बिना तार बिजली, कभी काम नहीं आईं; विचारों को भी प्रयोग चाहिए।"
+   ],
+   "copy": "कुछ भी बनाने से पहले उसका स्केच बनाओ और simulation करो, फिर सबसे छोटा prototype बनाओ जो सबसे जोखिम वाले हिस्से को जाँचे।",
+   "sketch": "तीन धाराएँ, हर एक चक्र के एक-तिहाई के अंतर पर, मिलकर एक घूमता चुंबकीय क्षेत्र बनाती हैं।"
+  }
+ },
+ {
+  "slug": "planck",
+  "region": "world",
+  "years": "1858–1947",
+  "born": 1858,
+  "tags": [
+   "physics"
+  ],
+  "en": {
+   "name": "Max Planck",
+   "place": "Kiel, Germany",
+   "field": "Physics",
+   "gave": "The quantum (1900). To explain the colours of light given off by hot objects, he assumed that energy is exchanged in packets, E = hf, and quantum physics began. Nobel Prize 1918.",
+   "ideas": [
+    "Take the data seriously. He first found a formula that fitted the measurements perfectly, then asked what it meant.",
+    "Make the bold assumption when nothing else works. He later called the quantum hypothesis an act of desperation.",
+    "Let the idea outgrow you. Others, starting with Einstein, took the quantum much further than he did."
+   ],
+   "copy": "When a formula fits but you do not know why, keep asking why. The reason may be bigger than the formula.",
+   "sketch": "The glow of a hot object: brightness against frequency, rising and falling, with E = hf."
+  },
+  "hi": {
+   "name": "मैक्स प्लांक",
+   "place": "कील, जर्मनी",
+   "field": "भौतिकी",
+   "gave": "क्वांटम (1900)। गर्म वस्तुओं से निकलने वाली रोशनी के रंग समझाने के लिए उन्होंने माना कि ऊर्जा पैकेटों में आदान-प्रदान होती है, E = hf, और क्वांटम भौतिकी शुरू हुई। नोबेल पुरस्कार 1918।",
+   "ideas": [
+    "आँकड़ों को गंभीरता से लो। पहले उन्होंने ऐसा सूत्र खोजा जो मापों पर पूरी तरह बैठता था, फिर पूछा कि उसका अर्थ क्या है।",
+    "जब और कुछ काम न करे, तो साहसी धारणा बनाओ। बाद में उन्होंने क्वांटम परिकल्पना को हताशा में उठाया क़दम कहा।",
+    "विचार को अपने से बड़ा होने दो। आइंस्टाइन से शुरू करके दूसरों ने क्वांटम को उनसे कहीं आगे पहुँचाया।"
+   ],
+   "copy": "जब कोई सूत्र बैठ जाए पर तुम्हें पता न हो क्यों, तो “क्यों” पूछते रहो। कारण सूत्र से बड़ा हो सकता है।",
+   "sketch": "गर्म वस्तु की चमक: आवृत्ति के साथ चमक, पहले बढ़ती फिर घटती, और E = hf।"
+  }
+ },
+ {
+  "slug": "rutherford",
+  "region": "world",
+  "years": "1871–1937",
+  "born": 1871,
+  "tags": [
+   "physics",
+   "chembio"
+  ],
+  "en": {
+   "name": "Ernest Rutherford",
+   "place": "Born in Brightwater, New Zealand; worked in Canada and England",
+   "field": "Physics",
+   "gave": "The atomic nucleus (1911), from the experiment in which a few alpha particles bounced back from thin gold foil; the naming of alpha and beta radiation; and the first artificial transformation of one element into another. Nobel Prize in Chemistry 1908.",
+   "ideas": [
+    "A simple experiment can overturn everything. He compared the bounce-back to firing a huge shell at tissue paper and having it come back.",
+    "Take the surprising result seriously. A few particles in thousands meant a tiny, heavy centre in every atom.",
+    "Build a lab that trains others. Many of the people who worked with him went on to major discoveries of their own."
+   ],
+   "copy": "When a result surprises you, first check it, then ask what the world would have to be like for it to be true.",
+   "sketch": "Alpha particles at gold foil: most pass straight through, a few bounce back from a tiny nucleus."
+  },
+  "hi": {
+   "name": "अर्नेस्ट रदरफ़ोर्ड",
+   "place": "ब्राइटवॉटर, न्यूज़ीलैंड में जन्म; कनाडा और इंग्लैंड में काम",
+   "field": "भौतिकी",
+   "gave": "परमाणु का नाभिक (1911), उस प्रयोग से जिसमें कुछ अल्फ़ा कण सोने की पतली पन्नी से वापस लौट आए; अल्फ़ा और बीटा विकिरण का नामकरण; और एक तत्व को दूसरे में बदलने का पहला कृत्रिम प्रयोग। रसायन का नोबेल पुरस्कार 1908।",
+   "ideas": [
+    "एक सरल प्रयोग सब कुछ पलट सकता है। उन्होंने कणों के लौटने की तुलना टिशू पेपर पर दागे गए विशाल गोले के वापस आने से की।",
+    "चौंकाने वाले नतीजे को गंभीरता से लो। हज़ारों में से कुछ कणों का लौटना बताता था कि हर परमाणु में एक छोटा, भारी केंद्र है।",
+    "ऐसी प्रयोगशाला बनाओ जो दूसरों को तैयार करे। उनके साथ काम करने वालों में से कई ने आगे अपनी बड़ी खोजें कीं।"
+   ],
+   "copy": "जब कोई नतीजा चौंकाए, तो पहले उसे जाँचो, फिर पूछो कि उसके सच होने के लिए दुनिया कैसी होनी चाहिए।",
+   "sketch": "सोने की पन्नी पर अल्फ़ा कण: ज़्यादातर सीधे निकल जाते हैं, कुछ एक छोटे नाभिक से लौट आते हैं।"
+  }
+ },
+ {
+  "slug": "noether",
+  "region": "world",
+  "years": "1882–1935",
+  "born": 1882,
+  "tags": [
+   "maths",
+   "physics"
+  ],
+  "en": {
+   "name": "Emmy Noether",
+   "place": "Erlangen, Germany",
+   "field": "Mathematics",
+   "gave": "Noether's theorem (1918): every continuous symmetry of a law of physics gives a conserved quantity. Laws that do not change with time conserve energy; laws that do not change from place to place conserve momentum. She also founded much of modern abstract algebra.",
+   "ideas": [
+    "Look for structure, not just calculation. She asked what all the examples had in common, and built theories around that.",
+    "Keep working through barriers. As a woman she was at first not allowed to lecture under her own name at Göttingen, and in 1933 she had to leave Germany; she kept working and teaching.",
+    "Share ideas freely. Many of her results reached the world through her students, whom she helped generously."
+   ],
+   "copy": "When you meet a problem, ask what symmetry it has. Symmetry often hands you part of the answer for free.",
+   "sketch": "Symmetry and conservation: unchanged in time ↔ energy conserved; unchanged in space ↔ momentum conserved."
+  },
+  "hi": {
+   "name": "एमी नोएथर",
+   "place": "एर्लांगेन, जर्मनी",
+   "field": "गणित",
+   "gave": "नोएथर का प्रमेय (1918): भौतिकी के किसी नियम की हर सतत सममिति से एक संरक्षित राशि मिलती है। जो नियम समय के साथ नहीं बदलते, वे ऊर्जा संरक्षित रखते हैं; जो जगह बदलने पर नहीं बदलते, वे संवेग। उन्होंने आधुनिक अमूर्त बीजगणित का बड़ा हिस्सा भी खड़ा किया।",
+   "ideas": [
+    "सिर्फ़ गणना नहीं, संरचना खोजो। उन्होंने पूछा कि सारे उदाहरणों में साझा क्या है, और उसके इर्द-गिर्द सिद्धांत बनाए।",
+    "बाधाओं के बीच भी काम करती रहो। महिला होने के कारण शुरू में उन्हें गॉटिंगेन में अपने नाम से पढ़ाने की अनुमति नहीं थी, और 1933 में उन्हें जर्मनी छोड़ना पड़ा; फिर भी वे काम करती और पढ़ाती रहीं।",
+    "विचार खुलकर बाँटो। उनके कई नतीजे उनके छात्रों के ज़रिए दुनिया तक पहुँचे, जिनकी उन्होंने उदारता से मदद की।"
+   ],
+   "copy": "कोई भी सवाल मिले, तो पूछो कि उसमें कौन-सी सममिति है। सममिति अक्सर जवाब का एक हिस्सा मुफ़्त में दे देती है।",
+   "sketch": "सममिति और संरक्षण: समय में अपरिवर्तित ↔ ऊर्जा संरक्षित; स्थान में अपरिवर्तित ↔ संवेग संरक्षित।"
+  }
+ },
+ {
+  "slug": "bohr",
+  "region": "world",
+  "years": "1885–1962",
+  "born": 1885,
+  "tags": [
+   "physics"
+  ],
+  "en": {
+   "name": "Niels Bohr",
+   "place": "Copenhagen, Denmark",
+   "field": "Physics",
+   "gave": "The Bohr model of the atom (1913): electrons in fixed energy levels, giving out light of exact colours when they jump between them; the principle of complementarity; and the institute in Copenhagen where much of quantum mechanics was worked out. Nobel Prize 1922.",
+   "ideas": [
+    "Use a contradiction to make progress. Classical physics said atoms should collapse; he kept what worked and added a new rule.",
+    "Argue in order to understand. His long, friendly debates with Einstein sharpened quantum theory for both sides.",
+    "Build a community. Young physicists from many countries came to his institute to work together."
+   ],
+   "copy": "Find someone who disagrees with you on a question and argue it out together, carefully and politely, until you both understand more.",
+   "sketch": "An electron dropping from one energy level to a lower one and giving out light of energy hf = E₂ − E₁."
+  },
+  "hi": {
+   "name": "नील्स बोर",
+   "place": "कोपेनहेगन, डेनमार्क",
+   "field": "भौतिकी",
+   "gave": "परमाणु का बोर मॉडल (1913): निश्चित ऊर्जा स्तरों में इलेक्ट्रॉन, जो उनके बीच कूदने पर ठीक-ठीक रंग की रोशनी देते हैं; पूरकता का सिद्धांत; और कोपेनहेगन का वह संस्थान जहाँ क्वांटम यांत्रिकी का बड़ा हिस्सा बना। नोबेल पुरस्कार 1922।",
+   "ideas": [
+    "विरोधाभास से आगे बढ़ो। क्लासिकल भौतिकी कहती थी कि परमाणु ढह जाने चाहिए; उन्होंने जो काम करता था उसे रखा और एक नया नियम जोड़ा।",
+    "समझने के लिए बहस करो। आइंस्टाइन के साथ उनकी लंबी, दोस्ताना बहसों ने दोनों तरफ़ से क्वांटम सिद्धांत को और धारदार बनाया।",
+    "समुदाय बनाओ। कई देशों के युवा भौतिकविद साथ काम करने उनके संस्थान में आए।"
+   ],
+   "copy": "किसी सवाल पर तुमसे असहमत कोई व्यक्ति खोजो और साथ मिलकर, सावधानी और विनम्रता से, तब तक बहस करो जब तक दोनों ज़्यादा न समझ लें।",
+   "sketch": "एक इलेक्ट्रॉन ऊँचे ऊर्जा स्तर से नीचे आता है और hf = E₂ − E₁ ऊर्जा की रोशनी देता है।"
+  }
+ },
+ {
+  "slug": "schrodinger",
+  "region": "world",
+  "years": "1887–1961",
+  "born": 1887,
+  "tags": [
+   "physics",
+   "chembio"
+  ],
+  "en": {
+   "name": "Erwin Schrödinger",
+   "place": "Vienna, Austria",
+   "field": "Physics",
+   "gave": "The Schrödinger equation (1926), which tells how a quantum state changes in time; the cat thought experiment (1935) about superposition; and the book What Is Life? (1944), which inspired early molecular biologists. Nobel Prize 1933.",
+   "ideas": [
+    "Treat matter as a wave. Building on de Broglie's idea, he wrote the wave equation for electrons.",
+    "Use a thought experiment to expose a problem. His cat showed how strange superposition becomes when applied to everyday objects.",
+    "Cross into other sciences. His questions about how living things store information influenced the scientists who found DNA's structure."
+   ],
+   "copy": "Take an idea from one subject and ask what it would mean in another: waves in music and in atoms, information in computers and in cells.",
+   "sketch": "His equation, iħ ∂ψ/∂t = Hψ, and a standing wave of the kind it describes."
+  },
+  "hi": {
+   "name": "एर्विन श्रोडिंगर",
+   "place": "वियना, ऑस्ट्रिया",
+   "field": "भौतिकी",
+   "gave": "श्रोडिंगर समीकरण (1926), जो बताता है कि क्वांटम अवस्था समय के साथ कैसे बदलती है; superposition पर बिल्ली वाला विचार-प्रयोग (1935); और किताब What Is Life? (1944), जिसने शुरुआती आणविक जीवविज्ञानियों को प्रेरित किया। नोबेल पुरस्कार 1933।",
+   "ideas": [
+    "पदार्थ को तरंग की तरह देखो। डी ब्रॉय के विचार पर बनाते हुए उन्होंने इलेक्ट्रॉनों का तरंग समीकरण लिखा।",
+    "विचार-प्रयोग से समस्या उजागर करो। उनकी बिल्ली ने दिखाया कि रोज़ की चीज़ों पर लागू करने पर superposition कितना अजीब हो जाता है।",
+    "दूसरे विज्ञानों में भी जाओ। जीव जानकारी कैसे रखते हैं, इस पर उनके सवालों ने DNA की संरचना खोजने वाले वैज्ञानिकों को प्रभावित किया।"
+   ],
+   "copy": "एक विषय का विचार लो और पूछो कि दूसरे विषय में उसका क्या अर्थ होगा: संगीत और परमाणुओं में तरंगें, कंप्यूटर और कोशिकाओं में जानकारी।",
+   "sketch": "उनका समीकरण iħ ∂ψ/∂t = Hψ, और उसी तरह की एक अप्रगामी तरंग।"
+  }
+ },
+ {
+  "slug": "heisenberg",
+  "region": "world",
+  "years": "1901–1976",
+  "born": 1901,
+  "tags": [
+   "physics"
+  ],
+  "en": {
+   "name": "Werner Heisenberg",
+   "place": "Würzburg, Germany",
+   "field": "Physics",
+   "gave": "Matrix mechanics (1925), the first complete form of quantum mechanics, and the uncertainty principle (1927): position and momentum cannot both be sharp, Δx Δp ≥ ħ/2. Nobel Prize 1932.",
+   "ideas": [
+    "Build only on what can be observed. In 1925 he dropped electron orbits, which nobody could see, and worked only with measurable frequencies and intensities.",
+    "Accept strange mathematics if it works. In his theory, position times momentum differs from momentum times position.",
+    "A limit is knowledge too. The uncertainty principle is not a flaw of instruments; it is how nature is."
+   ],
+   "copy": "When you are stuck, list exactly what you can measure or know for certain, and rebuild your reasoning from that list alone.",
+   "sketch": "A wave packet: squeezed narrow in position, it must spread wide in momentum."
+  },
+  "hi": {
+   "name": "वर्नर हाइज़ेनबर्ग",
+   "place": "वुर्ट्सबर्ग, जर्मनी",
+   "field": "भौतिकी",
+   "gave": "Matrix mechanics (1925), क्वांटम यांत्रिकी का पहला पूरा रूप, और अनिश्चितता का सिद्धांत (1927): स्थिति और संवेग दोनों एक साथ सटीक नहीं हो सकते, Δx Δp ≥ ħ/2। नोबेल पुरस्कार 1932।",
+   "ideas": [
+    "सिर्फ़ उस पर बनाओ जो देखा जा सके। 1925 में उन्होंने इलेक्ट्रॉन की कक्षाएँ छोड़ दीं, जिन्हें कोई देख नहीं सकता था, और सिर्फ़ मापी जा सकने वाली आवृत्तियों और तीव्रताओं से काम किया।",
+    "अजीब गणित स्वीकार करो अगर वह काम करे। उनके सिद्धांत में स्थिति गुणा संवेग, संवेग गुणा स्थिति से अलग है।",
+    "सीमा भी ज्ञान है। अनिश्चितता का सिद्धांत उपकरणों की कमी नहीं है; प्रकृति ऐसी ही है।"
+   ],
+   "copy": "जब अटको, तो ठीक-ठीक लिखो कि तुम क्या माप या पक्के तौर पर जान सकते हो, और सिर्फ़ उसी सूची से अपना तर्क फिर से बनाओ।",
+   "sketch": "एक तरंग-पैकेट: स्थिति में संकरा करो, तो संवेग में चौड़ा फैलना ही पड़ता है।"
+  }
+ },
+ {
+  "slug": "dirac",
+  "region": "world",
+  "years": "1902–1984",
+  "born": 1902,
+  "tags": [
+   "physics",
+   "maths"
+  ],
+  "en": {
+   "name": "Paul Dirac",
+   "place": "Bristol, England",
+   "field": "Physics",
+   "gave": "The Dirac equation (1928), joining quantum mechanics with special relativity, which predicted antimatter, found in 1932 as the positron; and the bra-ket notation |ψ⟩ used throughout quantum computing. Nobel Prize 1933.",
+   "ideas": [
+    "Let beauty guide you. He believed a correct law of nature should have mathematical beauty, and searched for equations that did.",
+    "Trust the mathematics. His equation had solutions that seemed meaningless; he took them seriously and predicted a new particle.",
+    "Say exactly what you mean. He was famous for brief, precise answers and for notation that makes calculations clean."
+   ],
+   "copy": "Learn one notation so well that you use it without thinking. In quantum computing that notation is Dirac's |ψ⟩.",
+   "sketch": "The notation he invented: |0⟩, |1⟩ and ⟨φ|ψ⟩."
+  },
+  "hi": {
+   "name": "पॉल डिरैक",
+   "place": "ब्रिस्टल, इंग्लैंड",
+   "field": "भौतिकी",
+   "gave": "डिरैक समीकरण (1928), जो क्वांटम यांत्रिकी को विशेष सापेक्षता से जोड़ता है और जिसने प्रतिपदार्थ की भविष्यवाणी की, जो 1932 में positron के रूप में मिला; और bra-ket चिह्न |ψ⟩, जो पूरी quantum computing में इस्तेमाल होता है। नोबेल पुरस्कार 1933।",
+   "ideas": [
+    "सुंदरता को मार्गदर्शक बनाओ। उनका मानना था कि प्रकृति के सही नियम में गणितीय सुंदरता होनी चाहिए, और उन्होंने ऐसे समीकरण खोजे।",
+    "गणित पर भरोसा करो। उनके समीकरण के कुछ हल अर्थहीन लगते थे; उन्होंने उन्हें गंभीरता से लिया और एक नए कण की भविष्यवाणी की।",
+    "ठीक वही कहो जो कहना है। वे छोटे, सटीक जवाबों और ऐसे चिह्नों के लिए प्रसिद्ध थे जो गणना को साफ़ बनाते हैं।"
+   ],
+   "copy": "एक चिह्न-पद्धति इतनी अच्छी तरह सीखो कि बिना सोचे इस्तेमाल कर सको। Quantum computing में वह डिरैक का |ψ⟩ है।",
+   "sketch": "उनके बनाए चिह्न: |0⟩, |1⟩ और ⟨φ|ψ⟩।"
+  }
+ },
+ {
+  "slug": "von-neumann",
+  "region": "world",
+  "years": "1903–1957",
+  "born": 1903,
+  "tags": [
+   "maths",
+   "tech",
+   "physics"
+  ],
+  "en": {
+   "name": "John von Neumann",
+   "place": "Born in Budapest, Hungary; worked in the USA",
+   "field": "Mathematics, computing, physics",
+   "gave": "The mathematical foundations of quantum mechanics in Hilbert spaces (1932), game theory, and the design described in his 1945 report on the EDVAC computer, with program and data stored in the same memory, which almost every computer still follows.",
+   "ideas": [
+    "Carry methods between fields. He worked in pure mathematics, physics, economics and computing, and moved ideas from one to another.",
+    "Make intuition precise. He turned quantum theory's rules into exact mathematics.",
+    "Design for generality. Keeping the program in memory, like data, lets one machine do any task."
+   ],
+   "copy": "Learn the foundations of one subject so well that you can carry its methods into another.",
+   "sketch": "A processor, a memory holding both program and data, and input and output."
+  },
+  "hi": {
+   "name": "जॉन फ़ॉन न्यूमन",
+   "place": "बुडापेस्ट, हंगरी में जन्म; अमेरिका में काम",
+   "field": "गणित, कंप्यूटिंग, भौतिकी",
+   "gave": "Hilbert spaces में क्वांटम यांत्रिकी की गणितीय नींव (1932), खेल सिद्धांत, और EDVAC कंप्यूटर पर उनकी 1945 की रिपोर्ट का डिज़ाइन, जिसमें प्रोग्राम और डेटा एक ही memory में रहते हैं, और जिसे लगभग हर कंप्यूटर आज भी अपनाता है।",
+   "ideas": [
+    "तरीक़ों को एक क्षेत्र से दूसरे में ले जाओ। उन्होंने शुद्ध गणित, भौतिकी, अर्थशास्त्र और कंप्यूटिंग में काम किया, और विचारों को एक से दूसरे में ले गए।",
+    "अंतर्ज्ञान को सटीक बनाओ। उन्होंने क्वांटम सिद्धांत के नियमों को सटीक गणित में बदला।",
+    "सामान्य उपयोग के लिए डिज़ाइन करो। प्रोग्राम को डेटा की तरह memory में रखने से एक ही मशीन कोई भी काम कर सकती है।"
+   ],
+   "copy": "एक विषय की नींव इतनी अच्छी तरह सीखो कि उसके तरीक़े दूसरे विषय में ले जा सको।",
+   "sketch": "एक processor, प्रोग्राम और डेटा दोनों रखने वाली memory, और input व output।"
+  }
+ },
+ {
+  "slug": "godel",
+  "region": "world",
+  "years": "1906–1978",
+  "born": 1906,
+  "tags": [
+   "maths",
+   "tech"
+  ],
+  "en": {
+   "name": "Kurt Gödel",
+   "place": "Born in Brno; worked in Vienna and Princeton",
+   "field": "Logic, mathematics",
+   "gave": "The incompleteness theorems (1931): any consistent system of axioms strong enough for basic arithmetic contains true statements it cannot prove, and cannot prove its own consistency.",
+   "ideas": [
+    "Use a method to find its own limits. He turned statements about proofs into statements about numbers, so arithmetic could talk about itself.",
+    "Be exact about what “proof” means. His results depend on defining proof as a precise, checkable process.",
+    "Young minds can settle old questions. He proved the theorems at 24."
+   ],
+   "copy": "Write a sentence that talks about itself, such as “This sentence has five words”, and decide whether it is true. That is the seed of Gödel's idea.",
+   "sketch": "A statement that points back at itself: “This statement cannot be proved.”"
+  },
+  "hi": {
+   "name": "कर्ट गोडेल",
+   "place": "ब्रनो में जन्म; वियना और प्रिंसटन में काम",
+   "field": "तर्कशास्त्र, गणित",
+   "gave": "अपूर्णता प्रमेय (1931): सामान्य अंकगणित के लिए पर्याप्त मज़बूत, संगत अभिगृहीतों की हर व्यवस्था में ऐसे सच कथन होते हैं जिन्हें वह सिद्ध नहीं कर सकती, और वह अपनी संगतता भी सिद्ध नहीं कर सकती।",
+   "ideas": [
+    "किसी विधि से ही उसकी सीमाएँ खोजो। उन्होंने उपपत्तियों के बारे में कथनों को संख्याओं के बारे में कथनों में बदला, ताकि अंकगणित अपने बारे में बोल सके।",
+    "“उपपत्ति” के अर्थ में सटीक रहो। उनके नतीजे इस पर टिके हैं कि उपपत्ति एक सटीक, जाँची जा सकने वाली प्रक्रिया है।",
+    "युवा दिमाग़ पुराने सवाल सुलझा सकते हैं। उन्होंने ये प्रमेय 24 साल की उम्र में सिद्ध किए।"
+   ],
+   "copy": "ऐसा वाक्य लिखो जो अपने बारे में बोले, जैसे “इस वाक्य में पाँच शब्द हैं”, और तय करो कि वह सच है या नहीं। गोडेल के विचार का बीज यही है।",
+   "sketch": "एक कथन जो अपनी ही ओर इशारा करता है: “यह कथन सिद्ध नहीं किया जा सकता।”"
+  }
+ },
+ {
+  "slug": "chandrasekhar",
+  "region": "india",
+  "years": "1910–1995",
+  "born": 1910,
+  "tags": [
+   "physics",
+   "india"
+  ],
+  "en": {
+   "name": "Subrahmanyan Chandrasekhar",
+   "place": "Born in Lahore (then British India), studied in Madras, worked in Chicago",
+   "field": "Astrophysics",
+   "gave": "The Chandrasekhar limit, worked out at 19 on the voyage to England (1930): a white dwarf star heavier than about 1.4 times the Sun cannot hold itself up and must collapse, the road to neutron stars and black holes. Nobel Prize 1983.",
+   "ideas": [
+    "Bring the newest physics to a real question. He combined relativity and quantum physics to ask what holds a dead star up.",
+    "Hold your ground with evidence. The famous astronomer Arthur Eddington publicly ridiculed the result; Chandrasekhar was right.",
+    "Master one field, then move on. Every decade or so he took up a new subject, studied it completely, and wrote a definitive book on it."
+   ],
+   "copy": "Choose one topic and aim to understand it so completely that you could write a full set of notes on it. Then choose the next.",
+   "sketch": "A star's mass against its fate: below about 1.4 Suns a white dwarf survives; above it, collapse."
+  },
+  "hi": {
+   "name": "सुब्रह्मण्यन चंद्रशेखर",
+   "place": "लाहौर (तब ब्रिटिश भारत) में जन्म, मद्रास में पढ़ाई, शिकागो में काम",
+   "field": "खगोलभौतिकी",
+   "gave": "चंद्रशेखर सीमा, जो उन्होंने 19 साल की उम्र में इंग्लैंड की समुद्री यात्रा पर निकाली (1930): सूर्य से लगभग 1.4 गुना से भारी श्वेत वामन तारा ख़ुद को थाम नहीं सकता और उसे ढहना ही होगा; यही न्यूट्रॉन तारों और ब्लैक होल का रास्ता है। नोबेल पुरस्कार 1983।",
+   "ideas": [
+    "सबसे नई भौतिकी को असली सवाल पर लगाओ। उन्होंने सापेक्षता और क्वांटम भौतिकी को जोड़कर पूछा कि मरे हुए तारे को क्या थामे रखता है।",
+    "प्रमाण के साथ अपनी बात पर टिके रहो। प्रसिद्ध खगोलशास्त्री आर्थर एडिंगटन ने सबके सामने इस नतीजे का मज़ाक उड़ाया; सही चंद्रशेखर थे।",
+    "एक क्षेत्र में महारत लो, फिर आगे बढ़ो। लगभग हर दशक में उन्होंने एक नया विषय उठाया, उसे पूरा पढ़ा, और उस पर एक प्रामाणिक किताब लिखी।"
+   ],
+   "copy": "एक विषय चुनो और उसे इतनी पूरी तरह समझने का लक्ष्य रखो कि उस पर पूरे नोट्स लिख सको। फिर अगला चुनो।",
+   "sketch": "तारे का द्रव्यमान और उसका भविष्य: लगभग 1.4 सूर्य से नीचे श्वेत वामन बचा रहता है; उसके ऊपर, ढहना।"
+  }
+ },
+ {
+  "slug": "shannon",
+  "region": "world",
+  "years": "1916–2001",
+  "born": 1916,
+  "tags": [
+   "maths",
+   "tech"
+  ],
+  "en": {
+   "name": "Claude Shannon",
+   "place": "Petoskey, Michigan, USA",
+   "field": "Mathematics, electrical engineering",
+   "gave": "Information theory (1948): the bit as the unit of information, the limits of data compression, and the maximum rate at which information can be sent reliably over a noisy channel. In 1937 he showed that switching circuits can be designed with Boole's algebra.",
+   "ideas": [
+    "Define the quantity precisely. Once information had a number, its limits could be proved.",
+    "Ask what is possible before asking how. He proved that error-free communication was possible long before anyone knew how to build the codes.",
+    "Play builds understanding. He built juggling machines and a maze-solving mechanical mouse called Theseus."
+   ],
+   "copy": "Count the bits: how many yes-or-no questions do you need to guess any number from 1 to 1000? (Ten, because 2¹⁰ = 1024.)",
+   "sketch": "Source, encoder, noisy channel, decoder; and his formula H = −Σ p log₂ p."
+  },
+  "hi": {
+   "name": "क्लॉड शैनन",
+   "place": "पेटोस्की, मिशिगन, अमेरिका",
+   "field": "गणित, विद्युत इंजीनियरिंग",
+   "gave": "सूचना सिद्धांत (1948): सूचना की इकाई के रूप में bit, डेटा संपीडन की सीमाएँ, और शोर वाले चैनल पर भरोसेमंद ढंग से सूचना भेजने की अधिकतम दर। 1937 में उन्होंने दिखाया कि switching सर्किट बूल के बीजगणित से डिज़ाइन किए जा सकते हैं।",
+   "ideas": [
+    "राशि को सटीक परिभाषित करो। जब सूचना को एक संख्या मिल गई, तो उसकी सीमाएँ सिद्ध की जा सकीं।",
+    "“कैसे” से पहले पूछो कि “क्या संभव है”। उन्होंने सिद्ध किया कि बिना ग़लती का संचार संभव है, बहुत पहले जब कोई नहीं जानता था कि उसके codes कैसे बनाएँ।",
+    "खेल से समझ बनती है। उन्होंने करतब दिखाने वाली मशीनें और Theseus नाम का भूलभुलैया हल करने वाला यांत्रिक चूहा बनाया।"
+   ],
+   "copy": "Bits गिनो: 1 से 1000 तक की कोई भी संख्या बूझने के लिए कितने हाँ-या-ना सवाल चाहिए? (दस, क्योंकि 2¹⁰ = 1024।)",
+   "sketch": "स्रोत, encoder, शोर वाला चैनल, decoder; और उनका सूत्र H = −Σ p log₂ p।"
+  }
+ },
+ {
+  "slug": "franklin",
+  "region": "world",
+  "years": "1920–1958",
+  "born": 1920,
+  "tags": [
+   "chembio",
+   "physics"
+  ],
+  "en": {
+   "name": "Rosalind Franklin",
+   "place": "London, England",
+   "field": "Chemistry, X-ray crystallography",
+   "gave": "X-ray diffraction images of DNA, including Photograph 51 (1952), which were key evidence for the double helix; and pioneering work on the structure of coal and of viruses.",
+   "ideas": [
+    "Precision in the experiment. She controlled her DNA samples' humidity carefully and found two forms of DNA, which made clear pictures possible.",
+    "Let the data decide. She would not commit to a model until the measurements supported it.",
+    "Credit matters. Her unpublished data were shown to others without her knowledge; science works best when everyone's contribution is recorded fairly."
+   ],
+   "copy": "Record exactly how you did each experiment, so that you, or anyone else, can repeat it and get the same result.",
+   "sketch": "An X-shaped X-ray pattern, the sign of a helix, like Photograph 51."
+  },
+  "hi": {
+   "name": "रोज़ालिंड फ़्रैंकलिन",
+   "place": "लंदन, इंग्लैंड",
+   "field": "रसायन, X-ray crystallography",
+   "gave": "DNA की X-ray विवर्तन तस्वीरें, जिनमें Photograph 51 (1952) भी है, जो double helix का मुख्य प्रमाण थीं; और कोयले व वायरसों की संरचना पर अग्रणी काम।",
+   "ideas": [
+    "प्रयोग में सटीकता। उन्होंने DNA नमूनों की नमी को सावधानी से नियंत्रित किया और DNA के दो रूप खोजे, जिससे साफ़ तस्वीरें संभव हुईं।",
+    "आँकड़ों को फ़ैसला करने दो। जब तक माप समर्थन न करें, वे किसी मॉडल को स्वीकार नहीं करती थीं।",
+    "श्रेय मायने रखता है। उनके अप्रकाशित आँकड़े उनकी जानकारी के बिना दूसरों को दिखाए गए; विज्ञान तब सबसे अच्छा चलता है जब हर किसी का योगदान ईमानदारी से दर्ज हो।"
+   ],
+   "copy": "हर प्रयोग ठीक-ठीक कैसे किया, यह लिखो, ताकि तुम या कोई और उसे दोहराकर वही नतीजा पा सके।",
+   "sketch": "X आकार का X-ray पैटर्न, helix का संकेत, Photograph 51 जैसा।"
+  }
+ },
+ {
+  "slug": "hawking",
+  "region": "world",
+  "years": "1942–2018",
+  "born": 1942,
+  "tags": [
+   "physics"
+  ],
+  "en": {
+   "name": "Stephen Hawking",
+   "place": "Oxford, England; worked in Cambridge",
+   "field": "Physics, cosmology",
+   "gave": "Hawking radiation (1974): black holes should glow faintly and slowly evaporate, a result that joins quantum theory, relativity and thermodynamics; theorems with Roger Penrose on the beginning of the universe; and A Brief History of Time (1988).",
+   "ideas": [
+    "Work around limits. Diagnosed with motor neurone disease at 21, he did nearly all his research while losing the use of his hands and, later, his voice.",
+    "Think in pictures. Unable to write long equations, he developed geometric ways of reasoning about space-time.",
+    "Explain to everyone. He wrote for the public so that anyone could share the questions he worked on."
+   ],
+   "copy": "Practise working through a whole problem in your head, with a picture, before writing anything down.",
+   "sketch": "A black hole's horizon: a pair of particles appears, one falls in, the other escapes as Hawking radiation."
+  },
+  "hi": {
+   "name": "स्टीफ़न हॉकिंग",
+   "place": "ऑक्सफ़र्ड, इंग्लैंड; कैम्ब्रिज में काम",
+   "field": "भौतिकी, ब्रह्मांड विज्ञान",
+   "gave": "हॉकिंग विकिरण (1974): ब्लैक होल को हल्का-सा चमकना और धीरे-धीरे भाप बनकर ख़त्म होना चाहिए, एक ऐसा नतीजा जो क्वांटम सिद्धांत, सापेक्षता और ऊष्मागतिकी को जोड़ता है; रॉजर पेनरोज़ के साथ ब्रह्मांड की शुरुआत पर प्रमेय; और A Brief History of Time (1988)।",
+   "ideas": [
+    "सीमाओं के आसपास रास्ता बनाओ। 21 साल की उम्र में motor neurone disease का पता चलने के बाद, उन्होंने लगभग सारा शोध तब किया जब उनके हाथ और बाद में आवाज़ साथ छोड़ते जा रहे थे।",
+    "चित्रों में सोचो। लंबे समीकरण न लिख पाने के कारण उन्होंने space-time पर तर्क करने के ज्यामितीय तरीक़े विकसित किए।",
+    "सबको समझाओ। उन्होंने आम लोगों के लिए लिखा ताकि कोई भी उन सवालों में साझेदार बन सके जिन पर वे काम करते थे।"
+   ],
+   "copy": "कुछ भी लिखने से पहले, पूरे सवाल को एक चित्र के साथ अपने दिमाग़ में हल करने का अभ्यास करो।",
+   "sketch": "ब्लैक होल का क्षितिज: कणों का एक जोड़ा बनता है, एक अंदर गिरता है, दूसरा हॉकिंग विकिरण बनकर निकल जाता है।"
+  }
+ },
+ {
+  "slug": "pingala",
+  "region": "india",
+  "years": "c. 3rd–2nd century BCE",
+  "born": -200,
+  "tags": [
+   "maths",
+   "tech",
+   "india"
+  ],
+  "link": [
+   "/programming/bits-and-bytes/",
+   "Course 3: bits and bytes",
+   "कोर्स 3: bits और bytes"
+  ],
+  "en": {
+   "name": "Pingala",
+   "place": "Ancient India",
+   "field": "Mathematics of verse (prosody)",
+   "gave": "The Chandaḥśāstra, a study of the rhythm of Sanskrit verse. To list every pattern of short and long syllables it gives step-by-step rules that amount to counting in binary: n syllables give 2ⁿ patterns.",
+   "ideas": [
+    "Find mathematics where nobody expects it. Pingala treated rhythm, the order of short (laghu) and long (guru) syllables, as something to count and list exactly.",
+    "Write the method as a rule. His short sūtras say how to list all the patterns in order, how to find the position of a given pattern, and how many patterns have a given number of long syllables.",
+    "Leave work others can build on. Later commentators, such as Halāyudha in the 10th century, explained his rules with a triangle of numbers that we now call Pascal's triangle."
+   ],
+   "copy": "When you need to count possibilities, list them in a fixed order for 1, 2 and 3 items first, and look for the rule that builds each list from the one before.",
+   "sketch": "All eight patterns of three short (◡) and long (—) syllables, in order: counting in binary."
+  },
+  "hi": {
+   "name": "पिंगल",
+   "place": "प्राचीन भारत",
+   "field": "छंद का गणित",
+   "gave": "छंदःशास्त्र, संस्कृत छंदों की लय का अध्ययन। लघु और गुरु अक्षरों के हर पैटर्न की सूची बनाने के लिए इसमें क़दम-दर-क़दम नियम हैं जो असल में binary गिनती के बराबर हैं: n अक्षरों के 2ⁿ पैटर्न।",
+   "ideas": [
+    "वहाँ गणित खोजो जहाँ कोई उम्मीद न करे। पिंगल ने लय, यानी लघु और गुरु अक्षरों के क्रम, को ठीक-ठीक गिनने और सूचीबद्ध करने की चीज़ माना।",
+    "तरीक़े को नियम के रूप में लिखो। उनके छोटे सूत्र बताते हैं कि सारे पैटर्न क्रम से कैसे लिखें, किसी पैटर्न का स्थान कैसे निकालें, और कितने पैटर्न में तय संख्या में गुरु अक्षर होते हैं।",
+    "ऐसा काम छोड़ो जिस पर दूसरे आगे बना सकें। बाद के टीकाकारों, जैसे दसवीं सदी के हलायुध, ने उनके नियमों को संख्याओं के एक त्रिभुज से समझाया, जिसे आज Pascal का त्रिभुज कहते हैं।"
+   ],
+   "copy": "जब संभावनाएँ गिननी हों, पहले 1, 2 और 3 चीज़ों के लिए उन्हें तय क्रम में लिखो, और वह नियम खोजो जो हर सूची को पिछली से बनाता है।",
+   "sketch": "तीन लघु (◡) और गुरु (—) अक्षरों के सभी आठ पैटर्न, क्रम से: binary में गिनती।"
+  }
+ },
+ {
+  "slug": "bhaskara",
+  "region": "india",
+  "years": "1114–1185",
+  "born": 1114,
+  "tags": [
+   "maths",
+   "india"
+  ],
+  "en": {
+   "name": "Bhāskara II (Bhāskarāchārya)",
+   "place": "Headed the observatory at Ujjain",
+   "field": "Mathematics, astronomy",
+   "gave": "The Siddhānta Śiromaṇi (1150), including the Līlāvatī on arithmetic and the Bījagaṇita on algebra, and the chakravāla method for equations such as 61x² + 1 = y², whose smallest solution has y = 1,766,319,049.",
+   "ideas": [
+    "Teach through problems. The Līlāvatī explains arithmetic and geometry through puzzles and worked questions, which is why it was studied for centuries.",
+    "Make a method that always finishes. The chakravāla (\"wheel\") method repeats a cycle of steps that keeps improving an approximate solution until it becomes exact.",
+    "Think about change at an instant. To find where a planet is at a given moment, he worked with its instantaneous motion, an idea close to the derivative of calculus."
+   ],
+   "copy": "When you solve an equation by trial, write down what you changed at each try and why; that record is the start of a method.",
+   "sketch": "The chakravāla \"wheel\" of steps closing in on a solution of 61x² + 1 = y²."
+  },
+  "hi": {
+   "name": "भास्कर द्वितीय (भास्कराचार्य)",
+   "place": "उज्जैन की वेधशाला के प्रमुख",
+   "field": "गणित, खगोलशास्त्र",
+   "gave": "सिद्धांत शिरोमणि (1150), जिसमें अंकगणित पर लीलावती और बीजगणित पर बीजगणित शामिल हैं; और 61x² + 1 = y² जैसे समीकरणों के लिए चक्रवाल विधि, जिसके सबसे छोटे हल में y = 1,766,319,049 है।",
+   "ideas": [
+    "सवालों के ज़रिए पढ़ाओ। लीलावती अंकगणित और ज्यामिति को पहेलियों और हल किए हुए सवालों से समझाती है, इसीलिए सदियों तक पढ़ी गई।",
+    "ऐसा तरीक़ा बनाओ जो हमेशा पूरा हो। चक्रवाल (\"पहिया\") विधि क़दमों का एक चक्र दोहराती है जो अनुमानित हल को बेहतर करता जाता है, जब तक वह सटीक न हो जाए।",
+    "एक क्षण के बदलाव के बारे में सोचो। किसी ग्रह की किसी क्षण की स्थिति निकालने के लिए उन्होंने उसकी तात्कालिक गति से काम किया, जो कैलकुलस के अवकलज (derivative) के विचार के क़रीब है।"
+   ],
+   "copy": "जब कोई समीकरण आज़मा-आज़माकर हल करो, तो हर कोशिश में क्या बदला और क्यों, लिखते जाओ; वही लेखा एक विधि की शुरुआत है।",
+   "sketch": "चक्रवाल \"पहिए\" के क़दम, जो 61x² + 1 = y² के हल तक पहुँचते हैं।"
+  }
+ },
+ {
+  "slug": "visvesvaraya",
+  "region": "india",
+  "years": "1861–1962",
+  "born": 1861.7,
+  "tags": [
+   "tech",
+   "india"
+  ],
+  "en": {
+   "name": "M. Visvesvaraya",
+   "place": "Muddenahalli, Karnataka",
+   "field": "Civil engineering",
+   "gave": "Automatic sluice gates for reservoirs, first installed at Khadakwasla near Pune in 1903; the Krishna Raja Sagara dam near Mysuru; and flood protection for Hyderabad. India celebrates his birthday, 15 September, as Engineers' Day. Bharat Ratna, 1955.",
+   "ideas": [
+    "Let the design do the work. His gates open by themselves when the water rises above a set level and close when it falls, saving both the water and the dam.",
+    "Engineer for the people downstream. After the Musi river flood of 1908, he designed the works that protected Hyderabad.",
+    "Plan the whole system. As Diwan of Mysore (1912–1918) he set up industries, colleges and a bank, treating a whole state as a system to be engineered."
+   ],
+   "copy": "For anything you design, ask what happens when nobody is watching it, and make it fail safely.",
+   "sketch": "A dam whose gate opens by itself when the water rises above a set level."
+  },
+  "hi": {
+   "name": "एम. विश्वेश्वरैया",
+   "place": "मुद्देनहल्ली, कर्नाटक",
+   "field": "सिविल इंजीनियरिंग",
+   "gave": "जलाशयों के लिए स्वचालित sluice gates, जो पहली बार 1903 में पुणे के पास खड़कवासला में लगे; मैसूरु के पास कृष्णराज सागर बाँध; और हैदराबाद के लिए बाढ़-सुरक्षा। भारत उनका जन्मदिन, 15 सितंबर, इंजीनियर्स डे के रूप में मनाता है। भारत रत्न, 1955।",
+   "ideas": [
+    "डिज़ाइन को काम करने दो। उनके गेट पानी एक तय स्तर से ऊपर जाने पर अपने आप खुलते और नीचे आने पर बंद होते हैं, जिससे पानी और बाँध दोनों बचते हैं।",
+    "नीचे की ओर रहने वालों के लिए इंजीनियरिंग करो। 1908 की मूसी नदी की बाढ़ के बाद उन्होंने वह व्यवस्था बनाई जिसने हैदराबाद को बचाया।",
+    "पूरी व्यवस्था की योजना बनाओ। मैसूर के दीवान (1912–1918) के रूप में उन्होंने उद्योग, कॉलेज और एक बैंक बनाए, पूरे राज्य को इंजीनियरिंग की जाने वाली व्यवस्था मानकर।"
+   ],
+   "copy": "जो भी बनाओ, पूछो कि जब कोई देख न रहा हो तब क्या होगा, और उसे इस तरह बनाओ कि वह सुरक्षित ढंग से विफल हो।",
+   "sketch": "एक बाँध, जिसका गेट पानी तय स्तर से ऊपर जाने पर अपने आप खुलता है।"
+  }
+ },
+ {
+  "slug": "mahalanobis",
+  "region": "india",
+  "years": "1893–1972",
+  "born": 1893.49,
+  "tags": [
+   "maths",
+   "india"
+  ],
+  "en": {
+   "name": "P. C. Mahalanobis",
+   "place": "Kolkata",
+   "field": "Statistics",
+   "gave": "The Indian Statistical Institute (1931); the Mahalanobis distance (1936), which measures how unusual a data point is while allowing for how the data spread and vary together; and India's National Sample Survey (1950). India marks his birthday, 29 June, as Statistics Day.",
+   "ideas": [
+    "Learn a new field when a problem needs it. Trained as a physicist, he taught himself statistics after finding volumes of the journal Biometrika in Cambridge.",
+    "Measure a country by sampling it well. He designed large surveys that estimated crop yields and household spending across India from carefully chosen samples.",
+    "Use numbers to plan. His model shaped India's Second Five-Year Plan (1956)."
+   ],
+   "copy": "Before trusting an average, plot the data. Look at how they spread, not only where the centre is.",
+   "sketch": "A cloud of data with oval contours: the Mahalanobis distance counts how many contours out a point lies."
+  },
+  "hi": {
+   "name": "प्रशांत चंद्र महालनोबिस",
+   "place": "कोलकाता",
+   "field": "सांख्यिकी",
+   "gave": "भारतीय सांख्यिकी संस्थान (1931); महालनोबिस दूरी (1936), जो बताती है कि कोई आँकड़ा कितना असामान्य है, आँकड़ों के फैलाव और साथ-साथ बदलने को ध्यान में रखते हुए; और भारत का राष्ट्रीय प्रतिदर्श सर्वेक्षण (1950)। भारत उनका जन्मदिन, 29 जून, सांख्यिकी दिवस के रूप में मनाता है।",
+   "ideas": [
+    "समस्या माँगे तो नया क्षेत्र सीखो। भौतिकी में प्रशिक्षित होकर, कैम्ब्रिज में Biometrika पत्रिका के खंड मिलने के बाद उन्होंने सांख्यिकी ख़ुद सीखी।",
+    "देश को अच्छे नमूने से मापो। उन्होंने बड़े सर्वेक्षण डिज़ाइन किए जो सावधानी से चुने नमूनों से पूरे भारत में फ़सल की पैदावार और घरेलू ख़र्च का अनुमान लगाते थे।",
+    "योजना के लिए संख्याओं का इस्तेमाल करो। उनके मॉडल ने भारत की दूसरी पंचवर्षीय योजना (1956) को आकार दिया।"
+   ],
+   "copy": "किसी औसत पर भरोसा करने से पहले आँकड़ों का चित्र बनाओ। सिर्फ़ केंद्र नहीं, फैलाव भी देखो।",
+   "sketch": "अंडाकार रेखाओं वाला आँकड़ों का बादल: महालनोबिस दूरी गिनती है कि कोई बिंदु कितनी रेखाएँ बाहर है।"
+  }
+ },
+ {
+  "slug": "saha",
+  "region": "india",
+  "years": "1893–1956",
+  "born": 1893.76,
+  "tags": [
+   "physics",
+   "india"
+  ],
+  "en": {
+   "name": "Meghnad Saha",
+   "place": "Born near Dhaka; worked in Allahabad and Kolkata",
+   "field": "Physics, astrophysics",
+   "gave": "The Saha ionisation equation (1920), which tells how much of a hot gas is ionised at a given temperature and pressure. It let astronomers read the temperatures of stars from their spectra. He founded what is now the Saha Institute of Nuclear Physics.",
+   "ideas": [
+    "Carry a law from the laboratory to the stars. He applied thermodynamics and the new atomic theory to the outer layers of stars, and their spectra fell into order.",
+    "Rise above where you start. He came from a poor family and studied on scholarships.",
+    "Use science for the public good. He planned river-valley projects to control floods, led the reform of India's national calendar (1952), and was elected to Parliament in 1952."
+   ],
+   "copy": "Take a formula from one chapter and ask where else in the world it applies. The best ideas travel.",
+   "sketch": "A star and its spectrum: dark lines whose strengths depend on temperature, through ionisation."
+  },
+  "hi": {
+   "name": "मेघनाद साहा",
+   "place": "जन्म ढाका के पास; काम इलाहाबाद और कोलकाता में",
+   "field": "भौतिकी, खगोलभौतिकी",
+   "gave": "साहा आयनन समीकरण (1920), जो बताता है कि किसी तापमान और दाब पर गर्म गैस का कितना हिस्सा आयनित होता है। इससे खगोलविद तारों के स्पेक्ट्रम से उनका तापमान पढ़ सके। उन्होंने वह संस्थान बनाया जो आज साहा इंस्टीट्यूट ऑफ़ न्यूक्लियर फ़िज़िक्स है।",
+   "ideas": [
+    "प्रयोगशाला का नियम तारों तक ले जाओ। उन्होंने ऊष्मागतिकी और नए परमाणु सिद्धांत को तारों की बाहरी परतों पर लगाया, और उनके स्पेक्ट्रम क्रम में आ गए।",
+    "जहाँ से शुरू करो, उससे ऊपर उठो। वे एक ग़रीब परिवार से थे और छात्रवृत्तियों के सहारे पढ़े।",
+    "विज्ञान को जनहित में लगाओ। उन्होंने बाढ़ रोकने के लिए नदी-घाटी योजनाएँ बनाईं, भारत के राष्ट्रीय पंचांग के सुधार (1952) का नेतृत्व किया, और 1952 में संसद के लिए चुने गए।"
+   ],
+   "copy": "किसी एक अध्याय का सूत्र लो और पूछो कि दुनिया में और कहाँ लागू होता है। अच्छे विचार यात्रा करते हैं।",
+   "sketch": "एक तारा और उसका स्पेक्ट्रम: काली रेखाएँ, जिनकी गहराई आयनन के ज़रिए तापमान पर निर्भर है।"
+  }
+ },
+ {
+  "slug": "janaki-ammal",
+  "region": "india",
+  "years": "1897–1984",
+  "born": 1897,
+  "tags": [
+   "chembio",
+   "india"
+  ],
+  "en": {
+   "name": "E. K. Janaki Ammal",
+   "place": "Thalassery, Kerala",
+   "field": "Botany, genetics",
+   "gave": "Sweeter, higher-yielding sugarcane suited to Indian conditions, bred at the Sugarcane Breeding Station in Coimbatore, and the Chromosome Atlas of Cultivated Plants (1945), written with C. D. Darlington. She earned her PhD at the University of Michigan in 1931. Padma Shri, 1977.",
+   "ideas": [
+    "Study what lies underneath. She counted and compared chromosomes to understand how plants could be crossed and improved.",
+    "Go where the work is. She worked in Coimbatore, in Michigan, at the John Innes Institute and the Royal Horticultural Society in England, then came back to reorganise plant research in India.",
+    "Care about what you study. Later in life she worked to record and protect India's plants and the knowledge of the people who use them."
+   ],
+   "copy": "Grow two varieties of the same plant side by side and keep a weekly record of how they differ.",
+   "sketch": "A sugarcane stalk beside pairs of chromosomes."
+  },
+  "hi": {
+   "name": "ई. के. जानकी अम्मल",
+   "place": "थलस्सेरी, केरल",
+   "field": "वनस्पति विज्ञान, आनुवंशिकी",
+   "gave": "भारतीय परिस्थितियों के अनुकूल, ज़्यादा मीठा और ज़्यादा पैदावार वाला गन्ना, जो कोयंबटूर के गन्ना प्रजनन केंद्र में तैयार हुआ; और C. D. Darlington के साथ लिखी Chromosome Atlas of Cultivated Plants (1945)। उन्होंने 1931 में University of Michigan से PhD की। पद्म श्री, 1977।",
+   "ideas": [
+    "नीचे की चीज़ का अध्ययन करो। उन्होंने गुणसूत्र गिनकर और तुलना करके समझा कि पौधों को कैसे संकरित और बेहतर किया जा सकता है।",
+    "जहाँ काम हो, वहाँ जाओ। उन्होंने कोयंबटूर, मिशिगन, और इंग्लैंड के John Innes Institute और Royal Horticultural Society में काम किया, फिर भारत लौटकर यहाँ वनस्पति शोध को नए सिरे से व्यवस्थित किया।",
+    "जिसका अध्ययन करो, उसकी परवाह करो। बाद के जीवन में उन्होंने भारत के पौधों और उन्हें इस्तेमाल करने वाले लोगों के ज्ञान को दर्ज करने और बचाने का काम किया।"
+   ],
+   "copy": "एक ही पौधे की दो किस्में पास-पास उगाओ और हर हफ़्ते लिखो कि वे कैसे अलग हैं।",
+   "sketch": "गन्ने का तना और उसके पास गुणसूत्रों के जोड़े।"
+  }
+ },
+ {
+  "slug": "kaprekar",
+  "region": "india",
+  "years": "1905–1986",
+  "born": 1905.04,
+  "tags": [
+   "maths",
+   "india"
+  ],
+  "link": [
+   "/programming/",
+   "Course 3: C and Python",
+   "कोर्स 3: C और Python"
+  ],
+  "en": {
+   "name": "D. R. Kaprekar",
+   "place": "Born in Dahanu; taught in Devlali, Maharashtra",
+   "field": "Number theory, recreational mathematics",
+   "gave": "Kaprekar's routine: take a four-digit number whose digits are not all the same, subtract the smallest arrangement of its digits from the largest, and repeat. Within at most seven steps you reach 6174, Kaprekar's constant. He also discovered and named Kaprekar numbers, self numbers and Harshad numbers.",
+   "ideas": [
+    "Play with numbers every day. A school teacher in Devlali for more than thirty years, with no research post, he found his results by exploring patterns for the joy of it.",
+    "Keep going without recognition. He found the 6174 routine in 1946 and presented it in 1949, but it became famous only after Martin Gardner wrote about him in Scientific American in 1975.",
+    "Name what you find. \"Harshad\" means great joy in Sanskrit, which is how he felt about numbers divisible by the sum of their digits."
+   ],
+   "copy": "Try Kaprekar's routine on your birth year and count the steps to 6174. Then write a program that checks every four-digit number.",
+   "sketch": "Kaprekar's routine from 3524: 5432 − 2345 = 3087, then 8352, then 6174, which repeats for ever."
+  },
+  "hi": {
+   "name": "द. रा. कापरेकर",
+   "place": "जन्म डहाणू में; अध्यापन देवलाली, महाराष्ट्र में",
+   "field": "संख्या सिद्धांत, मनोरंजक गणित",
+   "gave": "कापरेकर की प्रक्रिया: कोई चार अंकों की संख्या लो जिसके सारे अंक एक जैसे न हों, उसके अंकों की सबसे बड़ी व्यवस्था में से सबसे छोटी घटाओ, और दोहराओ। अधिकतम सात क़दमों में तुम 6174 पर पहुँचते हो, जिसे कापरेकर स्थिरांक कहते हैं। उन्होंने कापरेकर संख्याएँ, self numbers और हर्षद संख्याएँ भी खोजीं और उन्हें नाम दिए।",
+   "ideas": [
+    "हर दिन संख्याओं से खेलो। देवलाली में तीस साल से ज़्यादा स्कूल शिक्षक रहे, बिना किसी शोध पद के, उन्होंने अपने नतीजे आनंद के लिए पैटर्न खोजते हुए पाए।",
+    "पहचान के बिना भी चलते रहो। उन्होंने 6174 वाली प्रक्रिया 1946 में खोजी और 1949 में प्रस्तुत की, पर वह प्रसिद्ध तब हुई जब 1975 में Martin Gardner ने Scientific American में उनके बारे में लिखा।",
+    "जो खोजो, उसे नाम दो। संस्कृत में \"हर्षद\" का अर्थ है बड़ा आनंद; अपने अंकों के योग से विभाज्य संख्याओं के बारे में उन्हें ऐसा ही लगता था।"
+   ],
+   "copy": "अपने जन्म-वर्ष पर कापरेकर की प्रक्रिया आज़माओ और 6174 तक के क़दम गिनो। फिर एक प्रोग्राम लिखो जो हर चार अंकों वाली संख्या जाँचे।",
+   "sketch": "3524 से कापरेकर की प्रक्रिया: 5432 − 2345 = 3087, फिर 8352, फिर 6174, जो हमेशा दोहराता रहता है।"
+  }
+ },
+ {
+  "slug": "asima-chatterjee",
+  "region": "india",
+  "years": "1917–2006",
+  "born": 1917.73,
+  "tags": [
+   "chembio",
+   "india"
+  ],
+  "en": {
+   "name": "Asima Chatterjee",
+   "place": "Kolkata",
+   "field": "Organic and medicinal chemistry",
+   "gave": "Medicines from Indian plants, including the anti-epileptic drug Ayush-56, developed from the plant Marsilea minuta, and anti-malarial preparations; and decades of work on alkaloids, including the vinca alkaloids used against cancer. In 1944 she became the first woman to receive a Doctorate of Science from an Indian university.",
+   "ideas": [
+    "Look closely at what grows around you. She studied plants long used in Indian medicine and isolated the compounds that do the work.",
+    "Open the door for others. In 1975 she became the first woman to be General President of the Indian Science Congress.",
+    "Build a school with little money. She did much of her work in Calcutta with limited equipment and trained a strong group of chemists of natural products."
+   ],
+   "copy": "Pick one plant used as a home remedy in your family and find out, from a reliable source, which compound in it is thought to act, and whether that has been tested.",
+   "sketch": "A leaf and a ring-shaped molecule: medicines found in plants."
+  },
+  "hi": {
+   "name": "असीमा चटर्जी",
+   "place": "कोलकाता",
+   "field": "कार्बनिक और औषधीय रसायन",
+   "gave": "भारतीय पौधों से दवाइयाँ, जिनमें Marsilea minuta पौधे से बनी मिर्गी-रोधी दवा Ayush-56 और मलेरिया-रोधी औषधियाँ शामिल हैं; और alkaloids पर दशकों का काम, जिनमें कैंसर के ख़िलाफ़ इस्तेमाल होने वाले vinca alkaloids भी हैं। 1944 में वे किसी भारतीय विश्वविद्यालय से Doctorate of Science पाने वाली पहली महिला बनीं।",
+   "ideas": [
+    "आसपास उगने वाली चीज़ों को ध्यान से देखो। उन्होंने भारतीय चिकित्सा में लंबे समय से इस्तेमाल होने वाले पौधों का अध्ययन किया और वे यौगिक अलग किए जो असल में काम करते हैं।",
+    "दूसरों के लिए दरवाज़ा खोलो। 1975 में वे भारतीय विज्ञान कांग्रेस की पहली महिला जनरल प्रेसिडेंट बनीं।",
+    "कम पैसों में भी स्कूल खड़ा करो। उन्होंने अपना बहुत सा काम कलकत्ता में सीमित उपकरणों के साथ किया और प्राकृतिक उत्पादों के रसायनज्ञों का एक मज़बूत समूह तैयार किया।"
+   ],
+   "copy": "अपने परिवार में घरेलू नुस्खे के रूप में इस्तेमाल होने वाला एक पौधा चुनो और किसी विश्वसनीय स्रोत से पता करो कि उसका कौन-सा यौगिक असर करता माना जाता है, और क्या इसे जाँचा गया है।",
+   "sketch": "एक पत्ती और छल्ले जैसा अणु: पौधों में मिलने वाली दवाइयाँ।"
+  }
+ },
+ {
+  "slug": "anna-mani",
+  "region": "india",
+  "years": "1918–2001",
+  "born": 1918.64,
+  "tags": [
+   "physics",
+   "tech",
+   "india"
+  ],
+  "en": {
+   "name": "Anna Mani",
+   "place": "Peermade, Kerala",
+   "field": "Physics, meteorology",
+   "gave": "Weather instruments made in India. At the India Meteorological Department she led the work to design and build its own barometers, wind gauges and radiation instruments to international standards, and developed a cheaper, more accurate way to measure ozone. Her handbook of solar radiation data for India (1980) is still used for solar energy projects.",
+   "ideas": [
+    "Do the work even without the title. She studied the spectra of diamonds in C. V. Raman's laboratory and wrote five papers, but Madras University refused her a PhD because she had no master's degree.",
+    "Build what your country imports. Instruments used to be calibrated abroad; she set up workshops that made and tested them in India.",
+    "Measure the slow, important things. Ozone, sunshine and wind look dull day to day, but decades of careful records show where solar and wind power should go."
+   ],
+   "copy": "Measure one thing (temperature, rainfall or sunshine hours) at the same time every day for a month, and plot it.",
+   "sketch": "A cup anemometer measuring the wind, under the Sun."
+  },
+  "hi": {
+   "name": "अन्ना मणि",
+   "place": "पीरमेड, केरल",
+   "field": "भौतिकी, मौसम विज्ञान",
+   "gave": "भारत में बने मौसम उपकरण। भारत मौसम विज्ञान विभाग में उन्होंने अपने barometers, पवन-मापक और विकिरण उपकरण अंतरराष्ट्रीय मानकों पर डिज़ाइन करने और बनाने के काम का नेतृत्व किया, और ओज़ोन मापने का सस्ता और ज़्यादा सटीक तरीक़ा विकसित किया। भारत के सौर विकिरण आँकड़ों पर उनकी हैंडबुक (1980) आज भी सौर ऊर्जा परियोजनाओं में इस्तेमाल होती है।",
+   "ideas": [
+    "उपाधि न मिले तब भी काम करो। उन्होंने सी. वी. रमन की प्रयोगशाला में हीरों के स्पेक्ट्रम पर शोध किया और पाँच शोधपत्र लिखे, पर मद्रास विश्वविद्यालय ने उन्हें PhD नहीं दी क्योंकि उनके पास मास्टर्स डिग्री नहीं थी।",
+    "जो देश आयात करता है, उसे बनाओ। पहले उपकरणों का अंशांकन विदेश में होता था; उन्होंने ऐसी कार्यशालाएँ बनाईं जहाँ वे भारत में बने और जाँचे गए।",
+    "धीमी, ज़रूरी चीज़ें मापो। ओज़ोन, धूप और हवा रोज़ उबाऊ लगती हैं, पर दशकों के सावधान रिकॉर्ड बताते हैं कि सौर और पवन ऊर्जा कहाँ लगनी चाहिए।"
+   ],
+   "copy": "एक महीने तक हर दिन एक ही समय पर कोई एक चीज़ मापो (तापमान, बारिश या धूप के घंटे), और उसका ग्राफ़ बनाओ।",
+   "sketch": "धूप के नीचे हवा मापता कप वाला पवन-मापक।"
+  }
+ },
+ {
+  "slug": "sarabhai",
+  "region": "india",
+  "years": "1919–1971",
+  "born": 1919.6,
+  "tags": [
+   "physics",
+   "tech",
+   "india"
+  ],
+  "en": {
+   "name": "Vikram Sarabhai",
+   "place": "Ahmedabad",
+   "field": "Physics, space science",
+   "gave": "India's space programme. He founded the Physical Research Laboratory (1947) and the Indian National Committee for Space Research (1962), which became ISRO, and saw India's first rocket launched from Thumba, near Thiruvananthapuram, on 21 November 1963.",
+   "ideas": [
+    "Use advanced technology for ordinary people. He argued that a developing country needs space technology for communication, weather forecasting and education, not for prestige.",
+    "Start small and build. The first rockets were assembled in a church building at Thumba, and parts were carried there on bicycles and bullock carts.",
+    "Build institutions that train people. He also helped found IIM Ahmedabad and the Ahmedabad Textile Industry's Research Association."
+   ],
+   "copy": "Think of one problem in your town and one technology that could solve it cheaply; write down the first small step.",
+   "sketch": "A sounding rocket rising over the coast at Thumba."
+  },
+  "hi": {
+   "name": "विक्रम साराभाई",
+   "place": "अहमदाबाद",
+   "field": "भौतिकी, अंतरिक्ष विज्ञान",
+   "gave": "भारत का अंतरिक्ष कार्यक्रम। उन्होंने भौतिक अनुसंधान प्रयोगशाला (1947) और भारतीय राष्ट्रीय अंतरिक्ष अनुसंधान समिति (1962) बनाई, जो आगे चलकर ISRO बनी, और 21 नवंबर 1963 को तिरुवनंतपुरम के पास थुम्बा से भारत का पहला रॉकेट छोड़ा जाता देखा।",
+   "ideas": [
+    "उन्नत तकनीक आम लोगों के लिए इस्तेमाल करो। उनका तर्क था कि एक विकासशील देश को अंतरिक्ष तकनीक दिखावे के लिए नहीं, संचार, मौसम की भविष्यवाणी और शिक्षा के लिए चाहिए।",
+    "छोटे से शुरू करो और बनाते जाओ। पहले रॉकेट थुम्बा में एक चर्च की इमारत में जोड़े गए, और उनके हिस्से साइकिलों और बैलगाड़ियों पर लाए गए।",
+    "लोगों को तैयार करने वाली संस्थाएँ बनाओ। उन्होंने IIM अहमदाबाद और अहमदाबाद टेक्सटाइल इंडस्ट्री रिसर्च एसोसिएशन की स्थापना में भी मदद की।"
+   ],
+   "copy": "अपने शहर की एक समस्या और उसे सस्ते में हल कर सकने वाली एक तकनीक के बारे में सोचो; पहला छोटा क़दम लिखो।",
+   "sketch": "थुम्बा के तट के ऊपर उठता एक sounding rocket।"
+  }
+ },
+ {
+  "slug": "dhawan",
+  "region": "india",
+  "years": "1920–2002",
+  "born": 1920.73,
+  "tags": [
+   "tech",
+   "physics",
+   "india"
+  ],
+  "en": {
+   "name": "Satish Dhawan",
+   "place": "Born in Srinagar; worked in Bengaluru",
+   "field": "Aerospace engineering",
+   "gave": "Pioneering research on boundary layers, the thin layer of air next to a wing; leadership of the Indian Institute of Science; and, as chairman of ISRO from 1972 to 1984, the years that built India's satellites and launch vehicles. The launch centre at Sriharikota is named after him.",
+   "ideas": [
+    "Take the blame, share the credit. When the first SLV-3 launch failed in 1979 he faced the press himself; when the 1980 launch succeeded, he sent A. P. J. Abdul Kalam to speak.",
+    "Build a laboratory and use it. He set up India's first supersonic wind tunnel at IISc, where students could measure fast airflow themselves.",
+    "Learn engineering from nature. He studied how birds fly and wrote a book about it."
+   ],
+   "copy": "When a team project fails, write down your own part in the failure first, before anyone else's.",
+   "sketch": "Air flowing over a wing, slowing to zero in the thin boundary layer at its surface."
+  },
+  "hi": {
+   "name": "सतीश धवन",
+   "place": "जन्म श्रीनगर में; काम बेंगलुरु में",
+   "field": "एयरोस्पेस इंजीनियरिंग",
+   "gave": "boundary layers, यानी पंख के ठीक पास हवा की पतली परत, पर अग्रणी शोध; भारतीय विज्ञान संस्थान का नेतृत्व; और 1972 से 1984 तक ISRO के अध्यक्ष के रूप में वे साल जिनमें भारत के उपग्रह और प्रक्षेपण यान बने। श्रीहरिकोटा का प्रक्षेपण केंद्र उन्हीं के नाम पर है।",
+   "ideas": [
+    "दोष अपने सिर लो, श्रेय बाँटो। 1979 में SLV-3 का पहला प्रक्षेपण विफल हुआ तो उन्होंने ख़ुद प्रेस का सामना किया; 1980 का प्रक्षेपण सफल हुआ तो उन्होंने बोलने के लिए ए. पी. जे. अब्दुल कलाम को भेजा।",
+    "प्रयोगशाला बनाओ और उसे इस्तेमाल करो। उन्होंने IISc में भारत की पहली supersonic wind tunnel बनाई, जहाँ छात्र तेज़ हवा का प्रवाह ख़ुद माप सकते थे।",
+    "इंजीनियरिंग प्रकृति से सीखो। उन्होंने पक्षियों की उड़ान का अध्ययन किया और उस पर एक किताब लिखी।"
+   ],
+   "copy": "जब कोई टीम प्रोजेक्ट विफल हो, तो किसी और से पहले उस विफलता में अपना हिस्सा लिखो।",
+   "sketch": "पंख के ऊपर बहती हवा, जो सतह के पास पतली boundary layer में धीमी होकर शून्य हो जाती है।"
+  }
+ },
+ {
+  "slug": "khorana",
+  "region": "india",
+  "years": "1922–2011",
+  "born": 1922.02,
+  "tags": [
+   "chembio",
+   "india"
+  ],
+  "en": {
+   "name": "Har Gobind Khorana",
+   "place": "Born in a village in Punjab (now in Pakistan); worked in the USA",
+   "field": "Biochemistry, molecular biology",
+   "gave": "Part of the reading of the genetic code: he built RNA molecules with known repeating sequences and showed which three-letter codons stand for which amino acids. Nobel Prize, 1968, shared with Robert Holley and Marshall Nirenberg. In the 1970s his team made the first artificial genes.",
+   "ideas": [
+    "Make the tool you need. To test the code, he first had to invent ways to build DNA and RNA of chosen sequences in the laboratory.",
+    "Rise from anywhere. Born in a small village, he studied in Lahore, Liverpool, Zurich and Cambridge, and built his career step by step.",
+    "Keep going after the prize. His team built a working gene after the Nobel, opening the way to modern biotechnology."
+   ],
+   "copy": "If the experiment you want needs a tool that does not exist, make building that tool your first project.",
+   "sketch": "RNA read three letters at a time: UCU means serine and CUC means leucine."
+  },
+  "hi": {
+   "name": "हर गोबिंद खुराना",
+   "place": "जन्म पंजाब (अब पाकिस्तान) के एक गाँव में; काम अमेरिका में",
+   "field": "जैव रसायन, आणविक जीवविज्ञान",
+   "gave": "आनुवंशिक कोड को पढ़ने में बड़ा योगदान: उन्होंने ज्ञात दोहराव वाले क्रम के RNA अणु बनाए और दिखाया कि कौन-सा तीन-अक्षरी codon किस amino acid के लिए है। नोबेल पुरस्कार, 1968, रॉबर्ट हॉली और मार्शल निरेनबर्ग के साथ। 1970 के दशक में उनकी टीम ने पहले कृत्रिम जीन बनाए।",
+   "ideas": [
+    "जो औज़ार चाहिए, बनाओ। कोड जाँचने के लिए पहले उन्हें प्रयोगशाला में चुने हुए क्रम वाले DNA और RNA बनाने के तरीक़े ईजाद करने पड़े।",
+    "कहीं से भी ऊपर उठो। एक छोटे गाँव में जन्मे, वे लाहौर, लिवरपूल, ज़्यूरिख़ और कैम्ब्रिज में पढ़े, और क़दम-दर-क़दम अपना करियर बनाया।",
+    "पुरस्कार के बाद भी चलते रहो। उनकी टीम ने नोबेल के बाद एक काम करने वाला जीन बनाया, जिससे आधुनिक जैव-प्रौद्योगिकी का रास्ता खुला।"
+   ],
+   "copy": "अगर जो प्रयोग करना है उसके लिए औज़ार मौजूद नहीं, तो उस औज़ार को बनाना अपना पहला प्रोजेक्ट बनाओ।",
+   "sketch": "तीन-तीन अक्षरों में पढ़ा गया RNA: UCU का अर्थ serine और CUC का अर्थ leucine।"
+  }
+ },
+ {
+  "slug": "ramachandran",
+  "region": "india",
+  "years": "1922–2001",
+  "born": 1922.77,
+  "tags": [
+   "chembio",
+   "physics",
+   "india"
+  ],
+  "en": {
+   "name": "G. N. Ramachandran",
+   "place": "Born in Ernakulam, Kerala; worked in Madras and Bengaluru",
+   "field": "Biophysics",
+   "gave": "The triple-helix structure of collagen, the main protein of skin and bone (1954, with Gopinath Kartha), and the Ramachandran plot (1963), which shows which shapes a protein chain can take. Protein structures are still checked against it today.",
+   "ideas": [
+    "Ask what is physically possible. Atoms cannot overlap; from that simple rule he worked out which pairs of angles (φ, ψ) a protein backbone can have.",
+    "Bring mathematics to biology. Trained in physics under C. V. Raman, he brought geometry and computation to the molecules of life.",
+    "Build a strong school. He made Madras a world centre of structural biology and trained many scientists."
+   ],
+   "copy": "Before calculating anything, list what is impossible in the problem; the impossible cases often shrink the answer to a small region.",
+   "sketch": "The Ramachandran plot: the angles φ and ψ a protein backbone can take fall in a few allowed islands."
+  },
+  "hi": {
+   "name": "जी. एन. रामचंद्रन",
+   "place": "जन्म एर्नाकुलम, केरल; काम मद्रास और बेंगलुरु में",
+   "field": "जैव-भौतिकी",
+   "gave": "कोलेजन, त्वचा और हड्डी के मुख्य प्रोटीन, की triple-helix संरचना (1954, गोपीनाथ करथा के साथ), और रामचंद्रन प्लॉट (1963), जो दिखाता है कि प्रोटीन की श्रृंखला कौन-से आकार ले सकती है। प्रोटीन संरचनाएँ आज भी इसी से जाँची जाती हैं।",
+   "ideas": [
+    "पूछो कि भौतिक रूप से क्या संभव है। परमाणु एक-दूसरे में नहीं घुस सकते; इसी सरल नियम से उन्होंने निकाला कि प्रोटीन की रीढ़ कोणों (φ, ψ) के कौन-से जोड़े ले सकती है।",
+    "जीवविज्ञान में गणित लाओ। सी. वी. रमन के पास भौतिकी में प्रशिक्षित होकर वे जीवन के अणुओं तक ज्यामिति और गणना ले आए।",
+    "एक मज़बूत स्कूल बनाओ। उन्होंने मद्रास को संरचनात्मक जीवविज्ञान का विश्व केंद्र बनाया और बहुत से वैज्ञानिक तैयार किए।"
+   ],
+   "copy": "कुछ भी गणना करने से पहले सवाल में असंभव स्थितियों की सूची बनाओ; असंभव स्थितियाँ अक्सर जवाब को एक छोटे क्षेत्र तक सीमित कर देती हैं।",
+   "sketch": "रामचंद्रन प्लॉट: प्रोटीन की रीढ़ जो कोण φ और ψ ले सकती है, वे कुछ अनुमत द्वीपों में आते हैं।"
+  }
+ },
+ {
+  "slug": "harish-chandra",
+  "region": "india",
+  "years": "1923–1983",
+  "born": 1923,
+  "tags": [
+   "maths",
+   "india"
+  ],
+  "en": {
+   "name": "Harish-Chandra",
+   "place": "Born in Kanpur; worked at Princeton",
+   "field": "Mathematics",
+   "gave": "The theory of representations and harmonic analysis on semisimple Lie groups, the mathematics of continuous symmetry, which he built almost single-handedly over three decades. The Harish-Chandra Research Institute in Prayagraj is named after him.",
+   "ideas": [
+    "Change fields when your heart is elsewhere. He began as a physicist and did his PhD with Paul Dirac at Cambridge, then moved to pure mathematics.",
+    "Aim for the complete theory. Instead of many separate results, he spent his life building one large, finished structure.",
+    "Work deeply and quietly. He was known for long, solitary concentration on very hard problems."
+   ],
+   "copy": "Choose one topic this year that you will understand completely, every definition, theorem and proof, rather than many topics in part.",
+   "sketch": "A circle turned by a symmetry, and the waves (harmonics) that describe functions on it."
+  },
+  "hi": {
+   "name": "हरीश-चंद्र",
+   "place": "जन्म कानपुर में; काम प्रिंसटन में",
+   "field": "गणित",
+   "gave": "semisimple Lie groups पर representations और harmonic analysis का सिद्धांत, यानी सतत सममिति का गणित, जिसे उन्होंने तीन दशकों में लगभग अकेले खड़ा किया। प्रयागराज का हरीश-चंद्र अनुसंधान संस्थान उन्हीं के नाम पर है।",
+   "ideas": [
+    "जहाँ मन हो, वहाँ क्षेत्र बदलो। उन्होंने भौतिकविद के रूप में शुरुआत की और कैम्ब्रिज में पॉल डिरैक के साथ PhD की, फिर शुद्ध गणित में चले गए।",
+    "पूरे सिद्धांत का लक्ष्य रखो। कई अलग-अलग नतीजों की बजाय उन्होंने जीवन भर एक बड़ी, पूरी संरचना बनाई।",
+    "गहराई से और चुपचाप काम करो। वे बहुत कठिन सवालों पर लंबी, एकांत एकाग्रता के लिए जाने जाते थे।"
+   ],
+   "copy": "इस साल एक विषय चुनो जिसे पूरी तरह समझोगे, हर परिभाषा, प्रमेय और उपपत्ति, बजाय कई विषयों को आधा-अधूरा।",
+   "sketch": "एक सममिति से घूमता वृत्त, और वे तरंगें (harmonics) जो उस पर फलनों का वर्णन करती हैं।"
+  }
+ },
+ {
+  "slug": "ritchie",
+  "region": "world",
+  "years": "1941–2011",
+  "born": 1941.7,
+  "tags": [
+   "tech"
+  ],
+  "link": [
+   "/operating-systems/",
+   "Course 4: Operating Systems and Embedded Linux",
+   "कोर्स 4: ऑपरेटिंग सिस्टम और Embedded Linux"
+  ],
+  "en": {
+   "name": "Dennis Ritchie",
+   "place": "Bell Labs, New Jersey, USA",
+   "field": "Computing",
+   "gave": "The C programming language (1972) and, with Ken Thompson, the Unix operating system (from 1969). Linux, Android, macOS and the firmware in countless devices descend from their work. Turing Award, 1983, shared with Thompson.",
+   "ideas": [
+    "Keep it small and simple. C gave programmers close control of the machine with a small language and a small standard library.",
+    "Build the tools your own work needs. C was created to rewrite Unix, so that the system could move to new computers.",
+    "Explain it clearly. The C Programming Language (1978), written with Brian Kernighan, is still a model of a short, exact technical book."
+   ],
+   "copy": "Write the smallest program that does what you need, then improve it; do not start with the biggest design you can imagine.",
+   "sketch": "A terminal running the first program in his book with Kernighan: hello, world."
+  },
+  "hi": {
+   "name": "डेनिस रिची",
+   "place": "Bell Labs, न्यू जर्सी, अमेरिका",
+   "field": "कंप्यूटिंग",
+   "gave": "C प्रोग्रामिंग भाषा (1972) और, केन थॉम्पसन के साथ, Unix ऑपरेटिंग सिस्टम (1969 से)। Linux, Android, macOS और अनगिनत डिवाइसों का फ़र्मवेयर उनके काम से निकले हैं। ट्यूरिंग पुरस्कार, 1983, थॉम्पसन के साथ।",
+   "ideas": [
+    "छोटा और सरल रखो। C ने एक छोटी भाषा और छोटी standard library के साथ प्रोग्रामरों को मशीन पर क़रीबी नियंत्रण दिया।",
+    "अपने काम के लिए ज़रूरी औज़ार बनाओ। C इसलिए बनी कि Unix को फिर से लिखा जा सके, ताकि सिस्टम नए कंप्यूटरों पर जा सके।",
+    "साफ़ समझाओ। ब्रायन कर्निघन के साथ लिखी The C Programming Language (1978) आज भी छोटी, सटीक तकनीकी किताब का आदर्श है।"
+   ],
+   "copy": "सबसे छोटा प्रोग्राम लिखो जो तुम्हारा काम करे, फिर उसे सुधारो; सबसे बड़े डिज़ाइन से शुरू मत करो।",
+   "sketch": "कर्निघन के साथ लिखी उनकी किताब का पहला प्रोग्राम चलाता टर्मिनल: hello, world।"
+  }
+ },
+ {
+  "slug": "chawla",
+  "region": "india",
+  "years": "1962–2003",
+  "born": 1962.2,
+  "tags": [
+   "tech",
+   "india"
+  ],
+  "en": {
+   "name": "Kalpana Chawla",
+   "place": "Born in Karnal, Haryana; worked at NASA, USA",
+   "field": "Aerospace engineering",
+   "gave": "The first woman of Indian origin in space, as a mission specialist on the Space Shuttle Columbia (STS-87, 1997). Before that she worked on computational fluid dynamics, the computer simulation of airflow. She died with her crew when Columbia broke up during re-entry on 1 February 2003.",
+   "ideas": [
+    "Choose your field and go after it. She studied aeronautical engineering at Punjab Engineering College when few women did, then took a master's degree in Texas and a PhD in Colorado.",
+    "Learn by doing. She held licences to fly aeroplanes and gliders and was a certified flight instructor.",
+    "Prepare for years for a few days that matter. Each Shuttle mission came after years of training, study and waiting."
+   ],
+   "copy": "Write down what you would need to learn, year by year, to do the job you dream of, and do the first item on the list this week.",
+   "sketch": "The Space Shuttle in orbit around the Earth."
+  },
+  "hi": {
+   "name": "कल्पना चावला",
+   "place": "जन्म करनाल, हरियाणा में; काम NASA, अमेरिका में",
+   "field": "एयरोस्पेस इंजीनियरिंग",
+   "gave": "अंतरिक्ष में जाने वाली भारतीय मूल की पहली महिला, Space Shuttle Columbia (STS-87, 1997) पर मिशन विशेषज्ञ के रूप में। उससे पहले उन्होंने computational fluid dynamics, यानी हवा के प्रवाह के कंप्यूटर simulation, पर काम किया। 1 फ़रवरी 2003 को वापसी के दौरान Columbia के टूटने पर अपने साथियों के साथ उनका निधन हुआ।",
+   "ideas": [
+    "अपना क्षेत्र चुनो और उसके पीछे जाओ। उन्होंने पंजाब इंजीनियरिंग कॉलेज में aeronautical engineering पढ़ी जब कम लड़कियाँ ऐसा करती थीं, फिर टेक्सस से मास्टर्स और कोलोराडो से PhD की।",
+    "करके सीखो। उनके पास हवाई जहाज़ और glider उड़ाने के लाइसेंस थे और वे प्रमाणित उड़ान प्रशिक्षक थीं।",
+    "कुछ अहम दिनों के लिए सालों तैयारी करो। हर Shuttle मिशन से पहले सालों का प्रशिक्षण, पढ़ाई और इंतज़ार था।"
+   ],
+   "copy": "लिखो कि अपने सपनों का काम करने के लिए साल-दर-साल क्या सीखना होगा, और सूची की पहली चीज़ इसी हफ़्ते करो।",
+   "sketch": "पृथ्वी की परिक्रमा करता Space Shuttle।"
+  }
+ }
+]

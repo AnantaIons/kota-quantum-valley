@@ -1,31 +1,36 @@
 ---
+// The Great Minds page (English and Hindi). Data: src/data/minds.js; drawings: src/data/minds-art.json;
+// optional photos: src/data/minds-photos.json plus image files in public/minds/.
+import fs from 'node:fs';
+import path from 'node:path';
 import MindsArt from './MindsArt.astro';
 import { minds, habits } from '../data/minds.js';
 import art from '../data/minds-art.json';
+import photos from '../data/minds-photos.json';
 import { isLessonSlug } from '../data/course.js';
 
 const { lang = 'en' } = Astro.props;
 const hi = lang === 'hi';
-const india = minds.filter((m) => m.region === 'india').length;
+const count = (tag) => minds.filter((m) => m.tags.includes(tag)).length;
+const india = count('india');
 const T = hi ? {
   eyebrow: 'महान विचारक',
-  h1: 'सोलह महान विचारक, और उनके सोचने का तरीक़ा।',
-  desc: `आर्किमिडीज़ से कलाम तक: हर एक ने दुनिया को क्या दिया, उसके पीछे कौन-सी आदतें थीं, और एक चीज़ जो आप इसी हफ़्ते आज़मा सकते हैं। इनमें से आधे भारत से हैं, और ब्रह्मगुप्त राजस्थान से।`,
-  note: 'चित्र कोड से बने पेंसिल-स्केच हैं, तस्वीरें नहीं। तीन प्राचीन विचारकों का कोई चित्र नहीं बचा, इसलिए उनके चित्र में उनका विचार है। ऐसी हर सूची में बहुत से महान लोग छूट जाते हैं; यहाँ वे हैं जिनकी आदतें एक छात्र आज अपना सकता है।',
-  shared: 'इन सब में क्या साझा था',
-  filter: 'दिखाएँ', all: 'सभी', in: 'भारत', world: 'दुनिया',
-  gave: 'उन्होंने क्या दिया', how: 'वे कैसे सोचते थे', try: 'यह आज़माएँ', more: 'इस साइट पर आगे पढ़ें',
-  aboutArt: 'चित्र के बारे में',
+  h1: `${minds.length} महान विचारक, और उनके सोचने का तरीक़ा।`,
+  desc: `अरस्तू और पिंगल से कल्पना चावला और हॉकिंग तक: हर एक ने दुनिया को क्या दिया, उसके पीछे कौन-सी आदतें थीं, और एक चीज़ जो आप इसी हफ़्ते आज़मा सकते हैं। इनमें ${india} भारतीय हैं, और ब्रह्मगुप्त राजस्थान से।`,
+  note: 'हर चित्र उस व्यक्ति के सबसे प्रसिद्ध विचार को दिखाता है, जो कोड से बनाया गया है। जहाँ साफ़ लाइसेंस वाली तस्वीर जोड़ी गई है, वहाँ वह चित्र की जगह दिखती है, श्रेय के साथ। ऐसी हर सूची में कई महान लोग छूट जाते हैं; ये लोग अपने विचारों के महत्व और ऐसी आदतों के लिए चुने गए हैं जो एक छात्र आज अपना सकता है।',
+  shared: 'इन सब में क्या साझा था', people: 'सभी लोग, जन्म के क्रम में',
+  filter: 'दिखाएँ', tags: { all: 'सभी', india: 'भारत', maths: 'गणित', physics: 'भौतिकी', chembio: 'रसायन और जीवविज्ञान', tech: 'कंप्यूटिंग और इंजीनियरिंग' },
+  gave: 'उन्होंने क्या दिया', how: 'वे कैसे सोचते थे', try: 'यह आज़माएँ', more: 'इस साइट पर आगे पढ़ें', drawing: 'चित्र में', photo: 'तस्वीर',
 } : {
   eyebrow: 'Great minds',
-  h1: 'Sixteen great minds, and how they thought.',
-  desc: `From Archimedes to Kalam: what each of them gave the world, the habits behind it, and one thing you can try this week. Half of them are from India, and one, Brahmagupta, from Rajasthan.`,
-  note: 'The portraits are pencil-style sketches drawn in code, not photographs. No likeness of the three ancient thinkers survives, so their portraits show their ideas. Any list like this leaves out many great people; these were chosen for habits a student can copy today.',
-  shared: 'What they had in common',
-  filter: 'Show', all: 'All', in: 'India', world: 'World',
-  gave: 'What they gave us', how: 'How they thought', try: 'Try this', more: 'Read more on this site',
-  aboutArt: 'About the drawing',
+  h1: `${minds.length} great minds, and how they thought.`,
+  desc: `From Aristotle and Pingala to Kalpana Chawla and Stephen Hawking: what each of them gave the world, the habits behind it, and one thing you can try this week. ${india} of them are Indian, and Brahmagupta was from Rajasthan.`,
+  note: 'Each drawing shows the person\'s best-known idea, drawn in code. Where a photo with a clear licence has been added, it appears instead, with its credit. Any list like this leaves out great people; these were chosen for the importance of their ideas and for habits a student can copy today.',
+  shared: 'What they had in common', people: 'Everyone, in order of birth',
+  filter: 'Show', tags: { all: 'All', india: 'India', maths: 'Mathematics', physics: 'Physics', chembio: 'Chemistry and biology', tech: 'Computing and engineering' },
+  gave: 'What they gave us', how: 'How they thought', try: 'Try this', more: 'Read more on this site', drawing: 'The drawing', photo: 'Photo',
 };
+const tagList = ['all', 'india', 'maths', 'physics', 'chembio', 'tech'];
 const linkFor = (m) => {
   if (!m.link) return null;
   let [href, en, hiLabel] = m.link;
@@ -34,6 +39,12 @@ const linkFor = (m) => {
     if (post && isLessonSlug(post[1])) href = `/hi/lessons/${post[1]}/`;
   }
   return [href, hi ? hiLabel : en];
+};
+// A photo is shown only when it is listed in minds-photos.json and the file really exists in public/minds/
+const photoFor = (slug) => {
+  const p = photos[slug];
+  if (!p || !p.file) return null;
+  return fs.existsSync(path.join(process.cwd(), 'public', 'minds', p.file)) ? p : null;
 };
 // Each idea opens with a short lead sentence; show it in bold
 const split = (x) => { const m = x.match(/^(.+?[.।])\s+([\s\S]*)$/); return m ? [m[1], m[2]] : [x, '']; };
@@ -53,34 +64,36 @@ const split = (x) => { const m = x.match(/^(.+?[.।])\s+([\s\S]*)$/); return m 
       {habits[lang].map(([h, p]) => <div class="card"><h3>{h}</h3><p>{p}</p></div>)}
     </div>
 
+    <h2 class="minds-h2">{T.people}</h2>
     <div class="minds-filter" role="group" aria-label={T.filter}>
-      <span>{T.filter}</span>
-      <button type="button" data-region="all" aria-pressed="true">{T.all} <small>{minds.length}</small></button>
-      <button type="button" data-region="india" aria-pressed="false">{T.in} <small>{india}</small></button>
-      <button type="button" data-region="world" aria-pressed="false">{T.world} <small>{minds.length - india}</small></button>
+      {tagList.map((t, i) => <button type="button" data-tag={t} aria-pressed={i === 0 ? 'true' : 'false'}>{T.tags[t]} <small>{t === 'all' ? minds.length : count(t)}</small></button>)}
     </div>
 
-    <ol class="minds-list">
+    <ol class="minds-grid">
       {minds.map((m) => {
         const t = m[lang];
         const link = linkFor(m);
+        const photo = photoFor(m.slug);
         return (
-          <li class="mind" id={m.slug} data-region={m.region}>
-            <figure class="mind-fig">
-              <svg class="mind-art" viewBox="0 0 200 220" role="img" aria-label={hi ? `${t.name} का स्केच` : `Sketch of ${t.name}`}><Fragment set:html={art[m.slug]} /></svg>
-              <figcaption>{m.years}</figcaption>
-            </figure>
-            <div class="mind-body">
-              <h2>{t.name}</h2>
-              <p class="mind-meta">{t.place}. <span>{t.field}</span></p>
-              <h3>{T.gave}</h3>
-              <p>{t.gave}</p>
-              <h3>{T.how}</h3>
+          <li class="mcard" id={m.slug} data-tags={m.tags.join(' ')}>
+            {photo ? (
+              <figure class="mind-photo"><img src={`/minds/${photo.file}`} alt={hi ? `${t.name} की तस्वीर` : `Photo of ${t.name}`} loading="lazy" decoding="async" /></figure>
+            ) : (
+              <svg class="mind-art" viewBox="0 0 200 220" role="img" aria-label={`${T.drawing}: ${t.sketch}`}><Fragment set:html={art[m.slug]} /></svg>
+            )}
+            <div class="mcard-body">
+              <p class="mcard-years">{m.years}</p>
+              <h3>{t.name}</h3>
+              <p class="mcard-meta">{t.place}. <span>{t.field}</span></p>
+              <p class="mcard-gave"><strong>{T.gave}.</strong> {t.gave}</p>
+            </div>
+            <details class="mcard-more">
+              <summary>{T.how}</summary>
               <ul>{t.ideas.map((x) => { const [a, b] = split(x); return <li><strong>{a}</strong> {b}</li>; })}</ul>
               <div class="mind-try"><strong>{T.try}</strong><p>{t.copy}</p></div>
               {link && <p class="mind-link"><a href={link[0]}>{T.more}: {link[1]}</a></p>}
-              {t.art && <p class="mind-artnote"><strong>{T.aboutArt}.</strong> {t.art}</p>}
-            </div>
+              <p class="mind-artnote">{photo ? <><strong>{T.photo}:</strong> {photo.credit}</> : <><strong>{T.drawing}:</strong> {t.sketch}</>}</p>
+            </details>
           </li>
         );
       })}
@@ -93,47 +106,56 @@ const split = (x) => { const m = x.match(/^(.+?[.।])\s+([\s\S]*)$/); return m 
   bar?.addEventListener('click', (e) => {
     const b = (e.target as HTMLElement).closest('button');
     if (!b) return;
-    const r = b.dataset.region;
+    const tag = b.dataset.tag;
     bar.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-    document.querySelectorAll<HTMLElement>('.mind').forEach((m) => { m.hidden = r !== 'all' && m.dataset.region !== r; });
+    document.querySelectorAll<HTMLElement>('.mcard').forEach((m) => { m.hidden = tag !== 'all' && !(m.dataset.tags || '').split(' ').includes(tag!); });
   });
+  // Arriving from a link such as /great-minds/#einstein: open that card's details
+  const openHash = () => {
+    const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    target?.querySelector('details')?.setAttribute('open', '');
+  };
+  openHash();
+  window.addEventListener('hashchange', openHash);
 </script>
 
 <style is:global>
   .minds-note { max-width: 62ch; }
-  .minds-wrap { width: min(1040px, 100%); margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); }
-  .minds-h2 { margin: 48px 0 16px; }
+  .minds-wrap { width: min(1180px, 100%); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .minds-h2 { margin: 52px 0 16px; }
   .minds-habits { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
   .minds-habits .card h3 { font-size: 1.02rem; margin-bottom: 6px; }
   .minds-habits .card p { font-size: 0.95rem; color: var(--text-2); }
-  .minds-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 48px 0 8px; }
-  .minds-filter span { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-3, var(--text-2)); margin-right: 4px; }
-  .minds-filter button { font: 600 0.92rem var(--font-head); color: var(--text); background: rgba(140, 160, 255, 0.06); border: 1px solid var(--border-strong); border-radius: 999px; padding: 7px 14px; cursor: pointer; }
+  .minds-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 22px; }
+  .minds-filter button { font: 600 0.9rem var(--font-head); color: var(--text); background: rgba(140, 160, 255, 0.06); border: 1px solid var(--border-strong); border-radius: 999px; padding: 7px 14px; cursor: pointer; }
   .minds-filter button small { font-weight: 500; color: var(--text-2); margin-left: 4px; }
   .minds-filter button[aria-pressed='true'] { background: var(--cyan); border-color: var(--cyan); color: var(--space, #050816); }
   .minds-filter button[aria-pressed='true'] small { color: inherit; }
   .minds-filter button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
-  .minds-list { list-style: none; padding: 0; margin: 0; position: relative; }
-  .minds-list::before { content: ''; position: absolute; left: 110px; top: 0; bottom: 0; width: 1px; background: linear-gradient(var(--border-strong), transparent); }
-  .mind { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; padding: 40px 0; border-bottom: 1px solid var(--border); position: relative; scroll-margin-top: 90px; }
-  .mind-fig { margin: 0; position: sticky; top: 90px; align-self: start; background: var(--midnight, #0b1026); border: 1px solid var(--border); border-radius: var(--r-md); padding: 10px 8px 6px; }
-  .mind-fig figcaption { text-align: center; font-family: var(--font-mono); font-size: 0.85rem; color: var(--cyan); margin-top: 2px; }
-  .mind-body { min-width: 0; max-width: 68ch; }
-  .mind-body h2 { margin: 0 0 4px; font-size: clamp(1.5rem, 2.6vw, 1.9rem); }
-  .mind-meta { margin: 0 0 18px; color: var(--text-2); }
-  .mind-meta span { color: var(--cobalt-text); }
-  .mind-body h3 { font-size: 0.86rem; font-family: var(--font-mono); font-weight: 500; color: var(--cyan); margin: 18px 0 6px; letter-spacing: 0.02em; }
-  .mind-body ul { padding-left: 20px; margin: 0; }
-  .mind-body li { margin-bottom: 8px; }
-  .mind-body li strong { color: var(--text); font-weight: 600; }
-  .mind-try { margin: 20px 0 0; padding: 14px 18px; border-left: 3px solid var(--cyan); background: rgba(230, 195, 106, 0.07); border-radius: 0 var(--r-sm) var(--r-sm) 0; }
-  .mind-try strong { display: block; font-family: var(--font-head); font-size: 0.95rem; margin-bottom: 4px; color: var(--gold-hi, var(--cyan)); }
+  .minds-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 18px; }
+  .mcard { display: flex; flex-direction: column; gap: 10px; padding: 18px 20px 16px; border: 1px solid var(--border); border-radius: var(--r-md); background: linear-gradient(180deg, rgba(30, 40, 90, 0.4), rgba(14, 21, 51, 0.6)); scroll-margin-top: 90px; }
+  .mcard > svg, .mcard > .mind-photo { width: min(220px, 100%); align-self: center; }
+  .mcard[hidden] { display: none; }
+  .mcard-body { min-width: 0; }
+  .mcard-years { margin: 0; font-family: var(--font-mono); font-size: 0.8rem; color: var(--cyan); }
+  .mcard h3 { margin: 2px 0 4px; font-size: 1.18rem; line-height: 1.25; }
+  .mcard-meta { margin: 0 0 10px; font-size: 0.86rem; color: var(--text-2); }
+  .mcard-meta span { color: var(--cobalt-text); }
+  .mcard-gave { margin: 0; font-size: 0.93rem; }
+  .mcard-gave strong { color: var(--text); font-weight: 600; }
+  .mcard-more { margin-top: auto; padding-top: 4px; }
+  .mcard-more > summary { cursor: pointer; font-family: var(--font-head); font-weight: 600; font-size: 0.92rem; color: var(--cyan); list-style: none; display: inline-flex; align-items: center; gap: 6px; padding: 4px 0; }
+  .mcard-more > summary::-webkit-details-marker { display: none; }
+  .mcard-more > summary::before { content: '+'; display: inline-grid; place-items: center; width: 18px; height: 18px; border: 1px solid currentColor; border-radius: 50%; font-size: 0.8rem; line-height: 1; }
+  .mcard-more[open] > summary::before { content: '−'; }
+  .mcard-more > summary:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; border-radius: 4px; }
+  .mcard-more ul { padding-left: 18px; margin: 8px 0 0; font-size: 0.92rem; }
+  .mcard-more li { margin-bottom: 7px; }
+  .mcard-more li strong { color: var(--text); font-weight: 600; }
+  .mind-try { margin: 12px 0 0; padding: 10px 14px; border-left: 3px solid var(--cyan); background: rgba(230, 195, 106, 0.07); border-radius: 0 var(--r-sm) var(--r-sm) 0; font-size: 0.92rem; }
+  .mind-try strong { display: block; font-family: var(--font-head); font-size: 0.9rem; margin-bottom: 2px; color: var(--gold-hi, var(--cyan)); }
   .mind-try p { margin: 0; }
-  .mind-link { margin: 16px 0 0; }
-  .mind-artnote { margin: 14px 0 0; font-size: 0.88rem; color: var(--text-2); }
-  @media (max-width: 720px) {
-    .minds-list::before { display: none; }
-    .mind { grid-template-columns: 1fr; gap: 14px; padding: 32px 0; }
-    .mind-fig { position: static; width: min(240px, 70%); margin: 0 auto; }
-  }
+  .mind-link { margin: 10px 0 0; font-size: 0.9rem; }
+  .mind-artnote { margin: 10px 0 0; font-size: 0.82rem; color: var(--text-2); }
+  @media (max-width: 480px) { .mcard { padding: 16px; } }
 </style>

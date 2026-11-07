@@ -1,6 +1,8 @@
-// The Great Minds page: sixteen people, in order of birth, half from India.
-// Portraits are sketches drawn in code by scripts/minds-portraits.py (no photographs); art key = slug.
-// For Archimedes, Aryabhata and Brahmagupta no likeness from their lifetime survives, so the drawing shows their idea.
+// The Great Minds page: fifty people, chosen by importance, shown in order of birth.
+// Each card's drawing shows the person's best-known idea, drawn in code by scripts/minds-portraits.py (art key = slug).
+// A photo the founder adds (see src/data/minds-photos.json) replaces the drawing, with its credit line.
+// The first sixteen are below; the other thirty-four are in minds-more.json.
+import more from './minds-more.json';
 
 export const habits = {
   en: [
@@ -21,7 +23,7 @@ export const habits = {
   ],
 };
 
-export const minds = [
+const core = [
   {
     slug: 'archimedes', region: 'world', years: 'c. 287–212 BCE', noLikeness: true,
     en: {
@@ -397,3 +399,35 @@ export const minds = [
     },
   },
 ];
+
+// Birth year (negative = BCE) for ordering, subject tags for the filters, and what each drawing shows.
+const extra = {
+  archimedes: { born: -287, tags: ['maths', 'physics'] },
+  aryabhata: { born: 476, tags: ['maths', 'physics'] },
+  brahmagupta: { born: 598, tags: ['maths'] },
+  newton: { born: 1643, tags: ['physics', 'maths'], sketch: { en: 'A prism splitting white light into its colours, as in his experiments of 1666.', hi: 'प्रिज़्म सफ़ेद रोशनी को उसके रंगों में तोड़ता है, जैसा 1666 के उनके प्रयोगों में।' } },
+  euler: { born: 1707, tags: ['maths', 'physics'], sketch: { en: 'The unit circle and his formula e^(iθ) = cos θ + i sin θ; at θ = π it gives e^(iπ) + 1 = 0.', hi: 'इकाई वृत्त और उनका सूत्र e^(iθ) = cos θ + i sin θ; θ = π पर यह e^(iπ) + 1 = 0 देता है।' } },
+  faraday: { born: 1791, tags: ['physics', 'chembio'], sketch: { en: 'A magnet moving into a coil makes a current: electromagnetic induction, with his lines of force.', hi: 'कुंडली में जाता चुंबक धारा बनाता है: विद्युत-चुंबकीय प्रेरण, उनकी बल-रेखाओं के साथ।' } },
+  'jc-bose': { born: 1858, tags: ['physics', 'tech', 'chembio'], sketch: { en: 'A horn antenna sending millimetre waves to a crystal detector.', hi: 'एक horn antenna, जो crystal detector तक मिलीमीटर तरंगें भेजता है।' } },
+  curie: { born: 1867, tags: ['physics', 'chembio'], sketch: { en: 'A radioactive atom giving off alpha, beta and gamma radiation.', hi: 'एक रेडियोधर्मी परमाणु जो अल्फ़ा, बीटा और गामा विकिरण छोड़ता है।' } },
+  einstein: { born: 1879, tags: ['physics'], sketch: { en: 'A beam of light, the thought experiment he began with at 16, and E = mc².', hi: 'रोशनी की एक किरण, वह विचार-प्रयोग जिससे उन्होंने 16 साल की उम्र में शुरुआत की, और E = mc²।' } },
+  ramanujan: { born: 1887, tags: ['maths'], sketch: { en: '1729 = 1³ + 12³ = 9³ + 10³: two different stacks of cubes with the same total.', hi: '1729 = 1³ + 12³ = 9³ + 10³: घनों के दो अलग ढेर, जिनका योग एक ही है।' } },
+  raman: { born: 1888, tags: ['physics'], sketch: { en: 'Light scattering off a molecule: most comes out unchanged, a little comes out with a slightly different colour.', hi: 'अणु से बिखरती रोशनी: ज़्यादातर बिना बदले निकलती है, थोड़ी-सी कुछ अलग रंग के साथ।' } },
+  'sn-bose': { born: 1894, tags: ['physics'], sketch: { en: 'Counting identical photons in two boxes: three arrangements, not four.', hi: 'दो डिब्बों में एक जैसे फ़ोटॉन गिनना: चार नहीं, तीन व्यवस्थाएँ।' } },
+  bhabha: { born: 1909, tags: ['physics', 'tech'], sketch: { en: 'A cosmic-ray shower: one particle from space multiplying into a cascade of electrons, positrons and light.', hi: 'कॉस्मिक-किरण बौछार: अंतरिक्ष से आया एक कण इलेक्ट्रॉनों, पॉज़िट्रॉनों और रोशनी की झड़ी में बदलता है।' } },
+  turing: { born: 1912, tags: ['maths', 'tech'], sketch: { en: 'A Turing machine: a tape of symbols and a head that reads, writes and moves one cell at a time.', hi: 'ट्यूरिंग मशीन: चिह्नों की एक टेप और एक हेड जो एक बार में एक खाना पढ़ता, लिखता और खिसकता है।' } },
+  feynman: { born: 1918, tags: ['physics', 'tech'], sketch: { en: 'A Feynman diagram: two electrons repel by exchanging a photon.', hi: 'फ़ाइनमैन आरेख: दो इलेक्ट्रॉन एक फ़ोटॉन का आदान-प्रदान करके एक-दूसरे को धकेलते हैं।' } },
+  kalam: { born: 1931, tags: ['tech'], sketch: { en: 'SLV-3 lifting off, and the Rohini satellite it put into orbit in 1980.', hi: 'उड़ान भरता SLV-3, और 1980 में उसके द्वारा कक्षा में पहुँचाया गया रोहिणी उपग्रह।' } },
+};
+
+const ancient = { archimedes: true, aryabhata: true, brahmagupta: true };
+export const minds = [
+  ...core.map((m) => {
+    const x = extra[m.slug];
+    const tags = [...x.tags, ...(m.region === 'india' ? ['india'] : [])];
+    // For the three ancient thinkers the existing note already says what the drawing shows (no likeness survives)
+    const sketch = x.sketch ?? { en: m.en.art, hi: m.hi.art };
+    return { ...m, born: x.born, tags, ancient: !!ancient[m.slug], en: { ...m.en, sketch: sketch.en }, hi: { ...m.hi, sketch: sketch.hi } };
+  }),
+  ...more.map((m) => ({ ...m, tags: [...new Set([...m.tags, ...(m.region === 'india' ? ['india'] : [])])] })),
+].sort((a, b) => a.born - b.born);

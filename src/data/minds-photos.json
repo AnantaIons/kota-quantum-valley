@@ -1,0 +1,3 @@
+{
+  "_how_to_add": "To show a photo instead of a drawing: upload the image to public/minds/ (for example public/minds/einstein.jpg), then add an entry here keyed by the person's slug, such as \"einstein\": { \"file\": \"einstein.jpg\", \"credit\": \"Photographer, year. Public domain, via Wikimedia Commons\" }. Use only photos whose licence allows reuse, and give the credit the licence asks for. Slugs are listed in src/data/minds.js and src/data/minds-more.json."
+}
