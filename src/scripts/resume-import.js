@@ -136,7 +136,7 @@ async function unzipEntry(buf, wanted) {
 
 // ---------- turning text into fields ----------
 const BULLET = /^\s*(?:[•●▪◦‣∙·*➢➤►▶✓✔-]|–|—|\d+[.)])\s+/;
-const PRIVATE = /[-�]/g;
+const PRIVATE = new RegExp('[\\uE000-\\uF8FF\\uFFFD]', 'g');   // icon-font glyphs and unknown characters (a string keeps this file ASCII)
 const MONTH = '(?:jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\\.?';
 const POINT = `(?:${MONTH}\\s*'?\\d{2,4}|\\d{1,2}[/.-]\\d{4}|\\d{4})`;
 const DATE_RANGE = new RegExp(`(${POINT})(?:\\s*[-–—−‐]\\s*|\\s+(?:to|till)\\s+|\\s+)(${POINT}|present|current|now|ongoing|till date|today)`, 'i');
